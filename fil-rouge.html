@@ -7,9 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
-<link rel="stylesheet" href="assets/base.css?v=1795255840">
-<link rel="stylesheet" href="assets/photos.css?v=1795255840">
-<link rel="stylesheet" href="assets/revision.css?v=1795255840">
+<link rel="stylesheet" href="assets/base.css?v=1795255982">
+<link rel="stylesheet" href="assets/photos.css?v=1795255982">
+<link rel="stylesheet" href="assets/revision.css?v=1795255982">
 </head>
 <body data-page="course" data-course="fil-rouge" data-title="Fil rouge GaSeBeLa">
 <div id="app" data-theme="papier">
@@ -538,7 +538,7 @@
 
 <!-- ================= 05 · IMPLÉMENTATIONS TECHNIQUES ================= -->
 <section class="slide" data-ch="05" data-sec="05 Implémentation" data-title="Les implémentations techniques" data-v="c">
-<div class="kicker">Chapitre 05 · Les implémentations techniques · 1 / 10 · Infrastructure</div>
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 1 / 13 · Infrastructure</div>
 <div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
 <h2>Tout en local, sous Docker Compose, lancé à la demande</h2>
 <div class="grid g2">
@@ -556,7 +556,7 @@
 </section>
 
 <section class="slide" data-ch="05" data-v="c">
-<div class="kicker">Chapitre 05 · Les implémentations techniques · 2 / 10 · Modèle de données</div>
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 2 / 13 · Modèle de données</div>
 <div class="pqrow"><span class="pq how">③ Comment</span></div>
 <h2>De 3 tables à 22 : la base refuse elle-même les incohérences</h2>
 <div class="grid g2">
@@ -578,7 +578,7 @@
 </section>
 
 <section class="slide" data-ch="05" data-v="c">
-<div class="kicker">Chapitre 05 · Les implémentations techniques · 3 / 10 · Indexation</div>
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 3 / 13 · Indexation</div>
 <div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
 <h2>Trois index posés après mesure, pas par réflexe</h2>
 <div class="grid g2">
@@ -598,7 +598,7 @@
 </section>
 
 <section class="slide" data-ch="05" data-v="c">
-<div class="kicker">Chapitre 05 · Les implémentations techniques · 4 / 10 · Dimensionnement et architecture</div>
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 4 / 13 · Dimensionnement et architecture</div>
 <div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq how">③ Comment</span></div>
 <h2>La note 3V : 22 à 133 Go en 2 ans, donc pas de Hadoop</h2>
 <div class="grid g3">
@@ -618,7 +618,7 @@
 </section>
 
 <section class="slide" data-ch="05" data-v="c">
-<div class="kicker">Chapitre 05 · Les implémentations techniques · 5 / 10 · Flux de données</div>
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 5 / 13 · Flux de données</div>
 <div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
 <h2>Quatre traitements de nuit, une source de vérité</h2>
 <div class="grid g2">
@@ -639,7 +639,38 @@
 </section>
 
 <section class="slide" data-ch="05" data-v="c">
-<div class="kicker">Chapitre 05 · Les implémentations techniques · 6 / 10 · L'API</div>
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 6 / 13 · L'API vue de l'extérieur</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Ce que l'API expose : 21 ressources, 96 opérations</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card hl"><span class="lab">Le principe REST</span><p>Chaque table est une <b>ressource</b>, nommée au pluriel. On agit dessus avec les <b>verbes HTTP</b>, et la réponse porte un <b>code</b> qui dit ce qui s'est passé. Les 21 ressources ont les <b>mêmes 4 routes</b> :</p><ul><li><code>GET /clients</code> : la liste ;</li><li><code>GET /clients/{id}</code> : une fiche ;</li><li><code>POST /clients</code> : créer (l'<code>id</code> est donné par PostgreSQL) ;</li><li><code>PUT /clients/{id}</code> : modifier.</li></ul><p><b>Pas de <code>DELETE</code></b> : il répond <code>405</code> partout. Effacer, c'est désactiver puis anonymiser (ADR-049).</p></div>
+    <table class="cmp md small"><thead><tr><th>Domaine</th><th>Ressources</th></tr></thead><tbody>
+      <tr><td>Comptes et profils</td><td><code>/users</code> <code>/roles</code> <code>/clients</code> <code>/hunters</code> <code>/real-estate-managers</code></td></tr>
+      <tr><td>Recherche</td><td><code>/search-requests</code> <code>/criteria</code> <code>/estate-search-requests</code></td></tr>
+      <tr><td>Biens</td><td><code>/estates</code> <code>/pictures</code> <code>/estate-contacts</code> <code>/review-media</code></td></tr>
+      <tr><td>Parcours</td><td><code>/mandates</code> <code>/estate-proposed</code> <code>/visits</code></td></tr>
+      <tr><td>Vente et argent</td><td><code>/sales</code> <code>/payments</code> <code>/commission-scales</code> <code>/parameters-fees</code> <code>/hunter-rate-parameters</code> <code>/hunter-performances</code></td></tr>
+    </tbody></table>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <table class="cmp md small"><thead><tr><th>Route métier</th><th>Ce qu'elle fait</th></tr></thead><tbody>
+      <tr><td><code>POST /auth/login</code></td><td>vérifie le mot de passe, rend un jeton valable 60 min</td></tr>
+      <tr><td><code>POST /auth/activate</code></td><td>le client choisit son mot de passe avec son code d'activation</td></tr>
+      <tr><td><code>POST /search-requests/submit</code></td><td>un visiteur dépose sa demande, sans compte</td></tr>
+      <tr><td><code>POST /search-requests/{id}/suggestions</code></td><td>le moteur propose 10 biens au plus</td></tr>
+      <tr><td><code>POST /estate-proposed/{id}/offer</code></td><td>le client fait une offre d'achat</td></tr>
+      <tr><td><code>POST /sales/{id}/payment</code></td><td>calcule et enregistre la rémunération du chasseur</td></tr>
+      <tr><td><code>POST /users/{id}/anonymize</code></td><td>efface un compte au sens du RGPD</td></tr>
+      <tr><td><code>GET /estates/search</code></td><td>cherche dans Elasticsearch, avec pagination</td></tr>
+    </tbody></table>
+    <div class="card"><span class="lab">Documentée et essayable</span><p>FastAPI génère la description <b>OpenAPI</b> ; la page <b>Swagger</b> (<code>/docs</code>) permet d'appeler chaque route. Chaque opération y a un titre, qui peut l'appeler, et le sens de chaque code de réponse.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 7 / 13 · L'API, à l'intérieur</div>
 <div class="pqrow"><span class="pq how">③ Comment</span></div>
 <h2>Une API en trois couches, et un pattern pour chaque problème</h2>
 <div class="grid g2">
@@ -666,7 +697,52 @@
 </section>
 
 <section class="slide" data-ch="05" data-v="c">
-<div class="kicker">Chapitre 05 · Les implémentations techniques · 7 / 10 · Sécurité</div>
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 8 / 13 · Le trajet d'une requête</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Le trajet d'une requête : chaque étape peut dire non</h2>
+<div class="flow">
+  <div class="step"><b>1 · Clé d'API</b><small>en-tête <code>X-API-Key</code> : quel programme appelle ? Sinon <b>401</b></small></div>
+  <div class="step"><b>2 · Jeton</b><small>JWT de 60 min, compte relu en base : qui agit ? Sinon <b>401</b></small></div>
+  <div class="step"><b>3 · Route</b><small>l'entrée est revalidée (Pydantic). Sinon <b>422</b></small></div>
+  <div class="step"><b>4 · Service</b><small>le rôle a-t-il le droit ? Sinon <b>403</b>. Est-ce « le sien » ? Sinon <b>404</b></small></div>
+  <div class="step"><b>5 · PostgreSQL</b><small>contraintes, unicité, déclencheur. Sinon <b>409</b>. Tout va bien : <b>200</b></small></div>
+</div>
+<div class="grid g2">
+  <table class="cmp md small"><thead><tr><th>Code</th><th>Exemple dans le projet</th></tr></thead><tbody>
+    <tr><td><b>401</b></td><td>jeton expiré après 60 min ; même message dans tous les cas, pour ne rien révéler</td></tr>
+    <tr><td><b>422</b></td><td>un champ manque, ou un prix n'est pas un nombre</td></tr>
+    <tr><td><b>403</b></td><td>un client essaie de modifier un paiement</td></tr>
+    <tr><td><b>404</b></td><td>un client demande la fiche d'un autre client</td></tr>
+    <tr><td><b>409</b></td><td>un second mandat exclusif, un second paiement pour la même vente</td></tr>
+    <tr><td><b>405</b></td><td>un <code>DELETE</code>, refusé partout</td></tr>
+    <tr><td><b>429</b></td><td>6ᵉ mauvais mot de passe en 15 min</td></tr>
+    <tr><td><b>503</b></td><td>Elasticsearch arrêté : seule la recherche échoue</td></tr>
+  </tbody></table>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card hl"><span class="lab">Pourquoi revalider à la route</span><p>Un modèle de table SQLModel <b>ne valide pas</b> ce qu'on lui donne. Mesuré le 05/10 : un prix de <code>199999.5</code> était arrondi <b>en silence</b> à 200 000. La route revalide donc le corps (<code>model_validate</code>) : une entrée fausse rend <code>422</code> avant d'atteindre la base (ADR-036).</p></div>
+    <div class="card"><span class="lab">Pourquoi 404 plutôt que 403</span><p>Sur la ligne d'un autre, un <code>403</code> confirmerait qu'elle existe : on pourrait deviner les identifiants des autres clients. Avec <code>404</code>, elle est indiscernable d'une ligne absente.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 9 / 13 · Un cas de bout en bout</div>
+<div class="pqrow"><span class="pq ex">④ Exemple</span></div>
+<h2>Un cas complet : le paiement d'une vente</h2>
+<div class="flow">
+  <div class="step"><b>Calculer</b><small><code>POST /sales/{id}/payment</code> : statut <b>announced</b>, montant calculé, chasseur prévenu</small></div>
+  <div class="step"><b>Programmer</b><small><code>PUT /payments/{id}</code> : statut <b>scheduled</b>, date de versement fixée</small></div>
+  <div class="step"><b>Verser</b><small><code>PUT /payments/{id}</code> : statut <b>paid</b> ; la note du chasseur est écrite dans son journal</small></div>
+</div>
+<div class="grid g3">
+  <div class="card"><span class="lab">Personne ne tape de montant</span><p>Réservé à l'<b>Admin</b>. L'API compte en base les visites, les ventes et les mandats du chasseur, lit le barème et les paramètres <b>en vigueur à la date de l'acte</b>, puis appelle le calcul du sujet. La réponse donne le montant, chaque taux et le détail du calcul (<code>calculation_details</code>).</p></div>
+  <div class="card"><span class="lab">Les garde-fous</span><ul><li>Second calcul pour la même vente : <b>409</b> (une vente, un paiement).</li><li>Un paramètre manque à la date de l'acte : <b>409</b>.</li><li>Sauter une étape ou revenir en arrière : <b>409</b>.</li><li>Pas de droit à rémunération : statut <b>refused</b>, avec son motif.</li><li>Un paiement <b>paid</b> ne bouge plus.</li></ul></div>
+  <div class="card bad"><span class="lab">La limite connue</span><p>Pas de verrou entre le contrôle et l'écriture : deux modifications <b>simultanées</b> du même paiement lisent toutes deux « announced », et la dernière écrite gagne. Correctif identifié : <code>SELECT … FOR UPDATE</code> dans le repository, avant le contrôle.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 10 / 13 · Sécurité</div>
 <div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
 <h2>Deux contrôles à chaque appel, et des attaques rejouées</h2>
 <div class="grid g2">
@@ -688,7 +764,7 @@
 </section>
 
 <section class="slide" data-ch="05" data-v="c">
-<div class="kicker">Chapitre 05 · Les implémentations techniques · 8 / 10 · Le programme d'IA</div>
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 11 / 13 · Le programme d'IA</div>
 <div class="pqrow"><span class="pq how">③ Comment</span></div>
 <h2>La machine suggère, le chasseur trie, le client décide</h2>
 <div class="grid g2">
@@ -705,7 +781,7 @@
 </section>
 
 <section class="slide" data-ch="05" data-v="c">
-<div class="kicker">Chapitre 05 · Les implémentations techniques · 9 / 10 · Qualité et supervision</div>
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 12 / 13 · Qualité et supervision</div>
 <div class="pqrow"><span class="pq how">③ Comment</span></div>
 <h2>Tests, intégration continue et journaux</h2>
 <div class="grid g3">
@@ -717,7 +793,7 @@
 </section>
 
 <section class="slide" data-ch="05" data-v="c">
-<div class="kicker">Chapitre 05 · Les implémentations techniques · 10 / 10 · Sauvegarde et reprise</div>
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 13 / 13 · Sauvegarde et reprise</div>
 <div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
 <h2>Une sauvegarde jamais restaurée n'est pas une sauvegarde</h2>
 <div class="grid g2">
@@ -778,6 +854,18 @@
 
 <section class="slide" data-ch="05" data-v="e">
 <div class="kicker">Chapitre 05 · Les implémentations techniques</div>
+<h2>Fiche — L'API</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Ce qu'elle expose</span><p>21 ressources avec les mêmes 4 routes (liste, lire, créer, modifier), plus les routes métier : 96 opérations en tout. Pas de DELETE (405).</p></div>
+  <div class="card"><span class="lab">Le trajet</span><p>Clé d'API → jeton → route (422) → service (403, 404) → PostgreSQL (409) → 200.</p></div>
+  <div class="card"><span class="lab">À l'intérieur</span><p>Routes / services / repositories ; fabrique de routeurs ; injection de dépendances ; fermé par défaut.</p></div>
+  <div class="card"><span class="lab">Le paiement</span><p>announced → scheduled → paid (ou refused) ; Admin seul ; calcul à la date de l'acte ; 409 au second calcul.</p></div>
+  <div class="card wide"><span class="lab">Les limites à dire</span><p>Listes non paginées (sauf la recherche) · pas de verrou sur deux modifications simultanées · certaines listes de valeurs vérifiées seulement par PostgreSQL (409 au lieu de 422).</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="e">
+<div class="kicker">Chapitre 05 · Les implémentations techniques</div>
 <h2>Fiche — Application, IA et exploitation</h2>
 <div class="fiche">
   <div class="card"><span class="lab">API</span><p>FastAPI + SQLModel · 96 opérations · routes / services / repositories · pas de DELETE.</p></div>
@@ -802,6 +890,13 @@
 <div class="acc jq"><button class="ah" type="button">Que se passe-t-il si Elasticsearch tombe ?</button><div class="ab"><p>Seule la recherche de biens répond 503 ; le reste de l'API marche, parce que PostgreSQL est la seule source de vérité. L'index est une copie refaite chaque nuit : on peut l'effacer sans rien perdre. Le prix de ce choix est un retard d'au plus 24 heures pour un bien créé dans la journée.</p></div></div>
 <div class="acc jq"><button class="ah" type="button">Pourquoi Airflow 2.11.2, qui est en fin de vie ?</button><div class="ab"><p>Pour rester au plus près du cours, avec la dernière version de la branche 2. Plus aucun correctif de sécurité ne sortira : c'est acceptable pour un projet local, pas pour une production. Le passage à Airflow 3 est le premier chantier si le projet vit. C'est écrit dans l'ADR-059.</p></div></div>
 </div>
+</section>
+
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · Les implémentations techniques</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — l'API</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Pourquoi FastAPI ?</button><div class="ab"><p>Pour trois raisons. Les types Python et Pydantic valident les entrées tout seuls et rendent un 422 clair. La documentation OpenAPI est générée automatiquement, et Swagger permet d'essayer chaque route. L'injection de dépendances rend les tests simples : on remplace la session ou le compte connecté. Et c'est du Python, comme le reste de notre chaîne de données.</p></div></div><div class="acc jq"><button class="ah" type="button">Votre API est-elle vraiment REST ?</button><div class="ab"><p>Oui sur l'essentiel : des ressources nommées au pluriel, les verbes HTTP pour agir, des codes de statut qui disent ce qui s'est passé, et pas d'état côté serveur : le jeton voyage avec chaque requête. Un écart est assumé : pas de DELETE, parce qu'effacer veut dire anonymiser, pour le RGPD et la comptabilité.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi PUT plutôt que PATCH ?</button><div class="ab"><p>PUT remplace la ligne entière : c'est plus simple à raisonner et à tester, pour une API de cette taille. L'exception est /users, en mise à jour partielle, pour ne pas obliger à renvoyer le mot de passe. Le prix : le client doit renvoyer toute la ligne à chaque modification.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment validez-vous les entrées ?</button><div class="ab"><p>À trois niveaux. La route revalide le corps avec Pydantic : une entrée mal formée rend 422 avant la base. Le service applique les règles métier et les droits : 403, 404 ou 409. Et PostgreSQL a le dernier mot avec ses contraintes et son déclencheur : 409. Un écart connu : quelques listes de valeurs ne sont vérifiées que par PostgreSQL, ce qui donne un 409 moins explicite qu'un 422.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment empêchez-vous deux paiements pour la même vente ?</button><div class="ab"><p>Deux fois : le service refuse un second calcul, et la base impose un seul paiement par vente. Dans les deux cas, l'API répond 409. Il reste une limite : deux modifications simultanées du même paiement ne sont pas verrouillées. Le correctif est identifié : un SELECT FOR UPDATE avant le contrôle.</p></div></div><div class="acc jq"><button class="ah" type="button">Votre API tiendrait-elle la charge ?</button><div class="ab"><p>Nous l'avons mesuré : 1 000 requêtes, 10 en parallèle. Lire un bien prend 70 ms en médiane, à 138 requêtes par seconde. Le goulot est la liste sans pagination : 3 219 biens d'un coup en 1,25 s. La première action est donc de paginer, comme la recherche l'est déjà. Ensuite, comme l'API est sans état, on peut lancer plusieurs processus derrière un répartiteur de charge.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment avez-vous documenté l'API ?</button><div class="ab"><p>Par la documentation OpenAPI générée par FastAPI : dans Swagger, chaque opération a un titre, une description, les rôles qui peuvent l'appeler et le sens de chaque code de réponse. Le README ajoute les parcours pas à pas, comme celui du paiement d'une vente.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment testez-vous l'API ?</button><div class="ab"><p>TestClient appelle l'API sans lancer de serveur. Pour les tests unitaires, dependency_overrides remplace la base par une base factice. Pour les tests d'intégration, une base de test séparée, et chaque test est annulé à la fin. Chaque route a un test de ses droits : une route ajoutée sans ce test fait échouer la suite.</p></div></div></div>
 </section>
 
 <section class="slide" data-ch="05">
@@ -1149,9 +1244,9 @@
 </div>
 
 </div>
-<script src="assets/icons.js?v=1795255840"></script>
-<script src="data/fil-rouge-quiz.js?v=1795255840"></script>
-<script src="data/fil-rouge-glossary.js?v=1795255840"></script>
-<script src="assets/engine.js?v=1795255840"></script>
+<script src="assets/icons.js?v=1795255982"></script>
+<script src="data/fil-rouge-quiz.js?v=1795255982"></script>
+<script src="data/fil-rouge-glossary.js?v=1795255982"></script>
+<script src="assets/engine.js?v=1795255982"></script>
 </body>
 </html>

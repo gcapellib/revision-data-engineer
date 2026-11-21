@@ -206,7 +206,7 @@ h3 { font: var(--t-weight) clamp(16px, 1.65vw, 26px)/1.15 var(--title); text-tra
 .mono { font-family: var(--mono); font-size: .82em; }
 .flow { display: flex; align-items: stretch; gap: 1vw; flex-wrap: nowrap; }
 .flow .step { flex: 1 1 0; min-width: 0; padding: 1.3vh 1vw; border: 1px solid var(--card-bd); border-radius: var(--r-card); background: var(--card-bg); position: relative; -webkit-backdrop-filter: blur(var(--blur)); backdrop-filter: blur(var(--blur)); }
-.flow .step b { display: block; width: fit-content; max-width: 100%; color: var(--accent); background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font: 800 .8em var(--mono); letter-spacing: .06em; text-transform: uppercase; margin-bottom: .3em; }
+.flow .step > b { display: block; width: fit-content; max-width: 100%; color: var(--accent); background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font: 800 .8em var(--mono); letter-spacing: .06em; text-transform: uppercase; margin-bottom: .3em; }
 .flow .step small { display: block; color: var(--muted); font-size: .84em; line-height: 1.35; margin-top: .25em; }
 .flow .step:not(:last-child)::after { content: "→"; position: absolute; right: -.9vw; top: 50%; transform: translate(50%, -50%); color: var(--accent); z-index: 2; font-size: 1.2em; }
 [data-theme="papier"] .flow .step:not(:last-child)::after { color: #c3b08a; font-size: 1.8em; }

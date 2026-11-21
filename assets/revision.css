@@ -344,7 +344,7 @@ h1 .ico, h2 .ico { width: .82em; height: .82em; vertical-align: -.06em; stroke-w
 .slide [style*="display:grid"] { grid-template-columns: minmax(0, 1fr); }
 .grid > * { min-width: 0; }
 /* Titres d'étape trop longs pour leur case : coupure avec tiret (français), plutôt que texte rogné */
-.flow .step b { font: 800 .98em/1.2 var(--title, inherit); text-transform: none; letter-spacing: 0;
+.flow .step > b { font: 800 .98em/1.2 var(--title, inherit); text-transform: none; letter-spacing: 0;
   hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
 .flow .step small code { display: inline-block; font-size: .92em; }
 
