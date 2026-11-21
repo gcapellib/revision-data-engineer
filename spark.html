@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spark · Révision Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/base.css?v=1795252877">
+<link rel="stylesheet" href="assets/photos.css?v=1795252877">
+<link rel="stylesheet" href="assets/revision.css?v=1795252877">
+</head>
+<body data-page="course" data-course="spark" data-title="Spark">
+<div id="app" data-theme="papier">
+
+<div id="bg" aria-hidden="true">
+  <div class="bgl bg-neon">
+    <svg viewBox="0 0 800 800"><path d="M40 760 L400 280 L760 760" stroke-width="3"/><path d="M110 760 L400 380 L690 760" stroke-width="2.4" opacity=".85"/><path d="M180 760 L400 470 L620 760" stroke-width="2" opacity=".7"/><path d="M250 760 L400 560 L550 760" stroke-width="1.6" opacity=".55"/><path d="M320 760 L400 650 L480 760" stroke-width="1.2" opacity=".4"/></svg>
+  </div>
+  <div class="bgl bg-sauge"><div class="panel"></div><div id="bignum"></div></div>
+  <div class="bgl bg-nuit"><i></i><i></i><i></i></div>
+  <div class="bgl bg-verre"><div class="blob a"></div><div class="blob b"></div><div class="blob c"></div></div>
+  <div class="bgl bg-papier"><i></i><i></i><i></i></div>
+  <div class="bgl bg-rubans"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f8fe0"/><stop offset="1" stop-color="#2fd0bd"/></linearGradient>
+      <linearGradient id="rg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fdcc4"/><stop offset=".55" stop-color="#26b2d2"/><stop offset="1" stop-color="#2f8fe0"/></linearGradient>
+      <linearGradient id="rg3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2fd0bd"/><stop offset="1" stop-color="#2f90e2"/></linearGradient>
+      <filter id="rsh" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="12"/></filter>
+    </defs>
+    <g class="rb" id="rb-a" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g class="rb b" id="rb-b" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+  </svg></div>
+  <div class="bgl bg-facettes"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="fcw" id="fc-top"></g><g class="fcw" id="fc-bot"></g></svg></div>
+  <div class="bgl photo bg-bulles"><i></i></div>
+  <div class="bgl photo bg-hexa"><i></i></div>
+  <div class="bgl photo bg-points"><i></i></div>
+</div>
+
+<svg id="defs" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+  <marker id="arrk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3a4458"/></marker>
+  <marker id="arrbad" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+</defs></svg>
+
+<div id="brand"><a href="index.html" title="Retour à l'accueil">← Accueil</a> · Spark</div>
+<div id="topbar">
+  <div id="vseg" role="group" aria-label="Version du cours"><button type="button" data-v="c" title="Tout le cours (E pour basculer)"><svg class="ico" aria-hidden="true"><use href="#ti-book"/></svg> Complète</button><button type="button" data-v="e" title="Ce qu'il faut maîtriser pour le jury (E)"><svg class="ico" aria-hidden="true"><use href="#ti-bolt"/></svg> Essentiel</button></div>
+  <button id="mast" type="button" title="Marquer ce chapitre comme maîtrisé (M)"></button>
+  <span id="prog"></span>
+</div>
+<div id="hud"><span id="count">1 / 1</span></div>
+<main id="deck">
+<!-- ================= 00 · IMMERSION ================= -->
+<section class="slide" data-ch="00" data-sec="Immersion" data-title="Immersion : découvrir Spark">
+<div class="chlogos"><img class="chlogo big" src="assets/logos/spark.svg" alt="Logo Apache Spark"></div>
+<div class="kicker">Bloc 4B · Big Data &amp; IA</div>
+<h1>Spark</h1>
+<p class="lead">Le moteur de calcul distribué <b>en mémoire</b> qui a remplacé MapReduce : DataFrames, SQL, et le même code pour le batch et le streaming. Ce cours s'appuie sur <a href="hadoop.html">Hadoop</a> (HDFS, YARN, shuffle) sans y revenir.</p>
+<div class="chips"><span class="pill solid">immersion + 5 chapitres</span><span class="pill">mini-quiz par chapitre</span><span class="pill">quiz final · 45 questions</span><span class="pill">Spark 4.2 · PySpark</span></div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 1 / 3</div>
+<h2>Comment nettoyer et agréger 5 To de ventes chaque nuit, en moins d'une heure, avec du code Python lisible ?</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card bad"><span class="lab">pandas</span><p>Parfait jusqu'à quelques Go : au-delà, la mémoire d'une seule machine ne suffit plus.</p></div>
+    <div class="card bad"><span class="lab">MapReduce</span><p>Distribué, mais il écrit sur disque entre chaque étape et oblige à penser en « map » et « reduce » : un nettoyage + 3 jointures + 2 agrégations = une chaîne de jobs lente et verbeuse.</p></div>
+    <div class="card hl"><span class="lab">Spark</span><p>Distribué <b>et</b> en mémoire, avec une API proche de pandas et du SQL : on décrit toute la chaîne, Spark l'optimise et l'exécute sur le cluster.</p></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <p class="punch"><b>Apache Spark</b> est un <b>moteur de calcul distribué</b> qui traite de grands volumes <b>en mémoire</b>, en batch comme en flux, avec des API Python, Scala, Java et SQL.</p>
+    <div class="analogy"><b>Analogie — le chef et sa brigade.</b> Tu donnes la recette complète (le plan) ; le chef (driver) la réorganise pour gagner du temps, la répartit entre ses cuisiniers (executors), et chacun travaille sur son bac d'ingrédients (partition) — sans tout ranger au frigo entre deux étapes, contrairement à MapReduce.</div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 2 / 3</div>
+<h2>D'un laboratoire de Berkeley au standard du traitement de données</h2>
+<div class="flow">
+  <div class="step"><b>2009</b><small>Matei Zaharia crée Spark à l'AMPLab de l'université de <b>Berkeley</b>, pour accélérer le machine learning itératif</small></div>
+  <div class="step"><b>2010 · 2014</b><small>Open source, puis projet Apache de premier niveau</small></div>
+  <div class="step"><b>2013</b><small>Ses créateurs fondent <b>Databricks</b></small></div>
+  <div class="step"><b>2016 · 2020</b><small>Spark 2 (DataFrames, Structured Streaming) · Spark 3 (AQE)</small></div>
+  <div class="step"><b>2025</b><small>Spark 4 : mode ANSI par défaut, SQL enrichi</small></div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Qui l'utilise</span><p>C'est le moteur de transformation le plus répandu en data engineering : plateformes <b>Databricks</b>, Amazon <b>EMR</b>, Google <b>Dataproc</b>, Azure <b>Synapse</b> / Fabric, et des milliers d'entreprises (e-commerce, banque, streaming vidéo, transport). Il sert aussi à préparer les données des modèles d'IA (MLlib).</p><p><b>Alternatives :</b> SQL d'entrepôt cloud (Snowflake, BigQuery), Flink pour le streaming très faible latence, Polars/DuckDB sur une seule machine.</p></div>
+  <div class="sch free"><span class="cap">La place de Spark dans le pipeline</span>
+  <svg class="dg" viewBox="0 0 460 190" role="img" aria-label="Sources et Kafka vers Spark qui transforme, puis data lake Parquet, entrepôt, BI et ML">
+    <rect class="b f3" x="10" y="70" width="100" height="50" rx="8"/><text class="t tc" x="60" y="92" style="font-size:13px">Sources</text><text class="a" x="60" y="110" text-anchor="middle">Kafka · fichiers</text>
+    <rect class="b ok" x="140" y="55" width="140" height="80" rx="10"/><text class="t tc" x="220" y="88">Spark</text><text class="s tc" x="210" y="110">nettoyer · joindre</text><text class="s tc" x="210" y="126">agréger · ML</text>
+    <rect class="b f1" x="310" y="40" width="140" height="44" rx="8"/><text class="s tc" x="380" y="66">data lake (Parquet)</text>
+    <rect class="b f4" x="310" y="106" width="140" height="44" rx="8"/><text class="s tc" x="380" y="132">BI · modèles IA</text>
+    <path class="e" d="M110 95 H136"/><path class="e" d="M280 80 L306 64"/><path class="e" d="M280 110 L306 126"/>
+    <text class="s" x="10" y="182">Tourne sur YARN ou Kubernetes · orchestré par Airflow</text>
+  
+  <use class="il" href="#il-database" x="45" y="34" width="30" height="32"/><use class="il" href="#il-gear" x="148" y="63" width="26" height="26"/>
+</svg></div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 3 / 3</div>
+<h2>Premier contact : cinq lignes de PySpark</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · chiffre d'affaires par magasin</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">from</span> pyspark.sql <span class="kw">import</span> SparkSession, functions <span class="kw">as</span> F
+spark = SparkSession.builder.master(<span class="s">"local[*]"</span>).getOrCreate()  <span class="c"># le moteur</span>
+ventes = spark.read.parquet(<span class="s">"lake/ventes"</span>)                     <span class="c"># des milliards de lignes possibles</span>
+(ventes.groupBy(<span class="s">"store"</span>)                                       <span class="c"># comme un GROUP BY</span>
+       .agg(F.sum(<span class="s">"total"</span>).alias(<span class="s">"ca"</span>))
+       .orderBy(F.desc(<span class="s">"ca"</span>))
+       .show(3))                                                <span class="c"># l'action qui déclenche tout</span>
+<span class="c"># +------+---------+</span>
+<span class="c"># |store |       ca|</span>
+<span class="c"># |Paris | 1284.60 |</span>
+<span class="c"># |Lyon  |  962.40 |</span>
+<span class="c"># |Lille |  311.20 |</span></code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card"><span class="lab">Ce qu'il faut remarquer</span><p>Le même code tourne sur ton portable (<code>local[*]</code>) ou sur 200 machines : seule la configuration change. Rien ne se calcule avant <code>show()</code> : Spark a d'abord construit et optimisé le plan.</p></div>
+    <div class="card"><span class="lab">Ce que le jury attend</span><ul><li>Justifier Spark face à pandas, MapReduce ou SQL.</li><li>Construire et <b>optimiser</b> un ETL.</li><li>Organiser les données (Parquet partitionné).</li><li>Préparer les données des modèles d'IA.</li></ul></div>
+  </div>
+</div>
+<div class="flow">
+  <div class="step"><b>01 · Modèle</b><small>driver, partitions, paresse, shuffle</small></div>
+  <div class="step"><b>02 · DataFrames</b><small>schéma, NULL, ANSI</small></div>
+  <div class="step"><b>03 · Analyse</b><small>agréger, joindre, fenêtres, SQL</small></div>
+  <div class="step"><b>04 · Performance</b><small>plan, AQE, broadcast, Parquet</small></div>
+  <div class="step"><b>05 · Streaming</b><small>watermark, checkpoint, Kafka</small></div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/spark.svg" alt="Logo Apache Spark"></div>
+<div class="kicker">Immersion · Essentiel</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Présenter Spark en une minute</h2>
+<div class="card hl"><p class="q">« Apache Spark est un <b>moteur de calcul distribué en mémoire</b>, né en 2009 à l'université de Berkeley et devenu le standard du traitement de données à grande échelle. Il propose des API Python, Scala, Java et SQL autour d'une abstraction centrale, le DataFrame.</p><p class="q">Contrairement à MapReduce qui écrit sur disque entre chaque étape, Spark garde les données intermédiaires en mémoire et utilise l'<b>évaluation paresseuse</b> : il construit tout le plan, l'optimise avec Catalyst, puis l'exécute en parallèle sur les executors. Le même moteur traite le batch, le SQL, le streaming et le machine learning.</p><p class="q">Je l'utilise pour les ETL lourds : nettoyer, joindre, agréger et écrire en Parquet partitionné. Je ne l'utilise pas quand les données tiennent sur une machine : pandas ou DuckDB suffisent. »</p></div>
+<div class="grid g3">
+  <div class="card"><span class="lab">Les 3 mots à placer</span><p><b>En mémoire · paresseux · unifié (batch + streaming)</b></p></div>
+  <div class="card"><span class="lab">Le choix à justifier</span><p><b>Spark plutôt que MapReduce</b> : il garde les données en mémoire entre les étapes et optimise tout le plan, donc il va beaucoup plus vite.</p></div>
+  <div class="card"><span class="lab">Le lien</span><p>Remplace MapReduce · tourne sur YARN/K8s · lit Kafka</p></div>
+</div>
+</section>
+<section class="slide" data-ch="00" data-sec="Le fil" data-title="Le fil du cours : 6 idées">
+<div class="kicker">Le fil du cours · Spark</div>
+<h2>6 idées font tout le cours</h2>
+<p class="lead fil-q">Tout Spark répond à : <b>comment traiter de gros volumes en mémoire sur un cluster, sans écrire soi-même de code distribué ?</b> Six idées expliquent les performances, les pannes et les pièges.</p>
+<div class="grid g3 ideas"><div class="card idea"><span class="lab">Idée 1 · Rien ne s'exécute avant une action</span><p>Spark est <b>paresseux</b> : les <b>transformations</b> (filter, select…) ne font qu'ajouter des étapes à un plan. Seule une <b>action</b> (count, write, show) lance le calcul. Cela permet à l'optimiseur (<b>Catalyst</b>) d'améliorer tout le plan, mais chaque action <b>recalcule</b> tout depuis le début, sauf ce qu'on a mis en cache.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on appelle count() dans une boucle, tout le plan de calcul est réexécuté à chaque tour.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Appeler une seule action à la fin, ou mettre en cache (cache()) un résultat intermédiaire réutilisé plusieurs fois.</p><p class="chs">ch. 01 · ch. 04</p></div><div class="card idea"><span class="lab">Idée 2 · La partition est l'unité de tout</span><p>Les données sont découpées en <b>partitions</b>, traitées en parallèle par les <b>executors</b> (les processus de travail) ; le <b>driver</b> coordonne. Trop peu de partitions laisse des cœurs inactifs ; des partitions <b>déséquilibrées</b> créent une tâche qui traîne pendant que les autres attendent.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si les données sont regroupées sur une clé très inégale (un client qui pèse la moitié des lignes), une seule tâche fait l'essentiel du travail pendant que les autres attendent.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Repérer la clé trop grosse dans l'interface de Spark, puis la répartir (ajouter un sel à la clé) ou laisser l'AQE de Spark 3 découper les partitions trop grosses.</p><p class="chs">ch. 01 · ch. 04 · ch. 05 · ch. 06</p></div><div class="card idea"><span class="lab">Idée 3 · Le shuffle est le prix à payer</span><p>Une transformation <b>étroite</b> (filter, select) travaille dans sa partition. Une transformation <b>large</b> (groupBy, join, distinct) doit faire passer les données sur le réseau pour regrouper les clés : c'est le <b>shuffle</b>, l'étape la plus chère. Optimiser, c'est d'abord réduire les shuffles.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on joint deux grandes tables sans filtrer avant, ou sans diffuser (broadcast) une petite table, Spark déplace d'énormes volumes sur le réseau.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Filtrer et ne garder que les colonnes utiles avant la jointure, et diffuser la petite table (broadcast) à toutes les machines.</p><p class="chs">ch. 01 · ch. 03 · ch. 04</p></div><div class="card idea"><span class="lab">Idée 4 · Le schéma d'abord, les données sales à part</span><p>Un DataFrame est une table <b>typée</b> et répartie. On <b>déclare</b> son schéma au lieu de le laisser deviner, on valide les données, et l'on met les lignes invalides en <b>quarantaine</b> au lieu de les perdre ou de faire échouer tout le traitement.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on laisse Spark deviner le schéma (inferSchema) sur un fichier réel, des colonnes sont mal typées et le fichier est lu deux fois.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Déclarer le schéma (StructType) à la lecture, et écrire les lignes qui ne le respectent pas dans un dossier de quarantaine.</p><p class="chs">ch. 02 · ch. 03 · ch. 06</p></div><div class="card idea"><span class="lab">Idée 5 · Un flux est une table qui ne finit jamais</span><p>Le streaming structuré traite un flux comme une table qui grandit sans fin, découpée en <b>micro-lots</b>, avec les <b>mêmes opérations</b> qu'en batch. Le <b>temps de l'événement</b> (quand il s'est produit), les <b>fenêtres</b> et le <b>watermark</b> (le retard maximum accepté) gèrent les données en retard ; le <b>checkpoint</b> enregistre où l'on en est pour reprendre sans perte.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Sans watermark, Spark garde en mémoire l'état de toutes les fenêtres, indéfiniment ; sans checkpoint, un redémarrage rejoue des données ou en perd.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Poser un watermark (withWatermark('ts', '10 minutes')) et un dossier de checkpoint sur chaque requête de streaming.</p><p class="chs">ch. 05 · ch. 06</p></div><div class="card idea"><span class="lab">Idée 6 · Rester dans le moteur</span><p>Pour rester rapide, on reste dans le moteur de Spark : des fonctions natives plutôt que des <b>UDF</b> Python (fonctions écrites par l'utilisateur), pas de collect() sur de gros volumes, du cache seulement pour ce qui est réutilisé. Tout ce qui sort de la machine virtuelle Java ou <b>ramène les données au driver</b> casse les optimisations.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on ramène des millions de lignes au driver avec collect(), sa mémoire déborde et le job s'arrête.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Écrire le résultat avec write vers un fichier ou une table, et n'utiliser collect() que sur un petit résultat (après un limit ou une agrégation).</p><p class="chs">ch. 02 · ch. 04</p></div></div>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · Spark</div>
+<h2>Le modèle mental : suivre une donnée dans le système</h2>
+<div class="flow"><div class="step"><b>1</b><small>Quelle action déclenche réellement le calcul ?</small></div><div class="step"><b>2</b><small>Combien de partitions, et sont-elles équilibrées ?</small></div><div class="step"><b>3</b><small>Où sont les shuffles dans le plan (Exchange) ?</small></div><div class="step"><b>4</b><small>Les données sont-elles ramenées au driver ou sorties du moteur ?</small></div></div>
+<table class="cmp md"><thead><tr><th>Symptôme</th><th>Cause probable</th><th>Réflexe</th></tr></thead><tbody><tr><td>Une tâche dure dix fois plus que les autres</td><td>partition déséquilibrée (<b>skew</b>)</td><td>AQE, sel sur la clé, broadcast de la petite table</td></tr><tr><td>Le driver manque de mémoire</td><td><b>collect()</b> ou toPandas() sur un gros DataFrame</td><td>écrire le résultat, ne ramener qu'un échantillon</td></tr><tr><td>Le même calcul refait à chaque action</td><td>plan paresseux recalculé</td><td><b>cache()</b> si la donnée est réutilisée</td></tr><tr><td>Jointure lente entre grande et petite table</td><td>shuffle des deux côtés</td><td><b>broadcast join</b></td></tr><tr><td>Job lent avec une UDF Python</td><td>sérialisation ligne à ligne hors de la JVM</td><td>fonctions <b>natives</b> de pyspark.sql.functions</td></tr><tr><td>Événements en retard perdus, état qui grossit</td><td>pas de watermark</td><td><b>watermark</b> et fenêtres en event time</td></tr></tbody></table>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · Spark</div>
+<h2>Chaque chapitre applique les mêmes idées</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Chapitre</th><th><b>1</b></th><th><b>2</b></th><th><b>3</b></th><th><b>4</b></th><th><b>5</b></th><th><b>6</b></th></tr></thead><tbody><tr><td><b>01</b> Modèle</td><td>●</td><td>●</td><td>●</td><td></td><td></td><td></td></tr><tr><td><b>02</b> DataFrames</td><td></td><td></td><td></td><td>●</td><td></td><td>●</td></tr><tr><td><b>03</b> Analyse</td><td></td><td></td><td>●</td><td>●</td><td></td><td></td></tr><tr><td><b>04</b> Performance</td><td>●</td><td>●</td><td>●</td><td></td><td></td><td>●</td></tr><tr><td><b>05</b> Streaming</td><td></td><td>●</td><td></td><td></td><td>●</td><td></td></tr><tr><td><b>06</b> Synthèse</td><td></td><td>●</td><td></td><td>●</td><td>●</td><td></td></tr></tbody></table><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Ce qui revient dans <b>plusieurs chapitres</b> est une idée à comprendre ; ce qui n'apparaît qu'une fois est un <b>exemple</b> d'une de ces idées.</p></div></div></div><table class="cmp md"><thead><tr><th>Panne ou erreur classique</th><th>Idée oubliée</th><th>Ce qui casse</th></tr></thead><tbody><tr><td>inferSchema sur un fichier réel</td><td><b>4</b> · Le schéma d'abord, les données sales à part</td><td>colonnes mal typées, fichier lu deux fois</td></tr><tr><td>count() appelé dans une boucle</td><td><b>1</b> · Rien ne s'exécute avant une action</td><td>le plan complet est recalculé à chaque tour</td></tr><tr><td>groupBy sur une clé très inégale</td><td><b>2</b> · La partition est l'unité de tout</td><td>une seule tâche fait l'essentiel du travail</td></tr><tr><td>collect() de 50 millions de lignes</td><td><b>6</b> · Rester dans le moteur</td><td>le driver s'arrête</td></tr><tr><td>Streaming sans checkpoint</td><td><b>5</b> · Un flux est une table qui ne finit jamais</td><td>au redémarrage, données rejouées ou perdues</td></tr><tr><td>Jointure de deux grandes tables non filtrées</td><td><b>3</b> · Le shuffle est le prix à payer</td><td>shuffle massif, job interminable</td></tr></tbody></table></div>
+</section>
+
+
+<!-- ================= 01 · MODÈLE D'EXÉCUTION ================= -->
+<section class="slide" data-ch="01" data-sec="01 Modèle" data-title="Pourquoi Spark et son modèle d'exécution" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/spark.svg" alt="Logo Apache Spark"></div>
+<div class="kicker">Chapitre 01 · Le modèle mental</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span></div>
+<h2>Plus vite que MapReduce, plus grand que pandas</h2>
+<div class="grid g3">
+  <div class="card"><span class="lab">pandas</span><p>Une machine, tout en <b>RAM</b>, exécution immédiate. Parfait tant que les données tiennent en mémoire : mesuré <b>0,020 s</b> pour compter 41 lignes.</p></div>
+  <div class="card"><span class="lab">MapReduce (ch. Hadoop)</span><p>Distribué, mais écrit sur <b>disque</b> entre chaque étape et chaque job : lent pour les traitements en plusieurs étapes et le ML itératif.</p></div>
+  <div class="card hl"><span class="lab">Spark</span><p>Distribué <b>et</b> en mémoire. Construit un <b>plan complet</b> (DAG), l'optimise, puis l'exécute. Le même DataFrame sert au batch, au SQL, au streaming et au ML.</p></div>
+</div>
+<table class="cmp md">
+<thead><tr><th></th><th>pandas</th><th>PySpark</th></tr></thead>
+<tbody>
+<tr><td>Où tourne le calcul</td><td>mémoire d'une machine</td><td>cœurs d'une ou plusieurs machines</td></tr>
+<tr><td>Exécution</td><td>immédiate</td><td><b>paresseuse</b> : rien tant qu'une action n'est pas appelée</td></tr>
+<tr><td>Objets</td><td>modifiables (<code>df['a'] = …</code>)</td><td><b>immuables</b> : <code>withColumn</code> renvoie un nouveau DataFrame</td></tr>
+<tr><td>Index, ordre</td><td>index, ordre conservé</td><td>pas d'index ; ordre <b>non garanti</b> après un regroupement</td></tr>
+<tr><td>Écriture</td><td>méthodes (<code>df.groupby().sum()</code>)</td><td>fonctions de colonnes (<code>F.sum</code>) ou SQL</td></tr>
+</tbody></table>
+<div class="note warn"><i><svg class="ico" aria-hidden="true"><use href="#ti-scale"/></svg></i><div><p><b>Spark n'est pas toujours la bonne réponse.</b> Sur le petit fichier du cours : pandas 0,020 s, Spark 0,65 s (session déjà lancée), et le démarrage de la session a pris 9 à 32 s. Spark se justifie quand les données ou le calcul <b>dépassent une machine</b> : le dire au jury montre du discernement (et de l'éco-conception).</p></div></div>
+</section>
+
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Le modèle mental</div>
+<div class="pqrow"><span class="pq">② Quoi</span> <span class="pq how">③ Comment</span></div>
+<h2>Driver, executors, partitions</h2>
+<div class="sch free"><span class="cap">Qui fait quoi</span>
+<svg class="dg" viewBox="0 0 960 260" role="img" aria-label="Le driver construit le plan, le gestionnaire de cluster alloue, les executors exécutent les tasks sur les partitions">
+  <rect class="b f3" x="10" y="80" width="200" height="100" rx="12"/><text class="t tc" x="122" y="110">Driver</text><text class="s tc" x="110" y="132">ton script PySpark</text><text class="s tc" x="110" y="150">construit et optimise le plan</text>
+  <rect class="b f2" x="290" y="80" width="200" height="100" rx="12"/><text class="t tc" x="404" y="110">Gestionnaire</text><text class="s tc" x="390" y="132">YARN · Kubernetes</text><text class="s tc" x="390" y="150">Standalone · (local : aucun)</text>
+  <rect class="b f1" x="580" y="15" width="370" height="105" rx="12"/><text class="t" x="618" y="40">Executor 1 (JVM)</text>
+  <rect class="b f4" x="600" y="55" width="100" height="48" rx="6"/><text class="s tc" x="650" y="84">task · P1</text>
+  <rect class="b f4" x="715" y="55" width="100" height="48" rx="6"/><text class="s tc" x="765" y="84">task · P2</text>
+  <rect class="b" x="830" y="55" width="105" height="48" rx="6"/><text class="s tc" x="882" y="84">cache</text>
+  <rect class="b f1" x="580" y="140" width="370" height="105" rx="12"/><text class="t" x="618" y="165">Executor 2 (JVM)</text>
+  <rect class="b f4" x="600" y="180" width="100" height="48" rx="6"/><text class="s tc" x="650" y="209">task · P3</text>
+  <rect class="b f4" x="715" y="180" width="100" height="48" rx="6"/><text class="s tc" x="765" y="209">task · P4</text>
+  <path class="e" d="M210 130 H286"/><path class="e" d="M490 115 L576 70"/><path class="e" d="M490 145 L576 190"/>
+  <text class="s" x="10" y="215">1 partition = 1 task = 1 cœur · local[4] = 1 processus, 4 threads</text>
+
+  <use class="il" href="#il-laptop" x="22" y="88" width="40" height="32"/><use class="il" href="#il-gear" x="302" y="90" width="34" height="34"/><use class="il" href="#il-server" x="592" y="20" width="20" height="24"/><use class="il" href="#il-server" x="592" y="145" width="20" height="24"/><use class="il" href="#il-database" x="904" y="62" width="18" height="22"/>
+</svg></div>
+<table class="cmp md small">
+<thead><tr><th>Terme</th><th>Définition</th><th>Observé dans le cours</th></tr></thead>
+<tbody>
+<tr><td><b>Partition</b></td><td>un morceau du DataFrame</td><td><code>spark.range</code> en local[4] : 4 partitions ; le CSV de 41 lignes : 1</td></tr>
+<tr><td><b>Task</b></td><td>le travail d'un stage sur une partition</td><td>une task tourne sur un cœur</td></tr>
+<tr><td><b>Stage</b></td><td>suite d'opérations <b>sans échange</b> entre partitions</td><td>un shuffle coupe le job en deux stages</td></tr>
+<tr><td><b>Job</b></td><td>ce que déclenche une action</td><td>un <code>count()</code> a lancé <b>2 jobs</b> : « 1 action = 1 job » est faux</td></tr>
+</tbody></table>
+<div class="analogy"><b>Analogie — un chef et sa brigade.</b> Le driver est le chef qui écrit la recette complète et répartit le travail ; les executors sont les cuisiniers ; chaque partition est un bac d'ingrédients ; tant que personne ne commande un plat (action), le chef ne fait qu'écrire la recette.</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Le modèle mental</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Preuve</span></div>
+<h2>Paresse : transformations et actions</h2>
+<div class="grid g2">
+  <div class="card"><span class="lab">Transformations — décrivent, ne calculent rien</span><p><code>select</code>, <code>filter</code>, <code>withColumn</code>, <code>groupBy().agg()</code>, <code>join</code>, <code>orderBy</code>. Elles renvoient un nouveau DataFrame et enrichissent le <b>plan</b> (DAG).</p></div>
+  <div class="card"><span class="lab">Actions — déclenchent le calcul</span><p><code>show</code>, <code>count</code>, <code>collect</code>, <code>first</code>, <code>take</code>, <code>write</code>, <code>toPandas</code>. Spark optimise alors tout le plan d'un coup.</p></div>
+</div>
+<div class="code"><div class="codeh"><span>python · mesure du nombre de jobs (Spark 4.2.0)</span><button class="cpy" type="button">Copier</button></div><pre><code>d2 = (df.filter(F.col(<span class="s">"qty"</span>) &gt; 3)
+        .withColumn(<span class="s">"total"</span>, F.col(<span class="s">"qty"</span>) * F.col(<span class="s">"unit_price"</span>)))
+<span class="c"># jobs ajoutés par filter + withColumn : 0</span>
+d2.count()   <span class="c"># jobs après un count()    : 2</span>
+d2.count()   <span class="c"># jobs après un 2e count() : 4  → tout est RECALCULÉ</span></code></pre></div>
+<div class="grid g3">
+  <div class="card bad"><span class="lab">Conséquence n°1</span><p>Chaque action <b>repart de la source</b>. <code>show()</code> + <code>count()</code> + <code>write</code> sans cache = trois calculs complets, sans aucun avertissement.</p></div>
+  <div class="card"><span class="lab">Conséquence n°2</span><p>La lecture n'est pas totalement paresseuse : <code>inferSchema=True</code> déclenche <b>2 jobs</b> pour deviner les types. En production : schéma explicite.</p></div>
+  <div class="card"><span class="lab">Conséquence n°3</span><p>Les erreurs de <b>données</b> n'apparaissent qu'à l'action (voir ch. 02), loin de la ligne qui les a causées.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Le modèle mental</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Narrow, wide, immuabilité</h2>
+<div class="grid g2">
+  <div class="card"><span class="lab">Transformation étroite (narrow)</span><p><code>filter</code>, <code>withColumn</code>, <code>select</code> : chaque partition est traitée <b>seule</b>, sans réseau. Rapide.</p><span class="lab" style="margin-top:.7em">Transformation large (wide)</span><p><code>groupBy</code>, <code>join</code>, <code>orderBy</code>, <code>distinct</code> : il faut rapprocher des lignes de partitions différentes → <b>shuffle</b> (nommé <code>Exchange</code> dans le plan), même principe que le shuffle de MapReduce. C'est le <b>coût principal</b> d'un job.</p></div>
+  <div class="card"><span class="lab">Immuabilité</span><p><code>d3 = df.withColumn("qty", F.col("qty") * 10)</code> : la somme de <code>df</code> reste 144, celle de <code>d3</code> vaut 1440. Pas de <code>df['qty'] = …</code> : on <b>réaffecte</b> (<code>df = df.withColumn(…)</code>). C'est ce qui permet à Spark de recalculer une partition perdue à partir de son plan (<b>lignage</b>) : la tolérance aux pannes sans réplication des données intermédiaires.</p></div>
+</div>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>« Une action = un job. »</b> Faux : <code>count()</code> en a lancé deux.</div>
+    <div><b>Plusieurs actions sans cache</b> : la source est relue à chaque fois.</div>
+    <div><b>Spark pour 50 Mo</b> : plus lent et plus coûteux que pandas.</div>
+    <div><b>Ordre des lignes</b> : jamais garanti après un regroupement ; trier explicitement.</div>
+  </div>
+  <ol class="sum-list">
+    <li>Driver (plan) → gestionnaire (YARN, K8s) → executors (tasks sur partitions).</li>
+    <li>Transformations paresseuses, actions qui déclenchent ; chaque action recalcule.</li>
+    <li>Narrow = sans réseau ; wide = shuffle, le coût principal.</li>
+    <li>DataFrames immuables ; le lignage permet de recalculer une partition perdue.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/spark.svg" alt="Logo Apache Spark"></div>
+<div class="kicker">Chapitre 01 · Le modèle mental</div>
+<h2>Fiche — Modèle d'exécution de Spark</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Définition</span><p>Moteur de calcul distribué <b>en mémoire</b> (JVM, Scala) ; PySpark le pilote depuis Python via py4j. Modules : Spark SQL/DataFrames, Structured Streaming, MLlib, GraphX, pandas API.</p></div>
+  <div class="card"><span class="lab">Acteurs</span><dl class="def"><dt>Driver</dt><dd>script, construit et optimise le plan</dd><dt>Gestionnaire</dt><dd>YARN, Kubernetes, Standalone</dd><dt>Executors</dt><dd>JVM qui exécutent les tasks, gardent le cache</dd></dl></div>
+  <div class="card"><span class="lab">Vocabulaire</span><dl class="def"><dt>Partition</dt><dd>morceau de données → 1 task</dd><dt>Stage</dt><dd>opérations sans shuffle</dd><dt>Job</dt><dd>déclenché par une action</dd><dt>Shuffle</dt><dd>échange réseau (Exchange)</dd></dl></div>
+  <div class="card"><span class="lab">À dire au jury</span><ul><li>Transformations paresseuses → plan global optimisé.</li><li>Chaque action recalcule depuis la source (sans cache).</li><li>Narrow (local) vs wide (shuffle).</li><li>pandas si ça tient en mémoire ; Spark au-delà.</li></ul></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Le modèle mental</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 01</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Pourquoi Spark est-il plus rapide que MapReduce ?</button><div class="ab"><p>MapReduce écrit sur <b>disque</b> la sortie de chaque étape et de chaque job, et ne voit qu'un map et un reduce à la fois. Spark garde les résultats intermédiaires <b>en mémoire</b>, construit le <b>plan complet</b> de la requête (DAG) et l'optimise globalement (Catalyst) avant d'exécuter : moins d'I/O, moins de shuffles, réutilisation possible via le cache. Le gain est maximal pour les traitements multi-étapes et itératifs (ML).</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce que l'évaluation paresseuse, et quel est son intérêt ?</button><div class="ab"><p>Les transformations ne calculent rien : elles décrivent un plan. Seule une action déclenche l'exécution. Intérêt : Spark voit toute la chaîne et peut l'optimiser (élaguer les colonnes, pousser les filtres à la source, choisir la jointure). Contrepartie : chaque action recalcule tout si l'on ne met pas en cache, et les erreurs de données apparaissent tard.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quand choisiriez-vous pandas plutôt que Spark ?</button><div class="ab"><p>Quand les données tiennent confortablement en mémoire d'une machine (quelques Go) : pandas est plus simple, démarre instantanément et va plus vite (mesuré : 0,020 s contre 0,65 s, plus 9 à 32 s de démarrage de session). Spark se justifie quand le volume ou le calcul dépasse une machine, ou pour du streaming. Choisir l'outil proportionné, c'est aussi de l'éco-conception.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment Spark tolère-t-il la perte d'un executor ?</button><div class="ab"><p>Grâce au <b>lignage</b> : un DataFrame immuable connaît la suite de transformations qui l'a produit. Si une partition est perdue, Spark la recalcule à partir de la source et du plan, sans avoir répliqué les données intermédiaires (contrairement à HDFS qui réplique les blocs).</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quel lien entre Spark et Hadoop ?</button><div class="ab"><p>Spark remplace <b>MapReduce</b> (le moteur), pas tout Hadoop : il tourne souvent sur <b>YARN</b>, lit et écrit sur <b>HDFS</b> (ou S3), et partage le <b>Metastore Hive</b> pour les tables. Le concept de shuffle est le même.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Le modèle mental</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="01"></div>
+</section>
+
+<!-- ================= 02 · DATAFRAMES ================= -->
+<section class="slide" data-ch="02" data-sec="02 DataFrames" data-title="DataFrames : lire, typer, nettoyer" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/spark.svg" alt="Logo Apache Spark"></div>
+<div class="kicker">Chapitre 02 · DataFrames</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Un DataFrame, c'est une table typée et distribuée</h2>
+<p class="lead">Un <b>DataFrame</b> = des lignes réparties en partitions + un <b>schéma</b> (noms et types des colonnes). Grâce au schéma, Spark vérifie ton code avant de l'exécuter et optimise le plan.</p>
+<div class="analogy"><b>Analogie — le bon de livraison.</b> Le schéma, c'est la fiche qui accompagne les cartons : « 6 colonnes, celle-ci contient des dates, celle-là des prix ». Sans fiche, l'entrepôt doit ouvrir chaque carton pour deviner (inferSchema) ; avec une fiche fausse, il range mal sans le savoir.</div>
+<div class="grid g3">
+  <div class="card bad"><span class="lab">Sans schéma</span><p>Tout est lu comme <b>texte</b>, même les quantités et les prix : les calculs deviennent faux ou impossibles.</p></div>
+  <div class="card"><span class="lab">inferSchema=True</span><p>Spark <b>lit les données</b> pour deviner les types (2 jobs avant la moindre action). Coûteux sur un gros fichier, et la devinette peut changer d'un fichier à l'autre.</p></div>
+  <div class="card hl"><span class="lab">Schéma explicite (production)</span><p>Tu décris les colonnes toi-même : lecture unique, types garantis, <b>contrat clair</b> avec la source.</p></div>
+</div>
+<div class="code"><div class="codeh"><span>python · schéma explicite</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">from</span> pyspark.sql.types <span class="kw">import</span> StructType, StructField, IntegerType, DateType, StringType, DecimalType
+schema = StructType([
+    StructField(<span class="s">"order_id"</span>,   IntegerType(),     <span class="kw">False</span>),
+    StructField(<span class="s">"date"</span>,       DateType(),        <span class="kw">True</span>),
+    StructField(<span class="s">"store"</span>,      StringType(),      <span class="kw">True</span>),
+    StructField(<span class="s">"qty"</span>,        IntegerType(),     <span class="kw">True</span>),
+    StructField(<span class="s">"unit_price"</span>, DecimalType(8, 2), <span class="kw">True</span>),   <span class="c"># argent : DECIMAL</span>
+])
+df = spark.read.csv(<span class="s">"ventes.csv"</span>, header=<span class="kw">True</span>, schema=schema)</code></pre></div>
+<div class="grid g2">
+  <div class="note warn"><i><svg class="ico" aria-hidden="true"><use href="#ti-currency-euro"/></svg></i><div><p><b>Double ou Decimal ?</b> La même somme donne <code>3155.3999999999996</code> en double et <code>3155.40</code> en decimal. Le double est binaire (comme <code>0.1 + 0.2</code> en Python) : <b>jamais pour de l'argent</b>.</p></div></div>
+  <div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-search"/></svg></i><div><p><b>« Non-nullable » n'est pas un contrôle :</b> à la lecture d'un fichier, Spark l'ignore. La qualité se <b>vérifie</b> (comptages, règles), elle ne se déclare pas.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · DataFrames</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Diagnostiquer, puis nettoyer</h2>
+<div class="steps two">
+  <li><b>Mesurer</b> les défauts : NULL par colonne, doublons exacts, doublons sur la clé métier.</li>
+  <li><b>Décider</b> avec le métier : supprimer, compléter (en le documentant), ou mettre en <b>quarantaine</b>.</li>
+  <li><b>Transformer</b> : colonnes calculées, catégories, dates.</li>
+  <li><b>Contrôler</b> : recompter après nettoyage et garder la trace des lignes écartées.</li>
+</div>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · diagnostic</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="c"># nombre de NULL dans chaque colonne</span>
+df.select([F.count(F.when(F.col(c).isNull(), c)).alias(c)
+           <span class="kw">for</span> c <span class="kw">in</span> df.columns]).show()
+df.count()                       <span class="c"># 41 lignes</span>
+df.dropDuplicates().count()      <span class="c"># 40 : un doublon exact</span>
+df.dropna().count()              <span class="c"># 39 : trop brutal</span></code></pre></div>
+  <div class="code"><div class="codeh"><span>python · nettoyer et enrichir</span><button class="cpy" type="button">Copier</button></div><pre><code>clean = (df.dropDuplicates()
+  .fillna({<span class="s">"store"</span>: <span class="s">"inconnu"</span>})            <span class="c"># choix documenté</span>
+  .withColumn(<span class="s">"total"</span>, F.round(F.col(<span class="s">"qty"</span>) * F.col(<span class="s">"unit_price"</span>), 2))
+  .withColumn(<span class="s">"mois"</span>, F.month(<span class="s">"date"</span>))
+  .withColumn(<span class="s">"gamme"</span>,
+     F.when(F.col(<span class="s">"unit_price"</span>) &gt;= 50, <span class="s">"premium"</span>)
+      .when(F.col(<span class="s">"unit_price"</span>) &gt;= 10, <span class="s">"milieu"</span>)
+      .otherwise(<span class="s">"basique"</span>)))      <span class="c"># 1re condition vraie gagne</span></code></pre></div>
+</div>
+<div class="note tip"><i><svg class="ico" aria-hidden="true"><use href="#ti-target"/></svg></i><div><p><b>Le réflexe qui impressionne un jury :</b> ne jamais « corriger » en silence. Remplacer une quantité manquante par 1, c'est inventer une vente. On isole les lignes douteuses dans une table de rejets avec la raison, et on publie le taux de rejet comme <b>indicateur de qualité</b>.</p></div></div>
+</section>
+
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · DataFrames</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Ce qui casse quand on vient de pandas</h2>
+<table class="cmp md">
+<thead><tr><th>Réflexe pandas</th><th>En Spark</th><th>Bonne écriture</th></tr></thead>
+<tbody>
+<tr><td><code>len(df)</code></td><td>erreur : la taille exige un calcul</td><td><code>df.count()</code> (une action)</td></tr>
+<tr><td><code>qty &gt; 2 &amp; qty &lt; 5</code></td><td>erreur : <code>&amp;</code> passe avant <code>&gt;</code></td><td><code>(F.col("qty") &gt; 2) &amp; (F.col("qty") &lt; 5)</code></td></tr>
+<tr><td><code>F.col("store") == None</code></td><td><b>0 ligne, sans erreur</b> : NULL n'est égal à rien</td><td><code>F.col("store").isNull()</code></td></tr>
+<tr><td><code>and</code> / <code>or</code></td><td>erreur sur des colonnes</td><td><code>&amp;</code>, <code>|</code>, <code>~</code> avec parenthèses</td></tr>
+<tr><td>compter sur l'ordre des lignes</td><td>mélangé après un regroupement</td><td><code>orderBy</code> explicite</td></tr>
+</tbody></table>
+<div class="grid g2">
+  <div class="card hl"><span class="lab">Mode ANSI (défaut en Spark 4)</span><p>Division par zéro ou <code>cast('abc' as int)</code> → <b>erreur</b> au lieu d'un NULL silencieux. Pour tolérer volontairement : <code>try_divide</code>, <code>try_cast</code>. <i>Mieux vaut un pipeline qui s'arrête qu'un chiffre faux publié.</i></p></div>
+  <div class="card"><span class="lab">Deux moments d'erreur</span><p><b>Colonne inexistante</b> : erreur <b>immédiate</b> (Spark connaît le schéma). <b>Donnée invalide</b> : erreur <b>à l'action</b>, loin de la ligne qui l'a causée (paresse).</p></div>
+</div>
+<ol class="sum-list">
+  <li>Schéma explicite en production ; <code>DecimalType</code> pour l'argent.</li>
+  <li>Mesurer avant de nettoyer ; tout remplacement est un choix métier tracé.</li>
+  <li><code>isNull()</code>, parenthèses, ANSI : des erreurs visibles plutôt que des NULL muets.</li>
+</ol>
+</section>
+
+<section class="slide" data-ch="02" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/spark.svg" alt="Logo Apache Spark"></div>
+<div class="kicker">Chapitre 02 · DataFrames</div>
+<h2>Fiche — DataFrames et qualité</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Lire</span><p>Sans schéma : tout en texte. <code>inferSchema</code> : relit les données. <b>Production : <code>StructType</code> explicite.</b> Montants en <code>DecimalType</code>.</p></div>
+  <div class="card"><span class="lab">Nettoyer</span><div class="cmdlist"><div><code>count(when(isNull))</code><span>NULL par colonne</span></div><div><code>dropDuplicates()</code><span>doublons</span></div><div><code>dropna(subset=…)</code><span>NULL ciblés</span></div><div><code>fillna({…})</code><span>choix métier</span></div><div><code>when().otherwise()</code><span>CASE WHEN</span></div></div></div>
+  <div class="card"><span class="lab">Pièges</span><ul><li><code>== None</code> → 0 ligne sans erreur : <code>isNull()</code>.</li><li><code>(a) &amp; (b)</code> avec parenthèses.</li><li>Ordre non garanti : <code>orderBy</code>.</li><li>Non-nullable non appliqué à la lecture.</li></ul></div>
+  <div class="card"><span class="lab">Mode ANSI</span><p>Défaut Spark 4 : erreur plutôt que NULL. <code>try_cast</code>, <code>try_divide</code> pour un NULL voulu. Colonne inconnue : erreur immédiate ; donnée invalide : à l'action.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · DataFrames</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 02</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Pourquoi imposer un schéma explicite ?</button><div class="ab"><p>inferSchema relit les données (coût) et peut deviner des types différents d'un fichier à l'autre. Le schéma explicite est un <b>contrat</b> avec la source : types stables, lecture unique, anomalies détectables. C'est une exigence de qualité en production.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment gérez-vous les données manquantes ou en double ?</button><div class="ab"><p>Je les <b>mesure</b> d'abord (par colonne, par clé métier), puis je décide avec le métier : supprimer, compléter en documentant, ou isoler en <b>quarantaine</b> avec la raison. Jamais de correction silencieuse ; le taux de rejet devient un KPI de qualité suivi dans le temps.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi ne pas stocker des montants en double ?</button><div class="ab"><p>Le double est binaire : beaucoup de décimaux n'ont pas de valeur exacte et les sommes dérivent (3155.3999… au lieu de 3155.40). <code>DecimalType</code> calcule exactement en base 10.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'apporte le mode ANSI ?</button><div class="ab"><p>Il applique le standard SQL : une division par zéro ou une conversion impossible devient une erreur visible au lieu d'un NULL muet. Quand la tolérance est voulue, on l'écrit (<code>try_cast</code>), ce qui documente l'intention.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · DataFrames</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="02"></div>
+</section>
+
+<!-- ================= 03 · AGRÉGER, JOINDRE, FENÊTRES, SQL ================= -->
+<section class="slide" data-ch="03" data-sec="03 Analyse" data-title="Agréger, joindre, fenêtres et Spark SQL" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/spark.svg" alt="Logo Apache Spark"></div>
+<div class="kicker">Chapitre 03 · Analyser</div>
+<div class="pqrow"><span class="pq">② Quoi</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Agréger : groupBy + agg</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · agrégation</span><button class="cpy" type="button">Copier</button></div><pre><code>(clean.groupBy(<span class="s">"store"</span>)
+      .agg(F.count(<span class="s">"*"</span>).alias(<span class="s">"nb_commandes"</span>),
+           F.round(F.sum(<span class="s">"total"</span>), 2).alias(<span class="s">"ca"</span>),
+           F.round(F.avg(<span class="s">"total"</span>), 2).alias(<span class="s">"panier_moyen"</span>))
+      .orderBy(F.desc(<span class="s">"ca"</span>))
+      .show())
+
+<span class="c"># tableau croisé : une colonne par produit</span>
+clean.groupBy(<span class="s">"store"</span>).pivot(<span class="s">"product"</span>).agg(F.sum(<span class="s">"qty"</span>))</code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card"><span class="lab">Comment Spark l'exécute</span><p>Un <code>groupBy</code> est une <b>transformation large</b> (<i>wide transformation</i>) : agrégation <b>partielle</b> dans chaque partition (comme un <i>combiner</i> MapReduce), puis <b>shuffle</b> par clé, puis agrégation <b>finale</b>. Dans le plan : <code>HashAggregate</code> → <code>Exchange</code> → <code>HashAggregate</code>.</p></div>
+    <div class="card"><span class="lab">Pièges</span><ul><li>Arrondir avec <code>F.round</code> : les sommes de flottants laissent des restes.</li><li>Un <b>pivot</b> met <b>NULL</b> (pas 0) là où il n'y a aucune ligne.</li><li><code>count("*")</code> compte les lignes ; <code>count("col")</code> ignore les NULL.</li></ul></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Analyser</div>
+<div class="pqrow"><span class="pq how">③ Comment — les jointures</span></div>
+<h2>Joindre : types, pièges, stratégies physiques</h2>
+<div class="grid g2">
+  <table class="cmp md small"><thead><tr><th>Type</th><th>Garde…</th></tr></thead><tbody>
+    <tr><td><code>inner</code></td><td>les lignes qui ont une correspondance des deux côtés</td></tr>
+    <tr><td><code>left</code></td><td>tout le côté gauche, NULL quand pas de correspondance</td></tr>
+    <tr><td><code>full</code></td><td>tout, des deux côtés</td></tr>
+    <tr><td><code>left_semi</code></td><td>les lignes gauches qui ONT une correspondance (colonnes gauches seules) — un « EXISTS »</td></tr>
+    <tr><td><code>left_anti</code></td><td>les lignes gauches SANS correspondance — un « NOT EXISTS » : idéal pour trouver les orphelins</td></tr>
+  </tbody></table>
+  <div class="trap-list">
+    <div><b>Joindre sur une expression</b> (<code>df.store == mag.store</code>) : deux colonnes <code>store</code>, référence ambiguë. Joindre sur le <b>nom</b> (<code>df.join(mag, "store")</code>) fusionne la clé.</div>
+    <div><b>NULL ne joint jamais NULL</b> : les lignes à clé NULL disparaissent d'un <code>inner</code> sans erreur. Traiter les NULL avant.</div>
+    <div><b>left_anti à l'envers</b> : le côté gauche est celui dont tu veux les lignes. « Magasins sans vente » = <code>mag.join(ventes, "store", "left_anti")</code>.</div>
+  </div>
+</div>
+<div class="sch free"><span class="cap">Deux stratégies physiques de jointure</span>
+<svg class="dg" viewBox="0 0 960 200" role="img" aria-label="Broadcast hash join : la petite table est copiée sur chaque executor. Sort merge join : les deux tables sont redistribuées par clé">
+  <text class="a" x="10" y="20">BROADCAST HASH JOIN (petite table)</text>
+  <rect class="b f4" x="10" y="35" width="120" height="40" rx="8"/><text class="s tc" x="82" y="60">petite table</text>
+  <rect class="b f1" x="190" y="35" width="120" height="40" rx="8"/><text class="s tc" x="250" y="60">partition 1</text>
+  <rect class="b f1" x="190" y="85" width="120" height="40" rx="8"/><text class="s tc" x="250" y="110">partition 2</text>
+  <path class="e" d="M130 55 H186"/><path class="e" d="M130 60 L186 103"/>
+  <text class="g" x="10" y="150">copie de la petite table sur chaque executor :</text><text class="g" x="10" y="170">la grosse table ne bouge pas (pas de shuffle)</text>
+  <text class="a" x="500" y="20">SORT MERGE JOIN (deux grosses tables)</text>
+  <rect class="b f1" x="500" y="35" width="120" height="40" rx="8"/><text class="s tc" x="572" y="60">table A</text>
+  <rect class="b f2" x="500" y="95" width="120" height="40" rx="8"/><text class="s tc" x="572" y="120">table B</text>
+  <rect class="b bad" x="660" y="60" width="130" height="50" rx="8"/><text class="s tc" x="725" y="82">Exchange ×2</text><text class="s tc" x="725" y="100">hash par clé</text>
+  <rect class="b f3" x="830" y="60" width="120" height="50" rx="8"/><text class="s tc" x="890" y="82">tri + fusion</text><text class="s tc" x="890" y="100">par partition</text>
+  <path class="e" d="M620 55 L656 78"/><path class="e" d="M620 115 L656 95"/><path class="e" d="M790 85 H826"/>
+  <text class="r" x="500" y="160">les deux côtés traversent le réseau : coûteux</text>
+
+  <use class="il" href="#il-server" x="318" y="48" width="18" height="22"/><use class="il" href="#il-server" x="318" y="98" width="18" height="22"/><use class="il" href="#il-warning" x="664" y="64" width="18" height="17"/><use class="il" href="#il-database" x="15" y="43.0" width="24" height="24"/><use class="il" href="#il-database" x="505" y="43.0" width="24" height="24"/><use class="il" href="#il-database" x="505" y="103.0" width="24" height="24"/>
+</svg></div>
+<p class="punch">Par défaut, Spark choisit le <b>broadcast</b> si une table est sous un seuil (<code>spark.sql.autoBroadcastJoinThreshold</code>). Si tu sais qu'elle est petite et que Spark ne peut pas le deviner : <code>big.join(F.broadcast(small), "key")</code>.</p>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Analyser</div>
+<div class="pqrow"><span class="pq">② Quoi</span> <span class="pq ex">④ Exemple — fonctions de fenêtre et SQL</span></div>
+<h2>Fenêtres : calculer sur les voisins sans perdre de lignes</h2>
+<div class="analogy"><b>Analogie — le classement d'un championnat.</b> Un <code>groupBy</code> donne « un total par équipe » (une ligne par groupe). Une <b>fonction de fenêtre</b> garde chaque match et ajoute « le rang de ce match dans la saison de l'équipe » : on regarde les lignes voisines sans les fusionner.</div>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · top 2 par magasin, cumul, valeur précédente</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">from</span> pyspark.sql <span class="kw">import</span> Window
+w = Window.partitionBy(<span class="s">"store"</span>).orderBy(F.desc(<span class="s">"total"</span>), <span class="s">"order_id"</span>)
+top2 = (clean.withColumn(<span class="s">"rang"</span>, F.row_number().over(w))
+             .filter(F.col(<span class="s">"rang"</span>) &lt;= 2))
+
+wc = (Window.partitionBy(<span class="s">"store"</span>).orderBy(<span class="s">"date"</span>)
+            .rowsBetween(Window.unboundedPreceding, Window.currentRow))
+clean.withColumn(<span class="s">"ca_cumule"</span>, F.sum(<span class="s">"total"</span>).over(wc)) \
+     .withColumn(<span class="s">"precedent"</span>, F.lag(<span class="s">"total"</span>).over(
+                  Window.partitionBy(<span class="s">"store"</span>).orderBy(<span class="s">"date"</span>)))</code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <table class="cmp md small"><thead><tr><th>Valeurs 50, 50, 40</th><th>Résultat</th></tr></thead><tbody>
+      <tr><td><code>row_number</code></td><td>1, 2, 3 (départage arbitraire si égalité)</td></tr>
+      <tr><td><code>rank</code></td><td>1, 1, 3 (saute un rang)</td></tr>
+      <tr><td><code>dense_rank</code></td><td>1, 1, 2 (ne saute pas)</td></tr>
+    </tbody></table>
+    <div class="card bad"><span class="lab">Piège</span><p><code>row_number</code> sur des égalités sans <b>critère de départage</b> (ici <code>order_id</code>) : résultat <b>non déterministe</b>, il peut changer d'une exécution à l'autre.</p></div>
+    <div class="card"><span class="lab">Spark SQL</span><p><code>df.createOrReplaceTempView("ventes")</code> puis <code>spark.sql("SELECT store, SUM(total) FROM ventes GROUP BY store")</code>. L'API DataFrame et le SQL passent par le <b>même optimiseur</b> (Catalyst) et donnent le <b>même plan</b> : choisir selon la lisibilité et l'équipe.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Analyser</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>À retenir pour analyser avec Spark</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Pivot</b> : NULL là où il n'y a pas de ligne, pas 0 → <code>fillna(0)</code> si c'est le sens métier.</div>
+    <div><b>Clés NULL</b> : jamais jointes ; une jointure peut « perdre » des lignes sans erreur → comparer les comptages avant/après.</div>
+    <div><b>Jointure qui multiplie les lignes</b> : clé non unique d'un côté → doublons ; vérifier l'unicité de la clé de la table de référence.</div>
+    <div><b>row_number sans départage</b> : non déterministe.</div>
+  </div>
+  <ol class="sum-list">
+    <li><code>groupBy().agg()</code> = agrégation partielle → shuffle → agrégation finale.</li>
+    <li>Joindre sur le nom de colonne ; <code>left_anti</code> pour les orphelins ; NULL ne joint pas.</li>
+    <li><b>Broadcast hash join</b> (petite table, pas de shuffle) vs <b>sort merge join</b> (deux shuffles).</li>
+    <li>Fenêtres : <code>partitionBy</code> + <code>orderBy</code> + cadre ; <code>row_number</code>, <code>rank</code>, <code>dense_rank</code>, <code>lag</code>, cumul.</li>
+    <li>API et SQL : même optimiseur, même plan.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/spark.svg" alt="Logo Apache Spark"></div>
+<div class="kicker">Chapitre 03 · Analyser</div>
+<h2>Fiche — Agréger, joindre, fenêtres, SQL</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Agrégation</span><p><code>groupBy(k).agg(F.count, F.sum, F.avg)</code> : transformation large (HashAggregate → Exchange → HashAggregate). Pivot = NULL si absent.</p></div>
+  <div class="card"><span class="lab">Jointures</span><dl class="def"><dt>inner/left/full</dt><dd>classiques</dd><dt>left_semi</dt><dd>EXISTS</dd><dt>left_anti</dt><dd>NOT EXISTS (orphelins)</dd><dt>pièges</dt><dd>NULL ne joint pas ; joindre sur le nom</dd></dl></div>
+  <div class="card"><span class="lab">Stratégies physiques</span><dl class="def"><dt>Broadcast hash</dt><dd>petite table copiée partout, pas de shuffle</dd><dt>Sort merge</dt><dd>deux Exchange, tri, fusion</dd><dt>Forcer</dt><dd><code>F.broadcast(small)</code></dd></dl></div>
+  <div class="card"><span class="lab">Fenêtres et SQL</span><p><code>Window.partitionBy().orderBy()</code> ; row_number 1,2,3 · rank 1,1,3 · dense_rank 1,1,2 ; toujours un départage. Spark SQL via <code>createOrReplaceTempView</code> : même plan que l'API (Catalyst).</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Analyser</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 03</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Quelle différence entre un broadcast hash join et un sort merge join ?</button><div class="ab"><p>Le <b>broadcast hash join</b> copie la petite table sur chaque executor et construit une table de hachage en mémoire : la grosse table est jointe sur place, <b>sans shuffle</b>. Le <b>sort merge join</b> redistribue les deux tables par clé (deux <code>Exchange</code>), les trie puis les fusionne : adapté à deux grosses tables, mais coûteux en réseau. Spark choisit selon la taille estimée (seuil <code>autoBroadcastJoinThreshold</code>) et AQE peut changer de stratégie à l'exécution.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quelle différence entre groupBy et une fonction de fenêtre ?</button><div class="ab"><p><code>groupBy</code> <b>réduit</b> : une ligne par groupe. Une fonction de fenêtre <b>conserve toutes les lignes</b> et ajoute un calcul sur un ensemble de lignes voisines défini par <code>partitionBy</code>, <code>orderBy</code> et un cadre (<code>rowsBetween</code>) : rang, cumul, valeur précédente (<code>lag</code>), moyenne glissante.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment trouver les clients sans commande ?</button><div class="ab"><p>Une <b>anti-jointure</b> : <code>clients.join(commandes, "client_id", "left_anti")</code>, équivalent d'un <code>NOT EXISTS</code>. Attention aux clés NULL, qui ne correspondent jamais.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Faut-il écrire en SQL ou avec l'API DataFrame ?</button><div class="ab"><p>Les deux passent par l'optimiseur <b>Catalyst</b> et produisent le même plan physique : pas de différence de performance. On choisit selon la lisibilité, les compétences de l'équipe et la testabilité (l'API se compose et se teste plus facilement en Python ; le SQL est plus accessible aux analystes).</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Analyser</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="03"></div>
+</section>
+
+<!-- ================= 04 · PLAN ET PERFORMANCE ================= -->
+<section class="slide" data-ch="04" data-sec="04 Performance" data-title="Plan d'exécution, performance et Parquet" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/spark.svg" alt="Logo Apache Spark"></div>
+<div class="kicker">Chapitre 04 · Performance</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq how">③ Comment</span></div>
+<h2>De ton code au plan physique : Catalyst</h2>
+<p class="lead">Tu écris <b>quoi</b> calculer ; l'optimiseur <b>Catalyst</b> décide <b>comment</b>. Savoir lire son plan, c'est savoir expliquer pourquoi un job est lent.</p>
+<div class="flow">
+  <div class="step"><b>1 · Plan logique non résolu</b><small>ton code, tel quel</small></div>
+  <div class="step"><b>2 · Plan analysé</b><small>colonnes et types vérifiés via le schéma (erreur si colonne inconnue)</small></div>
+  <div class="step"><b>3 · Plan logique optimisé</b><small>règles : filtres poussés, colonnes élaguées, constantes simplifiées</small></div>
+  <div class="step"><b>4 · Plan physique</b><small>choix concrets : type de jointure, Exchange, puis génération de code (Tungsten)</small></div>
+</div>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · lire un plan</span><button class="cpy" type="button">Copier</button></div><pre><code>df.filter(F.col(<span class="s">"store"</span>) == <span class="s">"Paris"</span>) \
+  .groupBy(<span class="s">"product"</span>).agg(F.sum(<span class="s">"qty"</span>)).explain()
+<span class="c"># == Physical Plan ==   (se lit de BAS en HAUT)</span>
+<span class="c"># HashAggregate(keys=[product], functions=[sum(qty)])</span>
+<span class="c"># +- Exchange hashpartitioning(product, 200)   ← SHUFFLE</span>
+<span class="c">#    +- HashAggregate(... partial_sum(qty))</span>
+<span class="c">#       +- FileScan parquet [store,product,qty]  ← column pruning</span>
+<span class="c">#          PushedFilters: [EqualTo(store,Paris)] ← predicate pushdown</span></code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card"><span class="lab">Column pruning (élagage de colonnes)</span><p>Seules les colonnes utiles sont lues : la liste entre crochets du <code>FileScan</code>. Énorme gain avec un format colonnes (Parquet).</p></div>
+    <div class="card"><span class="lab">Predicate pushdown (filtre poussé à la source)</span><p>Le filtre est appliqué <b>pendant la lecture</b> (<code>PushedFilters</code>) : Parquet saute des blocs entiers grâce à ses statistiques min/max.</p></div>
+    <div class="card"><span class="lab">Exchange = shuffle</span><p>Compter les <code>Exchange</code> d'un plan, c'est compter les shuffles : le premier levier d'optimisation. Onglet <b>SQL</b> de l'UI Spark (port 4040) pour le plan visuel de chaque requête.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Performance</div>
+<div class="pqrow"><span class="pq how">③ Comment — les leviers</span></div>
+<h2>Partitions, AQE, cache, UDF, collect</h2>
+<div class="grid g2">
+  <div class="card"><span class="lab">200 partitions de shuffle par défaut</span><p><code>spark.sql.shuffle.partitions = 200</code> : pour 10 clés, 200 tâches presque vides. <b>AQE</b> (<i>Adaptive Query Execution</i>, actif par défaut) mesure les données réelles pendant l'exécution et <b>regroupe</b> les petites partitions (mesuré : 1 au lieu de 200). AQE peut aussi passer à un broadcast join et découper les partitions <b>déséquilibrées</b> (<i>data skew</i>).</p></div>
+  <div class="card"><span class="lab">repartition vs coalesce</span><p><code>repartition(n, col)</code> : redistribue (<b>shuffle complet</b>), pour augmenter le parallélisme ou regrouper par clé avant écriture. <code>coalesce(n)</code> : <b>fusionne</b> des partitions sans shuffle, seulement pour en réduire le nombre (ex. éviter des milliers de petits fichiers en sortie).</p></div>
+  <div class="card"><span class="lab">cache() / persist()</span><p>Garde un résultat en mémoire après la <b>première action</b>. Utile seulement s'il est <b>coûteux et relu plusieurs fois</b> (ex. une table nettoyée utilisée par trois agrégations). Sinon il consomme la mémoire des executors pour rien. <code>unpersist()</code> quand c'est fini.</p></div>
+  <div class="card bad"><span class="lab">UDF Python : à éviter</span><p>Une UDF Python sort chaque ligne de la JVM vers un processus Python et l'y ramène (sérialisation), et Catalyst ne peut pas l'optimiser. Mesuré : <b>4,26 s</b> contre <b>0,16 s</b> avec la fonction native équivalente. Préférer <code>pyspark.sql.functions</code> ; sinon une <b>pandas UDF</b> (vectorisée avec Arrow).</p></div>
+</div>
+<div class="note legal"><i><svg class="ico" aria-hidden="true"><use href="#ti-hand-stop"/></svg></i><div><p><b><code>collect()</code> et <code>toPandas()</code></b> rapatrient TOUT le résultat dans la mémoire du <b>driver</b> : sur un gros volume, le driver meurt (OutOfMemory). Toujours après une agrégation, un filtre ou un <code>limit</code>. Pour regarder : <code>show()</code>, <code>take(n)</code>.</p></div></div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Performance</div>
+<div class="pqrow"><span class="pq ex">④ Exemple — Parquet partitionné</span></div>
+<h2>Écrire pour être relu vite</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.1vh">
+    <div class="code"><div class="codeh"><span>python · écrire et relire</span><button class="cpy" type="button">Copier</button></div><pre><code>(clean.write
+      .mode(<span class="s">"overwrite"</span>)          <span class="c"># sinon PATH_ALREADY_EXISTS</span>
+      .partitionBy(<span class="s">"store"</span>)       <span class="c"># un dossier par valeur</span>
+      .parquet(<span class="s">"out/ventes"</span>))
+<span class="c"># out/ventes/store=Paris/part-….parquet</span>
+<span class="c"># out/ventes/store=Lyon/part-….parquet</span>
+
+spark.read.parquet(<span class="s">"out/ventes"</span>) \
+     .filter(F.col(<span class="s">"store"</span>) == <span class="s">"Lyon"</span>).explain()
+<span class="c"># PartitionFilters: [store = Lyon]  → seul store=Lyon/ est lu</span></code></pre></div>
+    <div class="card"><span class="lab">Modes d'écriture</span><p><code>error</code> (défaut : échoue si le dossier existe), <code>overwrite</code>, <code>append</code>, <code>ignore</code>.</p></div>
+  </div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card hl"><span class="lab">Pourquoi Parquet</span><ul><li>Format <b>colonnes</b> : on ne lit que les colonnes utiles.</li><li><b>Compressé</b> (Snappy par défaut) et <b>découpable</b>.</li><li><b>Schéma conservé</b> dans le fichier : pas de inferSchema.</li><li>Statistiques min/max par bloc : <b>predicate pushdown</b>.</li></ul></div>
+    <div class="card"><span class="lab">Partition pruning</span><p>Même idée que Hive (ch. Hadoop) : un filtre sur la colonne de partition (<code>PartitionFilters</code>) évite de lire les autres dossiers. Choisir une colonne <b>souvent filtrée</b> et à <b>cardinalité modérée</b> (date, pays) : partitionner par identifiant client crée des millions de petits fichiers.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Performance</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Grille de diagnostic d'un job lent</h2>
+<table class="cmp md">
+<thead><tr><th>Symptôme</th><th>Où regarder</th><th>Remède</th></tr></thead>
+<tbody>
+<tr><td>Beaucoup de shuffles</td><td>nombre d'<code>Exchange</code> dans <code>explain()</code></td><td>broadcast des petites tables, filtrer et sélectionner tôt</td></tr>
+<tr><td>Une tâche bien plus longue que les autres</td><td>onglet Stages de l'UI : durée max ≫ médiane</td><td><b>data skew</b> : AQE skew join, sel (<i>salting</i>) de la clé</td></tr>
+<tr><td>Des centaines de tâches minuscules</td><td>200 partitions pour peu de données</td><td>AQE, ou réduire <code>shuffle.partitions</code></td></tr>
+<tr><td>Le même calcul refait plusieurs fois</td><td>plusieurs actions sur un DataFrame coûteux</td><td><code>cache()</code> puis <code>unpersist()</code></td></tr>
+<tr><td>Lenteur avec une fonction maison</td><td><code>BatchEvalPython</code> dans le plan</td><td>fonction native ou pandas UDF</td></tr>
+<tr><td>Driver en OutOfMemory</td><td><code>collect()</code> / <code>toPandas()</code></td><td>agréger, <code>limit</code>, écrire en Parquet</td></tr>
+<tr><td>Milliers de petits fichiers en sortie</td><td>nombre de <code>part-*</code></td><td><code>coalesce</code> / <code>repartition</code> avant l'écriture</td></tr>
+</tbody></table>
+<ol class="sum-list">
+  <li>Catalyst : plan analysé → optimisé (pushdown, pruning) → physique ; <code>explain()</code> se lit de bas en haut.</li>
+  <li>Exchange = shuffle = premier coût ; AQE ajuste partitions, jointures et skew à l'exécution.</li>
+  <li>cache seulement si relu ; UDF Python à éviter ; jamais <code>collect()</code> sur un gros volume.</li>
+  <li>Parquet partitionné par une colonne filtrée : PartitionFilters + PushedFilters.</li>
+</ol>
+</section>
+
+<section class="slide" data-ch="04" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/spark.svg" alt="Logo Apache Spark"></div>
+<div class="kicker">Chapitre 04 · Performance</div>
+<h2>Fiche — Plan et performance</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Catalyst</span><p>Plan non résolu → analysé → logique optimisé → physique (+ génération de code Tungsten). <code>explain()</code> de bas en haut ; <b>Exchange = shuffle</b>.</p></div>
+  <div class="card"><span class="lab">Optimisations automatiques</span><dl class="def"><dt>Column pruning</dt><dd>lire seulement les colonnes utiles</dd><dt>Predicate pushdown</dt><dd>filtrer pendant la lecture</dd><dt>Partition pruning</dt><dd>sauter les dossiers</dd><dt>AQE</dt><dd>regroupe partitions, change de jointure, gère le skew</dd></dl></div>
+  <div class="card"><span class="lab">Leviers manuels</span><ul><li><code>F.broadcast(small)</code>.</li><li><code>repartition</code> (shuffle) / <code>coalesce</code> (sans shuffle, pour réduire).</li><li><code>cache()</code> si relu plusieurs fois.</li><li>Fonctions natives &gt; UDF Python (0,16 s vs 4,26 s).</li></ul></div>
+  <div class="card"><span class="lab">Écriture</span><p>Parquet (colonnes, compressé, schéma inclus) + <code>partitionBy</code> sur une colonne filtrée à cardinalité modérée. Mode par défaut = erreur si le dossier existe. Jamais <code>collect()</code> d'un gros volume.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Performance</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 04</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Votre job Spark est lent : quelle est votre démarche ?</button><div class="ab"><p>Je <b>mesure avant d'agir</b> : UI Spark (onglets Jobs, Stages, SQL) et <code>explain()</code>. Je cherche les shuffles (<code>Exchange</code>), les tâches beaucoup plus longues que la médiane (<b>data skew</b>), les UDF Python (<code>BatchEvalPython</code>), les lectures inutiles (colonnes, filtres non poussés), les recalculs (plusieurs actions sans cache). Puis j'applique le remède ciblé : broadcast, filtrer tôt, AQE, salting, fonctions natives, Parquet partitionné.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce que le predicate pushdown ?</button><div class="ab"><p>Catalyst pousse les filtres au plus près de la source : ils sont appliqués <b>pendant la lecture</b>. Avec Parquet, les statistiques min/max de chaque groupe de lignes permettent de sauter des blocs entiers sans les décompresser. On le voit dans <code>PushedFilters</code> du <code>FileScan</code>.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce que l'AQE ?</button><div class="ab"><p><i>Adaptive Query Execution</i> : Spark réoptimise le plan <b>pendant l'exécution</b>, à partir des tailles réelles mesurées après chaque shuffle. Il regroupe les petites partitions (évite 200 tâches vides), convertit une jointure en broadcast si une table s'avère petite, et découpe les partitions trop grosses en cas de skew.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi écrire en Parquet plutôt qu'en CSV ?</button><div class="ab"><p>Parquet est un format <b>colonnes</b>, compressé, découpable, qui <b>embarque son schéma</b> et des statistiques : lecture sélective (column pruning), filtres poussés, pas d'inférence de types, fichiers 5 à 10 fois plus petits. Le CSV est du texte sans types, lu en entier. Parquet est la base des tables Iceberg et Delta du lakehouse.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">repartition ou coalesce ?</button><div class="ab"><p><code>repartition</code> redistribue les données avec un <b>shuffle complet</b> : pour augmenter le parallélisme ou regrouper par clé. <code>coalesce</code> fusionne des partitions <b>sans shuffle</b> : seulement pour en réduire le nombre, typiquement avant l'écriture pour éviter des milliers de petits fichiers.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Performance</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="04"></div>
+</section>
+
+<!-- ================= 05 · STRUCTURED STREAMING & KAFKA ================= -->
+<section class="slide" data-ch="05" data-sec="05 Streaming" data-title="Structured Streaming et Kafka" data-v="c">
+<div class="chlogos"><div class="chlogos"><img class="chlogo" src="assets/logos/spark.svg" alt="Logo Apache Spark"><img class="chlogo" src="assets/logos/kafka.svg" alt="Logo Apache Kafka"></div>
+</div>
+<div class="kicker">Chapitre 05 · Streaming</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Un flux = une table qui ne finit jamais</h2>
+<div class="analogy"><b>Analogie — le tapis roulant de l'aéroport.</b> Les bagages (événements) arrivent sans fin. Toutes les quelques secondes, Spark prend ce qui est arrivé (un <b>micro-batch</b>), met à jour ses compteurs, et note sur un carnet (le <b>checkpoint</b>) jusqu'où il est allé. S'il s'arrête, il reprend à la bonne page du carnet.</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Le modèle de Structured Streaming</span><p>Le flux est vu comme une <b>table non bornée</b> (<i>unbounded table</i>) à laquelle s'ajoutent des lignes. On écrit <b>les mêmes transformations</b> qu'en batch (<code>filter</code>, <code>groupBy</code>, <code>join</code>) ; Spark les exécute <b>incrémentalement</b>, micro-batch après micro-batch. Seuls changent <code>readStream</code> / <code>writeStream</code>.</p></div>
+  <div class="code"><div class="codeh"><span>python · un flux de fichiers JSON</span><button class="cpy" type="button">Copier</button></div><pre><code>evts = (spark.readStream
+          .schema(schema)            <span class="c"># OBLIGATOIRE en streaming</span>
+          .json(<span class="s">"entree/"</span>))
+q = (evts.groupBy(<span class="s">"store"</span>).count()
+         .writeStream
+         .outputMode(<span class="s">"update"</span>)
+         .format(<span class="s">"console"</span>)
+         .option(<span class="s">"checkpointLocation"</span>, <span class="s">"chk/q1"</span>)
+         .trigger(processingTime=<span class="s">"10 seconds"</span>)
+         .start())
+q.awaitTermination()</code></pre></div>
+</div>
+<div class="grid g3">
+  <div class="card"><span class="lab">Sources</span><p>Fichiers (dossier surveillé), <b>Kafka</b>, socket (tests).</p></div>
+  <div class="card"><span class="lab">Puits (sinks)</span><p>Console (debug), fichiers Parquet, <b>Kafka</b>, <code>foreachBatch</code> (écrire chaque lot où l'on veut : base, Delta…).</p></div>
+  <div class="card"><span class="lab">Latence</span><p>Micro-batch : de l'ordre de la seconde. Pour la milliseconde, d'autres outils (Flink, Kafka Streams).</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Streaming</div>
+<div class="pqrow"><span class="pq how">③ Comment — le temps</span></div>
+<h2>Event time, fenêtres, watermark</h2>
+<div class="grid g2">
+  <div class="card"><span class="lab">Event time vs processing time</span><p>L'<b>event time</b> est l'heure où l'événement s'est produit (dans la donnée) ; le <b>processing time</b> est l'heure où Spark le traite. Un capteur hors réseau peut envoyer à 10:05 une mesure de 09:58 : on agrège sur l'<b>event time</b> pour un résultat juste.</p></div>
+  <div class="card hl"><span class="lab">Watermark</span><p><b>Watermark = plus grand event time vu − délai toléré.</b> Tout événement plus ancien que le watermark est considéré <b>trop tard</b> et ignoré ; une fenêtre qui se termine avant le watermark est <b>close</b> et son état peut être libéré. Sans watermark, Spark garderait l'état de toutes les fenêtres pour toujours (mémoire infinie).</p></div>
+</div>
+<div class="code"><div class="codeh"><span>python · comptage par fenêtres d'1 minute, retard toléré 2 minutes</span><button class="cpy" type="button">Copier</button></div><pre><code>(evts.withWatermark(<span class="s">"ts"</span>, <span class="s">"2 minutes"</span>)
+     .groupBy(F.window(<span class="s">"ts"</span>, <span class="s">"1 minute"</span>), <span class="s">"store"</span>)
+     .count())
+<span class="c"># plus grand ts vu : 10:05:30 → watermark = 10:03:30</span>
+<span class="c"># la fenêtre [10:02, 10:03[ est close ; un événement de 10:02:50 arrivant maintenant est ignoré</span></code></pre></div>
+<table class="cmp md">
+<thead><tr><th>Mode de sortie</th><th>Ce qui est émis à chaque micro-batch</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td><b>append</b> (défaut)</td><td>seulement les lignes <b>définitives</b> ; pour une agrégation : une fenêtre une fois <b>close</b> par le watermark</td><td>écrire des fichiers (on ne réécrit pas une ligne déjà écrite)</td></tr>
+<tr><td><b>update</b></td><td>les lignes <b>modifiées</b> depuis le lot précédent</td><td>tableaux de bord, bases avec upsert</td></tr>
+<tr><td><b>complete</b></td><td><b>tout</b> le résultat, à chaque lot</td><td>petites agrégations (le résultat doit tenir en mémoire)</td></tr>
+</tbody></table>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Streaming</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple — lire Kafka</span></div>
+<h2>Checkpoint, Kafka et garanties de livraison</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.1vh">
+    <div class="card"><span class="lab">Kafka en 5 idées (voir le cours Kafka)</span><ul><li>Un <b>topic</b> = un flux nommé, découpé en <b>partitions</b>.</li><li>Chaque message a un <b>offset</b> (numéro) dans sa partition.</li><li>L'<b>ordre</b> n'est garanti <b>qu'à l'intérieur d'une partition</b>.</li><li>Les messages sont conservés (rétention) : on peut les <b>relire</b>.</li><li>Clé et valeur sont des <b>octets</b> : à décoder.</li></ul></div>
+    <div class="card hl"><span class="lab">Checkpoint</span><p>Dossier où Spark enregistre les <b>offsets</b> déjà traités et l'<b>état</b> des agrégations. Au redémarrage, la requête reprend exactement là. <b>Ne jamais le supprimer « pour rejouer »</b> : on perd la mémoire de la requête. <code>startingOffsets</code> ne sert qu'à la toute <b>première</b> exécution ; ensuite, c'est le checkpoint qui décide.</p></div>
+  </div>
+  <div class="code"><div class="codeh"><span>python · Kafka → JSON → Parquet</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="c"># paquet requis : spark-sql-kafka-0-10 (même version que Spark)</span>
+raw = (spark.readStream.format(<span class="s">"kafka"</span>)
+   .option(<span class="s">"kafka.bootstrap.servers"</span>, <span class="s">"localhost:9092"</span>)
+   .option(<span class="s">"subscribe"</span>, <span class="s">"ventes"</span>)
+   .option(<span class="s">"startingOffsets"</span>, <span class="s">"earliest"</span>)
+   .load())
+<span class="c"># colonnes : key, value (binaire), topic, partition, offset, timestamp</span>
+msg = raw.select(F.from_json(F.col(<span class="s">"value"</span>).cast(<span class="s">"string"</span>), schema).alias(<span class="s">"m"</span>),
+                 <span class="s">"partition"</span>, <span class="s">"offset"</span>)
+ok     = msg.filter(F.col(<span class="s">"m.order_id"</span>).isNotNull()).select(<span class="s">"m.*"</span>)
+rejets = msg.filter(F.col(<span class="s">"m.order_id"</span>).isNull())   <span class="c"># garder partition + offset</span>
+(ok.writeStream.format(<span class="s">"parquet"</span>)
+   .option(<span class="s">"path"</span>, <span class="s">"lake/ventes"</span>)
+   .option(<span class="s">"checkpointLocation"</span>, <span class="s">"chk/ventes"</span>)
+   .start())</code></pre></div>
+</div>
+<div class="grid g2">
+  <div class="note warn"><i><svg class="ico" aria-hidden="true"><use href="#ti-package"/></svg></i><div><p><b>Message illisible :</b> <code>from_json</code> ne renvoie pas NULL mais une <b>structure dont tous les champs sont NULL</b>. On filtre donc sur un champ obligatoire et on garde <code>partition</code> + <code>offset</code> des rejets pour pouvoir les retrouver dans Kafka (<i>dead letter queue</i>).</p></div></div>
+  <div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-repeat"/></svg></i><div><p><b>Garanties :</b> avec une source rejouable (Kafka) + checkpoint + un puits <b>idempotent</b> (fichiers Parquet gérés par Spark), le résultat est <b>exactly-once</b>. L'écriture <b>vers Kafka</b> est <b>at-least-once</b> : des doublons sont possibles en cas de reprise, le consommateur doit savoir les éliminer.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Streaming</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>À retenir sur le streaming</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Pas de schéma</b> : <code>readStream</code> sur fichiers exige un schéma explicite.</div>
+    <div><b>Agrégation sans watermark</b> : l'état grossit indéfiniment, et le mode append est impossible.</div>
+    <div><b>Supprimer le checkpoint</b> pour « rejouer » : la requête oublie où elle en était (doublons ou trous).</div>
+    <div><b>200 partitions de shuffle</b> à chaque micro-batch : très lent en local → réduire <code>shuffle.partitions</code>.</div>
+    <div><b>Supposer l'ordre global</b> d'un topic Kafka : seulement par partition.</div>
+  </div>
+  <ol class="sum-list">
+    <li>Flux = table non bornée ; mêmes DataFrames, <code>readStream</code>/<code>writeStream</code>, micro-batchs.</li>
+    <li>Agréger sur l'<b>event time</b> ; <b>watermark</b> = max(event time) − délai : ferme les fenêtres, borne l'état.</li>
+    <li>Modes : append (définitif), update (changements), complete (tout).</li>
+    <li>Checkpoint = offsets + état ; ne pas le supprimer ; startingOffsets seulement au 1er lancement.</li>
+    <li>Kafka : décoder <code>value</code> + <code>from_json</code>, isoler les rejets ; exactly-once vers fichiers, at-least-once vers Kafka.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="e">
+<div class="chlogos"><div class="chlogos"><img class="chlogo" src="assets/logos/spark.svg" alt="Logo Apache Spark"><img class="chlogo" src="assets/logos/kafka.svg" alt="Logo Apache Kafka"></div>
+</div>
+<div class="kicker">Chapitre 05 · Streaming</div>
+<h2>Fiche — Structured Streaming et Kafka</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Modèle</span><p>Table non bornée traitée en <b>micro-batchs</b> ; même API qu'en batch. Sources : fichiers, Kafka. Puits : console, Parquet, Kafka, <code>foreachBatch</code>. Schéma obligatoire.</p></div>
+  <div class="card"><span class="lab">Le temps</span><dl class="def"><dt>Event time</dt><dd>heure de l'événement (dans la donnée)</dd><dt>Window</dt><dd><code>F.window("ts", "1 minute")</code></dd><dt>Watermark</dt><dd>max(event time) − délai ; au-delà : trop tard, fenêtre close</dd></dl></div>
+  <div class="card"><span class="lab">Sorties et reprise</span><dl class="def"><dt>append</dt><dd>lignes définitives</dd><dt>update</dt><dd>lignes modifiées</dd><dt>complete</dt><dd>tout le résultat</dd><dt>Checkpoint</dt><dd>offsets + état ; ne pas supprimer</dd></dl></div>
+  <div class="card"><span class="lab">Kafka</span><p>Topic → partitions → offsets ; ordre par partition. Spark lit <code>key</code>/<code>value</code> en binaire : <code>cast("string")</code> + <code>from_json</code> ; message cassé = struct de NULL. Exactly-once vers fichiers, at-least-once vers Kafka.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · Streaming</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 05</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce qu'un watermark et à quoi sert-il ?</button><div class="ab"><p>C'est un seuil de temps calculé comme <b>le plus grand event time observé moins un délai toléré</b>. Il dit à Spark jusqu'où attendre les retardataires : les événements plus anciens sont ignorés, et les fenêtres qui se terminent avant le watermark sont closes. Il borne donc la mémoire de l'état et permet le mode append. C'est un compromis explicite entre <b>exactitude</b> (attendre longtemps) et <b>latence/ressources</b>.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment garantissez-vous qu'un message n'est ni perdu ni compté deux fois ?</button><div class="ab"><p>Source <b>rejouable</b> (Kafka, qui conserve les messages), <b>checkpoint</b> qui mémorise les offsets traités et l'état, et puits <b>idempotent</b> ou transactionnel (Parquet géré par Spark, Delta, upsert sur clé). On obtient l'<b>exactly-once</b> de bout en bout. Vers Kafka, Spark garantit l'at-least-once : on prévoit une déduplication côté consommateur (clé unique).</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Batch ou streaming : comment choisir ?</button><div class="ab"><p>Selon la <b>fraîcheur</b> exigée par le métier (vélocité). Un rapport quotidien → batch, plus simple et moins coûteux. Une alerte de fraude, un suivi de stock en direct → streaming. Avec Spark, le code de transformation est le même : on peut commencer en batch et passer en streaming sans tout réécrire.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Que faites-vous des messages Kafka mal formés ?</button><div class="ab"><p>Je ne les jette pas : <code>from_json</code> produit une structure de NULL, je les filtre sur un champ obligatoire et je les écris dans une <b>file de rejets</b> (<i>dead letter queue</i>) avec leur <code>partition</code> et leur <code>offset</code>, pour analyse et rejeu. Le volume de rejets devient un indicateur de qualité.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · Streaming</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="05"></div>
+</section>
+
+<!-- ================= 06 · SYNTHÈSE ================= -->
+<section class="slide" data-ch="06" data-sec="06 Synthèse" data-title="Synthèse : choisir et justifier">
+<div class="kicker">Chapitre 06 · Synthèse</div>
+<h2>Quel moteur pour quel besoin ?</h2>
+<table class="cmp md">
+<thead><tr><th></th><th>pandas</th><th>MapReduce</th><th>Hive</th><th>Spark</th></tr></thead>
+<tbody>
+<tr><td>Échelle</td><td>1 machine (RAM)</td><td>cluster</td><td>cluster</td><td>1 machine → cluster</td></tr>
+<tr><td>Intermédiaires</td><td>mémoire</td><td>disque à chaque étape</td><td>disque (MR) ou Tez</td><td><b>mémoire</b>, plan global optimisé</td></tr>
+<tr><td>Langage</td><td>Python</td><td>Java / Streaming</td><td>SQL</td><td>Python, Scala, Java, <b>SQL</b></td></tr>
+<tr><td>Streaming</td><td>non</td><td>non</td><td>non</td><td><b>oui</b> (micro-batch)</td></tr>
+<tr><td>Bon choix quand…</td><td>données qui tiennent en RAM</td><td>legacy uniquement</td><td>SQL batch sur un data lake existant</td><td>gros volumes, ETL multi-étapes, flux, préparation ML</td></tr>
+</tbody></table>
+<div class="sch free"><span class="cap">Spark dans un pipeline data typique (architecture médaillon)</span>
+<svg class="dg" viewBox="0 0 960 170" role="img" aria-label="Kafka et fichiers vers Spark, couches bronze, silver, gold en Parquet, puis BI et ML">
+  <rect class="b f3" x="10" y="55" width="130" height="60" rx="10"/><text class="t tc" x="75" y="82">Kafka</text><text class="s tc" x="75" y="102">+ fichiers, API</text>
+  <rect class="b" x="190" y="45" width="150" height="80" rx="10"/><text class="t tc" x="265" y="75">Bronze</text><text class="s tc" x="265" y="97">brut, tel que reçu</text>
+  <rect class="b f2" x="390" y="45" width="150" height="80" rx="10"/><text class="t tc" x="465" y="75">Silver</text><text class="s tc" x="465" y="97">nettoyé, typé, dédoublonné</text>
+  <rect class="b f1" x="590" y="45" width="150" height="80" rx="10"/><text class="t tc" x="665" y="75">Gold</text><text class="s tc" x="665" y="97">agrégé, prêt métier</text>
+  <rect class="b f4" x="790" y="55" width="160" height="60" rx="10"/><text class="t tc" x="870" y="82">BI · ML</text><text class="s tc" x="870" y="102">Power BI, modèles</text>
+  <path class="e" d="M140 85 H186"/><path class="e" d="M340 85 H386"/><path class="e" d="M540 85 H586"/><path class="e" d="M740 85 H786"/>
+  <text class="a" x="190" y="155">Spark à chaque flèche · Parquet/Delta partitionné · orchestré par Airflow</text>
+
+  <use class="il" href="#il-log" x="60" y="18" width="32" height="28"/><use class="il" href="#il-database" x="198" y="52" width="22" height="26"/><use class="il" href="#il-funnel" x="398" y="52" width="24" height="26"/><use class="il" href="#il-chart" x="598" y="52" width="26" height="24"/><use class="il" href="#il-chart" x="855" y="18" width="32" height="30"/>
+</svg></div>
+</section>
+
+<section class="slide" data-ch="06">
+<div class="kicker">Chapitre 06 · Synthèse</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Questions transversales</span></div>
+<h2>Ce que le jury peut demander sur l'ensemble</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Décrivez un pipeline Spark que vous avez construit, de la source au résultat.</button><div class="ab"><p>Structure attendue : <b>besoin</b> (volume, fréquence, utilisateurs) → <b>lecture</b> avec schéma explicite → <b>qualité</b> (NULL, doublons, rejets en quarantaine, comptages de contrôle) → <b>transformations</b> (jointures en broadcast quand possible, agrégations, fenêtres) → <b>écriture</b> Parquet partitionnée → <b>orchestration</b> (Airflow) et <b>supervision</b> (UI Spark, durée, taux de rejet). Chaque choix est justifié par une mesure ou une contrainte.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quelle est l'architecture médaillon ?</button><div class="ab"><p>Organisation d'un data lake en trois couches : <b>bronze</b> (brut, immuable, rejouable), <b>silver</b> (nettoyé, typé, dédoublonné, conforme), <b>gold</b> (agrégats métier prêts pour la BI et le ML). Avantages : traçabilité, possibilité de recalculer une couche depuis la précédente, séparation des responsabilités. Spark réalise chaque passage.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment rendez-vous un job Spark plus sobre (éco-conception) ?</button><div class="ab"><p>Ne pas utiliser Spark si pandas suffit ; lire moins (Parquet, column pruning, predicate pushdown, partition pruning) ; éviter les shuffles inutiles (broadcast, filtrer tôt) ; ne cacher que ce qui est relu ; dimensionner le cluster sur la mesure ; traiter de façon <b>incrémentale</b> (streaming ou partitions nouvelles) plutôt que tout recalculer.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Que signifient driver, executor, job, stage et task ?</button><div class="ab"><p>Le <b>driver</b> exécute le programme et planifie ; les <b>executors</b> sont des JVM qui exécutent les calculs. Une <b>action</b> déclenche un ou plusieurs <b>jobs</b> ; un job est découpé en <b>stages</b> aux frontières de shuffle ; un stage contient une <b>task</b> par partition, exécutée sur un cœur.</p></div></div>
+</div>
+</section>
+
+<!-- ================= QUIZ FINAL ================= -->
+<section class="slide" data-ch="quiz" data-sec="Quiz final" data-title="Quiz final — 45 questions">
+<div class="kicker">Quiz final · Spark</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-target"/></svg> 45 questions pour affronter le jury</h2>
+<p class="lead">Questions difficiles, tous chapitres mélangés. L'ordre des questions <b>et</b> des réponses change à chaque tentative. Certaines questions ont <b>plusieurs bonnes réponses</b> : il faut toutes les cocher. Après chaque réponse : la correction et son explication.</p>
+<div data-quiz="final"></div>
+</section>
+
+</main>
+<button class="arrow" id="prev" type="button" aria-label="Diapositive précédente">‹</button>
+<button class="arrow" id="next" type="button" aria-label="Diapositive suivante">›</button>
+<nav id="tl" aria-label="Chapitres"></nav>
+<div id="hint">← → naviguer · ↑ ↓ défiler · H ampoule <svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg> · E Complète/Essentiel · M maîtrisé · S sommaire · T thème</div>
+<button id="bulbhint" type="button"><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></button>
+<div id="ctip" role="tooltip"></div>
+<div id="toc" role="dialog" aria-label="Sommaire">
+  <button class="btn xx" id="tocx" type="button">Fermer ✕</button>
+  <div class="kicker">Sommaire · Spark</div>
+  <h2>Spark</h2>
+  <div class="tg"></div>
+</div>
+
+<div id="fab">
+  <button id="helpbtn" type="button" aria-label="Ampoule : concepts expliqués au survol" aria-pressed="false" title="Ampoule : soulignez les concepts, survolez-les pour une explication (H)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></button>
+<button id="tocbtn" type="button" aria-label="Sommaire" title="Sommaire (S)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+  <div id="themebtn">
+    <div id="menu" role="menu"><h4>Thème</h4></div>
+    <button id="tbtn" type="button" aria-label="Changer de thème" aria-haspopup="true" title="Changer de thème (T)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.4-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16a5 5 0 0 0 5-5c0-4-4-7-9-7z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="7.5" r="1"/></svg>
+    </button>
+  </div>
+</div>
+
+</div>
+<script src="assets/icons.js?v=1795252877"></script>
+<script src="data/spark-quiz.js?v=1795252878"></script>
+<script src="data/spark-glossary.js?v=1795252878"></script>
+<script src="assets/engine.js?v=1795252877"></script>
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sécurité : cryptographie · Révision Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/base.css?v=1795252877">
+<link rel="stylesheet" href="assets/photos.css?v=1795252877">
+<link rel="stylesheet" href="assets/revision.css?v=1795252877">
+</head>
+<body data-page="course" data-course="secu-crypto" data-title="Sécurité : cryptographie">
+<div id="app" data-theme="papier">
+
+<div id="bg" aria-hidden="true">
+  <div class="bgl bg-neon">
+    <svg viewBox="0 0 800 800"><path d="M40 760 L400 280 L760 760" stroke-width="3"/><path d="M110 760 L400 380 L690 760" stroke-width="2.4" opacity=".85"/><path d="M180 760 L400 470 L620 760" stroke-width="2" opacity=".7"/><path d="M250 760 L400 560 L550 760" stroke-width="1.6" opacity=".55"/><path d="M320 760 L400 650 L480 760" stroke-width="1.2" opacity=".4"/></svg>
+  </div>
+  <div class="bgl bg-sauge"><div class="panel"></div><div id="bignum"></div></div>
+  <div class="bgl bg-nuit"><i></i><i></i><i></i></div>
+  <div class="bgl bg-verre"><div class="blob a"></div><div class="blob b"></div><div class="blob c"></div></div>
+  <div class="bgl bg-papier"><i></i><i></i><i></i></div>
+  <div class="bgl bg-rubans"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f8fe0"/><stop offset="1" stop-color="#2fd0bd"/></linearGradient>
+      <linearGradient id="rg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fdcc4"/><stop offset=".55" stop-color="#26b2d2"/><stop offset="1" stop-color="#2f8fe0"/></linearGradient>
+      <linearGradient id="rg3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2fd0bd"/><stop offset="1" stop-color="#2f90e2"/></linearGradient>
+      <filter id="rsh" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="12"/></filter>
+    </defs>
+    <g class="rb" id="rb-a" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g class="rb b" id="rb-b" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+  </svg></div>
+  <div class="bgl bg-facettes"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="fcw" id="fc-top"></g><g class="fcw" id="fc-bot"></g></svg></div>
+  <div class="bgl photo bg-bulles"><i></i></div>
+  <div class="bgl photo bg-hexa"><i></i></div>
+  <div class="bgl photo bg-points"><i></i></div>
+</div>
+
+<svg id="defs" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+  <marker id="arrk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3a4458"/></marker>
+  <marker id="arrbad" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+</defs></svg>
+
+<div id="brand"><a href="index.html" title="Retour à l'accueil">← Accueil</a> · Sécurité : cryptographie</div>
+<div id="topbar">
+  <div id="vseg" role="group" aria-label="Version du cours"><button type="button" data-v="c" title="Tout le cours (E pour basculer)"><svg class="ico" aria-hidden="true"><use href="#ti-book"/></svg> Complète</button><button type="button" data-v="e" title="Ce qu'il faut maîtriser pour le jury (E)"><svg class="ico" aria-hidden="true"><use href="#ti-bolt"/></svg> Essentiel</button></div>
+  <button id="mast" type="button" title="Marquer ce chapitre comme maîtrisé (M)"></button>
+  <span id="prog"></span>
+</div>
+<div id="hud"><span id="count">1 / 1</span></div>
+<main id="deck">
+<section class="slide" data-ch="00" data-sec="Immersion" data-title="Immersion : découvrir Sécurité : cryptographie">
+<div class="chlogos"><img class="chlogo big" src="assets/logos/owasp.svg" alt="Logo Sécurité : cryptographie"></div>
+<div class="kicker">Activité 3 · Concevoir et développer une application</div>
+<h1>Sécurité : cryptographie</h1>
+<p class="lead">La <b>cryptographie</b> est la boîte à outils mathématique de la sécurité. Vous verrez les <b>services</b> qu'elle rend, le <b>chiffrement symétrique et asymétrique</b>, le <b>hachage, le MAC et la signature</b>, la gestion des <b>clés</b> et de l'<b>aléa</b>, <b>TLS et les certificats</b>, puis la protection des <b>données au repos, en transit</b> et des <b>secrets</b>. Les mots de passe (<a href="securite.html">Authentification</a>) et les notions de risque (<a href="secu-fondamentaux.html">Fondamentaux</a>) y sont seulement référencés.</p>
+<div class="chips"><span class="pill solid">immersion + 5 chapitres</span><span class="pill">mini-quiz par chapitre</span><span class="pill">quiz final · 45 questions</span><span class="pill">AES · RSA · SHA · TLS · KMS</span></div>
+</section>
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 1 / 3</div>
+<h2>Comment deux inconnus échangent-ils un secret sur un réseau que tout le monde écoute, sans s'être jamais rencontrés ?</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card bad"><span class="lab">Convenir d'un secret à l'avance</span><p>Impossible à grande échelle : il faudrait un secret par paire de correspondants et un moyen sûr de le transmettre.</p></div><div class="card hl"><span class="lab">Des mathématiques à sens unique</span><p>Chacun garde un <b>secret privé</b> et publie une valeur <b>publique</b>. Avec ces seules valeurs publiques échangées, ils <b>calculent un même secret</b> que l'écoute ne permet pas de reconstituer.</p></div></div><div style="display:grid;gap:1.2vh"><p class="punch">La <b>cryptographie</b> transforme l'information pour fournir quatre <b>services</b> : <b>confidentialité</b> (chiffrement), <b>intégrité</b> (hachage, MAC), <b>authenticité</b> (MAC, signature) et <b>non-répudiation</b> (signature). Elle ne protège <b>ni</b> un mot de passe faible, <b>ni</b> un poste infecté, <b>ni</b> une clé mal gardée : <b>la sécurité repose sur le secret des clés, jamais sur celui de l'algorithme</b>.</p><div class="analogy"><b>Analogie —</b> un cadenas : tout le monde sait comment il fonctionne (algorithme public), seule la clé est secrète. Un cadenas dont la sécurité dépend du secret de sa fabrication ne vaut rien.</div></div></div>
+</section>
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 2 / 3</div>
+<h2>De César (50 av. J.-C.) à la cryptographie post-quantique</h2>
+<div class="flow"><div class="step"><b>~50 av. J.-C.</b><small><b>César</b> : décalage de lettres, trivial à casser</small></div><div class="step"><b>1976 · 1977</b><small><b>Diffie-Hellman</b> (échange de clés), <b>RSA</b> : naissance de l'asymétrique</small></div><div class="step"><b>2001</b><small><b>AES</b> standardisé par le NIST, après DES (1977) cassé</small></div><div class="step"><b>2015 · 2018</b><small><b>SHA-3</b> ; <b>TLS 1.3</b> ; Let's Encrypt (certificats gratuits)</small></div><div class="step"><b>2024</b><small>Premiers standards <b>post-quantiques</b> (ML-KEM, ML-DSA) face aux ordinateurs quantiques</small></div></div><div class="grid g2"><div class="card"><span class="lab">Qui l'utilise, pour quoi</span><ul><li>Navigation HTTPS, messageries, VPN, paiement.</li><li><b>Data Engineers</b> : chiffrer entrepôts et sauvegardes, protéger les flux (<a href="kafka.html">Kafka</a> TLS), gérer les clés et les secrets.</li><li>Signature de code, d'images (<a href="docker.html">Docker</a>), de paquets.</li></ul></div><div class="sch free"><span class="cap">Les quatre services</span><svg class="dg" viewBox="0 -36 460 156" role="img" aria-label="Quatre services de la cryptographie : confidentialité, intégrité, authenticité, non-répudiation"><rect class="b f3" x="2" y="20" width="112" height="44" rx="8"/><text class="t tc" x="58.0" y="40.0">Confidentialité</text><text class="s tc" x="58.0" y="55.0">chiffrer</text><rect class="b f3" x="120" y="20" width="100" height="44" rx="8"/><text class="t tc" x="170.0" y="40.0">Intégrité</text><text class="s tc" x="170.0" y="55.0">hacher, MAC</text><rect class="b f3" x="230" y="20" width="100" height="44" rx="8"/><text class="t tc" x="280.0" y="40.0">Authenticité</text><text class="s tc" x="280.0" y="55.0">MAC, signer</text><rect class="b f3" x="340" y="20" width="110" height="44" rx="8"/><text class="t tc" x="395.0" y="40.0" style="font-size:12.5px">Non-répudiation</text><text class="s tc" x="395.0" y="55.0">signer</text><text class="s" x="10" y="95">Aucun service ne tient sans clés bien gérées</text>
+  <use class="il" href="#il-padlock" x="43.0" y="-13" width="30" height="30"/><use class="il" href="#il-check" x="155.0" y="-13" width="30" height="30"/><use class="il" href="#il-user" x="265.0" y="-13" width="30" height="30"/><use class="il" href="#il-signature" x="380.0" y="-13" width="30" height="30"/>
+</svg></div></div>
+</section>
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 3 / 3</div>
+<h2>Premier contact : chiffrer, hacher, signer</h2>
+<div class="grid g2"><div class="code"><div class="codeh"><span>python · cryptography</span><button class="cpy" type="button">Copier</button></div><pre><code>from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+import os, hashlib
+
+cle   = AESGCM.generate_key(bit_length=256)    <span class="c"># clé aléatoire (CSPRNG)</span>
+nonce = os.urandom(12)                         <span class="c"># unique pour CHAQUE message avec cette clé</span>
+c     = AESGCM(cle).encrypt(nonce, b"salaire=4200", b"id=42")   <span class="c"># chiffre ET authentifie</span>
+AESGCM(cle).decrypt(nonce, c, b"id=42")        <span class="c"># ok ; modifie un octet -&gt; exception</span>
+
+hashlib.sha256(b"salaire=4200").hexdigest()    <span class="c"># empreinte fixe 256 bits, sens unique</span></code></pre></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Ce qu'il faut remarquer</span><p><b>AES-GCM</b> chiffre <b>et</b> authentifie (AEAD) : toute modification est détectée. Le <b>nonce</b> doit être <b>unique</b> par message avec une même clé. Le <b>hachage</b> ne chiffre pas : il produit une <b>empreinte</b> non réversible.</p></div><div class="card"><span class="lab">Ce que le jury attend</span><ul><li>Protéger les données (chiffrement, clés, secrets).</li><li>Sécuriser les échanges et les environnements.</li></ul></div></div></div><div class="flow"><div class="step"><b>01</b><small>services, chiffrement</small></div><div class="step"><b>02</b><small>hachage, MAC, signature</small></div><div class="step"><b>03</b><small>aléa, clés, erreurs</small></div><div class="step"><b>04</b><small>TLS, PKI</small></div><div class="step"><b>05</b><small>données, secrets</small></div></div>
+</section>
+<section class="slide" data-ch="00" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/owasp.svg" alt="Logo Sécurité : cryptographie"></div>
+<div class="kicker">Immersion · Essentiel</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Présenter la cryptographie en une minute</h2>
+<div class="card hl"><p class="q">« La cryptographie rend <b>quatre services</b> : confidentialité, intégrité, authenticité, non-répudiation. Le <b>chiffrement symétrique</b> (<b>AES-GCM</b>) est rapide mais exige de partager une clé ; l'<b>asymétrique</b> résout l'échange de clés (aujourd'hui par <b>Diffie-Hellman éphémère</b>, ECDHE) et sert à <b>signer</b> (<b>RSA</b>, <b>ECDSA</b>) ; en pratique on les combine (<b>chiffrement hybride</b>, ce que fait <b>TLS</b>).</p><p class="q">Le <b>hachage</b> (<b>SHA-256</b>) donne une empreinte ; le <b>HMAC</b> ajoute une clé pour authentifier ; la <b>signature</b> prouve l'origine. Je n'invente <b>jamais</b> mon algorithme, j'utilise des <b>bibliothèques éprouvées</b>, des <b>clés aléatoires</b> générées par un CSPRNG, gérées dans un <b>KMS</b> et <b>renouvelées</b>.</p><p class="q">Je chiffre <b>en transit</b> (TLS) et <b>au repos</b> (disque, colonnes, sauvegardes), et je garde les <b>secrets</b> hors du code. La sécurité repose sur le secret des <b>clés</b>, pas de l'algorithme. »</p></div><div class="grid g3"><div class="card"><span class="lab">Les 3 mots à placer</span><p><b>AES-GCM · TLS · gestion de clés</b></p></div><div class="card"><span class="lab">Le choix à justifier</span><p><b>Le chiffrement hybride</b> : l'asymétrique échange une clé, le symétrique (AES) chiffre les données ; jamais d'algorithme maison.</p></div><div class="card"><span class="lab">Le lien</span><p><a href="securite.html">Mots de passe</a> · <a href="secu-fondamentaux.html">Risques</a> · <a href="secu-applis.html">Protocoles</a></p></div></div>
+</section>
+<section class="slide" data-ch="00" data-sec="Le fil" data-title="Le fil du cours : 7 idées">
+<div class="kicker">Le fil du cours · Sécurité : cryptographie</div>
+<h2>7 idées font tout le cours</h2>
+<p class="lead fil-q">Une seule question traverse tout le cours : <b>comment protéger une donnée qui passe par des réseaux et des machines qu'on ne contrôle pas ?</b> Les algorithmes changent, ces sept idées restent.</p>
+<div class="grid g3 ideas"><div class="card idea"><span class="lab">Idée 1 · Partir du besoin, pas de l'outil</span><p>Chaque outil cryptographique rend <b>un</b> service. Chiffrer donne la <b>confidentialité</b> (personne ne lit). Un hachage ou un <b>MAC</b> (code d'authentification calculé avec une clé partagée) donne l'<b>intégrité</b> (rien n'a changé). Un MAC ou une <b>signature</b> donne l'<b>authenticité</b> (on sait qui a écrit). Seule la signature donne la <b>non-répudiation</b> (l'auteur ne peut pas nier devant un tiers). On nomme le besoin <b>avant</b> de choisir l'outil.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on chiffre sans contrôler l'intégrité, un attaquant peut modifier le message chiffré sans être détecté ; et un HMAC présenté à un tiers ne prouve pas qui l'a produit, car les deux parties ont la même clé.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Utiliser un chiffrement authentifié (AES-GCM) qui détecte toute modification, et une signature quand il faut prouver l'auteur à un tiers.</p><p class="chs">ch. 01 · ch. 02 · ch. 04</p></div><div class="card idea"><span class="lab">Idée 2 · Le secret, c'est la clé, jamais l'algorithme</span><p>Principe de <b>Kerckhoffs</b> : l'algorithme est <b>public</b> et éprouvé par des années d'analyse. Toute la sécurité se concentre dans la <b>clé</b>, donc toute la difficulté aussi : c'est elle qu'il faut tirer, cacher, tourner.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on invente son propre algorithme, ou qu'on compte sur le secret de sa conception, il est cassé dès qu'un spécialiste l'analyse.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Prendre un algorithme standard et public (AES, RSA, courbes elliptiques) dans une bibliothèque reconnue, et protéger la clé.</p><p class="chs">ch. 01 · ch. 03</p></div><div class="card idea"><span class="lab">Idée 3 · Rapide ou distribuable : on combine les deux</span><p>Le <b>symétrique</b> (AES) est rapide mais suppose une clé <b>déjà partagée</b> ; l'<b>asymétrique</b> (RSA, courbes elliptiques) sait <b>s'accorder</b> sur une clé et <b>signer</b>, mais il est lent. Toute solution réelle est <b>hybride</b> : l'asymétrique installe une clé de session, le symétrique chiffre les données (TLS, chiffrement d'enveloppe).</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on chiffre de gros volumes directement en RSA, c'est extrêmement lent ; et si l'on envoie la clé AES en clair, n'importe qui peut la lire en chemin.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Laisser l'asymétrique échanger une clé de session (comme TLS), puis chiffrer les données en AES avec cette clé.</p><p class="chs">ch. 01 · ch. 04 · ch. 05</p></div><div class="card idea"><span class="lab">Idée 4 · Prouver sans révéler : l'empreinte</span><p>Un <b>hachage</b> transforme une donnée en <b>empreinte</b> courte, à <b>sens unique</b> : on ne peut pas revenir à la donnée par le calcul. On l'enrichit selon le besoin : avec un <b>secret partagé</b>, c'est un <b>HMAC</b> (prouve l'intégrité entre deux parties) ; avec une <b>clé privée</b>, c'est une <b>signature</b>, que tout le monde peut vérifier.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on chiffre les mots de passe au lieu de les hacher lentement avec un sel, ou si l'on garde MD5 et SHA-1, une fuite de la base livre les mots de passe.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Stocker les mots de passe avec un hachage lent et salé (Argon2id, bcrypt), jamais chiffrés ni hachés en MD5 ou SHA-1.</p><p class="chs">ch. 02 · ch. 03</p></div><div class="card idea"><span class="lab">Idée 5 · Jamais deux fois le même résultat</span><p>Ce qui se <b>répète</b> ou se <b>devine</b> trahit l'information. D'où trois règles : un <b>nonce</b> ou un <b>IV</b> (valeur d'initialisation) unique pour chaque message, un <b>sel</b> unique pour chaque mot de passe, et des clés tirées d'un <b>générateur aléatoire cryptographique</b> (CSPRNG).</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on utilise le mode ECB, réutilise un nonce, prend un IV prévisible, ou tire l'aléa de random() ou de la date, des motifs apparaissent et un attaquant peut les exploiter.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Utiliser un mode comme AES-GCM avec un nonce neuf à chaque message, et tirer l'aléa avec le module secrets (ou os.urandom).</p><p class="chs">ch. 01 · ch. 02 · ch. 03</p></div><div class="card idea"><span class="lab">Idée 6 · Une clé publique ne vaut que si l'on sait à qui elle est</span><p>Une clé publique seule ne prouve rien : un attaquant peut présenter <b>sa propre clé</b> en se faisant passer pour le site. Le <b>certificat</b> est la clé publique <b>signée</b> par une autorité ; la confiance se <b>délègue en chaîne</b> (racine → intermédiaire → site), avec expiration et révocation. <b>TLS</b> assemble les idées 3 à 6.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on désactive la vérification du certificat, un attaquant placé entre le client et le serveur peut se faire passer pour le site sans être détecté.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Toujours vérifier le certificat du serveur (le comportement par défaut des bibliothèques) ; ne jamais passer verify=False en production.</p><p class="chs">ch. 02 · ch. 04</p></div><div class="card idea"><span class="lab">Idée 7 · Une clé naît, sert, tourne et meurt : la gérer, c'est l'essentiel</span><p>En entreprise, c'est la <b>gestion</b> qui casse, pas les mathématiques. Une clé est <b>générée</b> proprement, <b>stockée à part</b> des données (KMS, HSM, coffre), sert à <b>un seul usage</b>, est <b>tournée</b>, <b>révoquée</b>, <b>détruite</b>. Les données sont protégées <b>en transit</b> (TLS) et <b>au repos</b> (disque, colonne, enveloppe).</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si la clé est dans le code, dans Git, posée à côté des données qu'elle chiffre ou jamais renouvelée, il suffit de la trouver une fois pour tout déchiffrer.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Garder les clés dans un coffre (KMS, HSM, Vault), séparées des données, avec une rotation planifiée et une procédure de révocation.</p><p class="chs">ch. 03 · ch. 05</p></div></div>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · Sécurité : cryptographie</div>
+<h2>La grille réflexe : quel besoin, quel choix</h2>
+<div class="flow"><div class="step"><b>1</b><small>Quel besoin : confidentialité, intégrité, authenticité, non-répudiation ?</small></div><div class="step"><b>2</b><small>Qui détient le secret : les deux parties, une seule, personne ?</small></div><div class="step"><b>3</b><small>D'où vient l'aléa, et est-il unique à chaque usage ?</small></div><div class="step"><b>4</b><small>Où vit la clé, et qui peut la tourner ou la révoquer ?</small></div></div>
+<table class="cmp md"><thead><tr><th>Besoin</th><th>Bon choix</th><th>À éviter</th></tr></thead><tbody><tr><td>Cacher des données entre deux parties qui partagent une clé</td><td><b>AES-256-GCM</b> (AEAD), nonce unique</td><td>ECB ; CBC sans contrôle d'intégrité</td></tr><tr><td>S'accorder sur une clé sans secret préalable</td><td><b>ECDHE</b>, comme dans TLS 1.3</td><td>envoyer la clé en clair</td></tr><tr><td>Vérifier qu'un message n'a pas été modifié, entre deux parties</td><td><b>HMAC-SHA-256</b> (ou l'AEAD)</td><td>un hachage seul : n'importe qui le recalcule</td></tr><tr><td>Prouver l'auteur à un tiers</td><td><b>signature</b> (Ed25519, ECDSA, RSA-PSS)</td><td>HMAC : les deux parties ont la clé</td></tr><tr><td>Stocker un mot de passe</td><td><b>Argon2id</b> ou bcrypt, sel unique (<a href="securite.html">Authentification</a>)</td><td>SHA-256 seul ; chiffrement réversible</td></tr><tr><td>Identifier un serveur</td><td><b>certificat</b> vérifié + HSTS</td><td>vérification désactivée</td></tr><tr><td>Protéger une base au repos</td><td><b>chiffrement d'enveloppe</b> avec un KMS</td><td>clé stockée à côté des données</td></tr></tbody></table>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · Sécurité : cryptographie</div>
+<h2>Chaque chapitre applique les mêmes idées</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Chapitre</th><th><b>1</b></th><th><b>2</b></th><th><b>3</b></th><th><b>4</b></th><th><b>5</b></th><th><b>6</b></th><th><b>7</b></th></tr></thead><tbody><tr><td><b>01</b> Services et chiffrement</td><td>●</td><td>●</td><td>●</td><td></td><td>●</td><td></td><td></td></tr><tr><td><b>02</b> Hachage et signature</td><td>●</td><td></td><td></td><td>●</td><td>●</td><td>●</td><td></td></tr><tr><td><b>03</b> Aléa et clés</td><td></td><td>●</td><td></td><td>●</td><td>●</td><td></td><td>●</td></tr><tr><td><b>04</b> TLS et PKI</td><td>●</td><td></td><td>●</td><td></td><td></td><td>●</td><td></td></tr><tr><td><b>05</b> Données et secrets</td><td></td><td></td><td>●</td><td></td><td></td><td></td><td>●</td></tr></tbody></table><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Ce qui revient dans <b>plusieurs chapitres</b> est une idée à comprendre ; ce qui n'apparaît qu'une fois est un <b>exemple</b> d'une de ces idées.</p></div></div></div><table class="cmp md"><thead><tr><th>Erreur célèbre</th><th>Idée oubliée</th><th>Ce qui casse</th></tr></thead><tbody><tr><td>Le pingouin chiffré en ECB</td><td><b>5</b> · Jamais deux fois le même résultat</td><td>les blocs identiques restent identiques : l'image se devine à travers le chiffré</td></tr><tr><td>Nonce réutilisé en AES-GCM</td><td><b>5</b> · Jamais deux fois le même résultat</td><td>la combinaison des deux messages clairs fuit, et l'attaquant peut forger des messages acceptés</td></tr><tr><td>BEAST et POODLE (TLS 1.0, SSL 3.0)</td><td><b>5</b> · Jamais deux fois le même résultat</td><td>IV prévisible et remplissage CBC exploités : des cookies sont déchiffrés</td></tr><tr><td>Mots de passe en MD5 sans sel</td><td><b>4</b> · Prouver sans révéler : l'empreinte</td><td>tables précalculées : des millions de comptes retrouvés</td></tr><tr><td>Algorithme « maison »</td><td><b>2</b> · Le secret, c'est la clé, jamais l'algorithme</td><td>aucune analyse publique ne l'a éprouvé</td></tr><tr><td>HMAC présenté comme preuve en justice</td><td><b>1</b> · Partir du besoin, pas de l'outil</td><td>le destinataire aurait pu le produire : aucune non-répudiation</td></tr><tr><td>Clé d'accès cloud commitée dans Git</td><td><b>7</b> · Une clé naît, sert, tourne et meurt : la gérer, c'est l'essentiel</td><td>exploitée en minutes ; supprimer le commit ne suffit pas, il faut révoquer</td></tr></tbody></table></div>
+</section>
+
+<section class="slide" data-ch="01" data-sec="01 Services et chiffrement" data-title="Services et chiffrement" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/owasp.svg" alt="Logo Sécurité : cryptographie"></div>
+<div class="kicker">Chapitre 01 · Services et chiffrement</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Le chiffrement symétrique : AES et ses modes</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Une seule clé</span><p>La <b>même clé</b> chiffre et déchiffre. <b>Rapide</b> (instructions matérielles <b>AES-NI</b>), idéal pour de gros volumes. <b>Problème</b> : comment partager la clé en sécurité ?</p></div><div class="card"><span class="lab">De César à AES</span><ul><li><b>César</b>, <b>substitution mono-alphabétique</b> : cassés par l'<b>analyse de fréquences</b>.</li><li><b>DES</b> (clé 56 bits, 1977) : cassé par force brute ; <b>3DES</b> abandonné.</li><li><b>AES</b> (Rijndael, NIST 2001) : blocs de <b>128 bits</b>, clés de <b>128, 192 ou 256 bits</b>.</li></ul></div></div><table class="cmp md"><thead><tr><th>Mode</th><th>Propriété</th><th>À retenir</th></tr></thead><tbody><tr><td><b>ECB</b></td><td>chaque bloc chiffré seul</td><td><b>interdit</b> : les motifs restent visibles</td></tr><tr><td><b>CBC</b></td><td>chaînage + IV imprévisible</td><td>pas d'intégrité ; risque de padding oracle</td></tr><tr><td><b>CTR</b></td><td>flux de chiffrement</td><td>pas d'intégrité ; ne jamais réutiliser un nonce</td></tr><tr><td><b>GCM</b></td><td>chiffre <b>et authentifie</b> (AEAD)</td><td><b>recommandé</b> ; <b>nonce unique</b> par clé</td></tr><tr><td><b>ChaCha20-Poly1305</b></td><td>AEAD, rapide sans matériel dédié</td><td>alternative à AES-GCM</td></tr></tbody></table></div>
+</section>
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Services et chiffrement</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Asymétrique, échange de clés et chiffrement hybride</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Deux clés</span><p>Une <b>paire</b> : la clé <b>publique</b> (diffusée) et la clé <b>privée</b> (secrète). Ce que l'une chiffre, seule l'autre le déchiffre. <b>Lent</b> : on l'utilise pour <b>échanger une clé</b> ou <b>signer</b>, pas pour chiffrer des gigaoctets.</p></div><div class="card"><span class="lab">Familles</span><ul><li><b>RSA</b> (1977) : factorisation ; clés <b>≥ 2048 bits</b> (3072 conseillé). Aujourd'hui surtout pour <b>signer</b> : l'ancien <b>échange de clés RSA</b> (clé de session chiffrée avec la clé publique du serveur) est <b>retiré de TLS 1.3</b>.</li><li><b>Courbes elliptiques</b> (ECC, Curve25519, P-256) : même sécurité avec des clés bien plus courtes (256 bits ≈ RSA 3072).</li><li><b>Diffie-Hellman</b> (1976) / <b>ECDH</b> : deux parties calculent <b>un même secret</b> à partir de valeurs publiques.</li></ul></div></div><div style="display:grid;gap:1.2vh"><div class="flow"><div class="step"><b>1</b><small>échange de clé asymétrique (ECDH)</small></div><div class="step"><b>2</b><small>secret partagé → clé de session</small></div><div class="step"><b>3</b><small>données chiffrées en AES-GCM</small></div></div><div class="card"><span class="lab">Le chiffrement hybride</span><p><b>Asymétrique pour s'accorder, symétrique pour chiffrer</b> : c'est le principe de <b>TLS</b>, de PGP et du chiffrement d'enveloppe.</p></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p><b>Post-quantique</b> : un ordinateur quantique casserait RSA et ECC. Des standards (<b>ML-KEM</b>, <b>ML-DSA</b>, 2024) préparent la transition ; le risque <b>« collecter maintenant, déchiffrer plus tard »</b> justifie d'anticiper.</p></div></div></div></div>
+</section>
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Services et chiffrement</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et résumé</h2>
+<div class="grid g2"><div class="trap-list"><div><b>Ce que la crypto ne fait pas</b> : elle ne protège pas d'un mot de passe faible, d'un poste infecté ou d'une clé volée.</div><div><b>Mode ECB</b> : on voit la forme de l'image chiffrée.</div><div><b>Réutiliser un nonce</b> avec une même clé (GCM, CTR) : fuite catastrophique.</div><div><b>Clé en dur dans le code</b> (<a href="secu-crypto.html">chapitre 05</a>).</div><div><b>Penser « gros nombre = sûr »</b> : la longueur ne compense pas un mauvais algorithme.</div></div><ol class="sum-list"><li>Quatre services : confidentialité, intégrité, authenticité, non-répudiation.</li><li>Symétrique (AES-GCM) : rapide, clé partagée. Asymétrique (RSA, ECC) : échange de clés et signature.</li><li>Hybride : asymétrique pour s'accorder, symétrique pour chiffrer.</li><li>La sécurité repose sur la clé, pas sur le secret de l'algorithme.</li></ol></div>
+</section>
+<section class="slide" data-ch="01" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/owasp.svg" alt="Logo Sécurité : cryptographie"></div>
+<div class="kicker">Chapitre 01 · Services et chiffrement</div>
+<h2>Fiche — Services et chiffrement</h2>
+<div class="fiche"><div class="card"><span class="lab">Services</span><p>Confidentialité · intégrité · authenticité · non-répudiation.</p></div><div class="card"><span class="lab">Symétrique</span><p>Une clé ; AES 128/192/256 ; mode GCM recommandé.</p></div><div class="card"><span class="lab">Modes</span><p>ECB interdit ; CBC sans intégrité ; GCM = AEAD, nonce unique.</p></div><div class="card"><span class="lab">Asymétrique</span><p>Paire publique/privée ; RSA ≥ 2048 ; ECC plus court.</p></div><div class="card"><span class="lab">Hybride</span><p>Échange asymétrique, chiffrement symétrique.</p></div><div class="card"><span class="lab">Post-quantique</span><p>ML-KEM, ML-DSA ; « collecter maintenant, déchiffrer plus tard ».</p></div></div>
+</section>
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Services et chiffrement</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 01</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Quelle différence entre chiffrement symétrique et asymétrique ?</button><div class="ab"><p>Le symétrique utilise une seule clé partagée, il est rapide mais pose le problème de l'échange de la clé. L'asymétrique utilise une paire publique et privée, plus lente, et sert à échanger des clés ou à signer. On les combine. Pour l'échange, le standard actuel est Diffie-Hellman éphémère (ECDHE) ; RSA sert surtout à signer.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi éviter le mode ECB ?</button><div class="ab"><p>Parce qu'il chiffre chaque bloc indépendamment : deux blocs identiques donnent deux blocs chiffrés identiques, ce qui révèle les motifs des données. On utilise un mode authentifié comme GCM.</p></div></div><div class="acc jq"><button class="ah" type="button">Qu'est-ce que le chiffrement authentifié (AEAD) ?</button><div class="ab"><p>Un mode qui chiffre et garantit l'intégrité et l'authenticité par une étiquette d'authentification : toute modification du message chiffré est détectée au déchiffrement. AES-GCM et ChaCha20-Poly1305 en sont des exemples.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi le nonce ne doit-il jamais être réutilisé avec une même clé ?</button><div class="ab"><p>Dans des modes comme GCM ou CTR, la réutilisation permet de retrouver des informations sur les messages et, pour GCM, de forger des messages. Un nonce doit donc être unique pour chaque chiffrement.</p></div></div><div class="acc jq"><button class="ah" type="button">Que change l'informatique quantique pour la cryptographie ?</button><div class="ab"><p>Elle menace RSA et les courbes elliptiques, fondés sur la factorisation et le logarithme discret, alors que le chiffrement symétrique reste sûr avec des clés plus longues. Des algorithmes post-quantiques standardisés préparent la migration.</p></div></div></div>
+</section>
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Services et chiffrement</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="01"></div>
+</section>
+<section class="slide" data-ch="02" data-sec="02 Hachage et signature" data-title="Hachage, MAC et signature" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/owasp.svg" alt="Logo Sécurité : cryptographie"></div>
+<div class="kicker">Chapitre 02 · Hachage, MAC et signature</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Le hachage et le HMAC</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Le hachage : une empreinte</span><p>Une <b>fonction de hachage</b> transforme <b>n'importe quelle donnée</b> en une <b>empreinte de taille fixe</b> (SHA-256 : 256 bits).</p></div><div class="card"><span class="lab">Propriétés attendues</span><ul><li><b>Déterministe</b> : même entrée, même empreinte.</li><li><b>Sens unique</b> : impossible de retrouver l'entrée.</li><li><b>Effet d'avalanche</b> : un bit changé modifie l'empreinte entière.</li><li><b>Résistance aux collisions</b> : impossible d'en trouver deux entrées de même empreinte.</li></ul></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p><b>MD5</b> (collisions depuis 2004) et <b>SHA-1</b> (collision publique 2017) sont <b>cassés</b> pour la sécurité. Utiliser <b>SHA-256 / SHA-512</b> (SHA-2) ou <b>SHA-3</b>.</p></div></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Usages</span><ul><li><b>Intégrité</b> d'un fichier (empreinte publiée à côté du téléchargement).</li><li><b>Déduplication</b>, identifiants de contenu (Git).</li><li><b>Pas</b> pour stocker un mot de passe : trop rapide → <a href="securite.html">Authentification : stockage des mots de passe</a>.</li></ul></div><div class="card hl"><span class="lab">HMAC : une empreinte avec clé</span><p><b>HMAC</b> = hachage + <b>clé secrète</b> : prouve que le message n'a pas été modifié <b>et</b> vient de quelqu'un qui connaît la clé. Sert à signer des requêtes d'API, des webhooks. Comparer les empreintes en <b>temps constant</b>.</p></div></div></div>
+</section>
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · Hachage, MAC et signature</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>La signature numérique</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Principe</span><p>On <b>hache</b> le message puis on <b>signe l'empreinte</b> avec la <b>clé privée</b>. Chacun <b>vérifie</b> avec la <b>clé publique</b>. Résultat : <b>intégrité</b>, <b>authenticité</b> de l'émetteur, <b>non-répudiation</b> (seul le détenteur de la clé privée a pu signer).</p></div><table class="cmp md"><thead><tr><th></th><th>MAC (HMAC)</th><th>Signature</th></tr></thead><tbody><tr><td><b>Clé</b></td><td>secret <b>partagé</b></td><td>paire <b>publique / privée</b></td></tr><tr><td><b>Qui peut vérifier</b></td><td>tout détenteur de la clé</td><td><b>n'importe qui</b> (clé publique)</td></tr><tr><td><b>Non-répudiation</b></td><td>non (les deux ont la clé)</td><td><b>oui</b></td></tr><tr><td><b>Usage</b></td><td>API, sessions, cookies signés</td><td>certificats, code, documents, jetons</td></tr></tbody></table></div><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>python · signature Ed25519</span><button class="cpy" type="button">Copier</button></div><pre><code>from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+priv = Ed25519PrivateKey.generate()
+msg  = b"virement:42:1000EUR"
+sig  = priv.sign(msg)
+priv.public_key().verify(sig, msg)          <span class="c"># ok</span>
+<span class="c"># priv.public_key().verify(sig, b"virement:42:9000EUR")  -&gt; InvalidSignature</span></code></pre></div><div class="card"><span class="lab">Algorithmes</span><p><b>RSA-PSS</b>, <b>ECDSA</b>, <b>Ed25519</b> (moderne, rapide). Les <b>JWT</b> (<a href="securite.html">Sessions et jetons</a>), les <b>certificats</b> et la <b>signature de paquets ou d'images</b> reposent dessus.</p></div></div></div>
+</section>
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · Hachage, MAC et signature</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et résumé</h2>
+<div class="grid g2"><div class="trap-list"><div><b>Hacher pour chiffrer</b> : une empreinte ne se déchiffre pas ; on ne peut pas récupérer la donnée.</div><div><b>Hachage sans clé pour authentifier</b> : n'importe qui peut recalculer l'empreinte ; utiliser un HMAC.</div><div><b>Comparer des empreintes avec <code>==</code></b> : fuite par temps de calcul ; fonction à temps constant.</div><div><b>MD5/SHA-1</b> pour la sécurité : collisions possibles.</div><div><b>Signer le message sans vérifier la clé publique</b> : encore faut-il savoir à qui elle appartient (→ certificats).</div></div><ol class="sum-list"><li>Hachage : empreinte fixe, sens unique, avalanche ; SHA-2 / SHA-3.</li><li>HMAC : hachage + clé partagée ; intégrité et authenticité.</li><li>Signature : hachage + clé privée ; vérifiable par tous ; non-répudiation.</li><li>MD5 et SHA-1 sont cassés.</li></ol></div>
+</section>
+<section class="slide" data-ch="02" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/owasp.svg" alt="Logo Sécurité : cryptographie"></div>
+<div class="kicker">Chapitre 02 · Hachage, MAC et signature</div>
+<h2>Fiche — Hachage et signature</h2>
+<div class="fiche"><div class="card"><span class="lab">Hachage</span><p>Empreinte fixe, déterministe, sens unique, avalanche.</p></div><div class="card"><span class="lab">Algorithmes</span><p>SHA-256/512 (SHA-2), SHA-3 ; MD5 et SHA-1 cassés.</p></div><div class="card"><span class="lab">HMAC</span><p>Hachage + clé secrète : intégrité et authenticité.</p></div><div class="card"><span class="lab">Signature</span><p>Clé privée signe, clé publique vérifie ; non-répudiation.</p></div><div class="card"><span class="lab">MAC / signature</span><p>Clé partagée contre paire de clés.</p></div><div class="card"><span class="lab">Comparaison</span><p>Toujours en temps constant.</p></div></div>
+</section>
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · Hachage, MAC et signature</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 02</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Quelle différence entre chiffrer et hacher ?</button><div class="ab"><p>Le chiffrement est réversible avec la clé et protège la confidentialité ; le hachage est à sens unique, produit une empreinte de taille fixe et sert à vérifier l'intégrité. On ne peut pas retrouver la donnée à partir de l'empreinte.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi MD5 et SHA-1 sont-ils abandonnés ?</button><div class="ab"><p>Des collisions pratiques ont été trouvées, ce qui permet de fabriquer deux contenus différents de même empreinte et de contourner des contrôles d'intégrité ou des signatures. On utilise SHA-256 ou SHA-3.</p></div></div><div class="acc jq"><button class="ah" type="button">Qu'est-ce qu'un HMAC ?</button><div class="ab"><p>Un code d'authentification de message qui combine une fonction de hachage et une clé secrète. Seul un détenteur de la clé peut le produire ou le vérifier, ce qui garantit l'intégrité et l'authenticité du message.</p></div></div><div class="acc jq"><button class="ah" type="button">Quelle différence entre HMAC et signature numérique ?</button><div class="ab"><p>Le HMAC utilise une clé secrète partagée : tous les détenteurs peuvent produire et vérifier, sans non-répudiation. La signature utilise une clé privée pour signer et une clé publique pour vérifier : tout le monde peut vérifier et seul le signataire a pu signer.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment vérifier l'intégrité d'un fichier téléchargé ?</button><div class="ab"><p>En calculant son empreinte SHA-256 et en la comparant à celle publiée par une source de confiance, idéalement signée, pour qu'un attaquant ne puisse pas remplacer à la fois le fichier et l'empreinte.</p></div></div></div>
+</section>
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · Hachage, MAC et signature</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="02"></div>
+</section>
+<section class="slide" data-ch="03" data-sec="03 Aléa et clés" data-title="Aléa, gestion des clés et erreurs classiques" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/owasp.svg" alt="Logo Sécurité : cryptographie"></div>
+<div class="kicker">Chapitre 03 · Aléa, gestion des clés et erreurs classiques</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>L'aléa et le cycle de vie d'une clé</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">L'aléa, matière première</span><p>Toute clé repose sur l'<b>imprévisibilité</b>. Il faut un <b>générateur cryptographiquement sûr (CSPRNG)</b> : <code>os.urandom</code>, <code>secrets</code> en Python, <code>/dev/urandom</code>. <b>Jamais</b> <code>random</code> (Mersenne Twister, prévisible) ni l'heure.</p></div><div class="code"><div class="codeh"><span>python</span><button class="cpy" type="button">Copier</button></div><pre><code>import secrets, random
+cle   = secrets.token_bytes(32)        <span class="c"># CSPRNG : 256 bits</span>
+jeton = secrets.token_urlsafe(32)      <span class="c"># pour un jeton ou un identifiant</span>
+random.randint(0, 9)                   <span class="c"># PRNG de simulation : JAMAIS pour la sécurité</span></code></pre></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Cycle de vie d'une clé</span><ul><li><b>Générer</b> (aléa sûr) → <b>stocker</b> (KMS / HSM, jamais en clair) → <b>distribuer</b> (canal sûr) → <b>utiliser</b> → <b>renouveler</b> (rotation) → <b>révoquer / détruire</b>.</li><li><b>Hiérarchie de clés</b> : une <b>KEK</b> (clé de chiffrement de clés) protège des <b>DEK</b> (clés de données) : le <b>chiffrement d'enveloppe</b>.</li><li><b>Dérivation</b> (HKDF) pour obtenir plusieurs clés d'un secret ; <b>séparation</b> des usages (une clé, un rôle).</li></ul></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p><b>KMS</b> (service de gestion de clés) et <b>HSM</b> (module matériel) gardent les clés <b>hors des applications</b> : l'application demande de chiffrer, elle ne voit jamais la clé racine.</p></div></div></div></div>
+</section>
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Aléa, gestion des clés et erreurs classiques</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Rotation, révocation et erreurs classiques</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Rotation et révocation</span><ul><li><b>Rotation</b> régulière : limite la quantité de données exposées si une clé fuit.</li><li><b>Révocation</b> immédiate d'une clé compromise.</li><li>Prévoir de <b>ré-chiffrer</b> et de garder les <b>anciennes clés</b> pour lire l'ancien.</li></ul></div><div class="card"><span class="lab">Fuites indirectes</span><ul><li><b>Temps de calcul</b> (timing) : comparaison non constante.</li><li><b>Messages d'erreur</b> distincts (padding oracle).</li><li><b>Compression avant chiffrement</b> (attaques CRIME/BREACH).</li><li><b>Taille des messages</b> et <b>métadonnées</b> : même chiffrés, ils renseignent.</li></ul></div></div><div style="display:grid;gap:1.2vh"><div class="trap-list"><div><b>Inventer son propre chiffrement</b> (« j'ai mélangé les octets ») : jamais ; bibliothèques éprouvées (<b>règle de Kerckhoffs</b> : tout est public sauf la clé).</div><div><b>Algorithmes ou modes obsolètes</b> : DES, RC4, MD5, SHA-1, ECB, SSL, TLS 1.0/1.1.</div><div><b>Clé dérivée d'un mot de passe sans KDF lent</b> ; <b>clé en dur</b> dans le code.</div><div><b>IV / nonce prévisible ou réutilisé</b>.</div><div><b>Sans aucun plan de rotation</b> : une clé qui ne change jamais devient une cible.</div></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Un <b>mot de passe</b> n'est pas une clé : pour en dériver une, on utilise un <b>KDF lent</b> (Argon2, PBKDF2) — voir <a href="securite.html">Authentification</a>.</p></div></div></div></div>
+</section>
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Aléa, gestion des clés et erreurs classiques</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Résumé</h2>
+<div class="grid g2"><ol class="sum-list"><li>Clés issues d'un CSPRNG (<code>secrets</code>, <code>os.urandom</code>), jamais de <code>random</code>.</li><li>Cycle de vie : générer, stocker (KMS/HSM), distribuer, utiliser, renouveler, révoquer.</li><li>Chiffrement d'enveloppe : KEK protège les DEK.</li><li>Jamais de crypto maison ; algorithmes et modes à jour.</li></ol><div class="card"><span class="lab">Règle de Kerckhoffs</span><p>Un système doit rester sûr même si <b>tout sauf la clé</b> est public. Les algorithmes éprouvés sont <b>publics et examinés</b> par des milliers de chercheurs ; un algorithme secret n'a aucune garantie.</p></div></div>
+</section>
+<section class="slide" data-ch="03" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/owasp.svg" alt="Logo Sécurité : cryptographie"></div>
+<div class="kicker">Chapitre 03 · Aléa, gestion des clés et erreurs classiques</div>
+<h2>Fiche — Aléa et clés</h2>
+<div class="fiche"><div class="card"><span class="lab">CSPRNG</span><p><code>secrets</code>, <code>os.urandom</code> ; jamais <code>random</code>.</p></div><div class="card"><span class="lab">Cycle de clé</span><p>Générer · stocker · distribuer · utiliser · renouveler · révoquer.</p></div><div class="card"><span class="lab">Enveloppe</span><p>KEK protège des DEK ; KMS / HSM.</p></div><div class="card"><span class="lab">Rotation</span><p>Limite l'exposition ; révocation immédiate en cas de fuite.</p></div><div class="card"><span class="lab">Kerckhoffs</span><p>Tout est public sauf la clé.</p></div><div class="card"><span class="lab">Interdits</span><p>Crypto maison, ECB, MD5, SHA-1, clé en dur, nonce réutilisé.</p></div></div>
+</section>
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Aléa, gestion des clés et erreurs classiques</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 03</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Pourquoi l'aléa est-il crucial en cryptographie ?</button><div class="ab"><p>Parce que la sécurité d'une clé repose sur son imprévisibilité. Avec un générateur prévisible, un attaquant peut reconstituer les clés, nonces ou jetons. On emploie un générateur cryptographiquement sûr fourni par le système.</p></div></div><div class="acc jq"><button class="ah" type="button">Qu'est-ce que le chiffrement d'enveloppe ?</button><div class="ab"><p>Une clé de données chiffre les données, et cette clé de données est elle-même chiffrée par une clé maîtresse gérée dans un KMS. On peut ainsi renouveler la clé maîtresse en ne re-chiffrant que les petites clés de données.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi faire une rotation des clés ?</button><div class="ab"><p>Pour limiter la quantité de données protégées par une même clé et la durée pendant laquelle une fuite non détectée est exploitable, et pour s'entraîner à la procédure de remplacement avant d'en avoir besoin.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi ne faut-il pas inventer son propre algorithme ?</button><div class="ab"><p>Parce que la sécurité d'un algorithme ne s'établit que par des années d'analyse publique. Les erreurs sont subtiles et un schéma maison est presque toujours cassé ; selon Kerckhoffs, seule la clé doit rester secrète.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment réagir à la fuite d'une clé ?</button><div class="ab"><p>La révoquer immédiatement, en générer une nouvelle, ré-chiffrer ou re-signer ce qui en dépendait, analyser les journaux pour mesurer l'exposition, corriger la cause et documenter l'incident.</p></div></div></div>
+</section>
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Aléa, gestion des clés et erreurs classiques</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="03"></div>
+</section>
+<section class="slide" data-ch="04" data-sec="04 TLS et PKI" data-title="TLS, certificats et PKI" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/owasp.svg" alt="Logo Sécurité : cryptographie"></div>
+<div class="kicker">Chapitre 04 · TLS, certificats et PKI</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>TLS : sécuriser le transport</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Ce que TLS apporte</span><p><b>TLS</b> (Transport Layer Security) protège une connexion : <b>confidentialité</b> (chiffrement), <b>intégrité</b> (AEAD) et <b>authenticité du serveur</b> (certificat). <b>HTTPS = HTTP sur TLS</b>. SSL est obsolète ; TLS 1.0 et 1.1 sont abandonnés ; viser <b>TLS 1.2 ou 1.3</b>.</p></div><div class="card"><span class="lab">La poignée de main TLS 1.3</span><ul><li>1. Le client propose ses <b>algorithmes</b> et une <b>valeur ECDHE</b> (clé éphémère).</li><li>2. Le serveur répond avec sa valeur ECDHE et son <b>certificat</b>, prouvé par une <b>signature</b>.</li><li>3. Les deux <b>calculent le secret partagé</b>, dérivent des clés de session.</li><li>4. Les données sont chiffrées en <b>AEAD</b>. Un seul aller-retour (<b>1-RTT</b>).</li></ul></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Propriétés à connaître</span><ul><li><b>Confidentialité persistante</b> (forward secrecy) : clés <b>éphémères</b> ; voler la clé privée du serveur plus tard ne permet pas de déchiffrer les anciennes sessions. C'est pourquoi TLS 1.3 a <b>supprimé l'échange de clés RSA</b>, encore permis en 1.2 : seul (EC)DHE reste, RSA ne fait plus que <b>signer</b>.</li><li><b>HSTS</b> (<code>Strict-Transport-Security</code>) : le navigateur n'utilise <b>que HTTPS</b> pour ce domaine.</li><li><b>mTLS</b> (TLS mutuel) : le <b>client</b> présente aussi un certificat ; usage entre services.</li></ul></div><div class="code"><div class="codeh"><span>shell</span><button class="cpy" type="button">Copier</button></div><pre><code>curl -vI https:<span class="c">//exemple.fr 2&gt;&amp;1 | grep -E "TLS|subject|issuer|expire"</span>
+<span class="c"># * TLSv1.3 / TLS_AES_256_GCM_SHA384</span>
+<span class="c"># *  subject: CN=exemple.fr   issuer: C=US, O=Let's Encrypt   expire date: ...</span></code></pre></div></div></div>
+</section>
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · TLS, certificats et PKI</div>
+<h2>L'échange de clés : RSA hier, Diffie-Hellman aujourd'hui</h2>
+<div class="ix">
+  <div class="ix-steps">
+    <div class="ix-step ix-k"><span class="ix-n">1</span><div><b>Connexion TCP</b><small>le canal s'ouvre, rien n'est encore chiffré</small></div></div>
+    <div class="ix-step ix-k2"><span class="ix-n">2</span><div><b>Hello + certificat</b><small>algorithmes négociés, identité du serveur</small></div></div>
+    <div class="ix-step ix-k3 on"><span class="ix-n">3</span><div><b>Échange de clés</b><small>les deux côtés obtiennent un même secret</small></div></div>
+    <div class="ix-step ix-k4"><span class="ix-n">4</span><div><b>Données chiffrées</b><small>AES-GCM avec la clé de session</small></div></div>
+  </div>
+  <div class="ix-vs">
+    <div class="ix-panel ix-bad">
+      <div class="ix-ban">A · Ancienne méthode : transport de clé RSA</div>
+      <div class="ix-sub">TLS 1.2 et avant · supprimée en TLS 1.3</div>
+      <div class="ix-flow">
+        <div class="ix-actor"><svg class="il" aria-hidden="true"><use href="#il-laptop"/></svg><b>Client</b><small>(navigateur)</small></div>
+        <div class="ix-tok"><svg class="il" aria-hidden="true"><use href="#il-key"/></svg><small>Clé de session</small></div>
+        <span class="ix-arr"></span>
+        <div class="ix-tok"><svg class="il" aria-hidden="true"><use href="#il-padlock"/></svg><small>Chiffrée avec la clé publique</small></div>
+        <span class="ix-arr"></span>
+        <div class="ix-tok"><svg class="il" aria-hidden="true"><use href="#il-cipher"/></svg><small>Envoyée illisible</small></div>
+        <span class="ix-arr"></span>
+        <div class="ix-actor"><svg class="il" aria-hidden="true"><use href="#il-server"/></svg><b>Serveur</b><small>(site web)</small></div>
+      </div>
+      <ol class="ix-rows">
+        <li><svg class="il" aria-hidden="true"><use href="#il-key"/></svg><div><b>Le client tire seul la clé de session.</b><small>Un secret aléatoire, valable pour cette connexion.</small></div></li>
+        <li><svg class="il" aria-hidden="true"><use href="#il-padlock"/></svg><div><b>Il la chiffre avec la clé publique du serveur.</b><small>Seule la clé privée du serveur peut l'ouvrir.</small></div></li>
+        <li><svg class="il" aria-hidden="true"><use href="#il-cipher"/></svg><div><b>Il l'envoie : un écouteur ne voit qu'un bloc illisible.</b><small>Il intercepte le message mais ne peut pas le lire.</small></div></li>
+        <li><svg class="il" aria-hidden="true"><use href="#il-key-green"/></svg><div><b>Le serveur la déchiffre : les deux ont la même clé.</b><small>La suite de l'échange est chiffrée en symétrique.</small></div></li>
+        <li class="warn"><svg class="il" aria-hidden="true"><use href="#il-spy"/></svg><div><b>Point faible : tout dépend d'une seule clé privée.</b><small>Trafic enregistré + clé volée un jour = tout l'historique lu.</small></div></li>
+      </ol>
+    </div>
+    <div class="ix-panel ix-good">
+      <div class="ix-ban">B · Méthode moderne : Diffie-Hellman (ECDHE)</div>
+      <div class="ix-sub">Seule méthode autorisée en TLS 1.3</div>
+      <div class="ix-flow">
+        <div class="ix-actor"><svg class="il" aria-hidden="true"><use href="#il-laptop"/></svg><b>Client</b><small>(navigateur)</small></div>
+        <div class="ix-mid">
+          <div><span class="ix-arr"></span><span class="ix-chip b">Part publique du client</span><span class="ix-arr"></span></div>
+          <div><span class="ix-arr l"></span><span class="ix-chip g">Part publique du serveur</span><span class="ix-arr l"></span></div>
+        </div>
+        <div class="ix-actor"><svg class="il" aria-hidden="true"><use href="#il-server"/></svg><b>Serveur</b><small>(site web)</small></div>
+      </div>
+      <div class="ix-calcs">
+        <div class="ix-calc"><b>Le client calcule le secret</b><div class="ix-eq"><div class="ix-in"><span class="ix-chip v">Sa valeur privée (gardée)</span><span class="ix-plus">+</span><span class="ix-chip g">Part du serveur (reçue)</span></div><div class="ix-res"><svg class="il" aria-hidden="true"><use href="#il-key"/></svg>Secret commun</div></div></div>
+        <div class="ix-calc"><b>Le serveur calcule le secret</b><div class="ix-eq"><div class="ix-in"><span class="ix-chip g">Sa valeur privée (gardée)</span><span class="ix-plus">+</span><span class="ix-chip v">Part du client (reçue)</span></div><div class="ix-res"><svg class="il" aria-hidden="true"><use href="#il-key"/></svg>Secret commun</div></div></div>
+      </div>
+      <ol class="ix-rows">
+        <li><svg class="il" aria-hidden="true"><use href="#il-exchange"/></svg><div><b>On échange des parts publiques, jamais le secret.</b><small>Un écouteur voit les deux parts sans pouvoir retrouver le secret.</small></div></li>
+        <li><svg class="il" aria-hidden="true"><use href="#il-signature"/></svg><div><b>Le serveur signe l'échange avec la clé de son certificat.</b><small>Le client sait qu'il parle au vrai serveur.</small></div></li>
+        <li><svg class="il" aria-hidden="true"><use href="#il-shield"/></svg><div><b>Clés jetées après la session : confidentialité persistante.</b><small>Voler la clé privée plus tard ne déchiffre rien du passé.</small></div></li>
+      </ol>
+    </div>
+  </div>
+</div>
+</section>
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · TLS, certificats et PKI</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Certificats et chaîne de confiance (PKI)</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Le problème</span><p>Une clé publique ne dit <b>pas à qui elle appartient</b>. Un <b>certificat X.509</b> lie une <b>clé publique</b> à une <b>identité</b> (nom de domaine, <b>SAN</b>) et est <b>signé</b> par une <b>autorité de certification (CA)</b>.</p></div><div class="flow"><div class="step"><b>Racine</b><small>CA, dans le magasin de confiance</small></div><div class="step"><b>Intermédiaire</b><small>signé par la racine</small></div><div class="step"><b>Certificat serveur</b><small>signé par l'intermédiaire</small></div></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Vérification par le navigateur</span><ul><li><b>Chaîne</b> valide jusqu'à une <b>racine de confiance</b>.</li><li><b>Nom</b> : le domaine visité figure dans le certificat.</li><li><b>Dates</b> de validité ; <b>non révoqué</b> (OCSP, CRL).</li><li><b>Transparence des certificats</b> (CT) : journaux publics de tous les certificats émis.</li></ul></div><div class="card"><span class="lab">Let's Encrypt et la rotation</span><p><b>ACME</b> : émission <b>automatisée</b> et <b>gratuite</b>, certificats valables <b>90 jours</b> : l'automatisation du renouvellement est la règle. Un <b>certificat expiré</b> est une cause fréquente de panne. La tendance est au raccourcissement : le CA/Browser Forum a voté (2025) une durée maximale ramenée par étapes à <b>47 jours en 2029</b>.</p></div></div></div>
+</section>
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · TLS, certificats et PKI</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et résumé</h2>
+<div class="grid g2"><div class="trap-list"><div><b>Désactiver la vérification</b> du certificat (<code>verify=False</code>) « pour que ça marche » : l'homme du milieu devient possible.</div><div><b>Certificat expiré</b> : service coupé ; renouvellement automatique et supervision.</div><div><b>TLS 1.0 / 1.1 ou suites faibles</b> acceptées.</div><div><b>Clé privée du serveur</b> copiée, partagée, commitée.</div><div><b>Certificat auto-signé en production</b> : aucune chaîne de confiance.</div></div><ol class="sum-list"><li>TLS : confidentialité, intégrité, authenticité ; HTTPS = HTTP sur TLS ; viser 1.2/1.3.</li><li>Poignée de main : ECDHE éphémère, certificat signé, clés de session, AEAD.</li><li>PKI : racine → intermédiaire → certificat ; vérifier chaîne, nom, dates, révocation.</li><li>Let's Encrypt : ACME, 90 jours, renouvellement automatique.</li></ol></div>
+</section>
+<section class="slide" data-ch="04" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/owasp.svg" alt="Logo Sécurité : cryptographie"></div>
+<div class="kicker">Chapitre 04 · TLS, certificats et PKI</div>
+<h2>Fiche — TLS et PKI</h2>
+<div class="fiche"><div class="card"><span class="lab">TLS</span><p>Confidentialité, intégrité, authenticité ; 1.2 ou 1.3.</p></div><div class="card"><span class="lab">1.3</span><p>ECDHE éphémère, 1 aller-retour, AEAD ; forward secrecy.</p></div><div class="card"><span class="lab">HSTS</span><p>Le navigateur n'utilise que HTTPS.</p></div><div class="card"><span class="lab">Certificat X.509</span><p>Lie clé publique et identité ; signé par une CA.</p></div><div class="card"><span class="lab">Chaîne</span><p>Racine → intermédiaire → serveur ; nom, dates, révocation.</p></div><div class="card"><span class="lab">Let's Encrypt</span><p>ACME, gratuit, 90 jours, automatisé.</p></div></div>
+</section>
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · TLS, certificats et PKI</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 04</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Que se passe-t-il pendant une poignée de main TLS ?</button><div class="ab"><p>Le client et le serveur négocient les algorithmes, échangent des valeurs de clé éphémères, le serveur prouve son identité par son certificat et une signature, puis les deux dérivent des clés de session pour chiffrer les données avec un chiffrement authentifié.</p></div></div><div class="acc jq"><button class="ah" type="button">À quoi sert un certificat ?</button><div class="ab"><p>À lier une clé publique à une identité, par exemple un nom de domaine, avec la signature d'une autorité de certification de confiance. Il permet au client de s'assurer qu'il parle bien au serveur légitime.</p></div></div><div class="acc jq"><button class="ah" type="button">Qu'est-ce que la confidentialité persistante ?</button><div class="ab"><p>Une propriété des échanges de clés éphémères : même si la clé privée du serveur est volée plus tard, les sessions passées restent indéchiffrables, car chaque session utilise des clés temporaires oubliées ensuite.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi TLS 1.3 a-t-il abandonné l'échange de clés RSA ?</button><div class="ab"><p>Avec l'échange RSA, le client chiffre le secret de session avec la clé publique du serveur : qui enregistre le trafic puis vole un jour la clé privée peut tout déchiffrer. Avec Diffie-Hellman éphémère, chaque session a sa propre clé, oubliée ensuite : c'est la confidentialité persistante. La clé RSA du certificat sert seulement à signer la poignée de main.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi les certificats Let's Encrypt durent-ils 90 jours ?</button><div class="ab"><p>Pour encourager l'automatisation du renouvellement et limiter la durée d'exposition d'un certificat compromis. Un renouvellement automatique évite les pannes dues à l'oubli. La durée maximale de tous les certificats publics diminue d'ailleurs, jusqu'à 47 jours en 2029 : l'automatisation devient obligatoire.</p></div></div><div class="acc jq"><button class="ah" type="button">Quel risque en désactivant la vérification du certificat ?</button><div class="ab"><p>N'importe quel intermédiaire peut se faire passer pour le serveur : le chiffrement protège d'un écouteur passif mais plus d'une attaque de l'homme du milieu.</p></div></div></div>
+</section>
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · TLS, certificats et PKI</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="04"></div>
+</section>
+<section class="slide" data-ch="05" data-sec="05 Données et secrets" data-title="Données au repos, en transit et secrets" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/owasp.svg" alt="Logo Sécurité : cryptographie"></div>
+<div class="kicker">Chapitre 05 · Données au repos, en transit et secrets</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Chiffrer les données : où et comment</h2>
+<div class="grid g2"><table class="cmp md"><thead><tr><th>Niveau</th><th>Protège de</th><th>Limite</th></tr></thead><tbody><tr><td><b>Disque / volume</b> (LUKS, BitLocker, EBS)</td><td>vol du disque ou du serveur</td><td>inefficace si le système est <b>monté et ouvert</b></td></tr><tr><td><b>Base</b> (TDE)</td><td>vol des fichiers de la base</td><td>l'administrateur de la base voit tout</td></tr><tr><td><b>Colonne / champ</b> (applicatif)</td><td>administrateurs et fuites de la base</td><td>pas de recherche ni d'index sur la valeur</td></tr><tr><td><b>Sauvegardes</b></td><td>vol ou perte d'un support</td><td>clé <b>séparée</b> et testée</td></tr><tr><td><b>Objet cloud</b> (SSE-S3, SSE-KMS, MinIO)</td><td>accès au stockage</td><td>gestion des <b>droits d'accès</b> nécessaire</td></tr></tbody></table><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">En transit</span><p>Tout flux est chiffré : <b>TLS</b> pour les API et bases, <b>mTLS</b> entre services, <b>SSL/TLS pour <a href="kafka.html">Kafka</a></b>, VPN ou tunnel pour les liaisons entre sites. Un flux interne n'est <b>pas</b> sûr par nature (zéro confiance, voir <a href="secu-fondamentaux.html">Fondamentaux</a>).</p></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Chiffrer <b>au repos</b> protège d'un <b>vol de support</b>, pas d'un <b>compte légitime compromis</b> : le contrôle d'accès et la journalisation restent indispensables.</p></div></div></div></div>
+</section>
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Données au repos, en transit et secrets</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Les secrets : où ils vivent et comment ils tournent</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Un secret, c'est quoi</span><p>Mot de passe de base, clé d'API, jeton, clé privée, certificat : tout ce qui <b>donne accès</b>. <b>Pourquoi c'est grave</b> : un secret commité reste dans <b>tout l'historique</b> Git ; des robots scrutent les dépôts publics en <b>quelques minutes</b>.</p></div><div class="card"><span class="lab">Bonnes pratiques</span><ul><li><b>Jamais dans le code ni dans Git</b> (<code>.gitignore</code>, <a href="git.html">Git</a>).</li><li>Un <b>coffre</b> (HashiCorp Vault, AWS Secrets Manager, Azure Key Vault, <b>Docker secrets</b>) ; l'application les lit <b>à l'exécution</b>.</li><li><b>Moindre privilège</b> : un secret par usage, aux droits minimaux.</li><li><b>Rotation</b> régulière et immédiate après un départ ou une fuite.</li><li><b>Détection</b> automatique des secrets (gitleaks, GitHub secret scanning) dans le CI.</li></ul></div></div><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>shell</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="c"># MAUVAIS : secret dans l'image ou le dépôt</span>
+ENV DB_PASSWORD=azerty            <span class="c"># lisible dans les couches de l'image</span>
+<span class="c"># MIEUX : injecté à l'exécution depuis un coffre</span>
+docker run -e DB_PASSWORD_FILE=/run/secrets/db_pwd ...
+gitleaks detect <span class="c">--source .        # recherche des secrets dans le dépôt et l'historique</span></code></pre></div><div class="card"><span class="lab">Identités plutôt que secrets</span><p>Quand c'est possible, <b>supprimer</b> le secret : identités gérées, jetons éphémères (<a href="securite.html">identité des pipelines</a>). Un secret qui n'existe pas ne peut pas fuiter.</p></div></div></div>
+</section>
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Données au repos, en transit et secrets</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Compromis, pièges et résumé</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Coûts et compromis</span><ul><li><b>Performance</b> : AES est accéléré par le matériel, le surcoût est faible ; le <b>chiffrement de colonne</b> empêche indexation et recherche.</li><li><b>Sobriété</b> : chiffrer ce qui compte (classification des données, <a href="secu-applis.html">données sensibles</a>), <b>minimiser</b> ce qu'on collecte (<a href="data-qualite.html">RGPD</a>).</li><li><b>Fuite de clé</b> : révocation, rotation, ré-chiffrement, analyse d'exposition ; <b>sauvegarder les clés</b> séparément — perdre la clé, c'est perdre les données.</li></ul></div><ol class="sum-list"><li>Chiffrer au repos (disque, base, champ, sauvegarde) et en transit (TLS, mTLS).</li><li>Secrets : coffre, injection à l'exécution, rotation, détection ; mieux : pas de secret.</li><li>Clés séparées des données, sauvegardées, tournées.</li><li>Le chiffrement ne remplace ni le contrôle d'accès ni la journalisation.</li></ol></div><div class="trap-list"><div><b>Chiffrer le disque et croire la base protégée</b> : un accès légitime la lit en clair.</div><div><b>Clé stockée à côté des données chiffrées</b> : cadenas et clé sur la même porte.</div><div><b>Sauvegarde non chiffrée</b> : le maillon faible.</div><div><b>Perdre la clé</b> sans copie : données irrécupérables.</div><div><b>Secret dans une variable d'environnement</b> consignée par les journaux ou les outils de diagnostic.</div></div></div>
+</section>
+<section class="slide" data-ch="05" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/owasp.svg" alt="Logo Sécurité : cryptographie"></div>
+<div class="kicker">Chapitre 05 · Données au repos, en transit et secrets</div>
+<h2>Fiche — Données et secrets</h2>
+<div class="fiche"><div class="card"><span class="lab">Au repos</span><p>Disque, base (TDE), colonne, sauvegardes, objets cloud.</p></div><div class="card"><span class="lab">En transit</span><p>TLS, mTLS entre services, TLS pour Kafka, VPN.</p></div><div class="card"><span class="lab">Limite</span><p>Au repos protège du vol de support, pas d'un compte légitime.</p></div><div class="card"><span class="lab">Secrets</span><p>Coffre, injection à l'exécution, rotation, détection.</p></div><div class="card"><span class="lab">Colonne</span><p>Protège des administrateurs mais empêche indexation et recherche.</p></div><div class="card"><span class="lab">Clés</span><p>Séparées des données, sauvegardées, tournées.</p></div></div>
+</section>
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · Données au repos, en transit et secrets</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 05</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Quelle différence entre chiffrement au repos et en transit ?</button><div class="ab"><p>Au repos protège les données stockées contre le vol d'un support ou l'accès direct aux fichiers ; en transit protège les données qui circulent sur le réseau contre l'écoute et la modification, généralement par TLS. Les deux sont nécessaires.</p></div></div><div class="acc jq"><button class="ah" type="button">Quand chiffrer une colonne plutôt que tout le disque ?</button><div class="ab"><p>Quand on veut protéger des champs sensibles même contre les administrateurs de la base ou en cas de fuite d'un export. Le prix est l'impossibilité de rechercher ou d'indexer directement sur la valeur.</p></div></div><div class="acc jq"><button class="ah" type="button">Où stocker un secret d'application ?</button><div class="ab"><p>Dans un gestionnaire de secrets, lu à l'exécution avec des droits minimaux, jamais dans le code, l'image ou le dépôt. On met en place la rotation et la détection de secrets dans le CI.</p></div></div><div class="acc jq"><button class="ah" type="button">Que faire si un secret a été commité ?</button><div class="ab"><p>Le révoquer et le remplacer immédiatement, car il est déjà dans l'historique et dans les copies ; nettoyer l'historique est secondaire. Puis analyser les accès effectués avec ce secret.</p></div></div><div class="acc jq"><button class="ah" type="button">Quel est le risque de perdre une clé de chiffrement ?</button><div class="ab"><p>Les données chiffrées deviennent définitivement illisibles. Les clés doivent donc être sauvegardées séparément et de façon sécurisée, avec des procédures de restauration testées.</p></div></div></div>
+</section>
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · Données au repos, en transit et secrets</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="05"></div>
+</section>
+<section class="slide" data-ch="quiz" data-sec="Quiz final" data-title="Quiz final — 45 questions">
+<div class="kicker">Quiz final · Sécurité : cryptographie</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-target"/></svg> 45 questions pour affronter le jury</h2>
+<p class="lead">Tous chapitres mélangés ; l'ordre des questions et des réponses change à chaque tentative. Certaines questions ont <b>plusieurs bonnes réponses</b>.</p>
+<div data-quiz="final"></div>
+</section>
+
+</main>
+<button class="arrow" id="prev" type="button" aria-label="Diapositive précédente">‹</button>
+<button class="arrow" id="next" type="button" aria-label="Diapositive suivante">›</button>
+<nav id="tl" aria-label="Chapitres"></nav>
+<div id="hint">← → naviguer · ↑ ↓ défiler · H ampoule <svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg> · E Complète/Essentiel · M maîtrisé · S sommaire · T thème</div>
+<button id="bulbhint" type="button"><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></button>
+<div id="ctip" role="tooltip"></div>
+<div id="toc" role="dialog" aria-label="Sommaire">
+  <button class="btn xx" id="tocx" type="button">Fermer ✕</button>
+  <div class="kicker">Sommaire · Sécurité : cryptographie</div>
+  <h2>Sécurité : cryptographie</h2>
+  <div class="tg"></div>
+</div>
+
+<div id="fab">
+  <button id="helpbtn" type="button" aria-label="Ampoule : concepts expliqués au survol" aria-pressed="false" title="Ampoule : soulignez les concepts, survolez-les pour une explication (H)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></button>
+<button id="tocbtn" type="button" aria-label="Sommaire" title="Sommaire (S)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+  <div id="themebtn">
+    <div id="menu" role="menu"><h4>Thème</h4></div>
+    <button id="tbtn" type="button" aria-label="Changer de thème" aria-haspopup="true" title="Changer de thème (T)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.4-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16a5 5 0 0 0 5-5c0-4-4-7-9-7z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="7.5" r="1"/></svg>
+    </button>
+  </div>
+</div>
+
+</div>
+<script src="assets/icons.js?v=1795252877"></script>
+<script src="data/secu-crypto-quiz.js?v=1795252877"></script>
+<script src="data/secu-crypto-glossary.js?v=1795252877"></script>
+<script src="assets/engine.js?v=1795252877"></script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docker · Révision Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/base.css?v=1795252877">
+<link rel="stylesheet" href="assets/photos.css?v=1795252877">
+<link rel="stylesheet" href="assets/revision.css?v=1795252877">
+</head>
+<body data-page="course" data-course="docker" data-title="Docker">
+<div id="app" data-theme="papier">
+
+<div id="bg" aria-hidden="true">
+  <div class="bgl bg-neon">
+    <svg viewBox="0 0 800 800"><path d="M40 760 L400 280 L760 760" stroke-width="3"/><path d="M110 760 L400 380 L690 760" stroke-width="2.4" opacity=".85"/><path d="M180 760 L400 470 L620 760" stroke-width="2" opacity=".7"/><path d="M250 760 L400 560 L550 760" stroke-width="1.6" opacity=".55"/><path d="M320 760 L400 650 L480 760" stroke-width="1.2" opacity=".4"/></svg>
+  </div>
+  <div class="bgl bg-sauge"><div class="panel"></div><div id="bignum"></div></div>
+  <div class="bgl bg-nuit"><i></i><i></i><i></i></div>
+  <div class="bgl bg-verre"><div class="blob a"></div><div class="blob b"></div><div class="blob c"></div></div>
+  <div class="bgl bg-papier"><i></i><i></i><i></i></div>
+  <div class="bgl bg-rubans"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f8fe0"/><stop offset="1" stop-color="#2fd0bd"/></linearGradient>
+      <linearGradient id="rg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fdcc4"/><stop offset=".55" stop-color="#26b2d2"/><stop offset="1" stop-color="#2f8fe0"/></linearGradient>
+      <linearGradient id="rg3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2fd0bd"/><stop offset="1" stop-color="#2f90e2"/></linearGradient>
+      <filter id="rsh" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="12"/></filter>
+    </defs>
+    <g class="rb" id="rb-a" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g class="rb b" id="rb-b" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+  </svg></div>
+  <div class="bgl bg-facettes"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="fcw" id="fc-top"></g><g class="fcw" id="fc-bot"></g></svg></div>
+  <div class="bgl photo bg-bulles"><i></i></div>
+  <div class="bgl photo bg-hexa"><i></i></div>
+  <div class="bgl photo bg-points"><i></i></div>
+</div>
+
+<svg id="defs" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+  <marker id="arrk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3a4458"/></marker>
+  <marker id="arrbad" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+</defs></svg>
+
+<div id="brand"><a href="index.html" title="Retour à l'accueil">← Accueil</a> · Docker</div>
+<div id="topbar">
+  <div id="vseg" role="group" aria-label="Version du cours"><button type="button" data-v="c" title="Tout le cours (E pour basculer)"><svg class="ico" aria-hidden="true"><use href="#ti-book"/></svg> Complète</button><button type="button" data-v="e" title="Ce qu'il faut maîtriser pour le jury (E)"><svg class="ico" aria-hidden="true"><use href="#ti-bolt"/></svg> Essentiel</button></div>
+  <button id="mast" type="button" title="Marquer ce chapitre comme maîtrisé (M)"></button>
+  <span id="prog"></span>
+</div>
+<div id="hud"><span id="count">1 / 1</span></div>
+<main id="deck">
+<section class="slide" data-ch="00" data-sec="Immersion" data-title="Immersion : découvrir Docker">
+<div class="chlogos"><img class="chlogo big" src="assets/logos/docker.png" alt="Logo Docker"></div>
+<div class="kicker">Activité 3 · Concevoir et développer une application</div>
+<h1>Docker</h1>
+<p class="lead">Un conteneur embarque une application <b>et tout ce dont elle dépend</b>, isolée du reste de la machine. Vous apprendrez à <b>construire des images</b> (Dockerfile), à <b>persister des données</b> (volumes), à <b>relier des conteneurs</b> (réseaux) et à <b>orchestrer plusieurs services</b> avec Compose. Les cours <a href="airflow.html">Airflow</a>, <a href="kafka.html">Kafka</a> et <a href="mongodb.html">MongoDB</a> s'appuient déjà dessus.</p>
+<div class="chips"><span class="pill solid">immersion + 4 chapitres</span><span class="pill">mini-quiz par chapitre</span><span class="pill">quiz final · 45 questions</span><span class="pill">TP Digicheese (API + MariaDB)</span></div>
+</section>
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 1 / 3</div>
+<h2>Comment faire tourner exactement la même application sur 50 machines, sans le fameux « ça marche chez moi » ?</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card bad"><span class="lab">Installer à la main sur chaque machine</span><p>Version de Python différente, bibliothèque manquante, port déjà pris : chaque poste devient un cas particulier, impossible à reproduire.</p></div><div class="card hl"><span class="lab">Empaqueter l'application avec son environnement</span><p>On construit <b>une image</b> : l'application, son runtime, ses bibliothèques. Chaque machine la lance dans un <b>conteneur isolé</b>, identique partout.</p></div></div><div style="display:grid;gap:1.2vh"><p class="punch"><b>Docker</b> est la plateforme qui construit, distribue et exécute des <b>conteneurs</b> : des processus isolés qui partagent le noyau de la machine hôte. L'isolation vient du noyau Linux : les <b>namespaces</b> (ce que le conteneur voit) et les <b>cgroups</b> (ce qu'il peut consommer).</p><div class="analogy"><b>Analogie —</b> le conteneur maritime. Quel que soit le contenu, la boîte a la même forme : le port, le camion et le bateau savent la manipuler sans l'ouvrir. L'image, c'est le plan de chargement ; le conteneur, la boîte réellement chargée.</div></div></div>
+</section>
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 2 / 3</div>
+<h2>De dotCloud à un standard : 2013, 2015, 2020</h2>
+<div class="flow"><div class="step"><b>2008</b><small><b>LXC</b> : conteneurs Linux, réservés aux experts</small></div><div class="step"><b>2013</b><small><b>Solomon Hykes</b> présente Docker (société dotCloud) : image + registry + CLI simples</small></div><div class="step"><b>2014</b><small><b>Kubernetes</b> (Google) pour orchestrer des milliers de conteneurs</small></div><div class="step"><b>2015</b><small><b>OCI</b> : standard ouvert des images et des runtimes (runc)</small></div><div class="step"><b>2020 →</b><small>Docker Desktop, <b>Podman</b>, <b>containerd</b> ; Compose v2 intégré</small></div></div><div class="grid g2"><div class="card"><span class="lab">Qui l'utilise, pour quoi</span><ul><li>Développeurs : un environnement identique au poste, au test et en production.</li><li>Data Engineers : lancer Kafka, MongoDB, Airflow, Elasticsearch en une commande, sans les installer.</li><li>Équipes DevOps : brique de base des pipelines CI/CD et de Kubernetes.</li></ul></div><div class="sch free"><span class="cap">Docker dans le pipeline data</span><svg class="dg" viewBox="0 0 460 150" role="img" aria-label="Les services du pipeline data tournent dans des conteneurs lancés par Compose"><rect class="b f3" x="10" y="20" width="100" height="50" rx="8"/><text class="t tc" x="70" y="50.0">Sources</text><path class="e" d="M112 45 L138 45"/><rect class="b ok" x="140" y="20" width="100" height="50" rx="8"/><text class="t tc" x="203" y="43.0">Kafka</text><text class="s tc" x="203" y="58.0">conteneur</text><path class="e" d="M242 45 L268 45"/><rect class="b ok" x="270" y="20" width="100" height="50" rx="8"/><text class="t tc" x="333" y="43.0">Spark</text><text class="s tc" x="333" y="58.0">conteneur</text><path class="e" d="M372 45 L398 45"/><rect class="b f3" x="400" y="20" width="50" height="50" rx="8"/><text class="t tc" x="425.0" y="50.0">BI</text><rect class="b f2" x="10" y="95" width="440" height="40" rx="8"/><text class="t tc" x="230.0" y="120.0">Docker Compose : tout le pipeline en une commande</text>
+  <use class="il" href="#il-container" x="14" y="102" width="24" height="22"/><use class="il" href="#il-database" x="14" y="34" width="18" height="22"/><use class="il" href="#il-container" x="145" y="32.0" width="26" height="26"/><use class="il" href="#il-container" x="275" y="32.0" width="26" height="26"/>
+</svg></div></div>
+</section>
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 3 / 3</div>
+<h2>Premier contact : lancer un serveur web en une commande</h2>
+<div class="grid g2"><div class="code"><div class="codeh"><span>shell · Docker</span><button class="cpy" type="button">Copier</button></div><pre><code>docker run -d <span class="c">--name web -p 8080:80 nginx   # -d : en arrière-plan</span>
+docker ps                                     <span class="c"># conteneurs en cours</span>
+docker logs web                               <span class="c"># sa sortie</span>
+docker stop web &amp;&amp; docker rm web              <span class="c"># arrêter, supprimer</span>
+<span class="c"># docker ps affiche : CONTAINER ID  IMAGE  STATUS  PORTS  NAMES</span>
+<span class="c">#   a3f1…  nginx  Up 5 seconds  0.0.0.0:8080-&gt;80/tcp  web</span></code></pre></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Ce qu'il faut remarquer</span><p>Aucune installation de nginx : Docker <b>télécharge l'image</b> depuis Docker Hub si elle est absente, crée un <b>conteneur</b> et le lance. <code>-p 8080:80</code> relie le port 8080 de la machine au port 80 du conteneur. L'image ne change jamais ; le conteneur est jetable.</p></div><div class="card"><span class="lab">Ce que le jury attend</span><ul><li>Mettre en place un environnement de déploiement reproductible.</li><li>Conteneuriser et livrer une application.</li></ul></div></div></div><div class="flow"><div class="step"><b>01</b><small>conteneurs, architecture</small></div><div class="step"><b>02</b><small>images, Dockerfile</small></div><div class="step"><b>03</b><small>volumes, réseaux</small></div><div class="step"><b>04</b><small>Compose, bonnes pratiques</small></div></div>
+</section>
+<section class="slide" data-ch="00" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/docker.png" alt="Logo Docker"></div>
+<div class="kicker">Immersion · Essentiel</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Présenter Docker en une minute</h2>
+<div class="card hl"><p class="q">« <b>Docker</b> est une plateforme de <b>conteneurisation</b> créée en 2013 : elle empaquette une application et ses dépendances dans une <b>image</b>, exécutée en <b>conteneur</b> isolé qui partage le noyau de l'hôte. Contrairement à une machine virtuelle, il n'y a pas de système invité complet : c'est plus léger et plus rapide à démarrer.</p><p class="q">J'écris un <b>Dockerfile</b>, je construis l'image, je persiste les données dans des <b>volumes</b>, je relie les conteneurs par un <b>réseau</b>, et j'orchestre plusieurs services avec <b>Docker Compose</b>. Dans un pipeline data, je lance ainsi Kafka, MongoDB ou Airflow de façon reproductible.</p><p class="q">Les limites : un conteneur est <b>éphémère</b> (données perdues sans volume), l'isolation est plus faible qu'une VM, et Compose ne remplace pas <b>Kubernetes</b> pour la haute disponibilité à grande échelle. »</p></div><div class="grid g3"><div class="card"><span class="lab">Les 3 mots à placer</span><p><b>Image · conteneur · volume</b></p></div><div class="card"><span class="lab">Le choix à justifier</span><p><b>Un conteneur plutôt qu'une machine virtuelle</b> pour livrer une application : plus léger, démarrage en secondes, même environnement partout.</p></div><div class="card"><span class="lab">Le lien</span><p><a href="airflow.html">Airflow</a> et <a href="kafka.html">Kafka</a> pour les services · <a href="devops.html">DevOps</a> pour la CI/CD</p></div></div>
+</section>
+<section class="slide" data-ch="00" data-sec="Le fil" data-title="Le fil du cours : 6 idées">
+<div class="kicker">Le fil du cours · Docker</div>
+<h2>6 idées font tout le cours</h2>
+<p class="lead fil-q">Tout Docker répond à : <b>comment faire tourner une application exactement pareil sur mon poste, celui d'un collègue et le serveur ?</b> Six idées expliquent les commandes, le Dockerfile, les volumes, les réseaux et Compose.</p>
+<div class="grid g3 ideas"><div class="card idea"><span class="lab">Idée 1 · Un conteneur est un processus isolé</span><p>Un conteneur n'est pas une machine virtuelle : c'est un <b>processus</b> qui partage le noyau du système hôte. Le noyau l'isole (les <b>namespaces</b> lui donnent sa propre vue des fichiers, du réseau, des processus) et le limite (les <b>cgroups</b> bornent sa mémoire et son processeur). Il vit tant que son <b>processus principal</b> vit.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si le processus principal se termine (un script qui finit, une erreur au démarrage), le conteneur s'arrête aussitôt, alors qu'on le croit en panne.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Lancer en processus principal un programme qui tourne en continu (le serveur web, la base) ; lire docker logs pour comprendre un arrêt.</p><p class="chs">ch. 01</p></div><div class="card idea"><span class="lab">Idée 2 · L'image est immuable, le conteneur est jetable</span><p>L'<b>image</b> est un modèle en lecture seule, fait de couches empilées. Le <b>conteneur</b> est une copie qui tourne, avec une couche inscriptible en plus, perdue quand on supprime le conteneur. On ne répare pas un conteneur : on corrige l'image et l'on relance.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on corrige un problème directement dans un conteneur en production, la correction disparaît au déploiement suivant, car le nouveau conteneur repart de l'image.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Corriger le Dockerfile, reconstruire l'image et redéployer : la correction est dans l'image, donc dans chaque nouveau conteneur.</p><p class="chs">ch. 01 · ch. 02</p></div><div class="card idea"><span class="lab">Idée 3 · Le Dockerfile se lit comme un cache</span><p>Chaque instruction du Dockerfile crée une <b>couche</b>, que Docker réutilise (cache) si rien n'a changé avant elle. On place donc en haut ce qui change rarement (les dépendances) et en bas ce qui change souvent (le code). Le <b>multi-stage</b> compile dans une première image et ne garde que le résultat dans une image finale plus petite.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on copie tout le code (COPY . .) avant d'installer les dépendances, la moindre modification du code invalide le cache et relance toute l'installation.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Copier d'abord requirements.txt et installer les dépendances, puis copier le code : modifier le code ne relance pas l'installation.</p><p class="chs">ch. 02</p></div><div class="card idea"><span class="lab">Idée 4 · Les données vivent hors du conteneur</span><p>Ce qui doit survivre au conteneur va dehors : dans un <b>volume</b> géré par Docker (les fichiers d'une base de données) ou dans un <b>bind mount</b>, un dossier de l'hôte (le code en développement). Supprimer le conteneur ne touche pas au volume.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si une base de données écrit dans le conteneur au lieu d'un volume, ses données sont perdues dès qu'on supprime le conteneur.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Monter un volume nommé sur le dossier de données de la base (pgdata:/var/lib/postgresql/data) : on peut recréer le conteneur sans rien perdre.</p><p class="chs">ch. 03 · ch. 04</p></div><div class="card idea"><span class="lab">Idée 5 · On se parle par le nom, on publie le minimum</span><p>Sur un réseau créé par l'utilisateur (c'est le cas avec Compose), les conteneurs se trouvent par le <b>nom du service</b>. Seul le point d'entrée est <b>publié</b> vers l'extérieur (option -p ou reverse proxy) ; le reste n'est joignable qu'en interne.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'API cherche la base à l'adresse localhost, elle la cherche dans son propre conteneur : la connexion est refusée.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Dans l'API, se connecter à db:5432 (le nom du service de la base) et ne publier que le port de l'API.</p><p class="chs">ch. 03 · ch. 04</p></div><div class="card idea"><span class="lab">Idée 6 · Toute l'application dans un fichier</span><p><b>Docker Compose</b> décrit dans un fichier tous les services, leurs réseaux, volumes et variables. La configuration et les secrets viennent de l'<b>environnement</b> (un fichier .env qui n'est pas versionné). Un <b>healthcheck</b> vérifie qu'un service est vraiment prêt, pour démarrer les autres dans le bon ordre.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si un mot de passe est écrit avec ENV dans le Dockerfile, il est enregistré dans l'image et lisible par toute personne qui la récupère.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Passer le mot de passe par une variable d'environnement lue dans un fichier .env non versionné, au moment du lancement.</p><p class="chs">ch. 02 · ch. 04</p></div></div>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · Docker</div>
+<h2>Le modèle mental : image, conteneur, volume, réseau</h2>
+<div class="flow"><div class="step"><b>1</b><small>Quel est le processus principal, et que se passe-t-il quand il s'arrête ?</small></div><div class="step"><b>2</b><small>Qu'est-ce qui doit survivre à la suppression du conteneur ?</small></div><div class="step"><b>3</b><small>Qui doit joindre ce service : un autre conteneur, ou l'extérieur ?</small></div><div class="step"><b>4</b><small>Où vit la configuration, et quel secret pourrait finir dans l'image ?</small></div></div>
+<table class="cmp md"><thead><tr><th>Besoin</th><th>Bon choix</th><th>À éviter</th></tr></thead><tbody><tr><td>Persister une base de données</td><td><b>volume nommé</b></td><td>écrire dans le conteneur</td></tr><tr><td>Voir son code modifié en direct</td><td><b>bind mount</b> en développement</td><td>reconstruire l'image à chaque ligne</td></tr><tr><td>L'API joint la base</td><td><b>nom du service</b> sur le même réseau</td><td>localhost ou une adresse IP</td></tr><tr><td>Image légère et sûre</td><td>image slim ou <b>multi-stage</b>, utilisateur non root, versions épinglées</td><td>latest, outils de compilation dans l'image finale</td></tr><tr><td>Mot de passe de la base</td><td>variable venant d'un <b>.env</b> ignoré par Git</td><td>ENV dans le Dockerfile</td></tr><tr><td>L'API démarre avant la base</td><td>depends_on + <b>healthcheck</b></td><td>un sleep au démarrage</td></tr></tbody></table>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · Docker</div>
+<h2>Chaque chapitre applique les mêmes idées</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Chapitre</th><th><b>1</b></th><th><b>2</b></th><th><b>3</b></th><th><b>4</b></th><th><b>5</b></th><th><b>6</b></th></tr></thead><tbody><tr><td><b>01</b> Conteneurs</td><td>●</td><td>●</td><td></td><td></td><td></td><td></td></tr><tr><td><b>02</b> Images et Dockerfile</td><td></td><td>●</td><td>●</td><td></td><td></td><td>●</td></tr><tr><td><b>03</b> Volumes et réseaux</td><td></td><td></td><td></td><td>●</td><td>●</td><td></td></tr><tr><td><b>04</b> Compose</td><td></td><td></td><td></td><td>●</td><td>●</td><td>●</td></tr></tbody></table><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Ce qui revient dans <b>plusieurs chapitres</b> est une idée à comprendre ; ce qui n'apparaît qu'une fois est un <b>exemple</b> d'une de ces idées.</p></div></div></div><table class="cmp md"><thead><tr><th>Panne ou erreur classique</th><th>Idée oubliée</th><th>Ce qui casse</th></tr></thead><tbody><tr><td>Conteneur arrêté aussitôt lancé</td><td><b>1</b> · Un conteneur est un processus isolé</td><td>son processus principal s'est terminé</td></tr><tr><td>Données perdues après docker rm</td><td><b>4</b> · Les données vivent hors du conteneur</td><td>elles étaient dans la couche inscriptible</td></tr><tr><td>COPY . . avant l'installation des dépendances</td><td><b>3</b> · Le Dockerfile se lit comme un cache</td><td>le cache est perdu à chaque modification</td></tr><tr><td>localhost pour joindre la base</td><td><b>5</b> · On se parle par le nom, on publie le minimum</td><td>connexion refusée</td></tr><tr><td>Secret passé par ENV</td><td><b>6</b> · Toute l'application dans un fichier</td><td>lisible par quiconque récupère l'image</td></tr><tr><td>Correction faite dans le conteneur</td><td><b>2</b> · L'image est immuable, le conteneur est jetable</td><td>elle disparaît au prochain déploiement</td></tr></tbody></table></div>
+</section>
+
+<section class="slide" data-ch="01" data-sec="01 Conteneurs" data-title="Conteneurs et architecture Docker" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/docker.png" alt="Logo Docker"></div>
+<div class="kicker">Chapitre 01 · Conteneurs et architecture Docker</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Un conteneur n'est pas une machine virtuelle</h2>
+<div class="grid g2"><div class="sch free"><span class="cap">VM contre conteneurs</span><svg class="dg" viewBox="0 0 470 230" role="img" aria-label="À gauche chaque machine virtuelle embarque un système complet, à droite les conteneurs partagent le noyau de l&#x27;hôte"><text class="a" x="10" y="14">Machine virtuelle</text><rect class="b f1" x="10" y="24" width="90" height="38" rx="8"/><text class="t tc" x="55.0" y="48.0">App A</text><rect class="b f3" x="10" y="66" width="90" height="38" rx="8"/><text class="t tc" x="55.0" y="90.0">OS invité</text><rect class="b f1" x="110" y="24" width="90" height="38" rx="8"/><text class="t tc" x="155.0" y="48.0">App B</text><rect class="b f3" x="110" y="66" width="90" height="38" rx="8"/><text class="t tc" x="155.0" y="90.0">OS invité</text><rect class="b f2" x="10" y="108" width="190" height="34" rx="8"/><text class="t tc" x="105.0" y="130.0">Hyperviseur</text><text class="a" x="250" y="14">Conteneurs</text><rect class="b ok" x="250" y="24" width="90" height="38" rx="8"/><text class="t tc" x="306" y="48.0">App A</text><rect class="b ok" x="350" y="24" width="90" height="38" rx="8"/><text class="t tc" x="406" y="48.0">App B</text><rect class="b f2" x="250" y="66" width="190" height="34" rx="8"/><text class="t tc" x="345.0" y="88.0">Docker Engine</text><rect class="b f3" x="10" y="150" width="430" height="34" rx="8"/><text class="t tc" x="225.0" y="172.0">Système d&#x27;exploitation hôte (noyau Linux partagé)</text><rect class="b f2" x="10" y="190" width="430" height="30" rx="8"/><text class="t tc" x="225.0" y="210.0">Matériel</text>
+  <use class="il" href="#il-server" x="14" y="152" width="22" height="28"/><use class="il" href="#il-container" x="258" y="30" width="24" height="22"/><use class="il" href="#il-container" x="358" y="30" width="24" height="22"/>
+</svg></div><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">L'idée</span><p>Un conteneur est un <b>processus isolé</b> (ou un petit groupe) qui voit son propre système de fichiers, ses propres processus et son propre réseau, mais <b>partage le noyau</b> de l'hôte. Pas d'OS invité : démarrage en secondes, quelques Mo de plus que l'application.</p></div><div class="card"><span class="lab">Comment le noyau isole</span><ul><li><b>Namespaces</b> : pid, net, mnt, uts, ipc, user — limitent ce que le processus <b>voit</b>.</li><li><b>cgroups</b> : limitent ce qu'il <b>consomme</b> (CPU, mémoire, E/S).</li></ul></div><div class="analogy"><b>Analogie —</b> une VM, c'est une maison entière par locataire ; un conteneur, un appartement : murs étanches, mais même fondations et même chaudière.</div></div></div>
+</section>
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Conteneurs et architecture Docker</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Les briques : client, démon, image, conteneur, registry</h2>
+<div class="grid g2"><table class="cmp md"><thead><tr><th>Brique</th><th>Rôle</th></tr></thead><tbody><tr><td><b>Client</b> (<code>docker</code>)</td><td>La CLI : envoie les ordres au démon (local ou distant)</td></tr><tr><td><b>Démon / Engine</b></td><td>Construit, lance, arrête ; gère images, réseaux, volumes</td></tr><tr><td><b>Image</b></td><td>Modèle <b>en lecture seule</b> : système de fichiers + métadonnées</td></tr><tr><td><b>Conteneur</b></td><td><b>Instance en cours d'exécution</b> d'une image (+ une couche inscriptible)</td></tr><tr><td><b>Registry</b></td><td>Dépôt d'images : Docker Hub, GHCR, registre privé</td></tr></tbody></table><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>shell</span><button class="cpy" type="button">Copier</button></div><pre><code>docker pull nginx            <span class="c"># registry -&gt; machine</span>
+docker run nginx             <span class="c"># image -&gt; conteneur</span>
+<span class="c"># docker run enchaîne : image locale ? sinon pull,</span>
+<span class="c">#   création du conteneur, réseau, démarrage</span></code></pre></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Sous Windows, le démon a besoin de <b>Docker Desktop</b> qui s'appuie sur <b>WSL2</b> (un vrai noyau Linux) : il faut le lancer avant toute commande.</p></div></div></div></div>
+</section>
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Conteneurs et architecture Docker</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Piloter un conteneur en ligne de commande</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>shell</span><button class="cpy" type="button">Copier</button></div><pre><code>docker run -ti <span class="c">--name=test ubuntu bash   # interactif : -t terminal, -i entrée</span>
+<span class="c">#   exit : arrête le conteneur ; Ctrl+P puis Ctrl+Q : détache sans arrêter</span>
+docker run -d <span class="c">--name=web nginx           # détaché, en arrière-plan</span>
+docker ps            <span class="c"># conteneurs actifs      docker ps -a   # tous</span>
+docker stop web ; docker start web ; docker restart web
+docker exec -it web bash                 <span class="c"># NOUVEAU shell dans le conteneur</span>
+docker attach web                        <span class="c"># se rattacher au processus principal</span>
+docker logs -f web                       <span class="c"># sortie du processus</span>
+docker inspect -f "{{.NetworkSettings.IPAddress}}" web
+docker run -d -e MYSQL_ROOT_PASSWORD=pass mysql   <span class="c"># variable d'environnement</span>
+docker run <span class="c">--env-file=db.env mysql                # ... depuis un fichier</span>
+docker run <span class="c">--rm ubuntu echo "Backup terminé"      # supprimé à la fin</span>
+docker rm web ; docker container prune   <span class="c"># supprimer un ou tous les arrêtés</span></code></pre></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p><code>exec</code> ouvre un <b>nouveau processus</b> dans le conteneur ; <code>attach</code> se branche sur le <b>processus principal</b> : un <code>exit</code> après <code>attach</code> peut <b>arrêter</b> le conteneur.</p></div></div></div><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>État</th><th>Signification</th></tr></thead><tbody><tr><td><b>running</b></td><td>le processus principal tourne</td></tr><tr><td><b>exited</b></td><td>il s'est terminé (normalement ou en erreur)</td></tr><tr><td><b>paused</b></td><td>suspendu (<code>docker pause</code>)</td></tr><tr><td><b>restarting</b></td><td>redémarré par la politique <code>--restart</code></td></tr></tbody></table><table class="cmp md"><thead><tr><th>Type</th><th>Cycle de vie</th><th>Exemple</th></tr></thead><tbody><tr><td><b>Job</b></td><td>tâche brève, le conteneur s'arrête à la fin</td><td><code>docker run --rm</code> d'une sauvegarde ou d'un script</td></tr><tr><td><b>Service</b></td><td>reste actif en continu</td><td><code>docker run -d</code> d'un serveur web ou d'une base</td></tr></tbody></table><div class="card"><span class="lab">Diagnostic rapide</span><ul><li><code>docker version</code> et <code>docker info</code> : client et démon répondent-ils ?</li><li><code>docker logs</code> : pourquoi le conteneur s'est-il arrêté ?</li><li><code>docker system prune</code> : nettoyer conteneurs arrêtés, réseaux et images inutilisés.</li></ul></div></div></div>
+</section>
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Conteneurs et architecture Docker</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Éphémère, un processus : les pièges du débutant</h2>
+<div class="grid g2"><div class="trap-list"><div><b>Confondre image et conteneur.</b> L'image est le plan ; on peut créer 10 conteneurs depuis la même image.</div><div><b>Croire que les données survivent.</b> Supprimer un conteneur supprime sa couche inscriptible : sans volume, tout est perdu (un simple <code>stop</code> ne supprime rien).</div><div><b>Un conteneur sans processus au premier plan s'arrête.</b> Il vit tant que son processus principal tourne.</div><div><b>Penser l'isolation totale.</b> Le noyau est partagé : une faille du noyau touche tous les conteneurs ; ne pas lancer en root sans raison.</div></div><ol class="sum-list"><li>Un conteneur = processus isolé (namespaces) et limité (cgroups), noyau partagé.</li><li>Image (lecture seule) → conteneur (instance) ; registry = dépôt d'images.</li><li>Client → démon : <code>docker run</code> = pull si besoin + create + start.</li><li>Éphémère par défaut : données persistantes = volumes (chapitre 03).</li></ol></div>
+</section>
+<section class="slide" data-ch="01" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/docker.png" alt="Logo Docker"></div>
+<div class="kicker">Chapitre 01 · Conteneurs et architecture Docker</div>
+<h2>Fiche — Conteneurs</h2>
+<div class="fiche"><div class="card"><span class="lab">VM vs conteneur</span><p>VM : OS invité complet + hyperviseur ; conteneur : noyau partagé, démarrage en secondes.</p></div><div class="card"><span class="lab">Isolation</span><p>Namespaces (visibilité) · cgroups (ressources).</p></div><div class="card"><span class="lab">Briques</span><p>Client · démon · image · conteneur · registry.</p></div><div class="card"><span class="lab">Image / conteneur</span><p>Image = plan en lecture seule ; conteneur = instance qui s'exécute.</p></div><div class="card"><span class="lab">Cycle de vie</span><p>created → running → paused/stopped → removed.</p></div><div class="card"><span class="lab">Piège</span><p>Supprimer le conteneur perd les données sans volume.</p></div></div>
+</section>
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Conteneurs et architecture Docker</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 01</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Quelle est la différence entre une machine virtuelle et un conteneur ?</button><div class="ab"><p>La VM virtualise le matériel et embarque un système d'exploitation complet géré par un hyperviseur. Le conteneur n'est qu'un processus isolé par le noyau (namespaces et cgroups) qui partage le noyau de l'hôte : plus léger, démarrage rapide, mais isolation moins forte, et même famille de noyau obligatoire.</p></div></div><div class="acc jq"><button class="ah" type="button">Qu'est-ce qu'une image et en quoi diffère-t-elle d'un conteneur ?</button><div class="ab"><p>Une image est un modèle immuable en lecture seule, composé de couches. Un conteneur est une instance en cours d'exécution de cette image, avec une fine couche inscriptible. De la même image on lance autant de conteneurs qu'on veut.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment Docker isole-t-il les conteneurs ?</button><div class="ab"><p>Par les namespaces du noyau Linux (processus, réseau, montages, hostname, utilisateurs) qui limitent ce que le conteneur voit, et par les cgroups qui plafonnent CPU, mémoire et disque.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi utiliser Docker dans un projet data ?</button><div class="ab"><p>Pour obtenir un environnement reproductible : même version de Kafka, MongoDB ou Airflow sur chaque poste et en production, installation en une commande, services jetables pour les tests.</p></div></div><div class="acc jq"><button class="ah" type="button">Que se passe-t-il quand on exécute docker run nginx ?</button><div class="ab"><p>Le client interroge le démon ; si l'image est absente, il la télécharge depuis le registry ; il crée un conteneur avec sa couche inscriptible, son réseau et ses namespaces, puis démarre le processus principal de l'image.</p></div></div></div>
+</section>
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Conteneurs et architecture Docker</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="01"></div>
+</section>
+<section class="slide" data-ch="02" data-sec="02 Images et Dockerfile" data-title="Images et Dockerfile" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/docker.png" alt="Logo Docker"></div>
+<div class="kicker">Chapitre 02 · Images et Dockerfile</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Une image = des couches empilées, décrites par un Dockerfile</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Le Dockerfile</span><p>Un fichier texte, <b>une instruction par ligne</b>, lu de haut en bas. Chaque instruction qui modifie le système de fichiers crée une <b>couche</b> (layer) en lecture seule. Les couches sont <b>mises en cache</b> et partagées entre images.</p></div><div class="card"><span class="lab">Les instructions à connaître</span><ul><li><code>FROM</code> image de départ · <code>WORKDIR</code> dossier de travail</li><li><code>COPY</code> fichiers de l'hôte · <code>RUN</code> commande à la <b>construction</b></li><li><code>ENV</code> variable · <code>EXPOSE</code> port documenté</li><li><code>CMD</code> / <code>ENTRYPOINT</code> commande à l'<b>exécution</b></li></ul></div><div class="analogy"><b>Analogie —</b> une recette en étapes numérotées. Si l'étape 3 n'a pas changé, on reprend le plat déjà préparé ; on ne refait que ce qui suit la première étape modifiée.</div></div><div class="code"><div class="codeh"><span>Dockerfile · API Python</span><button class="cpy" type="button">Copier</button></div><pre><code>FROM python:3.11-slim            <span class="c"># image de base légère</span>
+WORKDIR /code
+COPY requirements.txt .          <span class="c"># d'abord les dépendances...</span>
+RUN pip install <span class="c">--no-cache-dir -r requirements.txt</span>
+COPY api/ ./api/                 <span class="c"># ...puis le code (change souvent)</span>
+EXPOSE 80
+CMD ["uvicorn", "api.main:app", "<span class="c">--host", "0.0.0.0", "--port", "80"]</span>
+<span class="c"># docker build -t digicheese-api .   puis   docker run -p 8000:80 digicheese-api</span></code></pre></div></div>
+</section>
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · Images et Dockerfile</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Cache, CMD contre ENTRYPOINT, multi-stage</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Ordre = cache</span><p>Docker réutilise une couche si l'instruction <b>et tout ce qui précède</b> sont inchangés. On place donc ce qui change <b>rarement</b> en haut (dépendances) et ce qui change <b>souvent</b> en bas (code). Copier le code avant <code>pip install</code> relancerait l'installation à chaque modification.</p></div><div class="card"><span class="lab">CMD contre ENTRYPOINT</span><ul><li><code>CMD</code> : commande <b>par défaut</b>, remplaçable par les arguments de <code>docker run</code>.</li><li><code>ENTRYPOINT</code> : exécutable <b>fixe</b> ; les arguments de <code>docker run</code> s'y ajoutent.</li><li>Forme <b>exec</b> <code>["a","b"]</code> (sans shell) préférée : le signal d'arrêt atteint le processus.</li></ul></div></div><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>Dockerfile · multi-stage</span><button class="cpy" type="button">Copier</button></div><pre><code>FROM python:3.11 AS builder          <span class="c"># étape 1 : outils de build</span>
+WORKDIR /code
+COPY requirements.txt .
+RUN pip install <span class="c">--user -r requirements.txt</span>
+
+FROM python:3.11-slim                <span class="c"># étape 2 : image finale</span>
+RUN useradd <span class="c">--create-home app        # utilisateur non root</span>
+COPY <span class="c">--from=builder /root/.local /home/app/.local</span>
+COPY api/ ./api/
+USER app
+CMD ["uvicorn", "api.main:app", "<span class="c">--host", "0.0.0.0"]</span></code></pre></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Le <b>multi-stage</b> ne garde dans l'image finale que ce qui sert à l'exécution : image plus petite, moins de surface d'attaque.</p></div></div></div></div>
+</section>
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · Images et Dockerfile</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Gérer les images : lister, taguer, publier, auditer</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>shell</span><button class="cpy" type="button">Copier</button></div><pre><code>docker search nginx                 <span class="c"># chercher sur Docker Hub</span>
+docker images                       <span class="c"># ou docker image ls</span>
+docker history nginx                <span class="c"># les couches et leur taille</span>
+docker rmi nginx:1.27               <span class="c"># ou docker image rm</span>
+docker commit test mon_image:1.0    <span class="c"># figer un conteneur (déconseillé)</span>
+docker login                        <span class="c"># s'authentifier au registry</span>
+docker tag api:1.0 ana/api:1.0      <span class="c"># nom complet : compte/image:tag</span>
+docker push ana/api:1.0             <span class="c"># publier</span>
+docker scout quickview ana/api:1.0  <span class="c"># résumé des vulnérabilités</span>
+docker scout cves ana/api:1.0       <span class="c"># détail des CVE par paquet</span></code></pre></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p><code>docker commit</code> produit une image <b>non reproductible</b> : personne ne sait comment elle a été obtenue. On préfère toujours un <b>Dockerfile</b> versionné.</p></div></div></div><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Image de base</th><th>Taille indicative</th><th>Usage</th></tr></thead><tbody><tr><td><code>ubuntu</code>, <code>debian</code></td><td>~ 30 à 120 Mo</td><td>outils complets, débogage facile</td></tr><tr><td><code>python:3.12-slim</code></td><td>~ 50 Mo</td><td>bon compromis pour une application Python</td></tr><tr><td><code>alpine</code></td><td>~ 5 Mo</td><td>très légère, bibliothèque C musl (incompatibilités possibles)</td></tr></tbody></table><div class="card"><span class="lab">Nommer et publier</span><ul><li>Une référence complète : <code>registry/compte/image:tag</code> ; sans registry, c'est <b>Docker Hub</b>.</li><li>Un <b>tag</b> est une étiquette mobile ; <code>latest</code> n'est qu'un tag par défaut, pas la dernière version garantie.</li><li>Registries privés : GitHub Container Registry, GitLab, Harbor, registries cloud.</li></ul></div><div class="card"><span class="lab">Auditer avant de livrer</span><p>Moins de paquets = moins de <b>CVE</b>. <b>Docker Scout</b> (ou Trivy) liste les vulnérabilités connues des couches ; <code>docker history</code> montre ce que chaque instruction a ajouté. Voir <a href="secu-vulns.html">Vulnérabilités</a>.</p></div></div></div>
+</section>
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · Images et Dockerfile</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges de construction</h2>
+<div class="grid g2"><div class="trap-list"><div><b>Mettre un secret dans l'image</b> (<code>ENV PASSWORD=…</code>) : il reste lisible dans les couches. Utiliser variables d'exécution ou secrets.</div><div><b>Utiliser <code>latest</code></b> : le contenu change sans prévenir ; épingler une version (<code>python:3.11-slim</code>).</div><div><b>Oublier <code>.dockerignore</code></b> : <code>.git</code>, <code>.env</code>, <code><i>pycache</i></code> partent dans le contexte de build.</div><div><b><code>RUN</code> séparés pour <code>apt-get update</code> et <code>install</code></b> : le cache sert un index périmé ; les enchaîner avec <code>&amp;&amp;</code>.</div><div><b>Lancer en root</b> : créer un utilisateur et passer <code>USER</code>.</div></div><ol class="sum-list"><li>Dockerfile : <code>FROM</code>, <code>WORKDIR</code>, <code>COPY</code>, <code>RUN</code>, <code>CMD</code>.</li><li>Une instruction = une couche, mise en cache : ordre du plus stable au plus changeant.</li><li><code>RUN</code> à la construction ; <code>CMD</code>/<code>ENTRYPOINT</code> à l'exécution.</li><li>Multi-stage + utilisateur non root + <code>.dockerignore</code> : image petite et sûre.</li></ol></div>
+</section>
+<section class="slide" data-ch="02" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/docker.png" alt="Logo Docker"></div>
+<div class="kicker">Chapitre 02 · Images et Dockerfile</div>
+<h2>Fiche — Images et Dockerfile</h2>
+<div class="fiche"><div class="card"><span class="lab">Couches</span><p>Chaque instruction = une couche en lecture seule, cache et partage.</p></div><div class="card"><span class="lab">Build</span><p><code>docker build -t nom:tag .</code> — le contexte est le dossier envoyé au démon.</p></div><div class="card"><span class="lab">RUN / CMD</span><p>RUN à la construction ; CMD/ENTRYPOINT au démarrage du conteneur.</p></div><div class="card"><span class="lab">CMD / ENTRYPOINT</span><p>CMD remplaçable ; ENTRYPOINT fixe, reçoit les arguments.</p></div><div class="card"><span class="lab">Cache</span><p>Stable en haut, changeant en bas ; requirements avant le code.</p></div><div class="card"><span class="lab">Bonnes pratiques</span><p>Multi-stage · non root · version épinglée · <code>.dockerignore</code>.</p></div></div>
+</section>
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · Images et Dockerfile</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 02</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Qu'est-ce qu'un Dockerfile et comment est construite l'image ?</button><div class="ab"><p>Un Dockerfile liste les instructions de construction. <code>docker build</code> les exécute dans l'ordre : chaque instruction qui modifie le système de fichiers produit une couche en lecture seule, mise en cache, l'ensemble formant l'image.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi copier requirements.txt avant le code source ?</button><div class="ab"><p>Pour exploiter le cache : tant que les dépendances ne changent pas, la couche <code>pip install</code> est réutilisée. Copier le code d'abord invaliderait cette couche à chaque modification du code.</p></div></div><div class="acc jq"><button class="ah" type="button">Quelle différence entre CMD et ENTRYPOINT ?</button><div class="ab"><p>CMD fournit une commande par défaut que l'on remplace en passant des arguments à <code>docker run</code>. ENTRYPOINT définit l'exécutable fixe du conteneur, auquel les arguments sont ajoutés ; on combine souvent les deux.</p></div></div><div class="acc jq"><button class="ah" type="button">À quoi sert un build multi-stage ?</button><div class="ab"><p>À séparer la construction (compilateurs, outils) de l'exécution : l'image finale ne copie que les artefacts nécessaires. Elle est plus petite, plus rapide à télécharger et expose moins de composants vulnérables.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment sécuriser une image ?</button><div class="ab"><p>Image de base minimale et épinglée, utilisateur non root, pas de secret dans les couches, <code>.dockerignore</code>, mises à jour régulières, analyse des vulnérabilités de l'image avant publication.</p></div></div></div>
+</section>
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · Images et Dockerfile</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="02"></div>
+</section>
+<section class="slide" data-ch="03" data-sec="03 Volumes et réseaux" data-title="Volumes et réseaux" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/docker.png" alt="Logo Docker"></div>
+<div class="kicker">Chapitre 03 · Volumes et réseaux</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Persister les données : volume, bind mount, tmpfs</h2>
+<div class="grid g2"><table class="cmp md"><thead><tr><th>Type</th><th>Où vivent les données</th><th>Usage typique</th></tr></thead><tbody><tr><td><b>Volume nommé</b></td><td>Géré par Docker (<code>/var/lib/docker/volumes</code>)</td><td>Base de données : MariaDB, MongoDB</td></tr><tr><td><b>Bind mount</b></td><td>Un dossier précis de l'hôte</td><td>Code source en développement</td></tr><tr><td><b>tmpfs</b></td><td>En mémoire, jamais sur disque</td><td>Secrets ou cache temporaire</td></tr></tbody></table><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Pourquoi</span><p>La couche inscriptible disparaît avec le conteneur. Un <b>volume</b> a <b>sa propre vie</b> : on supprime et recrée le conteneur, les données restent. Cette séparation permet aussi de <b>mettre à jour l'image</b> sans perdre la base.</p></div><div class="code"><div class="codeh"><span>shell</span><button class="cpy" type="button">Copier</button></div><pre><code>docker volume create donnees
+docker run -d <span class="c">--name db -v donnees:/var/lib/mysql mariadb:10.6</span>
+docker rm -f db                       <span class="c"># le conteneur disparaît...</span>
+docker run -d -v donnees:/var/lib/mysql mariadb:10.6   <span class="c"># ...les données restent</span></code></pre></div></div></div>
+</section>
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Volumes et réseaux</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Réseaux : se parler par le nom du service</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Les réseaux</span><ul><li><b>bridge</b> (défaut) : réseau privé interne à l'hôte.</li><li>Sur un bridge <b>défini par l'utilisateur</b>, les conteneurs se joignent <b>par leur nom</b> (DNS intégré) ; pas sur le bridge par défaut.</li><li><b>host</b> : partage la pile réseau de l'hôte · <b>none</b> : aucun réseau.</li></ul></div><div class="card"><span class="lab">Publier un port</span><p><code>-p 8000:80</code> relie le port <b>8000 de l'hôte</b> au port <b>80 du conteneur</b>. Entre conteneurs d'un même réseau, <b>aucune publication</b> n'est nécessaire : l'API joint la base sur <code>db:3306</code>, pas sur <code>localhost</code>.</p></div></div><div class="sch free"><span class="cap">Réseau digicheese-net</span><svg class="dg" viewBox="0 0 470 190" role="img" aria-label="Navigateur vers api publié sur 8000, api et adminer joignent db par son nom sur le réseau digicheese-net"><rect class="b f3" x="10" y="70" width="100" height="44" rx="8"/><text class="t tc" x="60.0" y="97.0">Navigateur</text><path class="e" d="M112 92 L158 60"/><rect class="b ok" x="160" y="30" width="130" height="60" rx="8"/><text class="t tc" x="239" y="58.0">api</text><text class="s tc" x="239" y="73.0">FastAPI :80</text><path class="e" d="M292 60 L338 92"/><rect class="b ok" x="340" y="70" width="120" height="50" rx="8"/><text class="t tc" x="413" y="93.0">db</text><text class="s tc" x="413" y="108.0">MariaDB :3306</text><rect class="b f1" x="160" y="120" width="130" height="40" rx="8"/><text class="t tc" x="237" y="138.0">adminer</text><text class="s tc" x="237" y="153.0">:8080</text><path class="e" d="M292 140 L338 112"/><text class="s" x="10" y="178">Publié vers l&#x27;hôte : 8000→api, 8070→adminer · db non exposée</text>
+  <use class="il" href="#il-laptop" x="38" y="30" width="44" height="36"/><use class="il" href="#il-container" x="165" y="46.0" width="28" height="28"/><use class="il" href="#il-database" x="345" y="82.0" width="26" height="26"/><use class="il" href="#il-container" x="165" y="128.0" width="24" height="24"/>
+</svg></div></div>
+</section>
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Volumes et réseaux</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>IPv4 en bref, pour lire un réseau Docker</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Adresse et masque</span><ul><li>Une <b>adresse IPv4</b> : 4 octets de 0 à 255 (32 bits), par exemple <code>172.18.0.5</code>.</li><li>Le <b>masque</b> sépare la partie <b>réseau</b> (bits à 1) de la partie <b>hôte</b> (bits à 0) : <code>255.255.255.0</code> = <b>/24</b> en notation <b>CIDR</b>.</li><li>Un /24 contient 2⁸ = <b>256</b> adresses, dont <b>254</b> utilisables : la première est l'<b>adresse du réseau</b>, la dernière le <b>broadcast</b>.</li><li>Un bit de masque en plus <b>divise</b> le réseau en deux sous-réseaux et le nombre d'hôtes par deux.</li></ul></div><table class="cmp md"><thead><tr><th>Plage privée</th><th>Début</th><th>Fin</th></tr></thead><tbody><tr><td><b>10.0.0.0/8</b></td><td>10.0.0.0</td><td>10.255.255.255</td></tr><tr><td><b>172.16.0.0/12</b></td><td>172.16.0.0</td><td>172.31.255.255 (Docker l'utilise par défaut)</td></tr><tr><td><b>192.168.0.0/16</b></td><td>192.168.0.0</td><td>192.168.255.255</td></tr></tbody></table></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Deux machines sont-elles sur le même réseau ?</span><p>On applique un <b>ET logique</b> entre chaque adresse et le masque : si l'<b>adresse réseau</b> obtenue est identique, elles se joignent directement ; sinon il faut passer par un <b>routeur</b>. Exemple : <code>192.168.1.20/24</code> et <code>192.168.1.200/24</code> → même réseau <code>192.168.1.0</code>.</p></div><div class="code"><div class="codeh"><span>shell</span><button class="cpy" type="button">Copier</button></div><pre><code>docker network ls                     <span class="c"># bridge, host, none par défaut</span>
+docker network create app-net         <span class="c"># bridge défini par l'utilisateur</span>
+docker run -dit <span class="c">--name c1 --network app-net alpine</span>
+docker network inspect app-net        <span class="c"># sous-réseau, ex. 172.19.0.0/16</span>
+docker network connect app-net c2     <span class="c"># brancher un conteneur existant</span>
+docker network rm app-net</code></pre></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Les adresses privées <b>ne sont pas routées</b> sur Internet : on les réutilise dans chaque réseau local, et Docker en attribue une à chaque conteneur.</p></div></div></div></div>
+</section>
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Volumes et réseaux</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et réflexes</h2>
+<div class="grid g2"><div class="trap-list"><div><b>Utiliser <code>localhost</code> pour joindre un autre conteneur</b> : chaque conteneur a son propre <code>localhost</code> ; utiliser le nom du service.</div><div><b>Publier le port de la base sur l'hôte</b> par habitude : inutile et dangereux.</div><div><b>Oublier le volume</b> d'une base : <code>docker rm</code> efface tout.</div><div><b>Bind mount avec les mauvais droits</b> : l'utilisateur du conteneur n'écrit pas dans le dossier de l'hôte.</div><div><b><code>docker volume prune</code> sans regarder</b> : supprime les volumes non utilisés, donc des données.</div></div><ol class="sum-list"><li>Données durables = volume nommé ; code en développement = bind mount.</li><li>Le volume survit au conteneur ; <code>rm</code> du conteneur ne l'efface pas.</li><li>Réseau défini par l'utilisateur : résolution <b>par nom</b>, isolation entre réseaux.</li><li><code>-p hôte:conteneur</code> ne sert que pour l'accès <b>depuis l'extérieur</b>.</li></ol></div>
+</section>
+<section class="slide" data-ch="03" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/docker.png" alt="Logo Docker"></div>
+<div class="kicker">Chapitre 03 · Volumes et réseaux</div>
+<h2>Fiche — Volumes et réseaux</h2>
+<div class="fiche"><div class="card"><span class="lab">Volume nommé</span><p>Géré par Docker, survit au conteneur : bases de données.</p></div><div class="card"><span class="lab">Bind mount</span><p>Dossier de l'hôte monté dans le conteneur : développement.</p></div><div class="card"><span class="lab">Réseau bridge</span><p>Par défaut ; défini par l'utilisateur = DNS par nom.</p></div><div class="card"><span class="lab">-p</span><p><code>hôte:conteneur</code> : publier un port vers l'extérieur.</p></div><div class="card"><span class="lab">Entre conteneurs</span><p>Nom du service + port interne, pas <code>localhost</code>.</p></div><div class="card"><span class="lab">Nettoyage</span><p><code>docker volume prune</code> efface les volumes inutilisés : prudence.</p></div></div>
+</section>
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Volumes et réseaux</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 03</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Comment conserver les données d'une base dans un conteneur ?</button><div class="ab"><p>Avec un volume nommé monté sur le répertoire de données de la base (par exemple <code>/var/lib/mysql</code>). Il vit indépendamment du conteneur : on peut supprimer et recréer le conteneur, ou changer la version de l'image, sans perdre les données.</p></div></div><div class="acc jq"><button class="ah" type="button">Quelle différence entre un volume et un bind mount ?</button><div class="ab"><p>Le volume est créé et géré par Docker, portable et indépendant de l'arborescence de l'hôte. Le bind mount expose un chemin précis de l'hôte : pratique en développement pour voir le code modifié en direct, mais dépendant de la machine et de ses droits.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment deux conteneurs communiquent-ils ?</button><div class="ab"><p>En les plaçant sur le même réseau défini par l'utilisateur : ils se joignent par le nom du service grâce au DNS intégré, sur le port interne. Compose crée ce réseau automatiquement.</p></div></div><div class="acc jq"><button class="ah" type="button">À quoi sert l'option -p 8000:80 ?</button><div class="ab"><p>Elle publie le port 80 du conteneur sur le port 8000 de l'hôte, ce qui rend le service accessible depuis l'extérieur du réseau Docker, par exemple depuis le navigateur.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi ne pas publier le port de la base de données ?</button><div class="ab"><p>Seuls les services qui en ont besoin (l'API) la joignent, via le réseau interne. La publier élargit la surface d'attaque pour rien.</p></div></div></div>
+</section>
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Volumes et réseaux</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="03"></div>
+</section>
+<section class="slide" data-ch="04" data-sec="04 Compose" data-title="Docker Compose et bonnes pratiques" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/docker.png" alt="Logo Docker"></div>
+<div class="kicker">Chapitre 04 · Docker Compose et bonnes pratiques</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Compose : décrire toute l'application dans un fichier</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Le principe</span><p><code>docker-compose.yml</code> décrit les <b>services</b>, leurs images ou builds, <b>ports</b>, <b>volumes</b>, <b>réseaux</b> et <b>variables</b>. Une seule commande les crée tous dans le bon réseau. Compose v2 est intégré : <code>docker compose up</code>.</p></div><div class="card"><span class="lab">Configuration hors du code</span><p>Un fichier <b><code>.env</code></b> (non versionné, listé dans <code>.gitignore</code>) fournit les valeurs <code>${DB_USER}</code>. On versionne un <code>.env.example</code> sans secret.</p></div><div class="analogy"><b>Analogie —</b> la partition d'un orchestre : chaque service est un instrument ; le fichier dit qui joue quoi et dans quel ordre.</div></div><div class="code"><div class="codeh"><span>docker-compose.yml · TP Digicheese (extrait)</span><button class="cpy" type="button">Copier</button></div><pre><code>services:
+  api:
+    build: .
+    ports: ["8000:80"]
+    volumes: ["./api:/code/api"]          <span class="c"># bind mount : code en direct</span>
+    environment: [DB_HOST=db, DB_USER=${DB_USER}]
+    depends_on:
+      db: { condition: service_healthy }   <span class="c"># attend que la base réponde</span>
+  db:
+    image: mariadb:10.6
+    volumes: ["digicheese-data:/var/lib/mysql"]
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "<span class="c">--connect", "--innodb_initialized"]</span>
+volumes:
+  digicheese-data: {}</code></pre></div></div>
+</section>
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Docker Compose et bonnes pratiques</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Commandes, démarrage ordonné et usage data</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>shell</span><button class="cpy" type="button">Copier</button></div><pre><code>docker compose up -d <span class="c">--build   # créer et lancer</span>
+docker compose ps                <span class="c"># état des services</span>
+docker compose logs -f api       <span class="c"># suivre les journaux</span>
+docker compose exec db mariadb -u admin -p   <span class="c"># shell dans un service</span>
+docker compose down              <span class="c"># arrêter et supprimer (garde les volumes)</span>
+docker compose down -v           <span class="c"># ... et SUPPRIME les volumes</span></code></pre></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p><code>depends_on</code> seul garantit l'<b>ordre de démarrage</b>, pas que la base soit <b>prête</b> : ajouter un <code>healthcheck</code> et <code>condition: service_healthy</code>.</p></div></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Dans un projet data</span><ul><li>Un fichier Compose lance <b>Kafka + Zookeeper</b>, <b>MongoDB</b>, <b>Airflow</b>, <b>Elasticsearch + Kibana</b>, <b>MinIO</b>.</li><li>Chaque équipier obtient le <b>même environnement</b> en une commande.</li><li>Les <b>TP</b> sont livrés avec leur Compose : on ne configure plus, on exécute.</li></ul></div><div class="card"><span class="lab">Limites</span><p>Compose pilote <b>une seule machine</b>. Pour répartir sur plusieurs serveurs, auto-réparation et mises à jour progressives, on passe à <b>Kubernetes</b>.</p></div></div></div>
+</section>
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Docker Compose et bonnes pratiques</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Un point d'entrée unique : le reverse proxy</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Le principe</span><p>Un <b>reverse proxy</b> (Caddy, Nginx, Traefik) est le <b>seul service publié</b> sur 80 et 443. Il reçoit toutes les requêtes et les <b>redirige</b> vers le bon conteneur selon le nom de domaine ou le chemin. Il peut aussi gérer le <b>HTTPS</b> : Caddy obtient et renouvelle les certificats automatiquement.</p></div><div class="code"><div class="codeh"><span>Caddyfile</span><button class="cpy" type="button">Copier</button></div><pre><code>localhost {
+    reverse_proxy /api/* api:8000     <span class="c"># nom du service Compose</span>
+    reverse_proxy /*     front:3000
+}</code></pre></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Ce qu'il apporte</span><ul><li><b>Un seul port</b> ouvert vers l'extérieur ; API, front et outils restent sur le réseau interne.</li><li><b>TLS</b> terminé en un seul endroit.</li><li>Routage, compression, en-têtes de sécurité, <b>mise en cache</b> (Varnish devant WordPress dans les exemples du support).</li></ul></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Le proxy et les services doivent partager le <b>même réseau Docker</b> : le proxy les joint par leur <b>nom de service</b>. Les volumes <code>caddy_data</code> et <code>caddy_config</code> conservent les certificats.</p></div></div></div></div>
+</section>
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Docker Compose et bonnes pratiques</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et résumé</h2>
+<div class="grid g2"><div class="trap-list"><div><b><code>docker compose down -v</code> par réflexe</b> : efface les volumes, donc la base.</div><div><b>Secrets écrits en dur</b> dans le YAML versionné : utiliser <code>.env</code> ignoré par Git ou des secrets.</div><div><b><code>depends_on</code> sans healthcheck</b> : l'API démarre avant la base et plante.</div><div><b>Publier tous les ports</b> : n'exposer que l'entrée du système.</div><div><b><code>latest</code> partout</b> : un <code>pull</code> change silencieusement la version.</div></div><ol class="sum-list"><li>Compose = services, volumes, réseaux dans un fichier ; <code>up -d</code>, <code>ps</code>, <code>logs</code>, <code>down</code>.</li><li><code>.env</code> pour la configuration ; jamais de secret versionné.</li><li><code>healthcheck</code> + <code>service_healthy</code> pour un démarrage ordonné fiable.</li><li>Compose = une machine ; plusieurs machines = Kubernetes.</li></ol></div>
+</section>
+<section class="slide" data-ch="04" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/docker.png" alt="Logo Docker"></div>
+<div class="kicker">Chapitre 04 · Docker Compose et bonnes pratiques</div>
+<h2>Fiche — Compose</h2>
+<div class="fiche"><div class="card"><span class="lab">Compose</span><p>Un YAML pour services, volumes, réseaux ; <code>docker compose up -d</code>.</p></div><div class="card"><span class="lab">Configuration</span><p><code>.env</code> ignoré par Git ; <code>.env.example</code> versionné.</p></div><div class="card"><span class="lab">Démarrage</span><p><code>depends_on</code> + <code>healthcheck</code> / <code>service_healthy</code>.</p></div><div class="card"><span class="lab">Réseau auto</span><p>Compose crée un réseau : les services se joignent par leur nom.</p></div><div class="card"><span class="lab">down -v</span><p>Supprime aussi les volumes : jamais par réflexe.</p></div><div class="card"><span class="lab">Limite</span><p>Une seule machine ; Kubernetes pour l'échelle.</p></div></div>
+</section>
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Docker Compose et bonnes pratiques</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 04</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">À quoi sert Docker Compose ?</button><div class="ab"><p>À décrire et lancer une application multi-conteneurs dans un seul fichier : services, ports, volumes, réseaux, variables. Une commande crée tout l'environnement, ce qui le rend reproductible pour toute l'équipe.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment gérer les mots de passe dans un projet Compose ?</button><div class="ab"><p>Dans un fichier <code>.env</code> exclu du dépôt par <code>.gitignore</code>, référencé par <code>${VARIABLE}</code>, avec un <code>.env.example</code> sans valeur réelle. Pour la production, on préfère les secrets Docker ou un gestionnaire de secrets.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi l'API plante-t-elle parfois au démarrage alors qu'elle dépend de la base ?</button><div class="ab"><p>Parce que <code>depends_on</code> ordonne le lancement, pas la disponibilité. La base démarre mais n'accepte pas encore de connexions. On ajoute un <code>healthcheck</code> et <code>condition: service_healthy</code>.</p></div></div><div class="acc jq"><button class="ah" type="button">Compose suffit-il en production ?</button><div class="ab"><p>Pour un petit déploiement sur une machine, oui. Pour la haute disponibilité, la montée en charge et les mises à jour sans interruption, on utilise un orchestrateur comme Kubernetes.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment décririez-vous votre TP Digicheese ?</button><div class="ab"><p>Trois services sur un réseau dédié : l'API FastAPI construite depuis un Dockerfile, MariaDB avec volume nommé et healthcheck, Adminer pour l'administration ; configuration par <code>.env</code>, code monté en bind mount, tests dans le conteneur.</p></div></div></div>
+</section>
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Docker Compose et bonnes pratiques</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="04"></div>
+</section>
+<section class="slide" data-ch="quiz" data-sec="Quiz final" data-title="Quiz final — 45 questions">
+<div class="kicker">Quiz final · Docker</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-target"/></svg> 45 questions pour affronter le jury</h2>
+<p class="lead">Tous chapitres mélangés ; l'ordre des questions et des réponses change à chaque tentative. Certaines questions ont <b>plusieurs bonnes réponses</b>.</p>
+<div data-quiz="final"></div>
+</section>
+
+</main>
+<button class="arrow" id="prev" type="button" aria-label="Diapositive précédente">‹</button>
+<button class="arrow" id="next" type="button" aria-label="Diapositive suivante">›</button>
+<nav id="tl" aria-label="Chapitres"></nav>
+<div id="hint">← → naviguer · ↑ ↓ défiler · H ampoule <svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg> · E Complète/Essentiel · M maîtrisé · S sommaire · T thème</div>
+<button id="bulbhint" type="button"><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></button>
+<div id="ctip" role="tooltip"></div>
+<div id="toc" role="dialog" aria-label="Sommaire">
+  <button class="btn xx" id="tocx" type="button">Fermer ✕</button>
+  <div class="kicker">Sommaire · Docker</div>
+  <h2>Docker</h2>
+  <div class="tg"></div>
+</div>
+
+<div id="fab">
+  <button id="helpbtn" type="button" aria-label="Ampoule : concepts expliqués au survol" aria-pressed="false" title="Ampoule : soulignez les concepts, survolez-les pour une explication (H)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></button>
+<button id="tocbtn" type="button" aria-label="Sommaire" title="Sommaire (S)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+  <div id="themebtn">
+    <div id="menu" role="menu"><h4>Thème</h4></div>
+    <button id="tbtn" type="button" aria-label="Changer de thème" aria-haspopup="true" title="Changer de thème (T)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.4-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16a5 5 0 0 0 5-5c0-4-4-7-9-7z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="7.5" r="1"/></svg>
+    </button>
+  </div>
+</div>
+
+</div>
+<script src="assets/icons.js?v=1795252877"></script>
+<script src="data/docker-quiz.js?v=1795252877"></script>
+<script src="data/docker-glossary.js?v=1795252877"></script>
+<script src="assets/engine.js?v=1795252877"></script>
+</body>
+</html>

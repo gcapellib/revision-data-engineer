@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ELK (Elasticsearch, Logstash, Kibana) · Révision Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/base.css?v=1795252877">
+<link rel="stylesheet" href="assets/photos.css?v=1795252877">
+<link rel="stylesheet" href="assets/revision.css?v=1795252877">
+</head>
+<body data-page="course" data-course="elk" data-title="ELK (Elasticsearch, Logstash, Kibana)">
+<div id="app" data-theme="papier">
+
+<div id="bg" aria-hidden="true">
+  <div class="bgl bg-neon">
+    <svg viewBox="0 0 800 800"><path d="M40 760 L400 280 L760 760" stroke-width="3"/><path d="M110 760 L400 380 L690 760" stroke-width="2.4" opacity=".85"/><path d="M180 760 L400 470 L620 760" stroke-width="2" opacity=".7"/><path d="M250 760 L400 560 L550 760" stroke-width="1.6" opacity=".55"/><path d="M320 760 L400 650 L480 760" stroke-width="1.2" opacity=".4"/></svg>
+  </div>
+  <div class="bgl bg-sauge"><div class="panel"></div><div id="bignum"></div></div>
+  <div class="bgl bg-nuit"><i></i><i></i><i></i></div>
+  <div class="bgl bg-verre"><div class="blob a"></div><div class="blob b"></div><div class="blob c"></div></div>
+  <div class="bgl bg-papier"><i></i><i></i><i></i></div>
+  <div class="bgl bg-rubans"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f8fe0"/><stop offset="1" stop-color="#2fd0bd"/></linearGradient>
+      <linearGradient id="rg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fdcc4"/><stop offset=".55" stop-color="#26b2d2"/><stop offset="1" stop-color="#2f8fe0"/></linearGradient>
+      <linearGradient id="rg3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2fd0bd"/><stop offset="1" stop-color="#2f90e2"/></linearGradient>
+      <filter id="rsh" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="12"/></filter>
+    </defs>
+    <g class="rb" id="rb-a" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g class="rb b" id="rb-b" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+  </svg></div>
+  <div class="bgl bg-facettes"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="fcw" id="fc-top"></g><g class="fcw" id="fc-bot"></g></svg></div>
+  <div class="bgl photo bg-bulles"><i></i></div>
+  <div class="bgl photo bg-hexa"><i></i></div>
+  <div class="bgl photo bg-points"><i></i></div>
+</div>
+
+<svg id="defs" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+  <marker id="arrk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3a4458"/></marker>
+  <marker id="arrbad" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+</defs></svg>
+
+<div id="brand"><a href="index.html" title="Retour à l'accueil">← Accueil</a> · ELK (Elasticsearch, Logstash, Kibana)</div>
+<div id="topbar">
+  <div id="vseg" role="group" aria-label="Version du cours"><button type="button" data-v="c" title="Tout le cours (E pour basculer)"><svg class="ico" aria-hidden="true"><use href="#ti-book"/></svg> Complète</button><button type="button" data-v="e" title="Ce qu'il faut maîtriser pour le jury (E)"><svg class="ico" aria-hidden="true"><use href="#ti-bolt"/></svg> Essentiel</button></div>
+  <button id="mast" type="button" title="Marquer ce chapitre comme maîtrisé (M)"></button>
+  <span id="prog"></span>
+</div>
+<div id="hud"><span id="count">1 / 1</span></div>
+<main id="deck">
+<section class="slide" data-ch="00" data-sec="Immersion" data-title="Immersion : découvrir ELK (Elasticsearch, Logstash, Kibana)">
+<div class="chlogos"><img class="chlogo big" src="assets/logos/elastic.svg" alt="Logo ELK (Elasticsearch, Logstash, Kibana)"></div>
+<div class="kicker">Bloc 4B · Big Data &amp; IA</div>
+<h1>ELK (Elasticsearch, Logstash, Kibana)</h1>
+<p class="lead">La <b>stack ELK</b> indexe de gros volumes de <b>documents</b> et de <b>logs</b> pour les <b>rechercher</b> et les <b>agréger</b> en quelques millisecondes. Vous verrez le <b>modèle de données</b> et le <b>cluster</b> d'<b>Elasticsearch</b>, l'<b>indexation</b> (mapping, analyseurs, bulk), la <b>recherche</b> et les <b>agrégations</b>, <b>Kibana</b> pour visualiser et <b>Logstash</b> pour ingérer. Complète <a href="mongodb.html">MongoDB</a> et <a href="sql.html">SQL</a> : un moteur de <b>recherche</b>, pas une base de référence.</p>
+<div class="chips"><span class="pill solid">immersion + 4 chapitres</span><span class="pill">mini-quiz par chapitre</span><span class="pill">quiz final · 45 questions</span><span class="pill">TP offres d'emploi et logs web</span></div>
+</section>
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 1 / 3</div>
+<h2>Comment retrouver en 50 ms les offres qui parlent de « développeur Python » parmi 5 millions de documents, avec les fautes de frappe tolérées et les plus pertinentes en premier ?</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card bad"><span class="lab">Une requête SQL avec LIKE '%python%'</span><p>Parcourt toute la table, ignore les accents et les fautes, ne sait pas classer par pertinence, ralentit avec le volume.</p></div><div class="card hl"><span class="lab">Un moteur de recherche avec index inversé</span><p>Chaque <b>mot</b> pointe vers la liste des <b>documents</b> qui le contiennent : on trouve directement les candidats, puis on <b>classe par pertinence</b> (score BM25).</p></div></div><div style="display:grid;gap:1.2vh"><p class="punch"><b>Elasticsearch</b> est un moteur de <b>recherche et d'analyse distribué</b>, construit sur <b>Apache Lucene</b>. Il stocke des <b>documents JSON</b> dans des <b>index</b>, interrogeables par une <b>API REST</b>. La stack ELK ajoute <b>Logstash</b> (collecter et transformer) et <b>Kibana</b> (explorer et visualiser) ; elle sert la <b>recherche plein texte</b>, l'<b>analyse de logs</b> et la <b>supervision</b>.</p><div class="analogy"><b>Analogie —</b> l'index alphabétique à la fin d'un livre : au lieu de relire 800 pages pour trouver un mot, on lit la liste des pages où il apparaît.</div></div></div>
+</section>
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 2 / 3</div>
+<h2>De Lucene (1999) à la stack Elastic</h2>
+<div class="flow"><div class="step"><b>1999</b><small><b>Doug Cutting</b> crée <b>Lucene</b>, bibliothèque de recherche Java</small></div><div class="step"><b>2009 · 2010</b><small><b>Logstash</b> (Jordan Sissel) ; <b>Elasticsearch</b> (Shay Banon, rend Lucene distribué)</small></div><div class="step"><b>2012 · 2013</b><small>Société <b>Elastic</b> ; <b>Kibana</b> (Rashid Khan) : la <b>stack ELK</b></small></div><div class="step"><b>2015 →</b><small><b>Beats</b> (Filebeat…) : collecteurs légers ; <b>Elastic Stack</b></small></div><div class="step"><b>2021 →</b><small>Changement de licence ; fork <b>OpenSearch</b> (AWS) ; licence AGPL ajoutée en 2024</small></div></div><div class="grid g2"><div class="card"><span class="lab">Qui l'utilise, pour quoi</span><ul><li>Recherche de produits et de contenus (e-commerce, documentation).</li><li><b>Logs et supervision</b> : centraliser les journaux de dizaines de serveurs.</li><li><b>SIEM</b> : détection d'incidents de sécurité ; recherche vectorielle et hybride.</li><li>À éviter comme <b>source de vérité</b> : copie indexée d'une base de référence.</li></ul></div><div class="sch free"><span class="cap">ELK dans le pipeline data</span><svg class="dg" viewBox="0 -36 460 166" role="img" aria-label="Les sources passent par Logstash puis Elasticsearch, puis Kibana affiche"><rect class="b f3" x="10" y="20" width="90" height="46" rx="8"/><text class="t tc" x="55.0" y="41.0">Sources</text><text class="s tc" x="55.0" y="56.0">logs, API</text><path class="e" d="M102 43 L118 43"/><rect class="b ok" x="120" y="20" width="100" height="46" rx="8"/><text class="t tc" x="170.0" y="41.0">Logstash</text><text class="s tc" x="170.0" y="56.0">transforme</text><path class="e" d="M222 43 L238 43"/><rect class="b ok" x="240" y="20" width="100" height="46" rx="8"/><text class="t tc" x="290.0" y="41.0">Elasticsearch</text><text class="s tc" x="290.0" y="56.0">indexe</text><path class="e" d="M342 43 L358 43"/><rect class="b ok" x="360" y="20" width="90" height="46" rx="8"/><text class="t tc" x="405.0" y="41.0">Kibana</text><text class="s tc" x="405.0" y="56.0">visualise</text><rect class="b f2" x="10" y="80" width="440" height="36" rx="8"/><text class="t tc" x="230.0" y="103.0">Conteneurs (Docker) : toute la stack en une commande</text>
+  <use class="il" href="#il-database" x="40.0" y="-13" width="30" height="30"/><use class="il" href="#il-gear" x="155.0" y="-13" width="30" height="30"/><use class="il" href="#il-log" x="275.0" y="-13" width="30" height="30"/><use class="il" href="#il-chart" x="390.0" y="-13" width="30" height="30"/>
+</svg></div></div>
+</section>
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 3 / 3</div>
+<h2>Premier contact : indexer et chercher avec l'API REST</h2>
+<div class="grid g2"><div class="code"><div class="codeh"><span>http · Elasticsearch</span><button class="cpy" type="button">Copier</button></div><pre><code>PUT offres/_doc/1
+{ "titre": "Développeur Python", "ville": "Lyon", "salaire": 45000 }
+
+GET offres/_search
+{ "query": { "match": { "titre": "python developpeur" } } }
+<span class="c"># -&gt; hits.total = 1, _score = 1.7  (pertinence BM25)</span>
+GET offres/_search
+{ "size": 0, "aggs": { "par_ville": { "terms": { "field": "ville.keyword" } } } }
+<span class="c"># -&gt; [{ "key": "Lyon", "doc_count": 1 }]</span></code></pre></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Ce qu'il faut remarquer</span><p>Tout passe par <b>HTTP + JSON</b> : un client suffit (curl, Kibana Dev Tools, Python). <code>match</code> <b>analyse</b> le texte et classe par <b>score</b> ; <code>terms</code> <b>agrège</b>. Le champ <code>ville.keyword</code> sert aux <b>agrégations exactes</b>.</p></div><div class="card"><span class="lab">Ce que le jury attend</span><ul><li>Choisir un moteur adapté à l'usage (recherche, logs).</li><li>Alimenter et exploiter une base de recherche.</li></ul></div></div></div><div class="flow"><div class="step"><b>01</b><small>modèle, cluster</small></div><div class="step"><b>02</b><small>indexation, mapping</small></div><div class="step"><b>03</b><small>recherche, agrégations</small></div><div class="step"><b>04</b><small>Kibana, Logstash</small></div></div>
+</section>
+<section class="slide" data-ch="00" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/elastic.svg" alt="Logo ELK (Elasticsearch, Logstash, Kibana)"></div>
+<div class="kicker">Immersion · Essentiel</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Présenter ELK en une minute</h2>
+<div class="card hl"><p class="q">« <b>Elasticsearch</b> est un moteur de recherche et d'analyse distribué basé sur <b>Lucene</b> : il stocke des <b>documents JSON</b> dans des <b>index</b> découpés en <b>shards</b> répartis sur des <b>nœuds</b>, avec des <b>répliques</b> pour la disponibilité. Un <b>index inversé</b> et des <b>analyseurs</b> permettent une recherche plein texte classée par <b>pertinence (BM25)</b>, et des <b>agrégations</b> calculent des statistiques.</p><p class="q">Je définis un <b>mapping</b> explicite, j'ingère en masse par l'API <b><code>_bulk</code></b> ou avec <b>Logstash</b> (pipeline entrée → filtres → sortie), et j'explore avec <b>Kibana</b>.</p><p class="q">Limites : pas de transactions, visibilité <b>quasi temps réel</b> (~1 s), mises à jour coûteuses : c'est une <b>copie indexée</b>, pas la source de vérité. »</p></div><div class="grid g3"><div class="card"><span class="lab">Les 3 mots à placer</span><p><b>Index inversé · mapping · shard</b></p></div><div class="card"><span class="lab">Le choix à justifier</span><p><b>Elasticsearch en copie</b>, pour chercher vite dans du texte et des journaux ; la base reste la source de vérité.</p></div><div class="card"><span class="lab">Le lien</span><p><a href="mongodb.html">MongoDB</a> · <a href="sql.html">SQL</a> · <a href="docker.html">Docker</a></p></div></div>
+</section>
+<section class="slide" data-ch="00" data-sec="Le fil" data-title="Le fil du cours : 5 idées">
+<div class="kicker">Le fil du cours · ELK (Elasticsearch, Logstash, Kibana)</div>
+<h2>5 idées font tout le cours</h2>
+<p class="lead fil-q">Tout le cours répond à : <b>comment retrouver en quelques millisecondes une information dans des milliards de lignes de texte ou de journaux ?</b> Cinq idées expliquent Elasticsearch, Logstash et Kibana.</p>
+<div class="grid g3 ideas"><div class="card idea"><span class="lab">Idée 1 · Indexer à l'écriture pour chercher vite</span><p>Elasticsearch prépare la recherche au moment où il enregistre un document : il construit un <b>index inversé</b>, une table qui associe chaque mot à la liste des documents qui le contiennent. Une recherche lit cette table, pas les documents. Presque tout se décide donc <b>à l'écriture</b>.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on indexe sans penser aux recherches à venir, on ne pourra chercher que ce qui a été construit à l'écriture : corriger ensuite oblige à tout réindexer.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Lister d'abord les recherches à servir (par quels champs, filtres, tris), puis définir l'index en conséquence.</p><p class="chs">ch. 02 · ch. 03</p></div><div class="card idea"><span class="lab">Idée 2 · Le mapping décide de ce qui est cherchable</span><p>Le <b>mapping</b> donne le type de chaque champ. Un champ <b>text</b> est analysé (découpé en mots, mis en minuscules) pour la recherche plein texte ; un champ <b>keyword</b> est gardé tel quel pour filtrer, trier et compter. Le type d'un champ existant ne peut changer qu'en <b>réindexant</b>.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on laisse Elasticsearch deviner le mapping, un identifiant peut être indexé en text : il est découpé en mots, et l'on ne peut plus filtrer ni agréger dessus.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Déclarer le mapping soi-même avant d'indexer : les identifiants et les codes en keyword, les textes libres en text.</p><p class="chs">ch. 01 · ch. 02 · ch. 03</p></div><div class="card idea"><span class="lab">Idée 3 · Filtrer ou scorer</span><p>Une <b>requête</b> (query) calcule un score de pertinence : « à quel point ce document correspond ». Un <b>filtre</b> répond seulement oui ou non, et son résultat est mis en cache. La requête <b>bool</b> combine must (doit correspondre, avec score), should (bonus), filter (oui/non, sans score) et must_not (exclure).</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on écrit des conditions oui / non dans must, Elasticsearch calcule un score de pertinence inutile et ne garde pas le résultat en cache.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Mettre les conditions oui / non (statut, date, catégorie) dans filter, et garder must pour la recherche de texte.</p><p class="chs">ch. 03</p></div><div class="card idea"><span class="lab">Idée 4 · Distribuer en shards, protéger par répliques</span><p>Un index est découpé en morceaux, les <b>shards</b>, répartis sur les machines (nœuds) du cluster. Chaque shard a des copies, les <b>répliques</b>, sur d'autres nœuds. Le nombre de shards principaux se fixe à la création de l'index.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si un index de plusieurs téraoctets n'a qu'un seul shard, toute la charge repose sur un seul nœud et l'on ne peut pas répartir le travail.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Choisir le nombre de shards selon le volume prévu (souvent quelques dizaines de Go par shard) et garder au moins une réplique.</p><p class="chs">ch. 01 · ch. 04</p></div><div class="card idea"><span class="lab">Idée 5 · Un pipeline : collecter, transformer, visualiser</span><p>La chaîne ELK : <b>Logstash</b> (ou les <b>Beats</b>) lit les données, les découpe (grok), les enrichit et les envoie par lots (<b>_bulk</b>) ; Elasticsearch les indexe ; <b>Kibana</b> permet de les explorer et de construire des tableaux de bord. Elasticsearch n'est pas la source de vérité : on garde la source pour pouvoir réindexer.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si Elasticsearch est la seule copie des données, un mapping raté devient irréparable : il n'existe plus de source à partir de laquelle réindexer.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Garder les données d'origine (base, fichiers bruts) et pouvoir reconstruire l'index à tout moment à partir d'elles.</p><p class="chs">ch. 02 · ch. 04</p></div></div>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · ELK (Elasticsearch, Logstash, Kibana)</div>
+<h2>Le modèle mental : ce qui se décide à l'écriture se paie à la lecture</h2>
+<div class="flow"><div class="step"><b>1</b><small>Ce champ sert-il à chercher du texte, ou à filtrer et agréger ?</small></div><div class="step"><b>2</b><small>Cette condition doit-elle influencer le score ?</small></div><div class="step"><b>3</b><small>Combien de shards et de répliques pour ce volume ?</small></div><div class="step"><b>4</b><small>D'où viennent les données, et peut-on réindexer depuis la source ?</small></div></div>
+<table class="cmp md"><thead><tr><th>Besoin</th><th>Choix</th><th>À éviter</th></tr></thead><tbody><tr><td>Recherche plein texte dans des messages</td><td>champ <b>text</b> avec l'analyseur de la langue</td><td>keyword : seule la valeur exacte correspond</td></tr><tr><td>Filtrer par statut, agréger par pays</td><td>champ <b>keyword</b></td><td>agréger sur un champ text</td></tr><tr><td>Condition oui / non</td><td>clause <b>filter</b>, mise en cache</td><td>must, qui calcule un score inutile</td></tr><tr><td>Ingérer des millions de lignes</td><td>API <b>_bulk</b> par lots</td><td>un appel par document</td></tr><tr><td>Journaux applicatifs</td><td>Logstash ou Beats avec grok, <b>un index par période</b></td><td>un seul index géant</td></tr></tbody></table>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · ELK (Elasticsearch, Logstash, Kibana)</div>
+<h2>Chaque chapitre applique les mêmes idées</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Chapitre</th><th><b>1</b></th><th><b>2</b></th><th><b>3</b></th><th><b>4</b></th><th><b>5</b></th></tr></thead><tbody><tr><td><b>01</b> Modèle et cluster</td><td></td><td>●</td><td></td><td>●</td><td></td></tr><tr><td><b>02</b> Indexation</td><td>●</td><td>●</td><td></td><td></td><td>●</td></tr><tr><td><b>03</b> Recherche</td><td>●</td><td>●</td><td>●</td><td></td><td></td></tr><tr><td><b>04</b> Kibana et Logstash</td><td></td><td></td><td></td><td>●</td><td>●</td></tr></tbody></table><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Ce qui revient dans <b>plusieurs chapitres</b> est une idée à comprendre ; ce qui n'apparaît qu'une fois est un <b>exemple</b> d'une de ces idées.</p></div></div></div><table class="cmp md"><thead><tr><th>Panne ou erreur classique</th><th>Idée oubliée</th><th>Ce qui casse</th></tr></thead><tbody><tr><td>Mapping dynamique laissé par défaut</td><td><b>2</b> · Le mapping décide de ce qui est cherchable</td><td>des identifiants deviennent text, les agrégations échouent</td></tr><tr><td>Changer le type d'un champ existant</td><td><b>2</b> · Le mapping décide de ce qui est cherchable</td><td>impossible sans réindexer</td></tr><tr><td>Un shard unique pour des téraoctets</td><td><b>4</b> · Distribuer en shards, protéger par répliques</td><td>la charge ne se répartit pas</td></tr><tr><td>Elasticsearch comme seule copie</td><td><b>5</b> · Un pipeline : collecter, transformer, visualiser</td><td>plus de source pour reconstruire l'index</td></tr><tr><td>Filtres écrits en must</td><td><b>3</b> · Filtrer ou scorer</td><td>scores inutiles, aucun cache</td></tr></tbody></table></div>
+</section>
+
+<section class="slide" data-ch="01" data-sec="01 Modèle et cluster" data-title="Modèle de données et cluster" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/elastic.svg" alt="Logo ELK (Elasticsearch, Logstash, Kibana)"></div>
+<div class="kicker">Chapitre 01 · Modèle de données et cluster</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Document, index, mapping, API REST</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Le vocabulaire</span><ul><li><b>Document</b> : un objet <b>JSON</b> (une offre, une ligne de log), identifié par un <code>_id</code>.</li><li><b>Champ</b> : une clé du document ; chaque champ a un <b>type</b> (<code>text</code>, <code>keyword</code>, <code>integer</code>, <code>date</code>…).</li><li><b>Index</b> : une collection de documents de structure voisine (équivalent d'une table / collection).</li><li><b>Mapping</b> : le schéma de l'index (types des champs).</li></ul></div><div class="analogy"><b>Analogie —</b> une bibliothèque : le document est une fiche, l'index le meuble de fiches, le mapping la règle qui dit quelles rubriques chaque fiche contient.</div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Dialoguer : l'API REST</span><ul><li><code>PUT index/_doc/1</code> crée ou remplace, <code>POST index/_doc</code> génère un id, <code>GET index/_doc/1</code> lit, <code>DELETE</code> supprime.</li><li><code>GET index/_search</code> recherche ; <code>POST _bulk</code> ingère en masse.</li><li>Un même langage, plusieurs outils : <b>Kibana Dev Tools</b>, curl, clients Python.</li></ul></div><div class="card"><span class="lab">Types de champ à connaître</span><ul><li><b><code>text</code></b> : texte <b>analysé</b> (découpé en mots) pour la recherche plein texte.</li><li><b><code>keyword</code></b> : valeur <b>exacte</b>, pour filtres, tris et agrégations.</li><li>Par défaut, un texte reçoit <b>les deux</b> : <code>titre</code> (text) et <code>titre.keyword</code>.</li></ul></div></div></div>
+</section>
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Modèle de données et cluster</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Le cluster : nœuds, shards, répliques</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Vocabulaire</span><ul><li><b>Cluster</b> : ensemble de <b>nœuds</b> (serveurs).</li><li><b>Shard primaire</b> : un morceau de l'index ; la <b>répartition</b> et le parallélisme.</li><li><b>Réplique</b> : copie d'un shard sur un <b>autre nœud</b> ; <b>tolérance aux pannes</b> et lectures plus rapides.</li><li>Depuis la version 7 : <b>1 primaire</b>, <b>1 réplique</b> par défaut. Le nombre de primaires est <b>fixé à la création</b>.</li></ul></div><table class="cmp md"><thead><tr><th>Santé</th><th>Signification</th></tr></thead><tbody><tr><td><b>Vert</b></td><td>tous les shards (primaires et répliques) sont alloués</td></tr><tr><td><b>Jaune</b></td><td>primaires alloués, mais <b>des répliques ne le sont pas</b> (nœud unique avec 1 réplique)</td></tr><tr><td><b>Rouge</b></td><td><b>au moins un primaire</b> non alloué : données indisponibles</td></tr></tbody></table></div><div style="display:grid;gap:1.2vh"><div class="sch free"><span class="cap">Index en 3 shards, 1 réplique</span><svg class="dg" viewBox="0 -36 470 206" role="img" aria-label="Trois nœuds portent chacun un primaire et une réplique d&#x27;un autre shard"><rect class="b f1" x="10" y="20" width="130" height="50" rx="8"/><text class="t tc" x="75.0" y="43.0">Nœud 1</text><text class="s tc" x="75.0" y="58.0">P0 · R2</text><rect class="b f1" x="170" y="20" width="130" height="50" rx="8"/><text class="t tc" x="235.0" y="43.0">Nœud 2</text><text class="s tc" x="235.0" y="58.0">P1 · R0</text><rect class="b f1" x="330" y="20" width="130" height="50" rx="8"/><text class="t tc" x="395.0" y="43.0">Nœud 3</text><text class="s tc" x="395.0" y="58.0">P2 · R1</text><text class="s" x="10" y="100">P = primaire · R = réplique : jamais sur le même nœud que son primaire</text><text class="s" x="10" y="125">Perte du nœud 2 : R1 (nœud 3) devient primaire, aucune donnée perdue</text>
+  <use class="il" href="#il-server" x="60.0" y="-13" width="30" height="30"/><use class="il" href="#il-server" x="220.0" y="-13" width="30" height="30"/><use class="il" href="#il-server" x="380.0" y="-13" width="30" height="30"/>
+</svg></div><div class="card"><span class="lab">Diagnostic</span><p><code>GET _cluster/health</code> ; <code>GET _cat/shards?v</code> ; <b><code>GET _cluster/allocation/explain</code></b> : pourquoi un shard n'est pas alloué (première commande à lancer en jaune ou rouge).</p></div></div></div>
+</section>
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Modèle de données et cluster</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et résumé</h2>
+<div class="grid g2"><div class="trap-list"><div><b>Utiliser Elasticsearch comme source de vérité</b> : pas de transactions multi-documents ; garder une base de référence.</div><div><b>Trop de petits shards</b> : surcharge mémoire ; viser des shards de quelques dizaines de Go.</div><div><b>Réplique sur un cluster à un nœud</b> : cluster jaune permanent.</div><div><b>Compter sur un nombre de primaires modifiable</b> : il se fixe à la création (réindexer pour changer).</div><div><b>Confondre <code>text</code> et <code>keyword</code></b> : on ne trie pas et on n'agrège pas sur un champ analysé.</div></div><ol class="sum-list"><li>Document JSON → index ; mapping = schéma ; API REST.</li><li><code>text</code> (analysé, recherche) contre <code>keyword</code> (exact, filtre, agrégation).</li><li>Shards (répartition) + répliques (tolérance aux pannes) sur des nœuds.</li><li>Santé : vert, jaune (répliques manquantes), rouge (primaire manquant).</li></ol></div>
+</section>
+<section class="slide" data-ch="01" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/elastic.svg" alt="Logo ELK (Elasticsearch, Logstash, Kibana)"></div>
+<div class="kicker">Chapitre 01 · Modèle de données et cluster</div>
+<h2>Fiche — Modèle et cluster</h2>
+<div class="fiche"><div class="card"><span class="lab">Document / index</span><p>Document = JSON ; index = collection ; mapping = schéma.</p></div><div class="card"><span class="lab">text / keyword</span><p>text analysé (recherche) ; keyword exact (filtres, tris, agrégations).</p></div><div class="card"><span class="lab">Shard</span><p>Morceau d'index ; primaire fixé à la création.</p></div><div class="card"><span class="lab">Réplique</span><p>Copie sur un autre nœud : tolérance aux pannes et lecture.</p></div><div class="card"><span class="lab">Santé</span><p>Vert · jaune (répliques) · rouge (primaire manquant).</p></div><div class="card"><span class="lab">Rôle</span><p>Moteur de recherche : copie indexée, pas source de vérité.</p></div></div>
+</section>
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Modèle de données et cluster</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 01</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Quelle différence entre un shard primaire et une réplique ?</button><div class="ab"><p>Le primaire porte une partie des documents et reçoit les écritures ; la réplique en est une copie sur un autre nœud, qui assure la tolérance aux pannes et partage les lectures. Une réplique n'est jamais placée sur le nœud de son primaire.</p></div></div><div class="acc jq"><button class="ah" type="button">Que signifie un cluster jaune ?</button><div class="ab"><p>Tous les shards primaires sont alloués, donc les données sont disponibles, mais certaines répliques ne le sont pas, par exemple sur un seul nœud avec une réplique demandée. Il n'y a plus de redondance.</p></div></div><div class="acc jq"><button class="ah" type="button">Quelle différence entre text et keyword ?</button><div class="ab"><p>Un champ text est analysé : découpé en termes normalisés pour la recherche plein texte. Un champ keyword est conservé tel quel pour les filtres exacts, les tris et les agrégations.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi Elasticsearch n'est-il pas une base de référence ?</button><div class="ab"><p>Il n'offre pas de transactions multi-documents, les mises à jour sont coûteuses et les écritures ne sont visibles qu'après un rafraîchissement. On y place une copie indexée de données dont la référence est ailleurs.</p></div></div><div class="acc jq"><button class="ah" type="button">Quand choisir Elasticsearch plutôt que MongoDB ou SQL ?</button><div class="ab"><p>Pour la recherche plein texte avec pertinence, les filtres et facettes sur de gros volumes et l'analyse de logs. Pour des transactions et une source de vérité, on garde une base relationnelle ou documentaire.</p></div></div></div>
+</section>
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Modèle de données et cluster</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="01"></div>
+</section>
+<section class="slide" data-ch="02" data-sec="02 Indexation" data-title="Indexer : analyseurs, mapping et ingestion en masse" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/elastic.svg" alt="Logo ELK (Elasticsearch, Logstash, Kibana)"></div>
+<div class="kicker">Chapitre 02 · Indexer : analyseurs, mapping et ingestion en masse</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Index inversé, analyseur, mapping</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">L'index inversé</span><p>Pour chaque <b>terme</b>, la liste des documents qui le contiennent. Chercher un mot = lire une entrée, sans parcourir les documents.</p></div><div class="code"><div class="codeh"><span>texte</span><button class="cpy" type="button">Copier</button></div><pre><code>doc1 : « Développeur Python à Lyon »
+doc2 : « Data engineer Python »
+terme      → documents
+python     → doc1, doc2
+lyon       → doc1
+engineer   → doc2</code></pre></div><div class="card"><span class="lab">L'analyseur</span><p>Transforme un texte en <b>termes</b> : <b>character filters</b> → <b>tokenizer</b> (découpe) → <b>token filters</b> (minuscules, suppression d'accents, mots vides, racinisation). <b>Le même analyseur</b> doit servir à l'<b>indexation</b> et à la <b>recherche</b>.</p></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Le mapping</span><ul><li><b>Dynamique</b> : Elasticsearch <b>devine</b> les types à la volée (pratique, mais piège : une chaîne devient <code>text</code> + <code>keyword</code>, une date mal lue devient <code>text</code>).</li><li><b>Explicite</b> : on déclare les champs ; mode <b><code>strict</code></b> : refuse les champs inconnus.</li><li><b>Multi-fields</b> : un même champ indexé de plusieurs façons (<code>titre</code> en text, <code>titre.keyword</code> exact).</li><li>Un type existant <b>ne se modifie pas</b> : il faut créer un nouvel index et <b>réindexer</b>.</li></ul></div><div class="code"><div class="codeh"><span>http · mapping explicite</span><button class="cpy" type="button">Copier</button></div><pre><code>PUT offres
+{ "mappings": { "dynamic": "strict", "properties": {
+  "titre":   { "type": "text", "fields": { "keyword": { "type": "keyword" } } },
+  "ville":   { "type": "keyword" },
+  "salaire": { "type": "integer" },
+  "publiee": { "type": "date" } } } }</code></pre></div></div></div>
+</section>
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · Indexer : analyseurs, mapping et ingestion en masse</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Écrire, ingérer en masse, rester cohérent</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Le chemin d'une écriture</span><ul><li>Le document va au <b>shard primaire</b>, puis aux <b>répliques</b>.</li><li>Il est écrit dans un <b>tampon mémoire</b> et dans le <b>journal de transactions (translog)</b> pour ne pas le perdre.</li><li>Un <b>rafraîchissement</b> (<code>refresh</code>, par défaut <b>toutes les secondes</b>) le rend <b>cherchable</b> : recherche <b>quasi temps réel</b>, pas instantanée.</li><li>Les données forment des <b>segments immuables</b> ; mise à jour = nouveau document + ancien marqué supprimé ; <b>fusion</b> (merge) des segments en arrière-plan.</li></ul></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Segments <b>immuables</b> : une mise à jour coûte cher (réécriture du document). On évite les mises à jour fréquentes champ par champ.</p></div></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">L'API _bulk et l'idempotence</span><ul><li><b><code>_bulk</code></b> : des milliers d'opérations en <b>une requête</b> (format NDJSON) : beaucoup plus rapide qu'un appel par document.</li><li><b>Idempotence</b> : en fournissant un <b><code>_id</code> stable</b> (par exemple l'identifiant métier), rejouer l'ingestion <b>remplace</b> au lieu de <b>dupliquer</b>.</li><li>Lire sans tout charger : <b>générateurs</b> Python et envoi par lots (<a href="python.html">Python</a>).</li></ul></div><div class="code"><div class="codeh"><span>python · ingestion en masse</span><button class="cpy" type="button">Copier</button></div><pre><code>from elasticsearch import Elasticsearch, helpers
+es = Elasticsearch("http:<span class="c">//localhost:9200")</span>
+actions = ({"_index": "offres", "_id": o["id"], "_source": o}   <span class="c"># _id stable</span>
+           for o in lire_offres())                                <span class="c"># générateur</span>
+ok, erreurs = helpers.bulk(es, actions, raise_on_error=False)
+print(ok, "indexés,", len(erreurs), "erreurs")</code></pre></div></div></div>
+</section>
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · Indexer : analyseurs, mapping et ingestion en masse</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et résumé</h2>
+<div class="grid g2"><div class="trap-list"><div><b>Laisser le mapping dynamique en production</b> : un champ mal deviné bloque ou fausse tout.</div><div><b>Indexer un document à la fois</b> : mille fois plus lent que <code>_bulk</code>.</div><div><b>Pas d'<code>_id</code> stable</b> : un rejeu double les documents.</div><div><b>Analyseurs différents</b> à l'indexation et à la recherche : on ne retrouve plus rien.</div><div><b>Attendre une visibilité immédiate</b> : il faut attendre le rafraîchissement (~1 s) ou le forcer.</div></div><ol class="sum-list"><li>Index inversé : terme → documents ; l'analyseur découpe et normalise.</li><li>Mapping explicite (<code>strict</code>), multi-fields, immuable : réindexer pour changer.</li><li>Écriture : primaire, répliques, translog, refresh (~1 s), segments immuables.</li><li><code>_bulk</code> + <code>_id</code> stable = ingestion rapide et rejouable.</li></ol></div>
+</section>
+<section class="slide" data-ch="02" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/elastic.svg" alt="Logo ELK (Elasticsearch, Logstash, Kibana)"></div>
+<div class="kicker">Chapitre 02 · Indexer : analyseurs, mapping et ingestion en masse</div>
+<h2>Fiche — Indexation</h2>
+<div class="fiche"><div class="card"><span class="lab">Index inversé</span><p>Terme → documents ; recherche rapide plein texte.</p></div><div class="card"><span class="lab">Analyseur</span><p>Character filters → tokenizer → token filters ; même analyseur à l'écriture et à la lecture.</p></div><div class="card"><span class="lab">Mapping</span><p>Explicite et strict en production ; immuable : réindexer.</p></div><div class="card"><span class="lab">Écriture</span><p>Translog + refresh (~1 s) : quasi temps réel.</p></div><div class="card"><span class="lab">Segments</span><p>Immuables ; mise à jour = remplacer ; merge en arrière-plan.</p></div><div class="card"><span class="lab">_bulk</span><p>Ingestion en masse ; <code>_id</code> stable = idempotent.</p></div></div>
+</section>
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · Indexer : analyseurs, mapping et ingestion en masse</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 02</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Qu'est-ce qu'un index inversé ?</button><div class="ab"><p>Une structure qui associe chaque terme à la liste des documents qui le contiennent, comme l'index d'un livre. Elle permet de trouver les candidats d'une recherche sans parcourir tous les documents.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi définir un mapping explicite ?</button><div class="ab"><p>Pour maîtriser les types : le mapping dynamique peut mal interpréter un champ (une date lue comme texte), et un type existant ne se modifie pas sans réindexation. Le mode strict refuse les champs imprévus.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi la recherche n'est-elle pas immédiate après une écriture ?</button><div class="ab"><p>Le document est d'abord dans un tampon et le translog ; il devient cherchable au rafraîchissement du shard, par défaut chaque seconde. On parle de quasi temps réel.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment rendre une ingestion rejouable sans doublons ?</button><div class="ab"><p>En donnant à chaque document un identifiant stable issu de la donnée (id métier). Rejouer l'import remplace les documents existants au lieu d'en créer de nouveaux.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi utiliser _bulk ?</button><div class="ab"><p>Pour envoyer des milliers d'opérations par requête : on réduit les allers-retours réseau et la charge, et l'ingestion est bien plus rapide qu'un appel par document.</p></div></div></div>
+</section>
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · Indexer : analyseurs, mapping et ingestion en masse</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="02"></div>
+</section>
+<section class="slide" data-ch="03" data-sec="03 Recherche" data-title="Rechercher et agréger" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/elastic.svg" alt="Logo ELK (Elasticsearch, Logstash, Kibana)"></div>
+<div class="kicker">Chapitre 03 · Rechercher et agréger</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Requête et filtre, bool, score</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Contexte requête contre contexte filtre</span><ul><li><b>Requête</b> (<code>must</code>, <code>should</code>) : calcule un <b>score de pertinence</b>.</li><li><b>Filtre</b> (<code>filter</code>, <code>must_not</code>) : <b>oui/non</b>, <b>sans score</b>, <b>mis en cache</b> : plus rapide.</li><li>Règle : <b>texte → requête</b> ; <b>valeurs exactes, dates, nombres → filtre</b>.</li></ul></div><div class="card"><span class="lab">Le score BM25</span><p>Algorithme de pertinence par défaut : tient compte de la <b>fréquence du terme</b> dans le document (saturée), de sa <b>rareté</b> dans l'index et de la <b>longueur</b> du champ. Remplace TF-IDF depuis la version 5.</p></div></div><div class="code"><div class="codeh"><span>http · requête bool</span><button class="cpy" type="button">Copier</button></div><pre><code>GET offres/_search
+{ "query": { "bool": {
+    "must":     [ { "match": { "description": "python spark" } } ],
+    "filter":   [ { "term":  { "ville": "Lyon" } },
+                  { "range": { "salaire": { "gte": 40000 } } } ],
+    "must_not": [ { "term":  { "type": "stage" } } ] } },
+  "size": 10, "highlight": { "fields": { "description": {} } } }</code></pre></div></div>
+</section>
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Rechercher et agréger</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Familles de requêtes, agrégations, ES|QL</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Familles de requêtes</span><ul><li><b><code>match</code></b> : texte analysé · <b><code>match_phrase</code></b> : expression exacte · <b><code>multi_match</code></b> : plusieurs champs.</li><li><b><code>term</code></b> / <b><code>terms</code></b> : valeur exacte (sur <code>keyword</code>) · <b><code>range</code></b> : bornes · <b><code>exists</code></b>.</li><li><b><code>fuzzy</code></b> / <code>fuzziness</code> : <b>tolérance aux fautes</b> (distance d'édition).</li><li><b>Géographie</b> : <code>geo_distance</code>. <b>Pagination</b> : <code>from</code>/<code>size</code>, <code>search_after</code> pour les gros volumes ; <b>surlignage</b> (<code>highlight</code>).</li></ul></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Éviter <code>from</code> très grand (pagination profonde) : utiliser <code>search_after</code>.</p></div></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Agrégations</span><ul><li><b>Buckets</b> : regrouper (<code>terms</code>, <code>date_histogram</code>, <code>range</code>) — comme un <code>GROUP BY</code>.</li><li><b>Métriques</b> : calculer (<code>avg</code>, <code>sum</code>, <code>min</code>, <code>max</code>, <code>percentiles</code>, <code>cardinality</code>).</li><li>Imbriquables : par ville, le salaire moyen.</li><li><code>"size": 0</code> : ne renvoyer que les agrégats.</li></ul></div><div class="code"><div class="codeh"><span>http</span><button class="cpy" type="button">Copier</button></div><pre><code>GET offres/_search
+{ "size": 0, "aggs": { "par_ville": {
+    "terms": { "field": "ville" },
+    "aggs":  { "salaire_moyen": { "avg": { "field": "salaire" } } } } } }</code></pre></div><div class="card"><span class="lab">ES|QL</span><p>Langage de requête <b>à pipeline</b> d'Elastic : <code>FROM offres | WHERE salaire &gt; 40000 | STATS avg(salaire) BY ville | SORT ... | LIMIT 10</code>. Plus lisible pour l'analyse.</p></div></div></div>
+</section>
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Rechercher et agréger</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et résumé</h2>
+<div class="grid g2"><div class="trap-list"><div><b>Mettre un filtre exact dans <code>must</code></b> : score inutile et cache perdu ; utiliser <code>filter</code>.</div><div><b><code>term</code> sur un champ <code>text</code></b> : le terme analysé n'est plus la valeur exacte ; utiliser <code>.keyword</code>.</div><div><b>Agréger sur un champ <code>text</code></b> : refusé ou coûteux ; utiliser <code>keyword</code>.</div><div><b>Pagination profonde</b> avec <code>from</code> : mémoire et lenteur.</div><div><b>Interpréter le score</b> comme absolu : il n'a de sens que <b>relatif</b> à une requête.</div></div><ol class="sum-list"><li>bool : must / should (score) ; filter / must_not (oui-non, cache).</li><li>BM25 : fréquence saturée, rareté, longueur du champ.</li><li>match (texte) · term (exact) · range · fuzzy (fautes).</li><li>Agrégations : buckets + métriques ; ES|QL pour l'analyse en pipeline.</li></ol></div>
+</section>
+<section class="slide" data-ch="03" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/elastic.svg" alt="Logo ELK (Elasticsearch, Logstash, Kibana)"></div>
+<div class="kicker">Chapitre 03 · Rechercher et agréger</div>
+<h2>Fiche — Recherche</h2>
+<div class="fiche"><div class="card"><span class="lab">Requête / filtre</span><p>Requête = score ; filtre = oui/non, caché, plus rapide.</p></div><div class="card"><span class="lab">bool</span><p>must, should (score) · filter, must_not (sans score).</p></div><div class="card"><span class="lab">BM25</span><p>Fréquence du terme saturée, rareté, longueur du champ.</p></div><div class="card"><span class="lab">match / term</span><p>match : texte analysé ; term : valeur exacte (keyword).</p></div><div class="card"><span class="lab">Agrégations</span><p>Buckets (terms, date_histogram) + métriques (avg, sum).</p></div><div class="card"><span class="lab">Pagination</span><p><code>search_after</code> pour les gros volumes ; <code>highlight</code> pour surligner.</p></div></div>
+</section>
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Rechercher et agréger</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 03</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Quelle différence entre contexte requête et contexte filtre ?</button><div class="ab"><p>En contexte requête, Elasticsearch calcule un score de pertinence ; en contexte filtre, la réponse est oui ou non, sans score, et les résultats sont mis en cache. On filtre les valeurs exactes et on réserve les requêtes au texte.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment est calculé le score d'un document ?</button><div class="ab"><p>Par BM25 : il croît avec la fréquence du terme dans le document, avec un effet de saturation, et avec la rareté du terme dans l'index, et il est atténué pour les champs longs.</p></div></div><div class="acc jq"><button class="ah" type="button">Quand utiliser match plutôt que term ?</button><div class="ab"><p>Match pour du texte libre : la requête est analysée comme à l'indexation. Term pour une valeur exacte, sur un champ keyword, sans analyse.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment tolérer les fautes de frappe ?</button><div class="ab"><p>Avec la tolérance <code>fuzziness</code> : la requête accepte des termes à une ou deux modifications de caractères près. C'est utile pour la recherche saisie par un utilisateur.</p></div></div><div class="acc jq"><button class="ah" type="button">À quoi servent les agrégations ?</button><div class="ab"><p>À calculer des statistiques sur les résultats : regroupements par valeur ou par intervalle de dates (buckets) et calculs comme moyenne ou somme (métriques), imbriquables pour des analyses par catégorie.</p></div></div></div>
+</section>
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Rechercher et agréger</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="03"></div>
+</section>
+<section class="slide" data-ch="04" data-sec="04 Kibana et Logstash" data-title="Kibana et Logstash" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/elastic.svg" alt="Logo ELK (Elasticsearch, Logstash, Kibana)"></div>
+<div class="kicker">Chapitre 04 · Kibana et Logstash</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Kibana : explorer et visualiser</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Rôle</span><p>Interface web <b>au-dessus</b> d'Elasticsearch : explorer, visualiser, surveiller, administrer. Aucune donnée n'y est stockée : elle <b>interroge</b> Elasticsearch.</p></div><div class="card"><span class="lab">Les écrans</span><ul><li><b>Discover</b> : explorer les documents, filtrer, chercher.</li><li><b>Dashboard</b> / <b>Lens</b> : visualisations et tableaux de bord.</li><li><b>Dev Tools</b> : console pour l'API REST.</li><li><b>Stack Management</b> : data views, index, utilisateurs et rôles.</li><li><b>Data view</b> : définit <b>quels index</b> Kibana lit (avec un champ date).</li></ul></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">KQL (Kibana Query Language)</span><p>Syntaxe simple de filtre : <code>ville : "Lyon" and salaire &gt;= 40000</code> · <code>message : *timeout*</code> · <code>not status : 200</code>. Sert à filtrer dans Discover et les tableaux de bord.</p></div><div class="card"><span class="lab">Visualiser</span><ul><li>Courbe de <b>séries temporelles</b> (volume de logs par minute), histogrammes, camemberts, cartes, métriques.</li><li>Un <b>tableau de bord</b> assemble des visuels qui se <b>filtrent entre eux</b>.</li><li>Les agrégations d'Elasticsearch produisent les données de chaque visuel.</li></ul></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Comparable à <a href="powerbi.html">Power BI</a> pour l'exploration, mais <b>natif</b> sur des données indexées et orienté <b>logs et temps réel</b>.</p></div></div></div></div>
+</section>
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Kibana et Logstash</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Logstash : un pipeline entrée, filtres, sortie</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Anatomie</span><p>Un pipeline Logstash a trois étages : <b>input</b> (lire : fichier, Kafka, Beats, JDBC), <b>filter</b> (transformer), <b>output</b> (écrire : Elasticsearch, fichier). Chaque étage utilise des <b>plugins</b>.</p></div><table class="cmp md"><thead><tr><th>Filtre</th><th>Rôle</th></tr></thead><tbody><tr><td><b>grok</b></td><td>extraire des champs d'une ligne de texte par motif</td></tr><tr><td><b>dissect</b></td><td>découpage par délimiteurs, plus simple et rapide</td></tr><tr><td><b>date</b></td><td>lire l'horodatage et le placer dans <code>@timestamp</code></td></tr><tr><td><b>mutate</b></td><td>renommer, convertir, supprimer des champs</td></tr><tr><td><b>geoip</b></td><td>ajouter la localisation d'une adresse IP</td></tr><tr><td><b>csv</b> / <b>json</b></td><td>analyser ces formats</td></tr></tbody></table></div><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>conf · web.conf (logs d&#x27;accès)</span><button class="cpy" type="button">Copier</button></div><pre><code>input  { file { path =&gt; "/data/access.log" start_position =&gt; "beginning" } }
+filter {
+  grok  { match =&gt; { "message" =&gt; "%{COMBINEDAPACHELOG}" } }
+  date  { match =&gt; [ "timestamp", "dd/MMM/yyyy:HH:mm:ss Z" ] }
+  mutate { convert =&gt; { "bytes" =&gt; "integer" } }
+  geoip { source =&gt; "clientip" }
+}
+output { elasticsearch { hosts =&gt; ["http:<span class="c">//es:9200"] index =&gt; "web-%{+YYYY.MM.dd}" } }</span></code></pre></div><div class="card"><span class="lab">ECS</span><p><b>Elastic Common Schema</b> : noms de champs <b>standard</b> (<code>source.ip</code>, <code>http.response.status_code</code>) pour que logs de sources différentes soient comparables dans Kibana.</p></div></div></div>
+</section>
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Kibana et Logstash</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Fiabilité, pièges et résumé</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Fiabilité</span><ul><li><b>File persistante</b> (persistent queue) : les événements survivent à un arrêt.</li><li><b>Dead letter queue</b> : conserve les documents <b>rejetés</b> par Elasticsearch (erreur de mapping) pour les analyser.</li><li><b>Plusieurs pipelines</b> (<code>pipelines.yml</code>) : isoler des flux aux besoins différents.</li><li><b>Sécuriser</b> : TLS et identifiants dédiés avec droits minimaux.</li></ul></div><div class="trap-list"><div><b>Logs mal analysés</b> : une ligne qui ne correspond pas au motif reçoit le tag <code>_grokparsefailure</code> ; surveiller ce tag.</div><div><b>Pas de filtre <code>date</code></b> : <code>@timestamp</code> est l'heure d'ingestion, pas l'heure de l'événement.</div><div><b>Index unique qui grossit sans fin</b> : un index par jour ou une politique de cycle de vie (<b>ILM</b>).</div></div></div><ol class="sum-list"><li>Kibana explore et visualise ; data view = index lus ; KQL pour filtrer.</li><li>Logstash : input → filter (grok, date, mutate, geoip) → output.</li><li>ECS normalise les noms de champs.</li><li>File persistante, dead letter queue, pipelines multiples, TLS.</li></ol></div>
+</section>
+<section class="slide" data-ch="04" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/elastic.svg" alt="Logo ELK (Elasticsearch, Logstash, Kibana)"></div>
+<div class="kicker">Chapitre 04 · Kibana et Logstash</div>
+<h2>Fiche — Kibana et Logstash</h2>
+<div class="fiche"><div class="card"><span class="lab">Kibana</span><p>Interface d'exploration : Discover, Lens, Dashboard, Dev Tools.</p></div><div class="card"><span class="lab">Data view</span><p>Définit les index lus par Kibana.</p></div><div class="card"><span class="lab">Logstash</span><p>Pipeline : input → filter → output (plugins).</p></div><div class="card"><span class="lab">Filtres</span><p>grok, dissect, date, mutate, geoip.</p></div><div class="card"><span class="lab">ECS</span><p>Schéma commun des noms de champs.</p></div><div class="card"><span class="lab">Fiabilité</span><p>File persistante · dead letter queue · pipelines multiples · TLS.</p></div></div>
+</section>
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Kibana et Logstash</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 04</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Quel est le rôle de Logstash dans la stack ?</button><div class="ab"><p>Collecter des données de sources variées, les transformer (analyser, normaliser, enrichir) puis les envoyer vers Elasticsearch ou une autre destination, au moyen d'un pipeline entrée, filtres, sortie.</p></div></div><div class="acc jq"><button class="ah" type="button">À quoi sert le filtre grok ?</button><div class="ab"><p>À extraire des champs structurés d'une ligne de texte, par exemple décomposer une ligne de log Apache en adresse IP, date, méthode, statut et taille, à l'aide de motifs nommés.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi utiliser ECS ?</button><div class="ab"><p>Pour donner les mêmes noms aux mêmes notions quelle que soit la source, ce qui permet de croiser et visualiser ensemble des logs de systèmes différents dans Kibana.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment ne pas perdre d'événements dans Logstash ?</button><div class="ab"><p>Avec la file persistante sur disque qui survit à un arrêt, la dead letter queue pour les documents rejetés par Elasticsearch, et une sortie fiable avec reprise sur erreur.</p></div></div><div class="acc jq"><button class="ah" type="button">Quelle différence entre Kibana et Power BI ?</button><div class="ab"><p>Kibana est natif d'Elasticsearch, orienté exploration de logs, recherche et séries temporelles quasi temps réel ; Power BI est une plateforme de BI généraliste avec modèle de données et DAX, adaptée aux tableaux de bord décisionnels.</p></div></div></div>
+</section>
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Kibana et Logstash</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="04"></div>
+</section>
+<section class="slide" data-ch="quiz" data-sec="Quiz final" data-title="Quiz final — 45 questions">
+<div class="kicker">Quiz final · ELK (Elasticsearch, Logstash, Kibana)</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-target"/></svg> 45 questions pour affronter le jury</h2>
+<p class="lead">Tous chapitres mélangés ; l'ordre des questions et des réponses change à chaque tentative. Certaines questions ont <b>plusieurs bonnes réponses</b>.</p>
+<div data-quiz="final"></div>
+</section>
+
+</main>
+<button class="arrow" id="prev" type="button" aria-label="Diapositive précédente">‹</button>
+<button class="arrow" id="next" type="button" aria-label="Diapositive suivante">›</button>
+<nav id="tl" aria-label="Chapitres"></nav>
+<div id="hint">← → naviguer · ↑ ↓ défiler · H ampoule <svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg> · E Complète/Essentiel · M maîtrisé · S sommaire · T thème</div>
+<button id="bulbhint" type="button"><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></button>
+<div id="ctip" role="tooltip"></div>
+<div id="toc" role="dialog" aria-label="Sommaire">
+  <button class="btn xx" id="tocx" type="button">Fermer ✕</button>
+  <div class="kicker">Sommaire · ELK (Elasticsearch, Logstash, Kibana)</div>
+  <h2>ELK (Elasticsearch, Logstash, Kibana)</h2>
+  <div class="tg"></div>
+</div>
+
+<div id="fab">
+  <button id="helpbtn" type="button" aria-label="Ampoule : concepts expliqués au survol" aria-pressed="false" title="Ampoule : soulignez les concepts, survolez-les pour une explication (H)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></button>
+<button id="tocbtn" type="button" aria-label="Sommaire" title="Sommaire (S)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+  <div id="themebtn">
+    <div id="menu" role="menu"><h4>Thème</h4></div>
+    <button id="tbtn" type="button" aria-label="Changer de thème" aria-haspopup="true" title="Changer de thème (T)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.4-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16a5 5 0 0 0 5-5c0-4-4-7-9-7z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="7.5" r="1"/></svg>
+    </button>
+  </div>
+</div>
+
+</div>
+<script src="assets/icons.js?v=1795252877"></script>
+<script src="data/elk-quiz.js?v=1795252878"></script>
+<script src="data/elk-glossary.js?v=1795252878"></script>
+<script src="assets/engine.js?v=1795252877"></script>
+</body>
+</html>

@@ -1,0 +1,1147 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fil rouge GaSeBeLa · Révision Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/base.css?v=1795252886">
+<link rel="stylesheet" href="assets/photos.css?v=1795252886">
+<link rel="stylesheet" href="assets/revision.css?v=1795252886">
+</head>
+<body data-page="course" data-course="fil-rouge" data-title="Fil rouge GaSeBeLa">
+<div id="app" data-theme="papier">
+
+<div id="bg" aria-hidden="true">
+  <div class="bgl bg-neon">
+    <svg viewBox="0 0 800 800"><path d="M40 760 L400 280 L760 760" stroke-width="3"/><path d="M110 760 L400 380 L690 760" stroke-width="2.4" opacity=".85"/><path d="M180 760 L400 470 L620 760" stroke-width="2" opacity=".7"/><path d="M250 760 L400 560 L550 760" stroke-width="1.6" opacity=".55"/><path d="M320 760 L400 650 L480 760" stroke-width="1.2" opacity=".4"/></svg>
+  </div>
+  <div class="bgl bg-sauge"><div class="panel"></div><div id="bignum"></div></div>
+  <div class="bgl bg-nuit"><i></i><i></i><i></i></div>
+  <div class="bgl bg-verre"><div class="blob a"></div><div class="blob b"></div><div class="blob c"></div></div>
+  <div class="bgl bg-papier"><i></i><i></i><i></i></div>
+  <div class="bgl bg-rubans"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f8fe0"/><stop offset="1" stop-color="#2fd0bd"/></linearGradient>
+      <linearGradient id="rg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fdcc4"/><stop offset=".55" stop-color="#26b2d2"/><stop offset="1" stop-color="#2f8fe0"/></linearGradient>
+      <linearGradient id="rg3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2fd0bd"/><stop offset="1" stop-color="#2f90e2"/></linearGradient>
+      <filter id="rsh" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="12"/></filter>
+    </defs>
+    <g class="rb" id="rb-a" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g class="rb b" id="rb-b" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+  </svg></div>
+  <div class="bgl bg-facettes"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="fcw" id="fc-top"></g><g class="fcw" id="fc-bot"></g></svg></div>
+  <div class="bgl photo bg-bulles"><i></i></div>
+  <div class="bgl photo bg-hexa"><i></i></div>
+  <div class="bgl photo bg-points"><i></i></div>
+</div>
+
+<svg id="defs" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+  <marker id="arrk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3a4458"/></marker>
+  <marker id="arrbad" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+</defs></svg>
+
+<div id="brand"><a href="index.html" title="Retour à l'accueil">← Accueil</a> · Fil rouge GaSeBeLa</div>
+<div id="topbar">
+  <div id="vseg" role="group" aria-label="Version du cours"><button type="button" data-v="c" title="Tout le cours (E pour basculer)"><svg class="ico" aria-hidden="true"><use href="#ti-book"/></svg> Complète</button><button type="button" data-v="e" title="Ce qu'il faut maîtriser pour le jury (E)"><svg class="ico" aria-hidden="true"><use href="#ti-bolt"/></svg> Essentiel</button></div>
+  <button id="mast" type="button" title="Marquer ce chapitre comme maîtrisé (M)"></button>
+  <span id="prog"></span>
+</div>
+<div id="hud"><span id="count">1 / 1</span></div>
+<main id="deck">
+<!-- ================= 00 · IMMERSION ================= -->
+<section class="slide" data-ch="00" data-sec="Immersion" data-title="Immersion : le projet en une vue">
+<div class="kicker">Examen · Titre 7 EISI · Option Big Data &amp; IA</div>
+<h1>Fil rouge GaSeBeLa</h1>
+<p class="lead">Ton projet raconté comme un cours. Une société de <b>chasse immobilière</b> a un système d'information de trois tables, faux et sans code source. L'équipe <b>GaSeBeLa</b> l'a audité, a conçu une base de <b>22 tables</b>, une <b>API</b> sécurisée, un <b>flux de données</b> de nuit et un <b>moteur de suggestion</b> qui prépare l'IA. Les chapitres suivent les <b>8 parties du dossier</b> : l'ordre exact de ta présentation au jury.</p>
+<div class="chips"><span class="pill solid">immersion + 8 chapitres</span><span class="pill">questions du jury dans chaque chapitre</span><span class="pill">oral : 30 min + 30 min de questions</span><span class="pill">soutenance le 11/03/2027</span></div>
+<div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-compass"/></svg></i><div><p><b>Les chiffres</b> viennent des livrables du dépôt (état du 20/11/2026) : si un chiffre bouge dans le projet, mets-le à jour ici avant l'oral.</p></div></div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 1 / 3</div>
+<h2>Une entreprise rentable dont le système d'information ne sait pas ce qu'elle vend</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">Le métier</span><p>Un particulier confie sa recherche à un <b>chasseur immobilier</b> par un <b>mandat</b> de 6 mois, exclusif ou non. Le chasseur lui propose des biens, organise les visites, porte les offres. À la vente, l'acquéreur paie des <b>honoraires</b> (un fixe + un pourcentage du prix), encaissés par le <b>notaire</b> ; le chasseur touche une part de ces honoraires, selon un <b>barème</b>.</p></div>
+    <div class="card bad"><span class="lab">L'existant</span><p>Trois tables (<code>secteurs</code>, <code>utilisateurs</code>, <code>mandats</code>), conçues par le dirigeant. Le développeur est absent et le <b>code du backend est perdu</b>. Clients et chasseurs sont mêlés dans une seule table, les critères de recherche sont en <b>texte libre</b>, et ni les biens, ni les ventes, ni les honoraires n'existent en base.</p></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card hl"><span class="lab">La croissance annoncée</span><p>Rachats d'agences, couverture de la France, des DROM et de <b>9 pays européens</b>, <b>plusieurs milliers de mandats par semaine</b>, et des <b>chasseurs-IA</b> pour les zones non couvertes.</p></div>
+    <p class="punch">Le projet : <b>refondre le SI</b> (modèle de données, architecture, backend) pour qu'il reflète tout le métier, tienne la croissance et prépare l'IA, en restant conforme au RGPD.</p>
+    <div class="analogy"><b>Analogie — le carnet du boulanger.</b> Il note ses clients, mais pas ce qu'il vend ni ce qu'il encaisse. Tant qu'il a dix clients, il s'en souvient. Avec dix boutiques dans dix pays, il ne sait plus rien : il faut un vrai registre avant d'embaucher qui que ce soit, humain ou machine.</div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 2 / 3</div>
+<h2>Quatre phases, du 27 juillet 2026 à la soutenance du 11 mars 2027</h2>
+<div class="flow">
+  <div class="step"><b>Phase 1 · Audit</b><small>27/07 → 19/08 · cartographie, 16 risques cotés, analyse de l'existant</small></div>
+  <div class="step"><b>Phase 2 · Besoin actuel</b><small>17/08 → 07/10 · cadrage, MoSCoW, cahier des charges, MCD, schéma v3, migration, indexation</small></div>
+  <div class="step"><b>Phase 3 · Croissance</b><small>08/10 → 19/11 · note 3V, architecture, matrice, OLAP, flux de données, PCA/PRA</small></div>
+  <div class="step"><b>Phase 4 · Parcours IA</b><small>08/10 → 27/11 · API, droits, tests, moteur de suggestion, conception du matching</small></div>
+  <div class="step"><b>Finalisation</b><small>rendu des livrables (18/12 proposé), préparation de l'oral, soutenance le 11/03/2027</small></div>
+</div>
+<div class="grid g3">
+  <div class="card"><span class="lab">Ce qui est livré</span><p><b>36 livrables</b> rangés par phase, <b>65 ADR</b> (décisions écrites), deux dépôts GitHub : la documentation (<code>Fil-Rouge</code>) et le code (<code>Fil-Rouge-API</code>).</p></div>
+  <div class="card"><span class="lab">Ce qui tourne</span><p>PostgreSQL 16 (22 tables), une API FastAPI de <b>96 opérations</b>, Airflow, MinIO, Elasticsearch, Logstash, Kibana, le tout en <b>Docker Compose</b> sur un poste.</p></div>
+  <div class="card"><span class="lab">Ce qui le prouve</span><p><b>1 125 tests</b> réussis (0 échec), <b>93 %</b> de couverture, un pipeline CI vert, des mesures rejouables (index, charge, qualité, restauration, attaques).</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 3 / 3</div>
+<h2>Comment travailler ce cours pour l'oral</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card hl"><span class="lab">La règle d'or du jury</span><p>Pour chaque décision : « on a choisi <b>X</b> <b>parce que</b> Y, <b>plutôt que</b> Z ». Le jury évalue ta capacité à <b>décider et justifier</b>, pas seulement à exécuter. Les ADR sont tes preuves.</p></div>
+    <div class="card"><span class="lab">L'oral</span><ul><li><b>30 min</b> de présentation, dans l'ordre des 8 parties.</li><li><b>30 min</b> de questions, en priorité sur ton option et ton dossier.</li><li>Jury : 2 professionnels externes + 1 représentant de l'école.</li><li><b>Individuel</b> : tu défends tout le projet, même ce que tu n'as pas écrit.</li></ul></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">Chaque chapitre</span><ol><li>Le contenu de la partie, avec les chiffres et les raisons.</li><li>Les <b>pièges à l'oral</b> : ce qu'il ne faut pas dire.</li><li>Une <b>fiche Essentiel</b> à savoir par cœur.</li><li>Les <b>questions du jury</b>, avec une réponse type à dire à voix haute.</li></ol></div>
+    <div class="card"><span class="lab">La méthode</span><p>Lis la question, réponds <b>à voix haute</b> sans regarder, puis ouvre la réponse type. Chronomètre : une réponse tient en <b>30 à 60 secondes</b>. Les réponses types sont des <b>propositions</b> : reformule-les avec tes mots, surtout celles qui parlent de toi. Les cours techniques (SQL, Airflow, sécurité…) servent quand une notion te manque.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="e">
+<div class="kicker">Immersion · Essentiel</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Présenter le projet en une minute</h2>
+<div class="card hl"><p class="q">« Notre client est une société de <b>chasse immobilière</b> rentable, qui prévoit de s'étendre dans neuf pays européens. Son système d'information tenait en <b>trois tables</b>, sans code source récupérable. À l'audit, nous avons mesuré qu'<b>un tiers des mandats</b> affichait un statut faux, qu'un chasseur était enregistré comme client, et que les honoraires n'existaient nulle part.</p><p class="q">Nous avons donc choisi une <b>refonte complète</b> : un modèle de <b>22 tables</b> sous PostgreSQL où la base elle-même refuse les incohérences, une <b>API</b> FastAPI avec des droits par rôle, un <b>flux de données</b> de nuit orchestré par Airflow, une analyse séparée et pseudonymisée, et un <b>moteur de suggestion</b> à règles qui prépare le matching par IA.</p><p class="q">Chaque choix est écrit dans un <b>ADR</b> et appuyé sur une mesure : la note 3V montre que 22 à 133 Go tiennent sur une instance, les index divisent le temps de réponse par 15 à 100, et <b>1 125 tests</b> protègent le tout. »</p></div>
+<div class="grid g3">
+  <div class="card"><span class="lab">Les 3 mots à placer</span><p><b>Mesurer avant de décider · la base juge · l'IA suggère, l'humain décide</b></p></div>
+  <div class="card"><span class="lab">Les 3 chiffres</span><p>6 mandats faux sur 18 · 22 à 133 Go · 1 125 tests</p></div>
+  <div class="card"><span class="lab">Le fil</span><p>Audit → modèle → architecture → IA, chaque phase s'appuie sur la précédente</p></div>
+</div>
+</section>
+
+<!-- ================= 01 · PRÉSENTATION PERSONNELLE ================= -->
+<section class="slide" data-ch="01" data-sec="01 Présentation" data-title="Présentation personnelle et équipe" data-v="c">
+<div class="kicker">Chapitre 01 · Présentation personnelle et équipe</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Une minute pour dire qui parle, et d'où tu connais tout le projet</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">Ce que le guide demande</span><p>Une partie <b>courte</b> : toi, ton parcours, ta formation et ton poste. Elle ne doit pas manger le temps du projet : <b>1 minute</b>, pas plus.</p></div>
+    <div class="card"><span class="lab">À préparer toi-même</span><ul><li>Ton parcours avant la formation, en une phrase.</li><li>La formation : Data Engineer, Diginamic, titre EISI niveau 7, option Big Data &amp; IA.</li><li>Pourquoi ce métier : une phrase vraie, pas une formule.</li></ul></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card hl"><span class="lab">La phrase de transition</span><p>« J'ai mené ce projet avec trois collègues, au sein de l'équipe GaSeBeLa. La soutenance est individuelle : je vais vous présenter <b>l'ensemble du projet</b>, y compris les parties rédigées par les autres, que j'ai relues et que je sais défendre. »</p></div>
+    <div class="card"><span class="lab">GaSeBeLa</span><p>Gabriel, Sébastien, Laurence et Békanty : quatre data engineers, sans budget ni production. Tout tourne en local, avec des outils gratuits. Le Product Owner est le formateur (Jean-François) ; le jury joue le rôle de sponsor.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Présentation personnelle et équipe</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Qui a fait quoi : la réponse doit être prête et honnête</h2>
+<div class="grid g2">
+  <table class="cmp md"><thead><tr><th>Membre</th><th>Livrables principaux (note de cadrage, § 6)</th></tr></thead><tbody>
+    <tr><td><b>Gabriel</b></td><td>organisation du dépôt, cartographie du SI, analyse de l'existant, étude d'opportunité, registre RGPD, note 3V, éco-conception, PCA/PRA, note d'indexation ; tests d'attaque de l'API ; schéma du programme d'IA</td></tr>
+    <tr><td><b>Sébastien</b></td><td>API, modèle cible, migration, architecture, OLAP, tests</td></tr>
+    <tr><td><b>Laurence</b></td><td>registre des anomalies, journal de décisions, conception de l'application, matrice de décision, note de souveraineté IA</td></tr>
+    <tr><td><b>Békanty</b></td><td>note stratégique, note de cadrage, cahier des charges, SWOT, MoSCoW, accessibilité</td></tr>
+  </tbody></table>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">Comment l'équipe décidait</span><ul><li>Une question ouverte → une position argumentée → un <b>vote sur Discord</b>.</li><li>La décision est écrite dans un <b>ADR</b> : contexte, options, choix, conséquences. 65 au total.</li><li>Les questions que l'équipe ne pouvait pas trancher allaient au <b>Product Owner</b> (le formateur) : 28 questions à l'entretien du 07/10.</li></ul></div>
+    <div class="card"><span class="lab">Les outils</span><p>GitHub (code, documentation, ADR, kanban), Discord, Confluence jusqu'au 20/11 (le dépôt fait foi depuis), et un <b>assistant IA</b> (Claude) pour coder et relire, chaque sortie étant relue.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Présentation personnelle et équipe</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges à l'oral et résumé</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>« Ce n'est pas moi qui l'ai fait »</b> : réponse refusée par la trame de soutenance. Dis plutôt « Sébastien l'a codé ; voici comment ça marche et pourquoi ».</div>
+    <div><b>Cacher le déséquilibre</b> : 88 % des commits viennent d'une personne (645 sur 729 au 19/11). L'équipe l'a coté comme risque n° 1 du projet ; dis-le et dis la parade.</div>
+    <div><b>Survendre l'assistant IA</b> ou le cacher : il a aidé à coder et relire, ses erreurs ont été corrigées à la relecture. C'est un outil, la décision reste humaine.</div>
+    <div><b>Une présentation personnelle de 5 minutes</b> : c'est du temps pris au projet.</div>
+  </div>
+  <ol class="sum-list">
+    <li>1 minute : parcours, formation, poste, puis le projet.</li>
+    <li>Annoncer d'emblée : « je présente tout le projet ».</li>
+    <li>Savoir dire qui a fait quoi, sans se cacher derrière.</li>
+    <li>Décisions collectives : vote, puis ADR écrit.</li>
+    <li>Le PO tranche ce que l'équipe ne peut pas trancher.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="e">
+<div class="kicker">Chapitre 01 · Présentation personnelle et équipe</div>
+<h2>Fiche — Présentation et équipe</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Durée</span><p>1 minute : toi, la formation, le poste, puis la transition vers le projet.</p></div>
+  <div class="card"><span class="lab">L'équipe</span><p>GaSeBeLa : 4 data engineers. Gabriel, Sébastien, Laurence, Békanty.</p></div>
+  <div class="card"><span class="lab">Ma part</span><p>Cartographie, analyse, opportunité, RGPD, 3V, éco-conception, PCA/PRA, indexation, tests d'attaque, schéma IA.</p></div>
+  <div class="card"><span class="lab">Décider</span><p>Vote Discord → ADR écrit (65). Le PO tranche le reste (28 questions le 07/10).</p></div>
+  <div class="card wide"><span class="lab">La phrase</span><p>« La soutenance est individuelle : je présente l'ensemble du projet, y compris ce que les autres ont rédigé, que j'ai relu et que je sais défendre. »</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Présentation personnelle et équipe</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 01</h2>
+<div class="accg">
+<div class="acc jq"><button class="ah" type="button">Qui a fait quoi dans le groupe ?</button><div class="ab"><p>Chaque livrable avait un responsable et un valideur, écrits dans le RACI. J'ai porté l'audit (cartographie, analyse, étude d'opportunité), le registre RGPD, la note 3V, l'éco-conception, le PCA/PRA, la note d'indexation et les tests d'attaque. Sébastien a codé l'essentiel de l'API et de la migration, Laurence a tenu le journal de décisions et la conception applicative, Békanty le cadrage, le cahier des charges et le MoSCoW. J'ai relu toutes les parties pour pouvoir les défendre.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Comment preniez-vous les décisions ?</button><div class="ab"><p>Une question ouverte recevait une position argumentée, puis l'équipe votait sur Discord. La décision était écrite dans un ADR : le contexte, les options, le choix et ses conséquences. Nous en avons 65. Ce qui dépassait l'équipe, comme les paramètres de rémunération ou le périmètre, allait au Product Owner : 28 questions tranchées à l'entretien du 7 octobre.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Une seule personne a fait 88 % des commits. Comment l'expliquez-vous ?</button><div class="ab"><p>C'est vrai, et nous l'avons coté comme le premier risque du projet, à 9 sur 9 : le travail reposait sur une personne. Les commits mesurent surtout le code ; la documentation, l'audit et les notes ont été répartis. La parade a été de répartir les livrables manquants par le RACI et que chacun relise les parties des autres. C'est aussi une leçon : j'organiserais plus tôt le binômage sur le code.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Quelle place a eu l'IA générative dans votre travail ?</button><div class="ab"><p>Nous avons utilisé un assistant (Claude) pour aider à coder et à relire. Nous l'avons inscrit dans les risques du projet, parce qu'il se trompe : des erreurs ont été trouvées à la relecture. La règle était de relire chaque sortie et de la vérifier contre le sujet et le code. Les décisions, elles, sont dans les ADR et ont été votées par l'équipe.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Comment pouvez-vous défendre une partie que vous n'avez pas écrite ?</button><div class="ab"><p>Parce que chaque choix est tracé : l'ADR dit le problème, les options écartées et la raison. J'ai relu les livrables des autres, et les mesures sont rejouables par script. Si on me demande pourquoi l'API relit le compte en base à chaque appel, la réponse est dans l'ADR-052 : un compte désactivé ne doit pas garder ses droits jusqu'à la fin de son jeton.</p></div></div>
+</div>
+</section>
+
+<!-- ================= 02 · PROBLÉMATIQUE ================= -->
+<section class="slide" data-ch="02" data-sec="02 Problématique" data-title="La problématique" data-v="c">
+<div class="kicker">Chapitre 02 · La problématique</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Le contexte : un défaut déjà mesurable à 18 mandats</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card bad"><span class="lab">Trois constats mesurés (date de référence : 25/07/2026)</span><ul>
+      <li><b>Un tiers des mandats a un statut faux</b> : 6 sur 18 (6 des 11 « actifs ») ont dépassé leurs 6 mois, l'un de <b>247 jours</b>. Personne n'est alerté pour renouveler.</li>
+      <li><b>Un chasseur est enregistré comme client</b> (mandat 13). Ce n'est pas une faute de saisie isolée : le schéma ne distingue pas les rôles.</li>
+      <li><b>Les honoraires n'existent nulle part</b> : impossible de retrouver le chiffre d'affaires dans le SI.</li></ul></div>
+    <div class="card"><span class="lab">Et les critères de recherche</span><p>En texte libre : <b>8 vocabulaires</b> pour dire un type de bien, <b>83 %</b> des surfaces ambiguës ou absentes, <b>22 %</b> de critères alternatifs (« terrasse ou jardin ») qu'aucune colonne ne peut porter. Lisibles par un humain, <b>inexploitables par une machine</b>.</p></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <p class="punch">Le problème n'est pas la croissance : le SI est <b>déjà faux à 18 mandats</b>. À plusieurs milliers de mandats par semaine, le même taux d'erreur devient ingérable, et l'IA voulue n'a rien d'exploitable à lire.</p>
+    <div class="card"><span class="lab">Les enjeux</span><ul><li><b>Juridique</b> : facturer sur un mandat que le système croit valide mais qui a expiré.</li><li><b>Financier</b> : aucune trace des honoraires, une rémunération à taux fixe qui ne suit pas le barème.</li><li><b>Continuité</b> : plus personne ne peut faire évoluer le backend.</li><li><b>Stratégique</b> : pas de matching ni d'IA sans données structurées.</li></ul></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · La problématique</div>
+<div class="pqrow"><span class="pq how">③ Comment</span></div>
+<h2>La question du dossier, et les trois options étudiées</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card hl"><span class="lab">La problématique (proposition à valider avec l'équipe)</span><p class="q">« Comment refondre le système d'information d'une société de chasse immobilière pour <b>fiabiliser ses données</b>, <b>tracer sa rémunération</b> et <b>préparer une croissance européenne assistée par l'IA</b>, avec une équipe de quatre et sans budget ? »</p></div>
+    <div class="note warn"><i><svg class="ico" aria-hidden="true"><use href="#ti-alert-triangle"/></svg></i><div><p>Le guide exige un intitulé <b>sous forme de question</b>, sur la page de garde et la première diapositive. Aucun livrable ne l'écrit encore : fixe-le avant le dossier final.</p></div></div>
+  </div>
+  <table class="cmp md"><thead><tr><th>Option</th><th>Verdict</th><th>Pourquoi</th></tr></thead><tbody>
+    <tr><td><b>A · Refonte complète</b> (modèle, architecture, backend)</td><td><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> retenue</td><td>traite la cause (rôles, durée, critères), pas seulement les symptômes ; prépare l'IA</td></tr>
+    <tr><td><b>B · Corrections ciblées</b> sur les 3 risques cotés 9</td><td><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg></td><td>plus rapide, mais laisse les critères inexploitables et le trou financier : les deux prérequis de l'IA</td></tr>
+    <tr><td><b>C · Statu quo</b> jusqu'aux rachats</td><td><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg></td><td>la croissance rend le défaut ingérable, et le backend n'est déjà plus maintenable</td></tr>
+  </tbody></table>
+</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · La problématique</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Objectifs, méthode et résultats attendus</h2>
+<div class="grid g3">
+  <div class="card"><span class="lab">4 objectifs (note de cadrage)</span><ol><li><b>Fiabiliser l'intégrité</b> : séparer les rôles, structurer les attributs.</li><li><b>Sécuriser le juridique</b> : cycle de vie du mandat (6 mois, signature, renouvellement).</li><li><b>Structurer la recherche</b> : critères typés et versionnés, pour le matching.</li><li><b>Pérenniser</b> : PostgreSQL, noms en anglais pour l'international.</li></ol></div>
+  <div class="card"><span class="lab">La méthode</span><ul><li><b>4 phases</b> : audit → modèle cible → architecture de croissance → parcours IA. Chacune s'appuie sur la précédente.</li><li><b>Mesurer avant de corriger</b> : chaque constat est compté sur les données réelles, chaque gain mesuré avant/après.</li><li><b>Une décision = un ADR</b>, votée par l'équipe.</li><li>Découpage en <b>chantiers</b>, puis en petites tâches sur le kanban.</li></ul></div>
+  <div class="card"><span class="lab">Résultats attendus (cibles)</span><ul><li>Anomalies de l'audit traitées par la migration : <b>toutes</b>.</li><li>Mandats expirés encore « actifs » : <b>0</b>.</li><li>Critères en texte libre : <b>0</b>.</li><li>Tests automatiques verts : <b>100 %</b>.</li><li>Livrables de la grille : <b>21 sur 21</b>.</li></ul></div>
+</div>
+<div class="card"><span class="lab">Hors périmètre, dit dès le départ</span><p>Aucun site web ni mise en production ; pas de page de connexion (seulement les outils côté serveur) ; pas de facture ; l'acte notarié reste chez le notaire ; <b>pas d'entraînement de modèle</b> : le sujet demande de concevoir la base qui le nourrira.</p></div>
+</section>
+
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · La problématique</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges à l'oral et résumé</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Un sujet vague</b> (« la refonte d'un SI ») : le jury attend une question précise, avec des objectifs mesurables.</div>
+    <div><b>Inventer un budget</b> : aucun n'a été communiqué. Dis-le, et dis que les outils sont gratuits.</div>
+    <div><b>Promettre « une IA »</b> : le moteur livré est à règles ; l'apprentissage est conçu, pas entraîné, et c'est le sujet qui le demande ainsi.</div>
+    <div><b>Partir de la technique</b> (« on a fait du FastAPI ») avant le besoin : le jury veut d'abord comprendre le problème métier.</div>
+  </div>
+  <ol class="sum-list">
+    <li>Le SI est faux dès aujourd'hui : 6/18 mandats, 1 chasseur-client, 0 honoraire.</li>
+    <li>Les critères en texte libre bloquent l'IA.</li>
+    <li>Refonte complète plutôt que correctifs : on traite la cause.</li>
+    <li>4 phases, mesurer avant de corriger, un ADR par décision.</li>
+    <li>Des cibles chiffrées : 0 mandat expiré actif, 0 critère libre, 100 % de tests verts.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="e">
+<div class="kicker">Chapitre 02 · La problématique</div>
+<h2>Fiche — Problématique</h2>
+<div class="fiche">
+  <div class="card wide"><span class="lab">La question</span><p>Comment refondre le SI d'une société de chasse immobilière pour fiabiliser ses données, tracer sa rémunération et préparer une croissance européenne assistée par l'IA ? <i>(à valider)</i></p></div>
+  <div class="card"><span class="lab">3 constats</span><p>6 mandats sur 18 faux (jusqu'à 247 jours) · un chasseur client · honoraires absents.</p></div>
+  <div class="card"><span class="lab">Le blocage IA</span><p>Critères en texte libre : 8 vocabulaires, 83 % de surfaces ambiguës.</p></div>
+  <div class="card"><span class="lab">Options</span><p>Refonte <svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> · correctifs <svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> (laissent les fondations) · statu quo <svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg>.</p></div>
+  <div class="card"><span class="lab">Méthode</span><p>Audit → modèle → architecture → IA ; mesurer avant de corriger ; ADR.</p></div>
+  <div class="card wide"><span class="lab">Cibles</span><p>0 mandat expiré actif · 0 critère en texte libre · 100 % des tests verts · 21 livrables sur 21.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · La problématique</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 02</h2>
+<div class="accg">
+<div class="acc jq"><button class="ah" type="button">Pourquoi une refonte complète plutôt que des corrections ciblées ?</button><div class="ab"><p>Les corrections ciblées auraient réglé les trois risques les plus visibles, mais pas les deux fondations qui manquent : des critères exploitables par une machine et une trace financière. Or ce sont les prérequis du matching et de l'IA que veut l'entreprise. Et le backend était perdu : il fallait de toute façon le refaire. Nous avons traité la cause, pas les symptômes.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Comment avez-vous mesuré que le système était défaillant ?</button><div class="ab"><p>Sur les données réelles du sujet, à une date de référence, le 25 juillet 2026. Nous avons comparé chaque mandat « actif » à sa date de signature plus six mois : 6 sur 11 étaient échus. Nous avons vérifié les 13 remarques du consultant, puis ajouté ce qu'il n'avait pas vu en confrontant le schéma aux règles du métier. Résultat : 16 risques cotés.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Quel est le coût du projet ?</button><div class="ab"><p>Aucun budget n'a été communiqué par le commanditaire, et nous avons refusé d'inventer un chiffre. Ce que nous pouvons dire : quatre personnes sur la durée du projet, environ deux à trois jours par semaine, et des outils tous libres et gratuits. Le chiffrage en euros relèverait d'une note de cadrage une fois le budget connu.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">En quoi ce projet relève-t-il de l'option Big Data et IA ?</button><div class="ab"><p>Par trois livrables : la note de dimensionnement 3V (volume, vélocité, variété), l'architecture de données avec un flux orchestré, un stockage par zones et un schéma analytique, et la conception du matching avec ses features. Une partie de la réponse est d'ailleurs de montrer qu'à 22 à 133 Go, il ne faut <b>pas</b> d'outil distribué : choisir l'outil proportionné au volume fait partie du métier.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Qu'est-ce qui est hors périmètre, et pourquoi ?</button><div class="ab"><p>Le site web, la mise en production, la facture, l'acte notarié et l'entraînement d'un modèle. Le site et la production sont exclus par le sujet ; la facture, par le Product Owner le 7 octobre ; le notaire n'intervient pas dans le calcul, seules la date et le prix de l'acte entrent dans la vente. Chaque limite est écrite dans l'ADR-045 avec ce qui se passe à la place.</p></div></div>
+</div>
+</section>
+
+<!-- ================= 03 · ANALYSE DU SI ================= -->
+<section class="slide" data-ch="03" data-sec="03 Analyse du SI" data-title="L'analyse du système d'information" data-v="c">
+<div class="kicker">Chapitre 03 · L'analyse du système d'information</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>La cartographie : ce qui existe, ce qui manque</h2>
+<div class="grid g2">
+  <table class="cmp md"><thead><tr><th>Composant</th><th>État</th></tr></thead><tbody>
+    <tr><td>Site web des prospects, logiciel des chasseurs</td><td>hors périmètre de développement</td></tr>
+    <tr><td>Backend + API</td><td><b>code perdu</b>, développeur absent (R09)</td></tr>
+    <tr><td><code>utilisateurs</code> · 24 lignes</td><td>6 chasseurs et 18 clients <b>dans la même table</b>, données en clair</td></tr>
+    <tr><td><code>mandats</code> · 18 lignes</td><td>critères en texte libre, ni date de signature ni date de fin, statut jamais mis à jour</td></tr>
+    <tr><td><code>secteurs</code> · 10 lignes</td><td>sain (risques mineurs)</td></tr>
+    <tr><td>Armoire à dossiers papier</td><td>mandats signés <b>sans lien</b> avec la base (R10)</td></tr>
+    <tr><td>Notaire</td><td>encaisse les honoraires : <b>aucune trace</b> dans le SI (R03)</td></tr>
+  </tbody></table>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card bad"><span class="lab">Ce qui n'existe pas</span><p>Biens, visites, offres, ventes, honoraires, barème, paiements. Le SI connaît <b>qui</b> sont les clients et les chasseurs, mais <b>ignore ce qui est vendu et ce qui est encaissé</b>.</p></div>
+    <div class="card"><span class="lab">La cause structurelle</span><p>Le mandat pointe deux fois vers la même table (<code>client_id</code> et <code>chasseur_id</code> → <code>utilisateurs</code>) : rien n'empêche de mettre un chasseur à la place du client. Le défaut R06 laisse passer R02.</p></div>
+    <div class="analogy"><b>Analogie — un registre d'état civil sans colonne « rôle ».</b> On y note des personnes, mais rien ne dit qui est le marié et qui est le témoin : une erreur n'est pas un accident, c'est une possibilité permanente.</div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · L'analyse du système d'information</div>
+<div class="pqrow"><span class="pq how">③ Comment</span></div>
+<h2>Les risques : probabilité × impact, 16 risques cotés de 1 à 9</h2>
+<div class="grid g2">
+  <table class="cmp md"><thead><tr><th>Probabilité ↓ / Impact →</th><th>1 · gêne</th><th>2 · fonction dégradée</th><th>3 · juridique, financier, bloquant</th></tr></thead><tbody>
+    <tr><td><b>3 · constaté dans les données</b></td><td>—</td><td>R05 R07 R08 R09 <i>(6)</i></td><td><b>R01 R02 R03</b> <i>(9)</i></td></tr>
+    <tr><td><b>2 · possible, rien ne l'empêche</b></td><td>R13 <i>(2)</i></td><td>R12 <i>(4)</i></td><td>R04 R06 R10 R16 <i>(6)</i></td></tr>
+    <tr><td><b>1 · peu probable</b></td><td>—</td><td>R11 R14 R15 <i>(2)</i></td><td>—</td></tr>
+  </tbody></table>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">La méthode, en 4 temps</span><ol><li><b>Inventorier</b> les composants (sujet + armoire + notaire).</li><li><b>Relever</b> les risques : les 13 remarques du consultant (10 retenues, 1 nuancée, 2 fusionnées), puis notre relecture.</li><li><b>Coter</b> : probabilité 1 à 3 (3 = déjà arrivé) × impact 1 à 3.</li><li><b>Poser</b> chaque risque sur le composant qu'il touche.</li></ol></div>
+    <div class="card"><span class="lab">Le bilan</span><p><b>3</b> risques à 9 (priorité absolue), <b>9</b> entre 4 et 6 (impératifs), <b>4</b> mineurs. Le poids est en haut de l'échelle : ce n'est pas un système sain avec des défauts, c'est une structure à refaire.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · L'analyse du système d'information</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Les flux et la qualité des données</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">Le processus existant</span><p>Demande sur le site → backend sans code → table <code>utilisateurs</code> mêlée → mandat en texte libre → papier dans l'armoire → honoraires chez le notaire. <b>Chaque flèche passe par une faille</b> : rien ne relie la demande, le mandat signé, la vente et l'argent.</p></div>
+    <div class="card"><span class="lab">Les données critiques</span><p>Les données <b>contractuelles et financières</b> (mandats, propositions, ventes, paiements, visites) : elles engagent juridiquement et ne se refont pas. Ce sont elles que le PCA/PRA protège en premier.</p></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">La 2ᵉ source : 2 556 annonces d'agences</span><ul><li><b>55,4 %</b> des cellules remplies seulement.</li><li>Dates de publication en <b>6 formats</b> (horodatage Unix, ISO, JJ/MM/AAAA, en toutes lettres…).</li><li>Prix parfois avec « € », surface sur deux colonnes, étage en texte libre.</li><li>Cohérence : 0 identifiant en double, 0 annonce orpheline.</li></ul></div>
+    <div class="card hl"><span class="lab">Après normalisation</span><p>Un format par colonne, une valeur inconnue devient <code>NULL</code> (on n'invente rien) : <b>70,2 %</b> de cellules remplies, 0 anomalie sur 2 556 lignes. Et le schéma refuse lui-même une donnée fausse : <b>168 contraintes <code>CHECK</code></b>.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · L'analyse du système d'information</div>
+<div class="pqrow"><span class="pq how">③ Comment</span></div>
+<h2>La conformité : RGPD d'abord, IA et accessibilité ensuite</h2>
+<div class="grid g3">
+  <div class="card"><span class="lab">RGPD</span><ul><li>Constat : données personnelles <b>en clair, sans droits</b> (R16).</li><li>Réponse : un <b>registre de 11 traitements</b> (finalité, base légale, durée, accès).</li><li>Durées : <b>10 ans</b> pour le mandat et la rémunération (obligations légales), <b>3 ans</b> pour le contact du vendeur, <b>6 mois</b> pour les journaux (CNIL).</li><li>Effacer = <b>désactiver puis anonymiser</b>, jamais supprimer (ADR-049).</li></ul></div>
+  <div class="card"><span class="lab">IA et souveraineté</span><ul><li><b>Aucun LLM</b> en v1, tout tourne en local : aucune donnée ne sort.</li><li>Le moteur juge un couple (demande, bien), <b>jamais une personne</b> : aucune donnée personnelle dans les features.</li><li>L'IA <b>suggère</b>, un humain trie et engage.</li><li>L'analyse (OLAP) est <b>pseudonymisée</b>.</li></ul></div>
+  <div class="card"><span class="lab">Accessibilité et sécurité</span><ul><li><b>WCAG 2.2 AA</b> (et le RGAA) pour le futur espace acquéreur : contraste 4,5:1, clavier, cibles de 24 px, textes alternatifs.</li><li>L'API fournit déjà <code>picture.alt_text</code> et des erreurs nommant le champ fautif.</li><li>Sécurité confrontée au <b>Top 10 OWASP</b> (chapitre 05).</li></ul></div>
+</div>
+<div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p><b>Pseudonymisé n'est pas anonyme.</b> L'OLAP garde les numéros de fiche : en croisant avec la base, on retrouve la personne. C'est donc encore une donnée personnelle, protégée comme telle. Le jury aime cette nuance.</p></div></div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · L'analyse du système d'information</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges à l'oral et résumé</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Dire « anonymisé » pour l'OLAP</b> : il est <b>pseudonymisé</b> (les numéros restent).</div>
+    <div><b>Citer EBIOS RM ou ISO 27005 comme méthode suivie</b> : l'audit a utilisé une matrice probabilité × impact. Dis-le, et explique pourquoi c'était proportionné (3 tables, 16 risques).</div>
+    <div><b>Oublier les deux éléments hors base</b> (armoire et notaire) : ils expliquent R03 et R10.</div>
+    <div><b>Confondre risque et anomalie</b> : l'anomalie est constatée (probabilité 3), le risque peut seulement arriver (probabilité 1 ou 2).</div>
+  </div>
+  <ol class="sum-list">
+    <li>Le SI ignore la moitié du métier : ce qui est vendu et encaissé.</li>
+    <li>16 risques cotés probabilité × impact ; 3 à 9.</li>
+    <li>Cause structurelle : deux clés vers la même table.</li>
+    <li>Annonces : 55,4 % remplies → 70,2 % après normalisation.</li>
+    <li>RGPD : registre de 11 traitements, anonymiser plutôt que supprimer.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="e">
+<div class="kicker">Chapitre 03 · L'analyse du système d'information</div>
+<h2>Fiche — Analyse du SI</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Existant</span><p>3 tables, backend perdu, armoire papier, notaire hors SI.</p></div>
+  <div class="card"><span class="lab">Risques</span><p>16 cotés P × I (1 à 9) : 3 à 9, 9 entre 4 et 6, 4 mineurs.</p></div>
+  <div class="card"><span class="lab">Les 3 rouges</span><p>R01 statuts faux · R02 chasseur-client · R03 honoraires absents.</p></div>
+  <div class="card"><span class="lab">Qualité</span><p>2 556 annonces : 55,4 % → 70,2 % ; 6 formats de date ; 168 <code>CHECK</code>.</p></div>
+  <div class="card"><span class="lab">RGPD</span><p>11 traitements · 10 ans / 3 ans / 6 mois · anonymiser, jamais supprimer.</p></div>
+  <div class="card"><span class="lab">IA</span><p>Aucun LLM, local, pas de donnée personnelle dans les features, l'humain engage.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · L'analyse du système d'information</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 03</h2>
+<div class="accg">
+<div class="acc jq"><button class="ah" type="button">Quelle méthode d'analyse de risques avez-vous utilisée ?</button><div class="ab"><p>Une matrice probabilité × impact, chacun de 1 à 3, donc une cote de 1 à 9. La probabilité 3 veut dire « déjà constaté dans les données », l'impact 3 « juridique, financier ou bloquant ». Pour un existant de trois tables, c'était proportionné. Pour la cible à grande échelle, une méthode comme EBIOS RM serait plus adaptée, avec ses scénarios d'attaque.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Comment garantissez-vous qu'un client ne soit jamais un chasseur ?</button><div class="ab"><p>Par la structure, pas par la discipline. Clients et chasseurs ont chacun leur table de fiche, un compte n'a qu'une fiche, et le mandat pointe vers la fiche client d'un côté et la fiche chasseur de l'autre. Les contraintes de la base refusent l'incohérence, quel que soit le programme qui écrit, l'API ou un script SQL.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Quelles données personnelles gérez-vous, et comment les protégez-vous ?</button><div class="ab"><p>Identité et coordonnées des clients et des chasseurs, situation familiale des clients pour des usages écrits, contact des vendeurs. Elles sont décrites dans un registre de 11 traitements avec leur base légale et leur durée. Protection : droits par rôle et « le sien seulement », mots de passe hachés en Argon2, contact du vendeur dans une table à part, analyse pseudonymisée, et effacement par anonymisation.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Pourquoi ne pas supprimer un compte quand la personne le demande ?</button><div class="ab"><p>Parce que certaines données doivent être gardées par la loi : le mandat et la rémunération dix ans. Supprimer casserait aussi les liens comptables. Nous désactivons le compte, nous rendons anonyme tout de suite ce que rien n'oblige à garder, et le reste à la fin de son délai. C'est l'ADR-049, et aucune route de l'API ne supprime.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Comment avez-vous évalué la qualité des données ?</button><div class="ab"><p>Par un script rejouable qui mesure le remplissage de chaque colonne, les formats, les doublons et les orphelins. Les annonces brutes étaient remplies à 55,4 %, avec des dates en six formats. Après normalisation, 70,2 %, un format par colonne, et une valeur inconnue devient NULL au lieu d'être inventée. Ensuite, 168 contraintes CHECK empêchent une donnée fausse d'entrer.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">L'AI Act vous concerne-t-il ?</button><div class="ab"><p>Peu aujourd'hui : le moteur v1 applique des règles écrites, sans apprentissage ni décision automatique sur une personne. Il juge l'adéquation d'un bien à une demande, et un humain trie puis engage. Si une v2 apprend des décisions ou utilise un LLM, il faudra documenter le système, garder l'humain dans la boucle et choisir un hébergement dans l'Union européenne.</p></div></div>
+</div>
+</section>
+
+<!-- ================= 04 · BESOINS FONCTIONNELS ================= -->
+<section class="slide" data-ch="04" data-sec="04 Besoins" data-title="Les besoins fonctionnels" data-v="c">
+<div class="kicker">Chapitre 04 · Les besoins fonctionnels</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Les fonctionnalités : deux parcours et un calcul</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">Le parcours du particulier</span><p>Déposer une demande sans compte → activer son compte avec un code → recevoir des biens proposés → les écarter avec un motif ou s'y intéresser → visiter → faire une offre → acte signé, honoraires tracés.</p></div>
+    <div class="card"><span class="lab">Le parcours du chasseur</span><p>Accepter ou refuser une demande confiée par son manager → fixer les critères et faire signer le mandat → demander des suggestions → garder ou écarter, donner son avis (photo, audio, vidéo) → proposer, visiter → être payé, ou voir le refus tracé.</p></div>
+    <div class="card"><span class="lab">Comment ils sont écrits</span><p>En <b>user stories Gherkin</b> (fichiers 00 à 10 du sujet) : « Étant donné… Quand… Alors… ». Chaque scénario devient une ligne du backlog et un ou plusieurs tests.</p></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card hl"><span class="lab"><svg class="ico" aria-hidden="true"><use href="#ti-currency-euro"/></svg> Le calcul de la rémunération</span><ol><li><b>Droit</b> : exclusif → payé même si le client trouve seul ; non exclusif → pas payé dans ce cas.</li><li><b>Assiette</b> : honoraires H = fixe + pourcentage du prix (3 000 € + 2,5 %).</li><li><b>Score</b> de performance sur <b>5 critères</b> : délai, exclusivité, ventes, mandats, visites (moins de visites = mieux).</li><li><b>Taux</b> de la tranche de prix (30 à 50 %), majoré par l'ancienneté et la performance.</li><li><b>Montant</b> = taux × honoraires, arrondi au centime et <b>figé</b> dans le paiement.</li></ol></div>
+    <div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-key"/></svg></i><div><p><b>Règle métier ≠ paramètre.</b> « Fixe + pourcentage » est une règle du sujet ; « 3 000 € et 2,5 % » sont des paramètres, dans des tables datées, jamais en dur dans le code. Le PO les a validés le 07/10.</p></div></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Les besoins fonctionnels</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>La priorisation MoSCoW : 47 éléments, tous les Must livrés</h2>
+<div class="grid g2">
+  <table class="cmp md"><thead><tr><th>Priorité</th><th>Règle de tri</th><th>Lignes</th><th>État</th></tr></thead><tbody>
+    <tr><td><b>Must</b></td><td>sans elle le métier ne marche pas, ou le sujet l'exige</td><td>33</td><td><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> 33 codés et testés</td></tr>
+    <tr><td><b>Should</b></td><td>attendu, mais le parcours tient sans</td><td>4</td><td>2 <svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> · 2 en partie</td></tr>
+    <tr><td><b>Could</b></td><td>confort, s'il reste du temps</td><td>3</td><td>écartés par écrit</td></tr>
+    <tr><td><b>Won't</b></td><td>hors périmètre, décidé avec le PO ou par le sujet</td><td>7</td><td>facture, emails, notaire, IA générative, front</td></tr>
+  </tbody></table>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">Les 2 Should en partie</span><p>La sélection <b>chaque jour</b> (le moteur répond quand le chasseur le demande) et la baisse du score à l'échéance d'un mandat (au calcul suivant). Tous deux demandent une <b>tâche planifiée</b> Airflow : écrite, pas codée.</p></div>
+    <div class="card"><span class="lab">Les 3 Could écartés</span><p>L'agenda externe pour les rendez-vous, l'offre pré-remplie (v2), la numérisation des mandats papier de l'armoire (ADR-065).</p></div>
+    <div class="card"><span class="lab">Les critères de tri</span><p><b>Impact</b> métier (règle du mandat et de la rémunération en premier), <b>exigence</b> du sujet, puis <b>coût</b> : une notification par email demande un serveur d'email, hors périmètre, alors le code d'activation la remplace.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Les besoins fonctionnels</div>
+<div class="pqrow"><span class="pq how">③ Comment</span></div>
+<h2>Les exigences de sécurité et de traitement des données</h2>
+<div class="grid g3">
+  <div class="card"><span class="lab">Droits</span><ul><li><b>5 rôles</b> : <code>Admin</code> (la direction), <code>Manager</code>, <code>Hunter</code>, <code>Client</code>, <code>Reader</code> (lecture seule).</li><li><b>Deux contrôles</b> : le rôle a-t-il droit à ce type de donnée ? puis la ligne est-elle <b>la sienne</b> ?</li><li>Une route qui ne déclare pas ses rôles est <b>fermée à tous</b>.</li></ul></div>
+  <div class="card"><span class="lab">Règles du mandat</span><ul><li>Fin = signature + <b>6 mois exacts</b> (contrainte de la base).</li><li><b>Un seul mandat exclusif</b> à la fois par client (déclencheur).</li><li>Renouveler crée un nouveau mandat lié à l'ancien.</li><li>Un mandat annulé ou clos libère le client.</li></ul></div>
+  <div class="card"><span class="lab">Données</span><ul><li>Tout montant en <b>euros</b> : prix et budgets en entiers, honoraires et paiements au centime (<code>NUMERIC(12,2)</code>).</li><li>Critères <b>typés et versionnés</b> : on ne modifie pas un critère, on en crée une version.</li><li>Un paiement garde <b>tous les termes</b> de son calcul, figés à la date de l'acte.</li></ul></div>
+</div>
+<div class="card"><span class="lab">Pourquoi figer le calcul ?</span><p>Le barème change dans le temps. Si un paiement ne gardait que son montant, on ne pourrait plus expliquer dans deux ans comment il a été obtenu, ni le contester. Garder chaque terme (honoraires, score, taux, majorations) rend le paiement <b>auditable</b> (ADR-033).</p></div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Les besoins fonctionnels</div>
+<div class="pqrow"><span class="pq how">③ Comment</span></div>
+<h2>La validation avec les parties prenantes, et les limites assumées</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">L'entretien du 07/10 avec le Product Owner</span><p>L'équipe arrive avec <b>28 questions</b> et sa position sur chacune. Décisions : paramètres de rémunération validés ; facture hors périmètre ; authentification côté serveur (connexion, jeton, rôles, sans page de connexion) ; effacement par anonymisation ; biens saisis à la main par le chasseur ou le manager.</p></div>
+    <div class="card"><span class="lab">Quand le PO ne répond pas</span><p>Constaté le 19/11 : l'équipe tranche, l'écrit dans un ADR ou le backlog, et le signale « à valider ». La décision est tracée, donc réversible.</p></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card hl"><span class="lab">Les 7 limites du MVP (ADR-045)</span><ol><li>L'acte notarié : sa date et son prix entrent dans la vente.</li><li>Pas de table des rendez-vous : on garde ce qu'ils produisent.</li><li>Pas de classement par pertinence appris (reporté au parcours IA).</li><li>Pas d'historique des managers.</li><li>On ne garde pas qui a refusé une demande.</li><li>Pas de droits propres au chasseur-IA (proposés en ADR-058).</li><li>Les annonces ne sont pas dédoublonnées.</li></ol></div>
+    <div class="note tip"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Pour chaque exclusion, quatre éléments : l'objet exclu, <b>ce qui se passe à la place</b>, la raison, et quand y revenir. Le deuxième est « le plus oublié ».</p></div></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Les besoins fonctionnels</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges à l'oral et résumé</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Présenter 3 000 € et 2,5 % comme des exigences du client</b> : ce sont des paramètres proposés par le sujet, validés par le PO.</div>
+    <div><b>Appliquer le taux au prix du bien</b> : il s'applique aux <b>honoraires</b>. L'erreur multiplie le résultat par trente.</div>
+    <div><b>Dire « tout est fait »</b> : tous les Must le sont ; 2 Should sont en partie, 3 Could écartés, 7 Won't. La précision rassure.</div>
+    <div><b>Une limite sans « à la place »</b> : le jury demandera ce qui se passe quand le cas arrive quand même.</div>
+  </div>
+  <ol class="sum-list">
+    <li>Deux parcours (particulier, chasseur) en user stories Gherkin.</li>
+    <li>La rémunération en 5 étapes : droit, assiette, score, taux, montant figé.</li>
+    <li>MoSCoW : 33 Must sur 33 livrés et testés.</li>
+    <li>5 rôles, deux contrôles : le rôle, puis « le sien ».</li>
+    <li>28 questions au PO ; 7 limites assumées dans l'ADR-045.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="e">
+<div class="kicker">Chapitre 04 · Les besoins fonctionnels</div>
+<h2>Fiche — Besoins fonctionnels</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Parcours</span><p>Particulier : demande → compte → propositions → offre. Chasseur : mandat → suggestions → proposition → paiement.</p></div>
+  <div class="card"><span class="lab">Rémunération</span><p>Droit → H = 3 000 € + 2,5 % → score 5 critères → taux de tranche majoré → montant figé.</p></div>
+  <div class="card"><span class="lab">MoSCoW</span><p>47 lignes : 33 Must <svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> · 4 Should (2 <svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg>) · 3 Could <svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> · 7 Won't.</p></div>
+  <div class="card"><span class="lab">Droits</span><p>Admin · Manager · Hunter · Client · Reader ; rôle puis « le sien » ; fermé par défaut.</p></div>
+  <div class="card"><span class="lab">Mandat</span><p>6 mois exacts · un seul exclusif · renouveler = nouveau mandat lié.</p></div>
+  <div class="card"><span class="lab">Validation</span><p>PO le 07/10 (28 questions) ; 7 limites écrites (ADR-045).</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Les besoins fonctionnels</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 04</h2>
+<div class="accg">
+<div class="acc jq"><button class="ah" type="button">Comment avez-vous priorisé les fonctionnalités ?</button><div class="ab"><p>Avec MoSCoW, une ligne par scénario des user stories. Must : ce sans quoi le métier ne marche pas ou que le sujet exige, comme les règles du mandat et de la rémunération. Should : attendu mais non bloquant. Could : confort. Won't : exclu avec le PO ou par le sujet. Les 33 Must sont codés et testés ; les Could et Won't sont écartés par écrit, avec leur raison.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Expliquez le calcul de rémunération d'un chasseur.</button><div class="ab"><p>D'abord le droit : en mandat exclusif, le chasseur est payé même si le client trouve seul ; en non exclusif, non. Puis l'assiette : les honoraires, un fixe plus un pourcentage du prix. Ensuite un score de performance sur cinq critères, puis le taux de la tranche de prix, majoré par l'ancienneté et la performance. Le montant est ce taux appliqué aux honoraires, arrondi au centime, et tous les termes sont figés dans le paiement.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Pourquoi le nombre de visites fait-il baisser la note ?</button><div class="ab"><p>Parce que le sujet récompense l'efficacité : un chasseur qui trouve le bon bien en quatre visites a mieux compris son client qu'un autre en quinze. Le délai entre le mandat et l'acte suit la même logique. Ensemble, ces deux critères pèsent la moitié du score.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Comment les besoins ont-ils été validés ?</button><div class="ab"><p>Par le Product Owner, à un entretien le 7 octobre : nous sommes venus avec 28 questions et notre position sur chacune, il a tranché. Ensuite, quand il n'était plus joignable, l'équipe a décidé, l'a écrit dans un ADR et l'a marqué « à valider ». Rien n'est décidé sans trace écrite.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Vos tests contredisent sept cas du sujet. Pourquoi ?</button><div class="ab"><p>Le sujet note le critère « mandats signés » au volume ; nous le notons au taux de transformation, ventes sur mandats, parce que le volume est corrélé au nombre de ventes et récompense deux fois la même chose. C'est l'ADR-048. Les sept cas du sujet sont gardés comme échecs attendus et stricts : si l'ancienne formule revenait, la suite échouerait.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Que se passe-t-il quand un rendez-vous a lieu, puisque vous ne les stockez pas ?</button><div class="ab"><p>On garde ce que le rendez-vous produit : le premier produit un mandat signé avec sa date, l'acte produit une vente, le renouvellement un nouveau mandat lié à l'ancien. Aucun calcul ne lit un rendez-vous, donc une table de plus n'apportait rien au MVP. Elle se décidera avec le parcours IA, qui veut automatiser la prise de rendez-vous.</p></div></div>
+</div>
+</section>
+
+<!-- ================= 05 · IMPLÉMENTATIONS TECHNIQUES ================= -->
+<section class="slide" data-ch="05" data-sec="05 Implémentation" data-title="Les implémentations techniques" data-v="c">
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 1 / 10 · Infrastructure</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Tout en local, sous Docker Compose, lancé à la demande</h2>
+<div class="grid g2">
+  <table class="cmp md"><thead><tr><th>Groupe</th><th>Services</th><th>Mémoire au repos</th></tr></thead><tbody>
+    <tr><td><b>Toujours lancé</b></td><td><code>db</code> (PostgreSQL 16.15), <code>api</code> (FastAPI, Python 3.12-slim)</td><td><b>≈ 234 Mio</b></td></tr>
+    <tr><td>Profil <code>airflow</code></td><td>MinIO, Airflow (webserver, scheduler, init)</td><td>≈ 1,5 Gio</td></tr>
+    <tr><td>Profil <code>elk</code></td><td>Elasticsearch, Logstash, Kibana (9.5.4)</td><td>≈ 3,2 Gio</td></tr>
+    <tr><td colspan="2"><b>Tout lancé</b> : 11 conteneurs</td><td><b>≈ 5,0 Gio</b></td></tr>
+  </tbody></table>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card hl"><span class="lab">Les choix et leur raison</span><ul><li><b>Docker Compose plutôt que Kubernetes</b> : 4 personnes, un poste chacun, pas de production ; l'orchestration lourde n'apporte rien.</li><li><b>Profils</b> (ADR-062) : on ne lance que ce dont on a besoin, 22 fois moins de mémoire pour travailler sur l'API.</li><li><b>Images à version fixe</b>, jamais <code>latest</code> (ADR-014) : le même environnement pour tous, un retour arrière possible.</li><li><b>On-premise local</b> plutôt que cloud : aucun budget, et aucune donnée ne sort.</li></ul></div>
+    <div class="card"><span class="lab">Pour la production (proposé)</span><p>Une machine virtuelle de <b>8 Go</b> (5,0 Gio mesurés + marge) dans un centre de données <b>en Europe</b> (RGPD), sauvegarde quotidienne + WAL. Puis une réplique, puis le partitionnement, chacun quand <b>une mesure</b> le demande.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 2 / 10 · Modèle de données</div>
+<div class="pqrow"><span class="pq how">③ Comment</span></div>
+<h2>De 3 tables à 22 : la base refuse elle-même les incohérences</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">Ce que le modèle ajoute</span><p>Comptes et rôles, fiches <b>client</b>, <b>chasseur</b> et manager séparées, demandes et <b>critères versionnés</b>, mandats datés, biens et photos, sélections, propositions, visites, offres, <b>ventes</b>, <b>paiements</b>, barème et paramètres datés, historique des prix, contact du vendeur à part.</p></div>
+    <table class="cmp md small"><thead><tr><th>Décision</th><th>Ce qu'elle garantit</th></tr></thead><tbody>
+      <tr><td>Fiches séparées, une fiche par compte (ADR-005, 017)</td><td>un chasseur ne peut pas être client (R02)</td></tr>
+      <tr><td><code>CHECK</code> fin = signature + 6 mois (ADR-039)</td><td>plus de mandat « actif » échu (R01)</td></tr>
+      <tr><td>Déclencheur d'exclusivité (ADR-039)</td><td>un seul mandat exclusif à la fois</td></tr>
+      <tr><td>Relation réflexive (ADR-013)</td><td>chaque version pointe la précédente : historique complet</td></tr>
+      <tr><td>Euros : entiers et <code>NUMERIC(12,2)</code> (ADR-032)</td><td>pas d'erreur d'arrondi des flottants</td></tr>
+    </tbody></table>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card hl"><span class="lab">« La base juge »</span><p>Les règles vivent dans <b>PostgreSQL</b> (168 <code>CHECK</code>, clés étrangères, un déclencheur), pas seulement dans l'API : ni l'API, ni un script SQL direct ne peuvent les contourner. Les règles qui croisent plusieurs tables se codent dans l'API, chacune avec son test (ADR-040).</p></div>
+    <div class="card"><span class="lab">La migration</span><ul><li><b>Big bang</b> : volume minuscule, et l'ancien backend perdu ne peut pas tourner en parallèle.</li><li>La source n'est <b>jamais modifiée</b> ; une valeur manquante devient vide ou une valeur factice documentée (ADR-046).</li><li><b>50 migrations</b>, chacune dans sa transaction ; certaines s'arrêtent seules si un comptage ne correspond pas.</li><li>Vérifiée : base migrée = base neuve ; lignes comptées avant/après.</li></ul></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 3 / 10 · Indexation</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Trois index posés après mesure, pas par réflexe</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">La question</span><p>PostgreSQL <b>ne crée pas d'index sur une clé étrangère</b>. Or l'API filtre surtout par clé étrangère : « les biens de cette demande », « les demandes de ce chasseur ». Ces filtres lisent-ils toute la table ?</p></div>
+    <div class="card"><span class="lab">La méthode</span><ol><li>Volume de démo (1 016 sélections) : <code>Seq Scan</code> en 0,28 ms, <b>aucun besoin</b>.</li><li>Volume projeté (500 656 sélections) dans une transaction <b>annulée</b> à la fin.</li><li><code>EXPLAIN (ANALYZE, BUFFERS)</code> avant, puis après l'index ; vérification que la base est revenue à l'identique.</li></ol></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <table class="cmp md"><thead><tr><th>Requête</th><th>Avant</th><th>Après</th><th>Gain</th></tr></thead><tbody>
+      <tr><td>Q1 · biens d'une demande</td><td>Parallel Seq Scan 43,5 ms</td><td>Bitmap Index Scan 1,23 ms</td><td>× 35</td></tr>
+      <tr><td>Q2 · sélections d'un chasseur</td><td>Parallel Seq Scan 43,4 ms</td><td>Bitmap Index Scan 2,78 ms</td><td>× 15</td></tr>
+      <tr><td>Q3 · 20 demandes récentes</td><td>Seq Scan + tri 7,6 ms</td><td>Index Scan 0,08 ms</td><td>× 100</td></tr>
+    </tbody></table>
+    <div class="card hl"><span class="lab">Ce qu'on en retient</span><p>Q3 gagne le plus : l'index <code>(id_hunter, created_at DESC)</code> est <b>déjà trié</b>, PostgreSQL lit 20 lignes et s'arrête. Coût : 7,8 Mo et une écriture un peu plus lente. Au volume d'aujourd'hui, le gain est nul : ces index <b>préparent la croissance</b>.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 4 / 10 · Dimensionnement et architecture</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq how">③ Comment</span></div>
+<h2>La note 3V : 22 à 133 Go en 2 ans, donc pas de Hadoop</h2>
+<div class="grid g3">
+  <div class="card"><span class="lab">Volume</span><p>Base PostgreSQL de <b>22 à 133 Go</b> après 2 ans selon 4 scénarios (majorant). <b>Deux tables de liens font 84 à 87 %</b> du volume. Les photos sont <b>liées, pas copiées</b> : 29 à 188 To évités, et pas de litige de droit d'auteur.</p></div>
+  <div class="card"><span class="lab">Vélocité</span><p><b>285 à 712</b> nouveaux mandats par jour, 4 000 à 25 800 nouveaux biens par jour. Le flux le plus rapide est le <b>scraping</b> : 9 à 56 pages d'agences relues par seconde. Les écritures en base restent faibles.</p></div>
+  <div class="card"><span class="lab">Variété</span><p>Structuré (mandats, ventes), semi-structuré (annonces de milliers de sites), non structuré (photos, avis audio et vidéo). 10 pays : langues, codes postaux, classes énergétiques différents.</p></div>
+</div>
+<div class="grid g2">
+  <div class="card hl"><span class="lab">La conclusion qui compte</span><p><b>Une instance PostgreSQL suffit</b> pour 133 Go. Un outil distribué (Hadoop, Spark, base NoSQL répartie) ajouterait une exploitation lourde pour un volume qu'une machine tient. Ce qui demande plusieurs machines, c'est la <b>collecte</b> (scraping), d'où un orchestrateur.</p></div>
+  <table class="cmp md small"><thead><tr><th>Option (matrice, 6 critères pondérés)</th><th>/120</th></tr></thead><tbody>
+    <tr><td>A · une base, tout dedans</td><td>77</td></tr>
+    <tr><td><b>B · OLTP + OLAP dans la même instance</b> <svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg></td><td><b>92</b></td></tr>
+    <tr><td>C · entrepôt séparé</td><td>81</td></tr>
+    <tr><td>D · microservices</td><td>65</td></tr>
+  </tbody></table>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 5 / 10 · Flux de données</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Quatre traitements de nuit, une source de vérité</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="flow">
+      <div class="step"><b>1 h · db_backup</b><small>base et rôles copiés dans MinIO, 7 jours gardés</small></div>
+      <div class="step"><b>2 h · annonces_import</b><small>brut → nettoyé → rejets → PostgreSQL</small></div>
+      <div class="step"><b>3 h · olap_refresh</b><small>l'étoile vidée puis recalculée, en une transaction</small></div>
+      <div class="step"><b>4 h · estates_index</b><small>copie des biens dans Elasticsearch</small></div>
+    </div>
+    <div class="card"><span class="lab">MinIO : un bucket par zone (ADR-060)</span><p><code>bronze</code> le CSV brut · <code>silver</code> les annonces valides · <code>quarantine</code> les rejets <b>avec leur raison</b> · <code>gold</code> le bilan de chargement. Rejouer une date relit le même brut et réécrit les mêmes fichiers : le traitement est <b>idempotent</b>.</p></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">L'OLAP : une étoile pseudonymisée</span><ul><li><b>Grain</b> : une vente = une ligne de <code>fait_ventes</code>.</li><li><b>Mesures</b> : montant du bien, honoraires, commission, visites avant achat, délai en semaines, exclusivité.</li><li><b>5 dimensions</b> : temps, chasseur, client, bien, secteur, sans nom, email ni téléphone.</li><li>Étoile plutôt que flocon : à quelques centaines de ventes, le flocon n'apporte que des jointures.</li></ul></div>
+    <div class="card hl"><span class="lab">Elasticsearch : une copie jetable (ADR-061)</span><p>PostgreSQL décide ; l'index <code>estates</code> sert à <b>chercher vite</b>. Sans contact du vendeur ni rue. Arrêté, seule la recherche répond <code>503</code>. Effacé, une nuit le refait. Prix : jusqu'à 24 h de retard.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 6 / 10 · L'API</div>
+<div class="pqrow"><span class="pq how">③ Comment</span></div>
+<h2>Une API en trois couches, et un pattern pour chaque problème</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <table class="cmp md small"><thead><tr><th>Couche</th><th>Son seul travail</th><th>Ne connaît pas</th></tr></thead><tbody>
+      <tr><td><b>Route</b></td><td>HTTP, droits, traduire une erreur en code</td><td>la base</td></tr>
+      <tr><td><b>Service</b></td><td>les règles métier</td><td>HTTP</td></tr>
+      <tr><td><b>Repository</b></td><td>lire et écrire en base (SQLModel)</td><td>les règles</td></tr>
+    </tbody></table>
+    <div class="card"><span class="lab">Pourquoi trois couches</span><p>Changer une règle sans toucher au HTTP, et <b>tester un service sans base</b> : 198 tests unitaires le font avec une base factice. FastAPI pour la validation par types et la documentation OpenAPI automatique ; SQLModel pour un seul modèle Pydantic + SQLAlchemy.</p></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <table class="cmp md small"><thead><tr><th>Pattern</th><th>Problème réglé</th></tr></thead><tbody>
+      <tr><td>Fabrique de routeurs</td><td>4 routes identiques pour 21 tables : écrites une fois</td></tr>
+      <tr><td>Repository générique</td><td>le CRUD typé, une table ajoute ses requêtes</td></tr>
+      <tr><td>Injection de dépendances</td><td>session, compte, clé arrivent prêts ; un test les remplace</td></tr>
+      <tr><td>Modèles d'entrée / de sortie</td><td>le mot de passe entre, mais ne sort jamais</td></tr>
+      <tr><td>Fermé par défaut</td><td>une route sans rôles déclarés rend 403 à tous</td></tr>
+      <tr><td>Middleware</td><td>une ligne de journal et les en-têtes de sécurité, à un seul endroit</td></tr>
+    </tbody></table>
+    <div class="card"><span class="lab">Choix écartés</span><p><b>Pas de <code>DELETE</code></b> (RGPD et comptabilité : on anonymise). <b><code>PUT</code> plutôt que <code>PATCH</code></b> : plus simple à raisonner. Entrée revalidée → <code>422</code> avant la base ; ce que seul PostgreSQL connaît → <code>409</code> (ADR-036).</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 7 / 10 · Sécurité</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Deux contrôles à chaque appel, et des attaques rejouées</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card hl"><span class="lab">Qui appelle, qui agit</span><p>La <b>clé d'API</b> (<code>X-API-Key</code>) dit quel <b>programme</b> appelle ; le <b>jeton JWT</b> (HS256, 60 min) dit quelle <b>personne</b> agit. Le compte et son rôle sont <b>relus en base à chaque appel</b> : un compte désactivé perd ses droits tout de suite (ADR-052).</p></div>
+    <div class="card"><span class="lab">Les protections</span><ul><li>Mots de passe hachés en <b>Argon2id</b> (≈ 300 ms, 512 Mo) ; 12 caractères minimum, sans règle de complexité (NIST 800-63B).</li><li>Comparaison à temps constant ; <b>même message et même durée</b> pour un email inconnu.</li><li><b>Frein</b> : 5 échecs par email ou 20 par IP en 15 min → <code>429</code>, même avec le bon mot de passe.</li><li>Ligne d'un autre → <b><code>404</code>, pas <code>403</code></b> : ne pas dire qu'elle existe.</li><li>Requêtes paramétrées, en-têtes de sécurité, erreur 500 neutre.</li></ul></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <table class="cmp md small"><thead><tr><th>Attaque (script rejouable, 20/11)</th><th>Réponse</th></tr></thead><tbody>
+      <tr><td>Injection SQL dans l'email</td><td>401 <svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg></td></tr>
+      <tr><td>Injection SQL dans le chemin, requête empilée</td><td>422 <svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg></td></tr>
+      <tr><td>XSS dans un champ</td><td>401, JSON <svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg></td></tr>
+      <tr><td>CSRF par cookie</td><td>401 <svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> (pas de cookie)</td></tr>
+      <tr><td>Force brute : 15 essais</td><td>401 × 5 puis 429 <svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg></td></tr>
+    </tbody></table>
+    <div class="card bad"><span class="lab">La faille trouvée, puis corrigée</span><p>Le 09/11, Gabriel teste 4 attaques : l'authentification n'avait <b>aucun blocage</b> après 15 mauvais mots de passe. Le frein est codé le 19/11, et les 6 essais sont rejoués le 20/11 : <b>6 sur 6 tiennent</b>.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 8 / 10 · Le programme d'IA</div>
+<div class="pqrow"><span class="pq how">③ Comment</span></div>
+<h2>La machine suggère, le chasseur trie, le client décide</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">v1, codée : un moteur à règles</span><ol><li><b>Filtres durs</b> : ville, type, budget, surface, pièces, classe énergétique ; on exclut le vendu et le déjà proposé.</li><li><b>Score bonus</b> : jardin, ascenseur, cave, garage…</li><li><b>10 suggestions</b> au plus, au statut <code>suggested</code>. Le chasseur <b>garde</b> ou <b>écarte</b> ; seul un bien gardé peut être proposé.</li><li>Le client : <code>interested</code>, ou <code>declined</code> avec un <b>motif en liste fermée</b> (trop cher, trop loin…).</li></ol></div>
+    <div class="card bad"><span class="lab">La phrase franche</span><p>« La v1 <b>n'est pas de l'IA</b> : c'est une requête et des règles. Nous l'appelons moteur de suggestion. » Le sujet demande de <b>concevoir</b> l'IA, pas de l'entraîner.</p></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card hl"><span class="lab">v2, conçue : apprendre à ordonner</span><p>Un modèle de <b>learning to rank</b> (gradient boosting) remplace le score bonus, pas les filtres. <b>11 features</b> sans donnée personnelle : écart prix/budget, marge de surface, marge énergétique, options satisfaites, quartier, travaux, ancienneté de l'annonce, baisses de prix, score texte, ressemblance aux biens rejetés…</p></div>
+    <div class="card"><span class="lab">Le label : les décisions déjà enregistrées</span><p>Offre signée (très fort) &gt; offre faite &gt; intéressé &gt; visite ; refus du client (fort) ; écarté par le chasseur (faible). Le <b>motif de refus</b> dit quelle feature a joué : « trop cher » pointe l'écart prix/budget.</p></div>
+    <div class="card"><span class="lab">Pourquoi ne pas entraîner maintenant</span><p>Les données sont <b>générées</b> : un modèle apprendrait le hasard du générateur. Les colonnes de décision existent pour que les <b>vraies</b> décisions s'accumulent dès la mise en service.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 9 / 10 · Qualité et supervision</div>
+<div class="pqrow"><span class="pq how">③ Comment</span></div>
+<h2>Tests, intégration continue et journaux</h2>
+<div class="grid g3">
+  <div class="card"><span class="lab">1 132 tests</span><ul><li><b>198</b> unitaires du socle, sans base.</li><li><b>65</b> unitaires de rémunération : les tableaux du sujet.</li><li><b>869</b> d'intégration, sur une base de test à part, chaque test annulé à la fin.</li><li>Résultat : <b>1 125 réussis</b>, 7 échecs attendus et stricts (ADR-048), <b>0 échec</b>.</li><li>Code cassé volontairement pour vérifier que les tests le voient.</li></ul></div>
+  <div class="card"><span class="lab">CI GitHub Actions</span><ul><li>À chaque push et pull request vers <code>main</code>.</li><li>Job <b>tests</b> : PostgreSQL neuf, schéma créé, suite complète + Airflow (126 tests).</li><li>Job <b>audit</b> : <code>pip-audit</code>, 0 faille dans les dépendances.</li><li>Couverture <b>93 %</b> ; suite en 64 s.</li></ul></div>
+  <div class="card"><span class="lab">Monitoring</span><ul><li>Une <b>ligne JSON par requête</b> (méthode, chemin, code, durée, rôle), sans mot de passe, jeton ni email.</li><li>Logstash → Elasticsearch → <b>Kibana</b>, gardée 6 mois.</li><li>Logstash arrêté ne bloque pas l'API.</li><li><svg class="ico" aria-hidden="true"><use href="#ti-alert-triangle"/></svg> Pas d'<b>alerting</b> ni de marche à suivre en cas d'incident : on détecte, on ne répond pas encore.</li></ul></div>
+</div>
+<div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p><b>Pourquoi pas SQLite pour les tests ?</b> Il ne connaît pas les contraintes PostgreSQL (<code>CHECK</code>, <code>NUMERIC</code>, <code>EXCLUDE</code>) : les tests passeraient sur une base qui ne ressemble pas à la vraie.</p></div></div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Les implémentations techniques · 10 / 10 · Sauvegarde et reprise</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Une sauvegarde jamais restaurée n'est pas une sauvegarde</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">PCA et PRA</span><p><b>PCA</b> : continuer <b>pendant</b> l'incident. <b>PRA</b> : repartir <b>après</b> le sinistre. Seule la base est irremplaçable : l'index, l'OLAP et MinIO se refont en une nuit.</p></div>
+    <table class="cmp md small"><thead><tr><th>Données</th><th>RPO visé</th><th>RTO visé</th></tr></thead><tbody>
+      <tr><td>Contractuel et financier</td><td>1 h</td><td>4 h</td></tr>
+      <tr><td>Demandes et critères</td><td>12 h</td><td>4 h</td></tr>
+      <tr><td>Comptes, fiches, biens</td><td>24 h</td><td>8 h</td></tr>
+    </tbody></table>
+    <div class="card bad"><span class="lab">L'écart à dire</span><p>RPO visé 1 h, <b>réel 24 h</b> : la copie est quotidienne, sans <b>WAL</b> (journaux de transactions archivés en continu) ni copie hors site. Les WAL permettraient de restaurer à la minute près.</p></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card hl"><span class="lab">Le test de reprise (19/11)</span><p>Sauvegarde <code>pg_dump</code> en <b>0,96 s</b> (573 Ko compressés), rôles à part (<code>pg_dump</code> ne les contient pas), restauration dans une base jetable en <b>2,82 s</b> : <b>28 tables, 18 246 lignes, 0 écart</b>. Au volume de la note 3V, ces secondes deviendront des heures : il faudra une réplique.</p></div>
+    <div class="card"><span class="lab">Le piège RGPD de la restauration</span><p>Une vieille sauvegarde contient des personnes <b>anonymisées depuis</b> : la restaurer les ressuscite. Parade proposée : garder hors de la base la liste des comptes effacés et la rejouer après chaque restauration.</p></div>
+    <div class="card"><span class="lab">Éco-conception</span><p>Le sujet propose des copies à la minute, l'heure, 12 h, 24 h. Retenu : <b>une copie par jour + les WAL</b>, au lieu de 1 440 copies par jour. On ne sauvegarde pas ce qui se refait.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Les implémentations techniques</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges à l'oral et résumé</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>« On n'a pas besoin de Big Data »</b> dit comme une excuse : dis-le comme une <b>décision chiffrée</b> (133 Go tiennent sur une instance) avec son déclencheur.</div>
+    <div><b>Appeler le moteur v1 « une IA »</b> : c'est un moteur à règles ; l'apprentissage est conçu.</div>
+    <div><b>Dire « on a des sauvegardes »</b> sans l'écart : RPO visé 1 h, réel 24 h.</div>
+    <div><b>Confondre 401, 403, 404, 409, 422</b> : non connecté, pas le droit, pas le sien, conflit en base, entrée invalide.</div>
+    <div><b>Dire « l'OLAP est dans un entrepôt »</b> : c'est un schéma à part dans la même instance.</div>
+  </div>
+  <ol class="sum-list">
+    <li>Docker Compose local, 3 profils : 234 Mio à 5,0 Gio.</li>
+    <li>22 tables ; la base refuse les incohérences.</li>
+    <li>Index mesurés : × 15 à × 100 au volume projeté.</li>
+    <li>3V : 22 à 133 Go → une instance, OLTP + OLAP (92/120).</li>
+    <li>Nuit : sauvegarde, import, OLAP, index ; MinIO par zones.</li>
+    <li>API 3 couches ; clé + JWT ; 6 attaques sur 6 tiennent.</li>
+    <li>IA : v1 à règles codée, v2 learning to rank conçue.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="e">
+<div class="kicker">Chapitre 05 · Les implémentations techniques</div>
+<h2>Fiche — Données et architecture</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Infrastructure</span><p>Docker Compose local · 11 conteneurs · profils · images épinglées · VM 8 Go en Europe pour la prod.</p></div>
+  <div class="card"><span class="lab">Modèle</span><p>22 tables · fiches séparées · fin = signature + 6 mois · exclusivité par déclencheur · versions réflexives.</p></div>
+  <div class="card"><span class="lab">Migration</span><p>Big bang · source intacte · 50 migrations transactionnelles · comptages avant/après.</p></div>
+  <div class="card"><span class="lab">Index</span><p>EXPLAIN avant/après à 500 000 lignes : × 35, × 15, × 100 ; inutiles au volume actuel.</p></div>
+  <div class="card"><span class="lab">3V</span><p>22–133 Go · 285–712 mandats/jour · 9–56 pages/s · photos liées (29–188 To évités).</p></div>
+  <div class="card"><span class="lab">Architecture</span><p>Option B : OLTP + OLAP même instance (92/120) ; Elasticsearch copie jetable.</p></div>
+  <div class="card wide"><span class="lab">Flux de nuit</span><p>1 h sauvegarde · 2 h annonces (bronze → silver / quarantine) · 3 h OLAP (étoile, grain = une vente) · 4 h index Elasticsearch.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="e">
+<div class="kicker">Chapitre 05 · Les implémentations techniques</div>
+<h2>Fiche — Application, IA et exploitation</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">API</span><p>FastAPI + SQLModel · 96 opérations · routes / services / repositories · pas de DELETE.</p></div>
+  <div class="card"><span class="lab">Codes</span><p>401 non connecté · 403 pas le droit · 404 pas le sien · 409 conflit en base · 422 entrée invalide · 429 trop d'essais.</p></div>
+  <div class="card"><span class="lab">Sécurité</span><p>Clé d'API + JWT 60 min · compte relu à chaque appel · Argon2id · frein 5/20 en 15 min.</p></div>
+  <div class="card"><span class="lab">IA</span><p>v1 : filtres + bonus, 10 suggestions, l'humain garde. v2 : learning to rank, 11 features, label = décisions.</p></div>
+  <div class="card"><span class="lab">Qualité</span><p>1 125 tests verts · 93 % de couverture · CI GitHub Actions · pip-audit 0 faille.</p></div>
+  <div class="card"><span class="lab">Reprise</span><p>Copie quotidienne 7 jours · restauration 2,82 s, 0 écart · RPO réel 24 h (WAL à poser).</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · Les implémentations techniques</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — données et architecture</h2>
+<div class="accg">
+<div class="acc jq"><button class="ah" type="button">Vous êtes en option Big Data : pourquoi ni Hadoop, ni Spark ?</button><div class="ab"><p>Parce que la note 3V chiffre la base à 22 à 133 Go après deux ans, et qu'une instance PostgreSQL tient ce volume. Un outil distribué aurait ajouté une exploitation lourde sans besoin. Ce qui demande plusieurs machines, c'est la collecte par scraping, 9 à 56 pages par seconde, d'où un orchestrateur. Le déclencheur est écrit : partitionner les deux tables de liens quand elles dépassent quelques dizaines de gigaoctets, puis répartir par pays si une machine ne suffit plus.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Pourquoi avoir séparé OLTP et OLAP, et pourquoi dans la même instance ?</button><div class="ab"><p>Séparer protège le métier des requêtes d'analyse lourdes et permet une analyse sans données nominatives : l'étoile est pseudonymisée et recalculée la nuit. La même instance, parce que la matrice de décision la place en tête, 92 sur 120 : elle sépare les usages sans second moteur à exploiter, ce qui compte pour une équipe de quatre. L'entrepôt séparé deviendra utile quand l'analyse ralentira le métier, mesure à l'appui.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Pourquoi PostgreSQL ?</button><div class="ab"><p>SQLite est écarté d'emblée : un seul écrivain à la fois, incompatible avec un backend multi-utilisateurs. Entre les SGBD serveur, PostgreSQL était déjà celui de l'existant, et il offre le partitionnement déclaratif, les contraintes CHECK riches, les déclencheurs et les types comme NUMERIC ou JSONB. C'est l'ADR-001, qui prévoyait d'être réévalué après la note 3V : elle l'a confirmé.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Comment migrez-vous sans perdre de données ?</button><div class="ab"><p>La source n'est jamais modifiée. La migration se fait d'un coup, en 50 étapes chacune dans sa transaction, et certaines s'arrêtent seules si un comptage ne correspond pas. On compare ensuite la base migrée à une base neuve, et on compte les lignes table par table. Le retour arrière est simple : avant la bascule, on abandonne la nouvelle base ; après, on a la sauvegarde prise juste avant et l'ancienne base en lecture seule.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Pourquoi ne pas avoir indexé toutes les clés étrangères ?</button><div class="ab"><p>Parce qu'un index coûte de la place et ralentit chaque écriture. Nous avons mesuré avec EXPLAIN ANALYZE : au volume actuel, PostgreSQL lit toute la table et il a raison. Au volume projeté de 500 000 sélections, trois filtres gagnaient 15 à 100 fois : nous avons posé ces trois-là. Les autres seront mesurés quand leur requête comptera.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Que se passe-t-il si Elasticsearch tombe ?</button><div class="ab"><p>Seule la recherche de biens répond 503 ; le reste de l'API marche, parce que PostgreSQL est la seule source de vérité. L'index est une copie refaite chaque nuit : on peut l'effacer sans rien perdre. Le prix de ce choix est un retard d'au plus 24 heures pour un bien créé dans la journée.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Pourquoi Airflow 2.11.2, qui est en fin de vie ?</button><div class="ab"><p>Pour rester au plus près du cours, avec la dernière version de la branche 2. Plus aucun correctif de sécurité ne sortira : c'est acceptable pour un projet local, pas pour une production. Le passage à Airflow 3 est le premier chantier si le projet vit. C'est écrit dans l'ADR-059.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · Les implémentations techniques</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — application, IA et exploitation</h2>
+<div class="accg">
+<div class="acc jq"><button class="ah" type="button">Pourquoi relire le compte en base à chaque appel, alors que le jeton contient l'identité ?</button><div class="ab"><p>Pour qu'un compte désactivé perde ses droits immédiatement. Si le rôle était lu dans le jeton, il resterait valable jusqu'à la fin des 60 minutes. Le prix est une lecture en base de plus par appel, que nous acceptons : la sécurité passe avant la performance, et c'est un des arbitrages écrits de la matrice.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Pourquoi répondre 404 plutôt que 403 sur la ligne d'un autre ?</button><div class="ab"><p>Un 403 confirmerait que la ligne existe : un client pourrait énumérer les identifiants des autres clients. Avec un 404, la ligne d'un autre est indiscernable d'une ligne absente. C'est une parade au contrôle d'accès défaillant, le premier risque du Top 10 OWASP.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Comment évitez-vous qu'une IA branchée sur la base cause des dégâts ?</button><div class="ab"><p>Trois barrières. Un compte en lecture seule pour tout outil d'IA : aucune écriture possible. Le moteur n'écrit qu'au statut « suggéré », et seul un humain peut retenir un bien avant de le proposer. Et les droits réduits du chasseur-IA, qui pourra suggérer mais jamais faire une offre, conclure une vente ou toucher un paiement. Cette dernière règle est proposée dans l'ADR-058 mais pas encore codée, et je le dis.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Comment évalueriez-vous le modèle de matching ?</button><div class="ab"><p>Par des indicateurs métier : la part des suggestions que le chasseur garde, et la part des biens proposés qui intéressent le client. Dès la v1, le fichier de recherches du sujet sert de jeu de test : le moteur retrouve-t-il les annonces faites pour chaque recherche ? Il ne sert pas à entraîner, car il ne contient que des exemples positifs fabriqués par le générateur.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Pourquoi Argon2, et pourquoi si lent ?</button><div class="ab"><p>Argon2id est l'algorithme recommandé pour les mots de passe : il est lent et gourmand en mémoire exprès, environ 300 ms et 512 Mo par hachage, ce qui rend une attaque par dictionnaire très coûteuse si la base est volée. Un utilisateur ne sent pas 300 ms à la connexion. Dans les tests, il est remplacé par un hacheur faible pour garder la suite rapide.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Que se passe-t-il si le serveur tombe ?</button><div class="ab"><p>La base et l'API redémarrent seules après un plantage, nous l'avons simulé. Si la machine est perdue, on suit le PRA : isoler, recréer la base, restaurer la dernière sauvegarde avec les rôles, vérifier les comptages, rejouer les effacements RGPD, puis rouvrir. Restaurer la base de dev prend 2,82 secondes. Les limites : une seule instance, une copie par jour, sur la même machine.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Comment savez-vous que vos tests prouvent quelque chose ?</button><div class="ab"><p>Nous avons cassé volontairement le code, vérifié que des tests échouaient, puis remis le code à l'identique. Les tests d'intégration tournent sur une vraie base PostgreSQL avec les mêmes contraintes, pas sur SQLite. Et chaque route a un test de ses droits : une route ajoutée sans ce test fait échouer la suite.</p></div></div>
+</div>
+</section>
+
+<!-- ================= 06 · GESTION DU PROJET ================= -->
+<section class="slide" data-ch="06" data-sec="06 Gestion de projet" data-title="La gestion du projet" data-v="c">
+<div class="kicker">Chapitre 06 · La gestion du projet</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Le planning : quatre phases qui se chevauchent</h2>
+<div class="grid g2">
+  <table class="cmp md"><thead><tr><th>Jalon</th><th>Date</th></tr></thead><tbody>
+    <tr><td>Début du projet (1er commit)</td><td>27/07/2026</td></tr>
+    <tr><td>Fin de l'audit</td><td>19/08/2026</td></tr>
+    <tr><td>Note de cadrage v1</td><td>21/08/2026</td></tr>
+    <tr><td>Schéma v2 (18 tables)</td><td>21/09/2026</td></tr>
+    <tr><td><b>Schéma v3 + migration</b></td><td><b>07/10/2026</b></td></tr>
+    <tr><td>Flux de données branché</td><td>15/10/2026</td></tr>
+    <tr><td><b>Présentation intermédiaire</b></td><td><b>16/10/2026</b></td></tr>
+    <tr><td>Suggestion de biens, RGPD</td><td>03/11/2026</td></tr>
+    <tr><td>Fin de la phase 3</td><td>19/11/2026</td></tr>
+    <tr><td>Rendu des livrables <i>(proposé)</i></td><td>18/12/2026</td></tr>
+    <tr><td><b>Soutenance</b></td><td><b>11/03/2027</b></td></tr>
+  </tbody></table>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">Comment lire le Gantt</span><ul><li>Hypothèse de charge : <b>2 à 3 jours de travail par semaine</b>.</li><li>Les phases 1 et 2 se <b>chevauchent</b> (on finissait l'audit en commençant le cadrage).</li><li>Les phases 3 et 4 se mènent <b>en parallèle</b> depuis le 08/10 : l'architecture et l'API avancent ensemble.</li><li>Chaque date est soit <b>réelle</b> (tirée des commits ou des documents), soit <b>proposée</b> et marquée comme telle.</li></ul></div>
+    <div class="card hl"><span class="lab">Le chemin critique</span><p>La phase 2 fait passer d'un schéma « à plat » à un modèle normalisé : les phases 3 et 4 en <b>dépendent</b>. Le jalon du 07/10 (schéma v3 + migration) est celui qui a débloqué tout le reste.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="06" data-v="c">
+<div class="kicker">Chapitre 06 · La gestion du projet</div>
+<div class="pqrow"><span class="pq how">③ Comment</span></div>
+<h2>Ressources, rôles et méthode de travail</h2>
+<div class="grid g3">
+  <div class="card"><span class="lab">Ressources</span><ul><li><b>4 data engineers</b>, sans budget communiqué.</li><li>Nos ordinateurs et une pile Docker locale.</li><li>Outils libres et gratuits.</li></ul></div>
+  <div class="card"><span class="lab">RACI</span><p>Chaque livrable a un <b>R</b> (réalise) et un <b>A</b> (valide, un seul). Un membre absent ou surchargé ne bloque pas : son valideur prend le relais. Le jury est le <b>sponsor</b>, le formateur le <b>Product Owner</b>.</p></div>
+  <div class="card"><span class="lab">Méthode</span><ul><li>Le projet est découpé en <b>chantiers</b> (LOT, FLX, SUG, RGP…), puis en petites tâches sur le <b>kanban</b> GitHub.</li><li>Chaque tâche de code est relue avant commit.</li><li>Une décision importante = un ADR.</li><li>« Une modification n'est finie que quand ce qu'elle a rendu faux a disparu. »</li></ul></div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Communication</span><p><b>Discord</b> pour les échanges et les votes ; <b>GitHub</b> pour le code, la documentation, les ADR et le kanban ; <b>Confluence</b> jusqu'au 20/11, date où le dépôt devient la seule source qui fait foi (une seule vérité, pas deux).</p></div>
+  <div class="card"><span class="lab">Les ateliers tracés</span><p><b>21/09</b> point d'étape et plan ; <b>07/10</b> entretien avec le PO (28 questions) ; <b>15/10</b> préparation de la présentation intermédiaire du 16/10 (pas de démo, 15 diapositives, une diapositive sur le travail avec l'IA).</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="06" data-v="c">
+<div class="kicker">Chapitre 06 · La gestion du projet</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Les risques du projet, cotés comme ceux du SI</h2>
+<div class="grid g2">
+  <table class="cmp md"><thead><tr><th>Cote</th><th>Risque</th><th>Parade</th></tr></thead><tbody>
+    <tr><td><b>9</b></td><td>Le travail repose sur une personne : <b>88 %</b> des commits (645 sur 729)</td><td>répartir les livrables manquants (RACI) ; chacun relit les autres</td></tr>
+    <tr><td>6</td><td>L'assistant IA se trompe</td><td>relire chaque sortie, vérifier contre le sujet et le code</td></tr>
+    <tr><td>6</td><td>Le périmètre déborde (un chantier clos sans rien livrer, 03/11)</td><td>hors-périmètre validé avec le PO</td></tr>
+    <tr><td>6</td><td>Le PO est injoignable (19/11)</td><td>l'équipe tranche et l'écrit (MoSCoW, ADR)</td></tr>
+    <tr><td>4</td><td>Un membre absent ou surchargé</td><td>RACI : chacun a un valideur</td></tr>
+    <tr><td>3</td><td>Perte de données ou de travail</td><td>GitHub, sauvegardes ; restauration testée</td></tr>
+  </tbody></table>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">Les indicateurs de suivi</span><ul><li>Nombre de tests verts : 121 (02/10) → 258 (12/10) → 1 132 (20/11).</li><li>Must du backlog livrés : 33 sur 33.</li><li>Livrables de la grille présents.</li><li>Anomalies de l'audit traitées par la migration.</li></ul></div>
+    <div class="card bad"><span class="lab">À dire franchement</span><p>La note de cadrage (v1 du 21/08, v2 du 03/11) n'a <b>pas encore de validation écrite</b> : le valideur prévu au RACI doit la signer. Le jury apprécie qu'on connaisse ses trous.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="06" data-v="c">
+<div class="kicker">Chapitre 06 · La gestion du projet</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges à l'oral et résumé</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Un Gantt présenté comme réel de bout en bout</b> : trois dates sont proposées. Dis lesquelles.</div>
+    <div><b>« On a fait du Scrum »</b> : il n'y a pas eu de sprints formels ; dis ce qui a été fait (chantiers, tâches, kanban, relecture).</div>
+    <div><b>Un RACI avec plusieurs A</b> sur un livrable : il n'y en a qu'un, sinon personne ne valide vraiment.</div>
+    <div><b>Taire les risques du projet</b> : les avoir cotés et traités est un signe de pilotage.</div>
+  </div>
+  <ol class="sum-list">
+    <li>4 phases, du 27/07/2026 à la soutenance du 11/03/2027.</li>
+    <li>Jalon critique : schéma v3 + migration le 07/10.</li>
+    <li>RACI : un R et un seul A par livrable.</li>
+    <li>Chantiers → tâches → kanban ; relecture ; ADR.</li>
+    <li>Risque n° 1 : dépendance à une personne (88 % des commits).</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="06" data-v="e">
+<div class="kicker">Chapitre 06 · La gestion du projet</div>
+<h2>Fiche — Gestion du projet</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Phases</span><p>Audit 27/07–19/08 · Besoin 17/08–07/10 · Croissance 08/10–19/11 · IA 08/10–27/11.</p></div>
+  <div class="card"><span class="lab">Jalons clés</span><p>Schéma v3 07/10 · présentation 16/10 · soutenance 11/03/2027.</p></div>
+  <div class="card"><span class="lab">Rôles</span><p>PO = formateur · sponsor = jury · RACI : un R, un A par livrable.</p></div>
+  <div class="card"><span class="lab">Méthode</span><p>Chantiers → tâches → kanban GitHub · relecture · ADR · Discord.</p></div>
+  <div class="card"><span class="lab">Risques projet</span><p>Dépendance à une personne (9) · IA qui se trompe · périmètre · PO injoignable (6).</p></div>
+  <div class="card"><span class="lab">KPI de suivi</span><p>Tests 121 → 1 132 · 33/33 Must · anomalies de l'audit traitées.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="06">
+<div class="kicker">Chapitre 06 · La gestion du projet</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 06</h2>
+<div class="accg">
+<div class="acc jq"><button class="ah" type="button">Quelle méthode de gestion de projet avez-vous suivie ?</button><div class="ab"><p>Un cadre en quatre phases fixé par le sujet, et à l'intérieur une démarche itérative : le projet découpé en chantiers, chaque chantier en petites tâches suivies sur un kanban GitHub, chaque tâche de code relue avant commit. Les décisions passaient par un vote puis un ADR. Ce n'était pas du Scrum formel, sans sprints ni cérémonies, mais un flux continu proche du Kanban.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Comment avez-vous suivi l'avancement ?</button><div class="ab"><p>Par des indicateurs concrets : le nombre de tests verts, passé de 121 début octobre à 1 132 fin novembre ; les Must du backlog livrés, 33 sur 33 ; et les livrables de la grille d'évaluation, cochés avec un lien vers leur preuve dans la grille d'auto-évaluation. Le kanban montrait les tâches en cours.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">À quoi sert votre RACI ?</button><div class="ab"><p>À savoir pour chaque livrable qui le réalise et qui le valide, avec un seul valideur. C'est aussi la parade à deux risques : un membre absent, puisque le valideur reprend le relais, et la dépendance à une personne, puisqu'on a réparti les livrables restants pour équilibrer la charge.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Comment avez-vous impliqué les parties prenantes ?</button><div class="ab"><p>Le Product Owner, joué par le formateur, a tranché 28 questions lors d'un entretien le 7 octobre, où nous arrivions avec une position sur chacune. La présentation intermédiaire du 16 octobre a servi de point de contrôle devant les autres groupes. Et chaque décision est écrite, donc vérifiable par n'importe qui.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Quel a été le risque principal du projet, et l'avez-vous maîtrisé ?</button><div class="ab"><p>La dépendance à une personne : une seule personne a fait la grande majorité des commits. Nous l'avons cotée 9 sur 9. Maîtrisé en partie : les livrables restants ont été répartis, et chacun a relu le travail des autres pour pouvoir le défendre. Si c'était à refaire, je mettrais en place le travail en binôme sur le code dès le début.</p></div></div>
+</div>
+</section>
+
+<!-- ================= 07 · ANALYSES ET PERSPECTIVES ================= -->
+<section class="slide" data-ch="07" data-sec="07 Bilan" data-title="Analyses et perspectives" data-v="c">
+<div class="kicker">Chapitre 07 · Analyses et perspectives</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Les objectifs atteints, comparés aux critères de succès</h2>
+<div class="grid g2">
+  <table class="cmp md"><thead><tr><th>Critère de succès</th><th>Cible</th><th>Résultat</th></tr></thead><tbody>
+    <tr><td>Mandats expirés encore « actifs »</td><td>0</td><td><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> impossible : la base impose fin = signature + 6 mois</td></tr>
+    <tr><td>Chasseur enregistré comme client</td><td>0</td><td><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> impossible : fiches séparées</td></tr>
+    <tr><td>Honoraires tracés</td><td>oui</td><td><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> ventes et paiements, calcul figé</td></tr>
+    <tr><td>Critères en texte libre</td><td>0</td><td><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> critères typés et versionnés</td></tr>
+    <tr><td>Tests automatiques verts</td><td>100 %</td><td><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> 1 125 réussis, 0 échec</td></tr>
+    <tr><td>Must du backlog</td><td>tous</td><td><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> 33 sur 33</td></tr>
+  </tbody></table>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card hl"><span class="lab">Les performances mesurées</span><ul><li>Index : <b>× 15 à × 100</b> au volume projeté.</li><li>Charge (1 000 requêtes, 10 en parallèle) : un bien en <b>70 ms</b> de médiane, 138 requêtes/s.</li><li>Restauration de la base : <b>2,82 s</b>, 0 écart.</li><li>Attaques : <b>6 sur 6</b> tiennent.</li><li>Couverture : <b>93 %</b> ; 0 faille dans les dépendances.</li><li>Qualité des annonces : 55,4 % → <b>70,2 %</b>.</li></ul></div>
+    <div class="card bad"><span class="lab">Le goulot trouvé</span><p><code>GET /estates</code> rend les 3 219 biens d'un coup : <b>1,25 s</b> de médiane, 18 fois plus cher qu'un bien. Paginer passe <b>avant</b> toute machine en plus.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="07" data-v="c">
+<div class="kicker">Chapitre 07 · Analyses et perspectives</div>
+<div class="pqrow"><span class="pq how">③ Comment</span></div>
+<h2>Les limites, dites avant qu'on les trouve</h2>
+<div class="grid g2">
+  <div class="card"><span class="lab">Techniques</span><ul>
+    <li>Pas de <b>pagination</b> sur les listes.</li>
+    <li><b>RPO réel 24 h</b> : ni WAL ni copie hors site.</li>
+    <li><b>Une seule instance</b> de chaque service, sans réplique.</li>
+    <li><b>Airflow 2.11.2</b> en fin de vie depuis avril 2026.</li>
+    <li>Pas de <b>HTTPS</b> en local, pas de MFA, pas de rotation des secrets.</li>
+    <li>Les leviers de croissance sont <b>conçus, pas éprouvés</b> en charge réelle.</li>
+    <li>Pas d'alerting ni de procédure de réponse à incident.</li></ul></div>
+  <div class="card"><span class="lab">Données, IA et périmètre</span><ul>
+    <li>Le <b>chasseur-IA n'est pas bridé</b> : ses droits réduits (ADR-058) ne sont pas codés.</li>
+    <li>Le compte en lecture seule lit encore les fiches <b>en clair</b> ; la cible est un rôle à part sur l'OLAP.</li>
+    <li>Les annonces ne sont <b>pas dédoublonnées</b> entre agences.</li>
+    <li>Les données sont <b>générées</b> : aucun modèle entraîné.</li>
+    <li>Purge du brut et des journaux après 6 mois : durées fixées, <b>non appliquées</b>.</li>
+    <li>Pas de site web : l'accessibilité est exigée, pas auditée.</li></ul></div>
+</div>
+<div class="note tip"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>« Reconnaître une limite est une force, pas un aveu » (trame de soutenance). La formule : « nous n'avons pas eu le temps de X, mais voici comment nous l'aurions abordé ».</p></div></div>
+</section>
+
+<section class="slide" data-ch="07" data-v="c">
+<div class="kicker">Chapitre 07 · Analyses et perspectives</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Retour d'expérience et recommandations</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">Les leçons apprises</span><ol>
+      <li><b>Mesurer avant de corriger</b> : l'index qui ne sert à rien aujourd'hui, la faille d'authentification, le goulot de la liste, tous trouvés par une mesure.</li>
+      <li><b>Écrire les décisions</b> : 65 ADR, et chaque question du jury a déjà sa réponse écrite.</li>
+      <li><b>Faire juger la base</b> : une règle dans PostgreSQL ne peut pas être contournée.</li>
+      <li><b>Répartir le code tôt</b> : la dépendance à une personne s'est installée sans qu'on la voie.</li>
+      <li><b>Relire l'assistant IA</b> : il accélère, il se trompe aussi.</li></ol></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card hl"><span class="lab">Les recommandations, dans l'ordre</span><ol>
+      <li><b>Paginer</b> les listes (le goulot mesuré).</li>
+      <li><b>Archiver les WAL</b> et copier hors site, pour tenir le RPO d'1 h.</li>
+      <li><b>Coder les droits réduits</b> du chasseur-IA et un rôle IA sur l'OLAP.</li>
+      <li><b>Passer à Airflow 3</b> avant toute production.</li>
+      <li>En production : HTTPS, MFA pour Admin et Manager, une <b>réplique</b> PostgreSQL.</li>
+      <li>Quand les vraies décisions s'accumulent : entraîner la <b>v2</b> du matching.</li>
+      <li>Au-delà de quelques dizaines de Go : <b>partitionner</b> les tables de liens.</li></ol></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="07" data-v="c">
+<div class="kicker">Chapitre 07 · Analyses et perspectives</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges à l'oral et résumé</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Un bilan sans chiffres</b> : « ça marche bien » ne vaut rien ; cite la mesure.</div>
+    <div><b>Des limites sans plan</b> : chaque limite vient avec sa recommandation.</div>
+    <div><b>Des perspectives en vrac</b> : ordonne-les par urgence et par déclencheur.</div>
+    <div><b>Dire que les leviers de croissance sont prouvés</b> : ils sont conçus et chiffrés, pas éprouvés en charge réelle.</div>
+  </div>
+  <ol class="sum-list">
+    <li>Les critères de succès sont atteints, souvent par construction.</li>
+    <li>Mesures : × 15 à × 100, 70 ms, 2,82 s, 6/6, 93 %.</li>
+    <li>Le goulot : la liste non paginée (1,25 s).</li>
+    <li>Limites : RPO réel 24 h, chasseur-IA non bridé, une instance.</li>
+    <li>Ordre : paginer, WAL, droits IA, Airflow 3, prod, v2, partitions.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="07" data-v="e">
+<div class="kicker">Chapitre 07 · Analyses et perspectives</div>
+<h2>Fiche — Bilan et perspectives</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Atteint</span><p>0 mandat expiré actif · 0 chasseur-client · honoraires tracés · 0 critère libre · 33/33 Must.</p></div>
+  <div class="card"><span class="lab">Mesuré</span><p>Index × 15–100 · 70 ms/bien · restauration 2,82 s · 6/6 attaques · 93 %.</p></div>
+  <div class="card"><span class="lab">Limites</span><p>Pas de pagination · RPO 24 h · une instance · chasseur-IA non bridé · Airflow 2 fin de vie.</p></div>
+  <div class="card"><span class="lab">Leçons</span><p>Mesurer avant de corriger · écrire les décisions · faire juger la base · répartir le code tôt.</p></div>
+  <div class="card wide"><span class="lab">Recommandations</span><p>Paginer → WAL hors site → droits IA → Airflow 3 → HTTPS, MFA, réplique → v2 du matching → partitionnement.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="07">
+<div class="kicker">Chapitre 07 · Analyses et perspectives</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 07</h2>
+<div class="accg">
+<div class="acc jq"><button class="ah" type="button">Si c'était à refaire, que changeriez-vous ?</button><div class="ab"><p>Trois choses. Répartir le code dès le début, en binôme, pour éviter la dépendance à une personne. Poser la pagination dès la première route de liste : c'est le goulot que la mesure de charge a trouvé. Et formuler la problématique sous forme de question plus tôt, pour que chaque livrable y réponde explicitement.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Quelles sont les principales limites de votre solution ?</button><div class="ab"><p>Une seule instance de chaque service, et une sauvegarde quotidienne sans journaux WAL : nous visons une perte d'une heure au plus, nous sommes à 24 heures. Les droits réduits du chasseur-IA sont proposés mais pas codés. Et les listes ne sont pas paginées. Chacune a sa recommandation, dans un ordre fixé par l'urgence.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Votre solution tiendra-t-elle la croissance annoncée ?</button><div class="ab"><p>Le volume, oui : 22 à 133 Go tiennent sur une instance, selon la note 3V. Les leviers sont prévus avec leur déclencheur : index maintenant, réplique avant la production, partitionnement des deux tables de liens au-delà de quelques dizaines de gigaoctets, répartition par pays seulement si une machine ne suffit plus. Ils sont conçus et chiffrés, pas encore éprouvés en charge réelle : c'est la prochaine étape.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Quels indicateurs suivriez-vous en production ?</button><div class="ab"><p>Côté technique : la latence au 95e centile par route, le taux d'erreurs 5xx, la durée des traitements de nuit et la taille des deux tables de liens, qui déclenche le partitionnement. Côté métier : la part des suggestions gardées par les chasseurs et la part des biens qui intéressent les clients, qui jugent le matching. Et le nombre de mandats arrivant à échéance sans renouvellement.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Qu'avez-vous appris personnellement ?</button><div class="ab"><p>À mesurer avant de décider : plusieurs de mes livrables, comme la note d'indexation et les tests d'attaque, ont donné un résultat que je n'attendais pas. Les index étaient inutiles au volume actuel, et l'authentification avait une faille. J'ai aussi appris à écrire une décision pour qu'un autre puisse la défendre, ce qui est exactement ce que je fais aujourd'hui.</p></div></div>
+</div>
+</section>
+
+<!-- ================= 08 · CONCLUSION ================= -->
+<section class="slide" data-ch="08" data-sec="08 Conclusion" data-title="Conclusion et remerciements" data-v="c">
+<div class="kicker">Chapitre 08 · Conclusion et remerciements</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Finir sur les résultats et ouvrir les questions</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">Ce que le guide demande</span><ol><li>Résumer les <b>principaux résultats</b> et leur impact.</li><li>Mettre en avant les <b>bénéfices</b> pour l'entreprise.</li><li><b>Remercier</b> le jury et l'inviter à passer aux questions.</li></ol></div>
+    <div class="card"><span class="lab">Les bénéfices pour l'entreprise</span><ul><li><b>Juridique</b> : plus aucun mandat échu affiché actif ; l'exclusivité est garantie par la base.</li><li><b>Financier</b> : chaque honoraire et chaque rémunération est tracé et explicable.</li><li><b>Continuité</b> : un code sur GitHub, documenté et couvert par des tests, à la place d'un backend perdu.</li><li><b>Stratégique</b> : des données structurées, prêtes pour le matching et l'IA.</li></ul></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card hl"><span class="lab"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> La conclusion, à dire en une minute</span><p class="q">« Nous sommes partis d'un SI de trois tables qui affichait un tiers de mandats faux et ignorait les honoraires. Nous livrons un modèle de 22 tables où la base refuse les incohérences, une API sécurisée testée par plus de mille tests, un flux de données de nuit, une analyse pseudonymisée et un moteur de suggestion qui prépare l'IA en gardant l'humain dans la boucle.</p><p class="q">Chaque choix est écrit et mesuré, et chaque limite a son plan. Je remercie l'équipe GaSeBeLa, notre formateur, et vous pour votre écoute. Je suis prêt à répondre à vos questions. »</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="08" data-v="c">
+<div class="kicker">Chapitre 08 · Conclusion et remerciements</div>
+<div class="pqrow"><span class="pq how">③ Comment</span></div>
+<h2>Les dix décisions à savoir défendre : X parce que Y, plutôt que Z</h2>
+<table class="cmp md small"><thead><tr><th>On a choisi</th><th>parce que</th><th>plutôt que</th></tr></thead><tbody>
+  <tr><td>une refonte complète</td><td>elle traite la cause et prépare l'IA</td><td>des correctifs sur les 3 risques rouges</td></tr>
+  <tr><td>PostgreSQL, une instance</td><td>133 Go à 2 ans y tiennent</td><td>Hadoop, Spark ou une base distribuée</td></tr>
+  <tr><td>OLTP + OLAP dans la même instance</td><td>sépare les usages sans second moteur (92/120)</td><td>un entrepôt séparé (81) ou des microservices (65)</td></tr>
+  <tr><td>des règles dans la base (<code>CHECK</code>, déclencheur)</td><td>aucun programme ne peut les contourner</td><td>des règles seulement dans l'API</td></tr>
+  <tr><td>3 index mesurés</td><td>× 15 à × 100, et chaque index coûte à l'écriture</td><td>indexer toutes les clés par réflexe</td></tr>
+  <tr><td>Elasticsearch en copie</td><td>la base reste seule source de vérité ; l'index se refait</td><td>chercher dans PostgreSQL ou faire d'Elasticsearch une source</td></tr>
+  <tr><td>relire le compte à chaque appel</td><td>un compte désactivé perd ses droits tout de suite</td><td>faire confiance au rôle écrit dans le jeton</td></tr>
+  <tr><td>anonymiser, jamais supprimer</td><td>RGPD et obligations comptables de 10 ans</td><td>une route DELETE</td></tr>
+  <tr><td>un moteur à règles, l'apprentissage conçu</td><td>des données générées n'apprennent rien de vrai</td><td>entraîner un modèle sur du faux</td></tr>
+  <tr><td>une copie par jour + WAL</td><td>perte de quelques minutes pour un stockage minime</td><td>1 440 copies complètes par jour</td></tr>
+</tbody></table>
+</section>
+
+<section class="slide" data-ch="08" data-v="c">
+<div class="kicker">Chapitre 08 · Conclusion et remerciements</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges à l'oral et résumé</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Une conclusion qui répète le plan</b> : dis les résultats et les bénéfices, pas les titres.</div>
+    <div><b>Finir sur une limite</b> : les limites sont dans la partie 7 ; termine sur ce que le projet apporte.</div>
+    <div><b>Oublier d'inviter aux questions</b> : c'est la transition attendue vers les 30 minutes suivantes.</div>
+    <div><b>Dépasser les 30 minutes</b> : répète avec un chronomètre ; une idée forte par diapositive.</div>
+  </div>
+  <ol class="sum-list">
+    <li>Résultats : 22 tables, API sécurisée, flux de nuit, analyse pseudonymisée, moteur de suggestion.</li>
+    <li>Bénéfices : juridique, financier, continuité, stratégique.</li>
+    <li>Remercier l'équipe, le formateur, le jury.</li>
+    <li>Inviter aux questions.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="08" data-v="e">
+<div class="kicker">Chapitre 08 · Conclusion et remerciements</div>
+<h2>Fiche — Conclusion</h2>
+<div class="fiche">
+  <div class="card wide"><span class="lab">Avant → après</span><p>3 tables fausses, backend perdu, honoraires absents → 22 tables qui refusent l'incohérence, une API testée (1 125 tests), un flux de nuit, une analyse pseudonymisée, un moteur qui prépare l'IA.</p></div>
+  <div class="card"><span class="lab">Bénéfices</span><p>Juridique · financier · continuité · données prêtes pour l'IA.</p></div>
+  <div class="card"><span class="lab">La marque du projet</span><p>Chaque choix écrit (65 ADR) et mesuré ; chaque limite avec son plan.</p></div>
+  <div class="card wide"><span class="lab">Les mots de la fin</span><p>« Je remercie l'équipe GaSeBeLa, notre formateur, et vous pour votre écoute. Je suis prêt à répondre à vos questions. »</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="08">
+<div class="kicker">Chapitre 08 · Conclusion et remerciements</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — questions transverses</h2>
+<div class="accg">
+<div class="acc jq"><button class="ah" type="button">Quel est l'apport principal de votre projet pour l'entreprise ?</button><div class="ab"><p>Un SI qui dit la vérité : les statuts de mandat sont justes par construction, les honoraires et les rémunérations sont tracés, et les critères des clients sont exploitables par une machine. C'est la condition de tout le reste, la croissance comme l'IA. Avant, l'entreprise ne savait pas dans son SI ce qu'elle vendait ni ce qu'elle encaissait.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Comment avez-vous intégré l'éco-conception ?</button><div class="ab"><p>Par des décisions mesurées : les services lourds ne démarrent qu'à la demande, 22 fois moins de mémoire pour le travail courant ; des traitements par nuit plutôt qu'en continu ; les photos liées et pas copiées, 29 à 188 téraoctets évités ; des index posés seulement là où la mesure les justifie ; une copie par jour au lieu de copies à la minute. Limite : nous mesurons mémoire et temps, pas l'énergie.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Comment avez-vous pris en compte l'accessibilité ?</button><div class="ab"><p>Le projet ne livre pas de site, donc nous avons fixé les exigences pour le futur espace acquéreur, selon les WCAG 2.2 niveau AA : contraste, navigation au clavier, cibles de 24 pixels, textes alternatifs, erreurs dites en texte. L'API fournit déjà ce qu'il faut, comme un texte alternatif pour chaque photo et des erreurs qui nomment le champ fautif. Sans site, il n'y a pas encore d'audit réel.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Vos données sont fictives. Que valent vos résultats ?</button><div class="ab"><p>Les mesures de structure valent : un index, une contrainte, un temps de restauration ou une attaque se comportent de la même façon sur des données fictives. Ce qui ne vaudrait rien, c'est un modèle d'apprentissage entraîné dessus : c'est pour cela que nous ne l'avons pas fait. Les volumes projetés sont fabriqués par copie, et nous le disons dans chaque note.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Pourquoi deux dépôts GitHub ?</button><div class="ab"><p>Le code de l'API et l'infrastructure Docker vivent dans Fil-Rouge-API, la documentation, les ADR et les livrables dans Fil-Rouge. Le code a son propre cycle, ses tests et sa CI ; la documentation évolue à un autre rythme. Depuis le 20 novembre, le dépôt fait foi : Confluence n'est plus mis à jour, pour n'avoir qu'une seule vérité.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Pouvez-vous nous montrer le projet fonctionner ?</button><div class="ab"><p>Oui : je lance la base et l'API, j'ouvre la documentation Swagger, je me connecte, puis je montre une règle refusée par la base, par exemple un second mandat exclusif qui rend 409, et une suggestion de biens. Plan B si la démonstration échoue : des captures préparées à l'avance. Prépare cette démonstration et chronomètre-la avant l'oral.</p></div></div>
+</div>
+</section>
+
+</main>
+<button class="arrow" id="prev" type="button" aria-label="Diapositive précédente">‹</button>
+<button class="arrow" id="next" type="button" aria-label="Diapositive suivante">›</button>
+<nav id="tl" aria-label="Chapitres"></nav>
+<div id="hint">← → naviguer · ↑ ↓ défiler · H ampoule <svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg> · E Complète/Essentiel · M maîtrisé · S sommaire · T thème</div>
+<button id="bulbhint" type="button"><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></button>
+<div id="ctip" role="tooltip"></div>
+<div id="toc" role="dialog" aria-label="Sommaire">
+  <button class="btn xx" id="tocx" type="button">Fermer ✕</button>
+  <div class="kicker">Sommaire · Fil rouge GaSeBeLa</div>
+  <h2>Fil rouge GaSeBeLa</h2>
+  <div class="tg"></div>
+</div>
+
+<div id="fab">
+  <button id="helpbtn" type="button" aria-label="Ampoule : concepts expliqués au survol" aria-pressed="false" title="Ampoule : soulignez les concepts, survolez-les pour une explication (H)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></button>
+<button id="tocbtn" type="button" aria-label="Sommaire" title="Sommaire (S)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+  <div id="themebtn">
+    <div id="menu" role="menu"><h4>Thème</h4></div>
+    <button id="tbtn" type="button" aria-label="Changer de thème" aria-haspopup="true" title="Changer de thème (T)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.4-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16a5 5 0 0 0 5-5c0-4-4-7-9-7z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="7.5" r="1"/></svg>
+    </button>
+  </div>
+</div>
+
+</div>
+<script src="assets/icons.js?v=1795252886"></script>
+<script src="data/fil-rouge-quiz.js?v=1795252886"></script>
+<script src="data/fil-rouge-glossary.js?v=1795252886"></script>
+<script src="assets/engine.js?v=1795252886"></script>
+</body>
+</html>

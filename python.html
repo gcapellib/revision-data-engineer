@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python (impératif &amp; POO) · Révision Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/base.css?v=1795252877">
+<link rel="stylesheet" href="assets/photos.css?v=1795252877">
+<link rel="stylesheet" href="assets/revision.css?v=1795252877">
+</head>
+<body data-page="course" data-course="python" data-title="Python (impératif &amp; POO)">
+<div id="app" data-theme="papier">
+
+<div id="bg" aria-hidden="true">
+  <div class="bgl bg-neon">
+    <svg viewBox="0 0 800 800"><path d="M40 760 L400 280 L760 760" stroke-width="3"/><path d="M110 760 L400 380 L690 760" stroke-width="2.4" opacity=".85"/><path d="M180 760 L400 470 L620 760" stroke-width="2" opacity=".7"/><path d="M250 760 L400 560 L550 760" stroke-width="1.6" opacity=".55"/><path d="M320 760 L400 650 L480 760" stroke-width="1.2" opacity=".4"/></svg>
+  </div>
+  <div class="bgl bg-sauge"><div class="panel"></div><div id="bignum"></div></div>
+  <div class="bgl bg-nuit"><i></i><i></i><i></i></div>
+  <div class="bgl bg-verre"><div class="blob a"></div><div class="blob b"></div><div class="blob c"></div></div>
+  <div class="bgl bg-papier"><i></i><i></i><i></i></div>
+  <div class="bgl bg-rubans"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f8fe0"/><stop offset="1" stop-color="#2fd0bd"/></linearGradient>
+      <linearGradient id="rg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fdcc4"/><stop offset=".55" stop-color="#26b2d2"/><stop offset="1" stop-color="#2f8fe0"/></linearGradient>
+      <linearGradient id="rg3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2fd0bd"/><stop offset="1" stop-color="#2f90e2"/></linearGradient>
+      <filter id="rsh" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="12"/></filter>
+    </defs>
+    <g class="rb" id="rb-a" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g class="rb b" id="rb-b" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+  </svg></div>
+  <div class="bgl bg-facettes"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="fcw" id="fc-top"></g><g class="fcw" id="fc-bot"></g></svg></div>
+  <div class="bgl photo bg-bulles"><i></i></div>
+  <div class="bgl photo bg-hexa"><i></i></div>
+  <div class="bgl photo bg-points"><i></i></div>
+</div>
+
+<svg id="defs" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+  <marker id="arrk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3a4458"/></marker>
+  <marker id="arrbad" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+</defs></svg>
+
+<div id="brand"><a href="index.html" title="Retour à l'accueil">← Accueil</a> · Python (impératif &amp; POO)</div>
+<div id="topbar">
+  <div id="vseg" role="group" aria-label="Version du cours"><button type="button" data-v="c" title="Tout le cours (E pour basculer)"><svg class="ico" aria-hidden="true"><use href="#ti-book"/></svg> Complète</button><button type="button" data-v="e" title="Ce qu'il faut maîtriser pour le jury (E)"><svg class="ico" aria-hidden="true"><use href="#ti-bolt"/></svg> Essentiel</button></div>
+  <button id="mast" type="button" title="Marquer ce chapitre comme maîtrisé (M)"></button>
+  <span id="prog"></span>
+</div>
+<div id="hud"><span id="count">1 / 1</span></div>
+<main id="deck">
+<section class="slide" data-ch="00" data-sec="Immersion" data-title="Immersion : découvrir Python (impératif &amp; POO)">
+<div class="chlogos"><img class="chlogo big" src="assets/logos/python.svg" alt="Logo Python (impératif &amp; POO)"></div>
+<div class="kicker">Activité 3 · Concevoir et développer une application</div>
+<h1>Python (impératif &amp; POO)</h1>
+<p class="lead"><b>Python</b> est le langage de la donnée : ETL, API, Machine Learning, orchestration. Ce cours pose le <b>socle</b> : types, structures, fonctions, puis la <b>programmation orientée objet</b> (classes, héritage, abstraction, dataclasses), les <b>exceptions</b>, les <b>fichiers CSV/JSON</b>, les <b>expressions régulières</b> et les <b>bonnes pratiques professionnelles</b> (générateurs, logging, tests, packaging). Il prépare <a href="numpy-pandas.html">NumPy &amp; pandas</a>, <a href="api-python.html">FastAPI</a> et <a href="airflow.html">Airflow</a>.</p>
+<div class="chips"><span class="pill solid">immersion + 4 chapitres</span><span class="pill">mini-quiz par chapitre</span><span class="pill">quiz final · 45 questions</span><span class="pill">TP Titanic et Diskaire</span></div>
+</section>
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 1 / 3</div>
+<h2>Comment automatiser en 20 lignes ce qu'on fait chaque lundi à la main : ouvrir un fichier, nettoyer des lignes, calculer, écrire un rapport ?</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card bad"><span class="lab">Refaire la tâche à la main chaque semaine</span><p>Lent, source d'erreurs, impossible à rejouer ou à vérifier par un collègue.</p></div><div class="card hl"><span class="lab">Écrire un script lisible</span><p>Un programme <b>Python</b> lit les données, applique les règles et produit le résultat : <b>rejouable</b>, <b>versionnable</b>, <b>testable</b>.</p></div></div><div style="display:grid;gap:1.2vh"><p class="punch"><b>Python</b> (Guido van Rossum, 1991) est un langage <b>interprété</b>, à <b>typage dynamique</b>, à syntaxe <b>lisible</b> (l'indentation structure le code) et <b>multi-paradigme</b> : impératif, objet, fonctionnel. Sa bibliothèque standard est vaste et son écosystème (NumPy, pandas, scikit-learn, FastAPI, Airflow) en fait le langage dominant du Data Engineer.</p><div class="analogy"><b>Analogie —</b> un couteau suisse : une seule lame suffit pour commencer, mais chaque outil (module) s'ajoute quand on en a besoin.</div></div></div>
+</section>
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 2 / 3</div>
+<h2>De Noël 1989 à la domination de la data</h2>
+<div class="flow"><div class="step"><b>1989 · 1991</b><small><b>Guido van Rossum</b> crée Python (nom : les Monty Python) ; version 0.9.0 en 1991</small></div><div class="step"><b>2000 · 2008</b><small>Python 2 puis <b>Python 3</b> (incompatible) ; Python 2 abandonné en 2020</small></div><div class="step"><b>2006 · 2014</b><small><b>NumPy</b> (2006), <b>pandas</b> (2008), scikit-learn (2007), Jupyter (2014) : Python devient le langage de la donnée</small></div><div class="step"><b>2015 →</b><small>TensorFlow (2015), PyTorch (2016), FastAPI (2018) : IA et API</small></div><div class="step"><b>Aujourd'hui</b><small>Une version par an en octobre (3.13, 3.14…) ; <b>PEP 8</b> guide de style ; <b>pip</b>, <b>venv</b></small></div></div><div class="grid g2"><div class="card"><span class="lab">Qui l'utilise, pour quoi</span><ul><li>Data Engineers : ETL, scripts d'ingestion, DAGs <a href="airflow.html">Airflow</a>, jobs <a href="spark.html">Spark</a> (PySpark).</li><li>Data Scientists : analyse et modèles.</li><li>Développeurs : API, automatisation, outils internes.</li></ul></div><div class="sch free"><span class="cap">Python dans le pipeline data</span><svg class="dg" viewBox="0 -36 460 156" role="img" aria-label="Python intervient à chaque étape du pipeline : ingestion, transformation, modèle et API"><rect class="b ok" x="10" y="20" width="100" height="44" rx="8"/><text class="t tc" x="60.0" y="40.0">Ingestion</text><text class="s tc" x="60.0" y="55.0">scripts</text><path class="e" d="M112 42 L138 42"/><rect class="b ok" x="140" y="20" width="100" height="44" rx="8"/><text class="t tc" x="190.0" y="40.0">Transfo</text><text class="s tc" x="190.0" y="55.0">pandas</text><path class="e" d="M242 42 L268 42"/><rect class="b ok" x="270" y="20" width="90" height="44" rx="8"/><text class="t tc" x="315.0" y="40.0">Modèle</text><text class="s tc" x="315.0" y="55.0">sklearn</text><path class="e" d="M362 42 L388 42"/><rect class="b ok" x="390" y="20" width="60" height="44" rx="8"/><text class="t tc" x="420.0" y="47.0">API</text><rect class="b f2" x="10" y="76" width="440" height="34" rx="8"/><text class="t tc" x="230.0" y="98.0">Orchestré par Airflow, livré par Docker</text>
+  <use class="il" href="#il-file" x="45.0" y="-13" width="30" height="30"/><use class="il" href="#il-gear" x="175.0" y="-13" width="30" height="30"/><use class="il" href="#il-model" x="300.0" y="-13" width="30" height="30"/><use class="il" href="#il-code" x="405.0" y="-13" width="30" height="30"/>
+</svg></div></div>
+</section>
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 3 / 3</div>
+<h2>Premier contact : lire, calculer, afficher</h2>
+<div class="grid g2"><div class="code"><div class="codeh"><span>python</span><button class="cpy" type="button">Copier</button></div><pre><code>notes = [12, 15.5, 9, 18]                 <span class="c"># liste (mutable)</span>
+moyenne = sum(notes) / len(notes)         <span class="c"># fonctions natives</span>
+print(f"Moyenne : {moyenne:.2f}")         <span class="c"># f-string</span>
+eleves = {"Ana": 15.5, "Bob": 9}          <span class="c"># dictionnaire</span>
+for nom, n in eleves.items():
+    if n &gt;= 10:
+        print(nom, "admis")
+<span class="c"># Moyenne : 13.62</span>
+<span class="c"># Ana admis</span></code></pre></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Ce qu'il faut remarquer</span><p>Pas de point-virgule ni d'accolades : l'<b>indentation</b> délimite les blocs. Le type vient de la valeur (<b>typage dynamique</b>). <code>f"…{x:.2f}"</code> formate. Les structures de base : <b>liste, tuple, dictionnaire, ensemble</b>.</p></div><div class="card"><span class="lab">Ce que le jury attend</span><ul><li>Développer des traitements fiables et maintenables.</li><li>Structurer le code (modules, classes, tests).</li></ul></div></div></div><div class="flow"><div class="step"><b>01</b><small>socle impératif</small></div><div class="step"><b>02</b><small>programmation objet</small></div><div class="step"><b>03</b><small>exceptions, fichiers</small></div><div class="step"><b>04</b><small>Python professionnel</small></div></div>
+</section>
+<section class="slide" data-ch="00" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/python.svg" alt="Logo Python (impératif &amp; POO)"></div>
+<div class="kicker">Immersion · Essentiel</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Présenter Python en une minute</h2>
+<div class="card hl"><p class="q">« <b>Python</b> est un langage interprété, à typage dynamique et à syntaxe lisible, créé en 1991 par Guido van Rossum. Il est <b>multi-paradigme</b> : je l'utilise en impératif pour des scripts, et en <b>objet</b> (classes, héritage, encapsulation, abstraction) pour des applications structurées.</p><p class="q">Ses structures natives — <b>listes, dictionnaires, ensembles, tuples</b> — et sa bibliothèque standard couvrent la plupart des besoins ; <b>venv</b> et <b>pip</b> isolent les dépendances. Je gère les erreurs avec <b>try/except</b>, lis des <b>CSV et JSON</b>, journalise avec <b>logging</b> et teste avec <b>pytest</b>.</p><p class="q">Ses limites : plus lent que les langages compilés (on délègue le calcul à NumPy ou Spark) et un <b>GIL</b> qui limite le parallélisme des threads (une variante sans GIL existe depuis 3.13, encore optionnelle). »</p></div><div class="grid g3"><div class="card"><span class="lab">Les 3 mots à placer</span><p><b>Mutable · classe · exception</b></p></div><div class="card"><span class="lab">Le choix à justifier</span><p><b>Python</b> pour la donnée : lisible, avec un écosystème riche (pandas, scikit-learn, FastAPI) ; on vectorise les calculs lourds plutôt que de boucler.</p></div><div class="card"><span class="lab">Le lien</span><p><a href="numpy-pandas.html">NumPy &amp; pandas</a> · <a href="api-python.html">API</a> · <a href="airflow.html">Airflow</a></p></div></div>
+</section>
+<section class="slide" data-ch="00" data-sec="Le fil" data-title="Le fil du cours : 6 idées">
+<div class="kicker">Le fil du cours · Python (impératif &amp; POO)</div>
+<h2>6 idées font tout le cours</h2>
+<p class="lead fil-q">Tout le cours répond à : <b>comment écrire un programme Python qui se comporte comme prévu, aujourd'hui et quand il grossira ?</b> Six règles expliquent presque toutes les surprises.</p>
+<div class="grid g3 ideas"><div class="card idea"><span class="lab">Idée 1 · Une variable est une étiquette posée sur un objet</span><p>Le <b>type appartient à l'objet</b>, pas au nom ; deux noms peuvent désigner <b>le même objet</b>. <code>b = a</code> ne copie rien, <code>is</code> compare l'identité, <code>==</code> la valeur, et <code>input()</code> renvoie toujours une chaîne.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on écrit b = a puis qu'on modifie b, on modifie aussi a, car les deux noms désignent la même liste.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Copier explicitement quand on veut un objet indépendant : b = a.copy() pour une liste (ou copy.deepcopy pour une structure imbriquée).</p><p class="chs">ch. 01 · ch. 02</p></div><div class="card idea"><span class="lab">Idée 2 · Mutable ou immuable : la question qui évite les bugs</span><p>list, dict et set se <b>modifient sur place</b> ; str, int et tuple non. Un objet mutable <b>partagé</b> (valeur par défaut d'une fonction, attribut de classe) est modifié pour tout le monde.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si une fonction a une liste comme valeur par défaut (def f(x, l=[])), cette liste n'est créée qu'une fois et s'accumule d'un appel à l'autre.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Mettre None comme valeur par défaut et créer la liste dans la fonction : def f(x, l=None): l = [] if l is None else l.</p><p class="chs">ch. 01 · ch. 02</p></div><div class="card idea"><span class="lab">Idée 3 · La bonne structure fait la moitié du travail</span><p>Une <b>liste</b> pour une suite ordonnée, un <b>dict</b> pour retrouver par clé en temps constant, un <b>set</b> pour l'unicité et les opérations d'ensembles, un <b>tuple</b> pour un enregistrement fixe.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on cherche un élément dans une liste d'un million d'éléments, Python les parcourt un par un, alors qu'un set répond immédiatement.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Pour tester l'appartenance souvent, convertir la liste en set une fois (vus = set(liste)), puis tester x in vus.</p><p class="chs">ch. 01 · ch. 03</p></div><div class="card idea"><span class="lab">Idée 4 · Regrouper données et comportement, cacher le reste</span><p>Une <b>classe</b> regroupe des données et les méthodes qui les manipulent, et protège son état interne (attribut <code>_x</code>, accès contrôlé par <code>@property</code>). On utilise l'<b>héritage</b> pour une relation « est un » (un Chien est un Animal), la <b>composition</b> pour « a un » (une Voiture a un Moteur), et <code>@dataclass</code> pour un simple objet de données.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si une classe fait tout, ou si l'on hérite d'une classe juste pour réutiliser son code, le programme devient difficile à modifier sans tout casser.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Donner à chaque classe une seule responsabilité, et préférer la composition (un objet en contient un autre) quand ce n'est pas une vraie relation « est un ».</p><p class="chs">ch. 02 · ch. 04</p></div><div class="card idea"><span class="lab">Idée 5 · Traiter l'erreur là où l'on sait quoi en faire</span><p>On <b>lève une exception précise</b> (ValueError, FileNotFoundError…), on la <b>capte</b> là où l'on sait quoi faire, et l'on libère les ressources avec <code>with</code> (fichier, connexion). Jamais de <code>except:</code> sans type, qui avale toutes les erreurs.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on écrit except: sans préciser l'erreur attendue, même une faute de frappe dans le code est avalée en silence, et le bug devient introuvable.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Capter seulement l'erreur attendue (except FileNotFoundError:) et laisser remonter les autres.</p><p class="chs">ch. 03 · ch. 04</p></div><div class="card idea"><span class="lab">Idée 6 · Un code pro se lit, se teste et se rejoue</span><p>Un code professionnel se lit, se teste et se relance ailleurs : fonctions courtes, style <b>PEP 8</b>, <code>logging</code> plutôt que print, tests avec <b>pytest</b>, environnement virtuel (<b>venv</b>) et versions des bibliothèques figées, <b>générateurs</b> pour traiter de gros volumes sans tout charger en mémoire.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on ne fige pas les versions des bibliothèques et qu'on n'écrit pas de tests, le script ne fonctionne que sur le poste de son auteur.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Créer un venv, figer les versions dans requirements.txt et lancer pytest avant chaque partage.</p><p class="chs">ch. 01 · ch. 04</p></div></div>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · Python (impératif &amp; POO)</div>
+<h2>Les règles qui expliquent les surprises</h2>
+<div class="flow"><div class="step"><b>1</b><small>Ce nom désigne-t-il un nouvel objet ou un objet partagé ?</small></div><div class="step"><b>2</b><small>Cet objet est-il mutable ?</small></div><div class="step"><b>3</b><small>Quelle structure répond à l'accès dont j'ai besoin ?</small></div><div class="step"><b>4</b><small>Que se passe-t-il si cette ligne échoue ?</small></div></div>
+<table class="cmp md"><thead><tr><th>Situation</th><th>Règle</th><th>Piège</th></tr></thead><tbody><tr><td><code>b = a</code> sur une liste</td><td>les deux noms désignent <b>le même objet</b></td><td>modifier b modifie a ; copier avec a.copy()</td></tr><tr><td>Valeur par défaut d'une fonction</td><td>évaluée <b>une seule fois</b></td><td><code>def f(l=[])</code> partage la liste</td></tr><tr><td>Tester l'appartenance sur un gros volume</td><td><b>set</b> ou dict : temps constant</td><td>liste : parcours complet</td></tr><tr><td>Lire un fichier</td><td><b>with</b> open(..., encoding="utf-8")</td><td>fichier jamais fermé, encodage du système</td></tr><tr><td>Gros fichier</td><td>itérer ligne à ligne, <b>générateur</b></td><td>read() qui charge tout en mémoire</td></tr><tr><td>Erreur attendue</td><td><b>except ValueError</b> ciblé</td><td>except: nu qui masque les bugs</td></tr></tbody></table>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · Python (impératif &amp; POO)</div>
+<h2>Chaque chapitre applique les mêmes idées</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Chapitre</th><th><b>1</b></th><th><b>2</b></th><th><b>3</b></th><th><b>4</b></th><th><b>5</b></th><th><b>6</b></th></tr></thead><tbody><tr><td><b>01</b> Socle</td><td>●</td><td>●</td><td>●</td><td></td><td></td><td>●</td></tr><tr><td><b>02</b> POO</td><td>●</td><td>●</td><td></td><td>●</td><td></td><td></td></tr><tr><td><b>03</b> Exceptions et fichiers</td><td></td><td></td><td>●</td><td></td><td>●</td><td></td></tr><tr><td><b>04</b> Python pro</td><td></td><td></td><td></td><td>●</td><td>●</td><td>●</td></tr></tbody></table><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Ce qui revient dans <b>plusieurs chapitres</b> est une idée à comprendre ; ce qui n'apparaît qu'une fois est un <b>exemple</b> d'une de ces idées.</p></div></div></div><table class="cmp md"><thead><tr><th>Piège classique</th><th>Idée oubliée</th><th>Ce qui casse</th></tr></thead><tbody><tr><td>Liste par défaut partagée</td><td><b>2</b> · Mutable ou immuable : la question qui évite les bugs</td><td>les appels successifs s'accumulent</td></tr><tr><td>b = a, puis b.append(...)</td><td><b>1</b> · Une variable est une étiquette posée sur un objet</td><td>a a changé aussi</td></tr><tr><td>except: nu</td><td><b>5</b> · Traiter l'erreur là où l'on sait quoi en faire</td><td>les vraies erreurs deviennent silencieuses</td></tr><tr><td>Saisie input() utilisée comme un nombre</td><td><b>1</b> · Une variable est une étiquette posée sur un objet</td><td>TypeError, ou une concaténation au lieu d'une somme</td></tr><tr><td>print en production</td><td><b>6</b> · Un code pro se lit, se teste et se rejoue</td><td>aucun niveau ni horodatage pour comprendre l'incident</td></tr><tr><td>Recherche dans une liste géante</td><td><b>3</b> · La bonne structure fait la moitié du travail</td><td>des heures au lieu de secondes</td></tr></tbody></table></div>
+</section>
+
+<section class="slide" data-ch="01" data-sec="01 Socle" data-title="Le socle impératif" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/python.svg" alt="Logo Python (impératif &amp; POO)"></div>
+<div class="kicker">Chapitre 01 · Le socle impératif</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Variables, types et structures de données</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Typage dynamique</span><p>Une variable est un <b>nom</b> qui désigne un objet ; le type appartient à l'<b>objet</b>. <code>x = 3</code> puis <code>x = "a"</code> est permis. <code>type(x)</code>, <code>id(x)</code> inspectent. <b>Fortement typé</b> : <code>"3" + 3</code> lève une erreur.</p></div><div class="card"><span class="lab">Types simples</span><ul><li><code>int</code>, <code>float</code>, <code>bool</code>, <code>str</code>, <code>None</code>.</li><li>Les chaînes sont <b>immuables</b> ; méthodes : <code>.upper()</code>, <code>.split()</code>, <code>.join()</code>, <code>.strip()</code>, <code>.replace()</code>.</li><li>Formatage : <code>f"{x:.2f}"</code> (préféré à <code>%</code> et <code>.format()</code>).</li></ul></div><div class="analogy"><b>Analogie —</b> une étiquette collée sur un objet : on peut décoller l'étiquette et la coller ailleurs ; deux étiquettes peuvent désigner le même objet.</div></div><table class="cmp md"><thead><tr><th>Structure</th><th>Syntaxe</th><th>Mutable</th><th>Usage</th></tr></thead><tbody><tr><td><b>list</b></td><td><code>[1, 2]</code></td><td>oui</td><td>suite ordonnée, modifiable</td></tr><tr><td><b>tuple</b></td><td><code>(1, 2)</code></td><td>non</td><td>enregistrement fixe, clé de dict</td></tr><tr><td><b>dict</b></td><td><code>{"a": 1}</code></td><td>oui</td><td>clé → valeur, accès rapide</td></tr><tr><td><b>set</b></td><td><code>{1, 2}</code></td><td>oui</td><td>sans doublon, opérations d'ensembles</td></tr></tbody></table></div>
+</section>
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Le socle impératif</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Contrôle, fonctions, modules</h2>
+<div class="grid g2"><div class="code"><div class="codeh"><span>python</span><button class="cpy" type="button">Copier</button></div><pre><code>def moyenne(valeurs, arrondi=2):          <span class="c"># paramètre par défaut</span>
+    """Retourne la moyenne d'une liste."""   <span class="c"># docstring</span>
+    if not valeurs:
+        return None
+    return round(sum(valeurs) / len(valeurs), arrondi)
+
+carres = [x**2 for x in range(5) if x % 2 == 0]   <span class="c"># compréhension</span>
+for i, v in enumerate(["a", "b"]):                <span class="c"># indice + valeur</span>
+    print(i, v)
+match code:                                       <span class="c"># match / case (3.10)</span>
+    case 200: msg = "ok"
+    case 404: msg = "absent"
+    case _:   msg = "autre"</code></pre></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Structures de contrôle</span><ul><li><code>if / elif / else</code>, <code>for … in</code>, <code>while</code>, <code>break</code>, <code>continue</code>, <code>for … else</code>.</li><li><b>Compréhensions</b> : liste, dict, ensemble en une ligne.</li><li><b>Opérateur ternaire</b> : <code>a if cond else b</code>.</li></ul></div><div class="card"><span class="lab">Modules et environnement</span><ul><li><code>import module</code>, <code>from module import nom</code> ; la <b>bibliothèque standard</b> (os, json, csv, datetime, pathlib).</li><li><b>venv</b> : environnement isolé par projet ; <b>pip</b> installe ; <code>requirements.txt</code> fige les versions.</li><li>Style : <b>PEP 8</b> (snake_case, 4 espaces).</li></ul></div></div></div>
+</section>
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Le socle impératif</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Chaînes, nombres, slices et saisie</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>python</span><button class="cpy" type="button">Copier</button></div><pre><code>s = "Bonjour le monde"
+s[0:7]            <span class="c"># 'Bonjour'  début inclus, fin exclue</span>
+s[-5:]            <span class="c"># 'monde'    indices négatifs depuis la fin</span>
+s[::-1]           <span class="c"># 'ednom el ruojnoB'  pas de -1</span>
+s.startswith("Bon"), s.endswith("de")     <span class="c"># True, True</span>
+s.find("le"), s.count("o")                <span class="c"># 8, 3</span>
+"ana".capitalize()                        <span class="c"># 'Ana'</span>
+print("ligne 1\nligne 2\tfin")            <span class="c"># \n retour, \t tabulation</span>
+chemin = r"C:\data\notes"                 <span class="c"># chaîne brute : \ non interprété</span>
+
+age = int(input("Votre âge : "))          <span class="c"># input() renvoie TOUJOURS un str</span></code></pre></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Les <b>slices</b> <code>[début:fin:pas]</code> marchent sur les chaînes, listes et tuples ; <code>fin</code> est <b>exclue</b>. <code>ma_liste[:]</code> copie la liste.</p></div></div></div><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Opérateur</th><th>Exemple</th><th>Résultat</th></tr></thead><tbody><tr><td><code>/</code> division</td><td><code>7 / 2</code></td><td><code>3.5</code> (toujours un float)</td></tr><tr><td><code>//</code> division entière</td><td><code>7 // 2</code></td><td><code>3</code></td></tr><tr><td><code>%</code> modulo (reste)</td><td><code>7 % 2</code></td><td><code>1</code> (pair si <code>n % 2 == 0</code>)</td></tr><tr><td><code>**</code> puissance</td><td><code>2 ** 10</code></td><td><code>1024</code></td></tr><tr><td><code>round</code></td><td><code>round(3.14159, 2)</code></td><td><code>3.14</code></td></tr></tbody></table><div class="card"><span class="lab">Saisie et conversions</span><ul><li><code>input()</code> renvoie une <b>chaîne</b> : convertir avec <code>int()</code>, <code>float()</code>, <code>bool()</code> ; <code>int("abc")</code> lève une <code>ValueError</code>.</li><li>Constructeurs de types : <code>str(12)</code>, <code>list("abc")</code>, <code>set([1, 1, 2])</code>, <code>tuple(liste)</code>.</li></ul></div><div class="card"><span class="lab">Modules standards utiles</span><ul><li><code>math</code> : <code>sqrt</code>, <code>floor</code>, <code>pi</code>.</li><li><code>random</code> : <code>randint(1, 6)</code>, <code>choice(liste)</code>, <code>shuffle(liste)</code>.</li><li><code>datetime</code> : dates et durées ; <code>os</code>, <code>pathlib</code> : fichiers.</li></ul></div></div></div>
+</section>
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Le socle impératif</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Fonctions avancées, ensembles et récursivité</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>python</span><button class="cpy" type="button">Copier</button></div><pre><code>def total(*args, **kwargs):           <span class="c"># nombre libre d'arguments</span>
+    print(args)                         <span class="c"># tuple : (1, 2, 3)</span>
+    print(kwargs)                       <span class="c"># dict  : {'remise': 0.1}</span>
+    return sum(args) * (1 - kwargs.get("remise", 0))
+total(1, 2, 3, remise=0.1)              <span class="c"># 5.4</span>
+
+def prix_ttc(ht: float, tva: float = 0.2) -&gt; float:   <span class="c"># annotations de type</span>
+    return ht * (1 + tva)
+
+notes = [("Ana", 15), ("Bob", 9), ("Cyl", 12)]
+sorted(notes, key=lambda n: n[1])        <span class="c"># tri par note</span>
+list(filter(lambda n: n[1] &gt;= 10, notes)) <span class="c"># admis</span>
+list(map(lambda n: n[0].upper(), notes))  <span class="c"># ['ANA', 'BOB', 'CYL']</span>
+
+def factorielle(n):
+    if n &lt;= 1:                           <span class="c"># cas de base : arrêt</span>
+        return 1
+    return n * factorielle(n - 1)        <span class="c"># appel récursif</span></code></pre></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Les <b>annotations</b> documentent les types attendus ; Python <b>ne les vérifie pas</b> à l'exécution. Un outil comme <b>mypy</b> les contrôle.</p></div></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">*args et **kwargs</span><ul><li><code>*args</code> regroupe les arguments <b>positionnels</b> supplémentaires dans un <b>tuple</b>.</li><li><code><b>kwargs</code> regroupe les arguments </b>nommés<b> dans un </b>dict**.</li><li>Ordre : paramètres normaux, <code>*args</code>, puis <code>**kwargs</code>.</li></ul></div><table class="cmp md"><thead><tr><th>Ensembles</th><th>Opérateur</th><th>Méthode</th></tr></thead><tbody><tr><td><b>union</b></td><td><code>a | b</code></td><td><code>a.union(b)</code></td></tr><tr><td><b>intersection</b></td><td><code>a &amp; b</code></td><td><code>a.intersection(b)</code></td></tr><tr><td><b>différence</b></td><td><code>a - b</code></td><td><code>a.difference(b)</code></td></tr><tr><td><b>différence symétrique</b></td><td><code>a ^ b</code></td><td><code>a.symmetric_difference(b)</code></td></tr></tbody></table><div class="card"><span class="lab">Récursivité</span><ul><li>Une fonction <b>s'appelle elle-même</b> sur un problème plus petit.</li><li>Il faut un <b>cas de base</b>, sinon <code>RecursionError</code> (environ <b>1 000</b> appels par défaut).</li><li>Exemple classique : la <b>recherche dichotomique</b> dans une liste triée.</li></ul></div></div></div>
+</section>
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Le socle impératif</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Mutabilité : le piège classique</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>python</span><button class="cpy" type="button">Copier</button></div><pre><code>a = [1, 2]
+b = a              <span class="c"># même objet, deux noms</span>
+b.append(3)
+print(a)           <span class="c"># [1, 2, 3]  &lt;- a a changé !</span>
+c = a.copy()       <span class="c"># copie superficielle (ou list(a), a[:])</span>
+
+def ajoute(x, liste=[]):   <span class="c"># PIÈGE : défaut créé UNE fois</span>
+    liste.append(x)
+    return liste
+ajoute(1); ajoute(2)       <span class="c"># [1, 2] : la liste est partagée</span>
+<span class="c"># correct : def ajoute(x, liste=None): liste = liste or []</span></code></pre></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Pour les objets <b>imbriqués</b>, <code>copy.deepcopy</code> est nécessaire : la copie superficielle ne duplique que le niveau externe.</p></div></div></div><div style="display:grid;gap:1.2vh"><div class="trap-list"><div><b>Valeur par défaut mutable</b> dans une fonction : partagée entre les appels.</div><div><b><code>==</code> contre <code>is</code></b> : égalité de valeur ou identité d'objet.</div><div><b>Modifier une liste en la parcourant</b> : résultats imprévisibles ; construire une nouvelle liste.</div><div><b>Indentation mixte</b> (tabulations et espaces) : <code>IndentationError</code>.</div></div><ol class="sum-list"><li>Typage dynamique mais fort ; variable = nom d'objet.</li><li>list, dict, set mutables ; tuple, str, int immuables.</li><li>Fonctions : paramètres par défaut non mutables, docstring.</li><li>venv + pip + PEP 8 pour un projet propre.</li></ol></div></div>
+</section>
+<section class="slide" data-ch="01" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/python.svg" alt="Logo Python (impératif &amp; POO)"></div>
+<div class="kicker">Chapitre 01 · Le socle impératif</div>
+<h2>Fiche — Socle</h2>
+<div class="fiche"><div class="card"><span class="lab">Types</span><p>int · float · bool · str · None ; typage dynamique mais fort.</p></div><div class="card"><span class="lab">Structures</span><p>list [] · tuple () · dict {k:v} · set {}.</p></div><div class="card"><span class="lab">Mutabilité</span><p>Mutables : list, dict, set ; immuables : tuple, str, int.</p></div><div class="card"><span class="lab">Fonctions</span><p>def, return, paramètres par défaut, docstring ; jamais de défaut mutable.</p></div><div class="card"><span class="lab">Compréhension</span><p><code>[x for x in … if …]</code> : liste, dict ou ensemble en une ligne.</p></div><div class="card"><span class="lab">Environnement</span><p>venv + pip + requirements.txt ; style PEP 8.</p></div></div>
+</section>
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Le socle impératif</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 01</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Quelle différence entre une liste et un tuple ?</button><div class="ab"><p>La liste est mutable, on peut ajouter, retirer ou modifier ses éléments ; le tuple est immuable. Le tuple convient à un enregistrement fixe et peut servir de clé de dictionnaire, ce que la liste ne permet pas.</p></div></div><div class="acc jq"><button class="ah" type="button">Que signifie « typage dynamique » ?</button><div class="ab"><p>Le type est porté par la valeur et vérifié à l'exécution, pas déclaré à la compilation. Python reste fortement typé : il refuse d'additionner une chaîne et un entier sans conversion explicite.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi une valeur par défaut mutable est-elle dangereuse ?</button><div class="ab"><p>Elle est créée une seule fois, à la définition de la fonction, donc partagée entre tous les appels. La parade est de prendre <code>None</code> par défaut et de créer la liste dans la fonction.</p></div></div><div class="acc jq"><button class="ah" type="button">À quoi sert un environnement virtuel ?</button><div class="ab"><p>À isoler les dépendances d'un projet : chaque projet a ses propres versions de bibliothèques, sans conflit avec le système ni avec les autres projets. On fige les versions dans <code>requirements.txt</code>.</p></div></div><div class="acc jq"><button class="ah" type="button">Quand utiliser un dictionnaire ?</button><div class="ab"><p>Pour associer des clés à des valeurs avec un accès en temps constant moyen : comptages, index, enregistrements, représentation d'un objet JSON.</p></div></div></div>
+</section>
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Le socle impératif</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="01"></div>
+</section>
+<section class="slide" data-ch="02" data-sec="02 POO" data-title="La programmation orientée objet" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/python.svg" alt="Logo Python (impératif &amp; POO)"></div>
+<div class="kicker">Chapitre 02 · La programmation orientée objet</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Classes, objets et encapsulation</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Pourquoi la POO</span><p>Regrouper <b>données et comportements</b> dans une même unité, la <b>classe</b>, pour modéliser un domaine (client, produit) : code réutilisable, testable, extensible. Une classe est le <b>plan</b> ; un <b>objet</b> (instance) est une réalisation.</p></div><div class="card"><span class="lab">Les briques</span><ul><li><code><i>init</i>(self, …)</code> : <b>constructeur</b>, initialise les attributs.</li><li><b>Attribut d'instance</b> (<code>self.x</code>) contre <b>attribut de classe</b>.</li><li><code>@staticmethod</code> (sans <code>self</code>), <code>@classmethod</code> (reçoit <code>cls</code>, usine d'objets).</li><li><b>Méthodes magiques</b> : <code><i>str</i></code>, <code><i>eq</i></code>, <code><i>len</i></code>, <code><i>repr</i></code>.</li></ul></div></div><div class="code"><div class="codeh"><span>python</span><button class="cpy" type="button">Copier</button></div><pre><code>class Compte:
+    def __init__(self, titulaire, solde=0):
+        self.titulaire = titulaire
+        self._solde = solde            <span class="c"># protégé par convention</span>
+
+    @property
+    def solde(self):                   <span class="c"># lecture contrôlée</span>
+        return self._solde
+
+    def deposer(self, montant):
+        if montant &lt;= 0:
+            raise ValueError("montant positif requis")
+        self._solde += montant
+
+    def __str__(self):
+        return f"{self.titulaire} : {self._solde} €"
+
+c = Compte("Ana"); c.deposer(50); print(c)   <span class="c"># Ana : 50 €</span></code></pre></div></div>
+</section>
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · La programmation orientée objet</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Héritage, abstraction et dataclasses</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>python</span><button class="cpy" type="button">Copier</button></div><pre><code>from abc import ABC, abstractmethod
+
+class Produit(ABC):                    <span class="c"># classe abstraite</span>
+    def __init__(self, titre):
+        self.titre, self.disponible = titre, True
+    @abstractmethod
+    def louer(self): ...               <span class="c"># à implémenter par les filles</span>
+
+class Film(Produit):                   <span class="c"># héritage</span>
+    def louer(self):
+        self.disponible = False        <span class="c"># polymorphisme</span>
+
+from dataclasses import dataclass
+@dataclass
+class Point:                           <span class="c"># __init__, __repr__, __eq__ générés</span>
+    x: float
+    y: float = 0.0</code></pre></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Une classe abstraite <b>ne peut pas être instanciée</b> ; une classe fille qui n'implémente pas toutes les méthodes abstraites reste abstraite.</p></div></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Les quatre piliers</span><ul><li><b>Encapsulation</b> : cacher l'état, exposer des méthodes (<code>_x</code> protégé, <code>__x</code> « privé » par renommage ; <code>@property</code>).</li><li><b>Héritage</b> : réutiliser une classe mère (<code>super()</code>).</li><li><b>Polymorphisme</b> : même appel, comportement selon la classe.</li><li><b>Abstraction</b> : définir un contrat sans l'implémenter (ABC).</li></ul></div><div class="card"><span class="lab">Principes SOLID</span><ul><li><b>S</b> une classe, une responsabilité · <b>O</b> ouverte à l'extension, fermée à la modification.</li><li><b>L</b> une fille doit pouvoir remplacer sa mère · <b>I</b> interfaces petites · <b>D</b> dépendre d'abstractions.</li><li>Aussi : <b>KISS</b>, <b>DRY</b>, <b>YAGNI</b>.</li></ul></div></div></div>
+</section>
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · La programmation orientée objet</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Visibilité, redéfinition et surcharge d'opérateurs</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>python</span><button class="cpy" type="button">Copier</button></div><pre><code>class User:
+    def __init__(self, nom):
+        self.nom = nom            <span class="c"># public</span>
+        self._role = "user"       <span class="c"># protégé : convention, accès possible</span>
+        self.__mdp = "x"          <span class="c"># privé : renommé en _User__mdp</span>
+
+    def get_full_name(self):
+        return self.nom.upper()
+
+class Admin(User):
+    def get_full_name(self):      <span class="c"># redéfinition (surcharge) de la méthode</span>
+        return super().get_full_name() + " (admin)"   <span class="c"># étend la mère</span>
+
+class Euro:
+    def __init__(self, v): self.v = v
+    def __add__(self, autre): return Euro(self.v + autre.v)   <span class="c"># a + b</span>
+    def __lt__(self, autre): return self.v &lt; autre.v          <span class="c"># a &lt; b</span></code></pre></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Python n'a <b>pas</b> de vraie visibilité : <code>_x</code> est une <b>convention</b>, <code><i>x</code> déclenche un <b>renommage</b> (</i>name mangling__) qui évite les collisions dans les sous-classes.</p></div></div></div><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Préfixe</th><th>Visibilité</th><th>Accès depuis l'extérieur</th></tr></thead><tbody><tr><td><code>nom</code></td><td><b>public</b></td><td>libre</td></tr><tr><td><code>_nom</code></td><td><b>protégé</b></td><td>possible, mais déconseillé</td></tr><tr><td><code>__nom</code></td><td><b>privé</b></td><td>seulement via <code>obj._Classe__nom</code></td></tr></tbody></table><div class="card"><span class="lab">Redéfinir une méthode</span><ul><li>La fille <b>redéfinit</b> une méthode de la mère quand celle-ci ne convient plus.</li><li><code>super().methode()</code> <b>réutilise</b> la version de la mère puis l'<b>étend</b>.</li><li>C'est le mécanisme qui rend le <b>polymorphisme</b> possible.</li></ul></div><div class="card"><span class="lab">Surcharger un opérateur</span><p>Les méthodes magiques <code><i>add</i></code>, <code><i>eq</i></code>, <code><i>lt</i></code>, <code><i>len</i></code> donnent un sens à <code>+</code>, <code>==</code>, <code>&lt;</code>, <code>len()</code> pour vos classes. Python ne surcharge pas une méthode par <b>nombre d'arguments</b> : on utilise des valeurs par défaut ou <code>*args</code>.</p></div></div></div>
+</section>
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · La programmation orientée objet</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et résumé</h2>
+<div class="grid g2"><div class="trap-list"><div><b>Oublier <code>self</code></b> en premier paramètre d'une méthode.</div><div><b>Attribut de classe mutable</b> partagé entre toutes les instances : l'initialiser dans <code><i>init</i></code>.</div><div><b>Héritage pour réutiliser du code seulement</b> : préférer la <b>composition</b> (« a un ») à l'héritage (« est un ») quand la relation n'est pas une vraie spécialisation.</div><div><b>Tout exposer</b> : sans encapsulation, on ne peut plus changer la représentation interne.</div><div><b>Classe fourre-tout</b> : viole le principe de responsabilité unique.</div></div><ol class="sum-list"><li>Classe = plan, objet = instance ; <code><i>init</i></code> initialise.</li><li>Encapsulation (<code>_x</code>, <code>@property</code>), héritage (<code>super()</code>), polymorphisme, abstraction (ABC).</li><li><code>@dataclass</code> génère init, repr, eq pour les classes de données.</li><li>SOLID, DRY, KISS guident la conception ; composition avant héritage.</li></ol></div>
+</section>
+<section class="slide" data-ch="02" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/python.svg" alt="Logo Python (impératif &amp; POO)"></div>
+<div class="kicker">Chapitre 02 · La programmation orientée objet</div>
+<h2>Fiche — POO</h2>
+<div class="fiche"><div class="card"><span class="lab">Classe / objet</span><p>Classe = plan ; objet = instance ; <code><i>init</i></code> = constructeur.</p></div><div class="card"><span class="lab">Encapsulation</span><p><code>_x</code> protégé · <code>__x</code> privé · <code>@property</code> pour contrôler l'accès.</p></div><div class="card"><span class="lab">Héritage</span><p><code>class Fille(Mere)</code> ; <code>super()</code> appelle la mère.</p></div><div class="card"><span class="lab">Abstraction</span><p><code>ABC</code> + <code>@abstractmethod</code> : contrat imposé aux filles.</p></div><div class="card"><span class="lab">dataclass</span><p>Génère <code><i>init</i></code>, <code><i>repr</i></code>, <code><i>eq</i></code> ; champs typés.</p></div><div class="card"><span class="lab">SOLID</span><p>S·O·L·I·D ; composition avant héritage.</p></div></div>
+</section>
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · La programmation orientée objet</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 02</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Quels sont les piliers de la POO ?</button><div class="ab"><p>L'encapsulation (protéger l'état), l'héritage (réutiliser et spécialiser), le polymorphisme (même interface, comportements différents) et l'abstraction (définir un contrat sans l'implémenter).</p></div></div><div class="acc jq"><button class="ah" type="button">Quelle différence entre une classe abstraite et une interface ?</button><div class="ab"><p>Une classe abstraite peut contenir du code et de l'état partagés, et impose aux filles d'implémenter ses méthodes abstraites ; une interface pure ne décrit que des signatures. En Python, les deux se modélisent avec <code>ABC</code>.</p></div></div><div class="acc jq"><button class="ah" type="button">Héritage ou composition ?</button><div class="ab"><p>L'héritage exprime « est un » et couple fortement mère et fille ; la composition exprime « a un » et reste plus souple. On préfère la composition, sauf vraie relation de spécialisation.</p></div></div><div class="acc jq"><button class="ah" type="button">À quoi sert un dataclass ?</button><div class="ab"><p>À déclarer une classe de données sans code répétitif : <code><i>init</i></code>, <code><i>repr</i></code> et <code><i>eq</i></code> sont générés à partir des champs typés. On peut le rendre immuable avec <code>frozen=True</code>.</p></div></div><div class="acc jq"><button class="ah" type="button">Expliquez le principe de responsabilité unique.</button><div class="ab"><p>Une classe ne doit avoir qu'une raison de changer : par exemple séparer le calcul d'une facture, son stockage et son affichage. Le code est alors plus simple à tester et à faire évoluer.</p></div></div></div>
+</section>
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · La programmation orientée objet</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="02"></div>
+</section>
+<section class="slide" data-ch="03" data-sec="03 Exceptions et fichiers" data-title="Exceptions, fichiers, CSV et JSON" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/python.svg" alt="Logo Python (impératif &amp; POO)"></div>
+<div class="kicker">Chapitre 03 · Exceptions, fichiers, CSV et JSON</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Gérer les erreurs avec les exceptions</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Principe</span><p>Une <b>exception</b> interrompt le flux normal ; on la <b>capte</b> pour réagir. Les types sont organisés en hiérarchie (<code>Exception</code> → <code>ValueError</code>, <code>KeyError</code>, <code>FileNotFoundError</code>…).</p></div><div class="card"><span class="lab">Les quatre clauses</span><ul><li><code>try</code> : code risqué.</li><li><code>except Type as e</code> : traitement, du plus <b>précis</b> au plus général.</li><li><code>else</code> : s'exécute <b>si aucune erreur</b>.</li><li><code>finally</code> : <b>toujours</b> (libérer ressources).</li></ul></div><div class="analogy"><b>Analogie —</b> un filet de sécurité sous un funambule : on ne l'utilise pas pour marcher, mais il évite la chute fatale.</div></div><div class="code"><div class="codeh"><span>python</span><button class="cpy" type="button">Copier</button></div><pre><code>class SoldeInsuffisant(Exception):         <span class="c"># exception métier</span>
+    pass
+
+def retirer(solde, montant):
+    if montant &gt; solde:
+        raise SoldeInsuffisant(f"manque {montant - solde} €")
+    return solde - montant
+
+try:
+    solde = retirer(50, 80)
+except SoldeInsuffisant as e:
+    print("Refusé :", e)                  <span class="c"># Refusé : manque 30 €</span>
+except (TypeError, ValueError):
+    print("Données invalides")
+else:
+    print("OK", solde)
+finally:
+    print("fin")                           <span class="c"># toujours exécuté</span></code></pre></div></div>
+</section>
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Exceptions, fichiers, CSV et JSON</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Fichiers, CSV et JSON</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>python</span><button class="cpy" type="button">Copier</button></div><pre><code>import csv, json
+from pathlib import Path
+
+with open("titanic.csv", newline="", encoding="utf-8") as f:   <span class="c"># fermé auto</span>
+    lignes = list(csv.DictReader(f))        <span class="c"># liste de dict, 1 par ligne</span>
+ages = [float(l["Age"]) for l in lignes if l["Age"]]
+print(sum(ages) / len(ages))                 <span class="c"># ~ 30 ans (TP Titanic)</span>
+
+data = {"nom": "Ana", "notes": [12, 15]}
+Path("a.json").write_text(json.dumps(data, ensure_ascii=False, indent=2))
+back = json.loads(Path("a.json").read_text())   <span class="c"># str -&gt; dict</span></code></pre></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p><code>with</code> est un <b>gestionnaire de contexte</b> : il ferme le fichier même en cas d'erreur. Toujours préciser <code>encoding="utf-8"</code>.</p></div></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">CSV</span><p>Texte tabulaire à séparateur ; <code>csv.reader</code> (listes) ou <code>csv.DictReader</code> (dictionnaires par en-têtes). Tout est lu en <b>chaînes</b> : convertir. Pour de gros volumes : <a href="numpy-pandas.html">pandas</a>.</p></div><div class="card"><span class="lab">JSON</span><ul><li><b>Sérialiser</b> : objet Python → texte (<code>json.dump(s)</code>).</li><li><b>Désérialiser</b> : texte → objet (<code>json.load(s)</code>).</li><li>Correspondance : dict ↔ objet, list ↔ tableau, None ↔ null, True ↔ true.</li><li>Les objets personnalisés (dates, classes) ne sont pas sérialisables directement.</li></ul></div></div></div>
+</section>
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Exceptions, fichiers, CSV et JSON</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et résumé</h2>
+<div class="grid g2"><div class="trap-list"><div><b><code>except:</code> nu ou <code>except Exception: pass</code></b> : avale toutes les erreurs, même celles qu'on ne soupçonnait pas.</div><div><b>Ouvrir sans <code>with</code></b> : fichier non fermé en cas d'erreur.</div><div><b>Oublier la conversion</b> : <code>"42" &gt; "5"</code> est faux en texte.</div><div><b>Ne pas préciser l'encodage</b> : accents corrompus selon le système.</div><div><b>Utiliser les exceptions pour le flux normal</b> : coûteux et peu lisible.</div></div><ol class="sum-list"><li>try / except (précis) / else / finally ; <code>raise</code> pour signaler.</li><li>Créer ses exceptions métier en héritant de <code>Exception</code>.</li><li><code>with open(…)</code> + <code>encoding</code> ; <code>csv.DictReader</code> ; <code>json.load/dump</code>.</li><li>Pour des volumes, passer à pandas.</li></ol></div>
+</section>
+<section class="slide" data-ch="03" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/python.svg" alt="Logo Python (impératif &amp; POO)"></div>
+<div class="kicker">Chapitre 03 · Exceptions, fichiers, CSV et JSON</div>
+<h2>Fiche — Exceptions et fichiers</h2>
+<div class="fiche"><div class="card"><span class="lab">Exceptions</span><p>try / except / else / finally ; <code>raise</code> ; exceptions métier héritent de Exception.</p></div><div class="card"><span class="lab">Ordre</span><p>except du plus précis au plus général.</p></div><div class="card"><span class="lab">Fichiers</span><p><code>with open(f, encoding="utf-8") as x</code> ferme automatiquement.</p></div><div class="card"><span class="lab">CSV</span><p><code>csv.DictReader</code> : une ligne = un dict ; valeurs en texte à convertir.</p></div><div class="card"><span class="lab">JSON</span><p><code>json.dumps/loads</code> (texte) · <code>dump/load</code> (fichier) ; dict ↔ objet.</p></div><div class="card"><span class="lab">Piège</span><p><code>except: pass</code> masque les bugs.</p></div></div>
+</section>
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Exceptions, fichiers, CSV et JSON</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 03</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">À quoi servent <code>else</code> et <code>finally</code> dans un try ?</button><div class="ab"><p><code>else</code> s'exécute seulement si aucune exception n'a eu lieu, ce qui isole le code qui ne doit pas être protégé ; <code>finally</code> s'exécute toujours, erreur ou non, pour libérer les ressources.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi utiliser <code>with open(...)</code> ?</button><div class="ab"><p>Le gestionnaire de contexte garantit la fermeture du fichier à la sortie du bloc, même si une exception survient, ce qui évite les fuites de ressources et les fichiers verrouillés.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment créer et lever une exception personnalisée ?</button><div class="ab"><p>On définit une classe qui hérite de <code>Exception</code> (ou d'une classe plus précise) et on la lève avec <code>raise</code>. Cela rend les erreurs métier explicites et captables séparément.</p></div></div><div class="acc jq"><button class="ah" type="button">Quelle différence entre sérialisation et désérialisation ?</button><div class="ab"><p>Sérialiser transforme un objet en mémoire en texte ou octets transportables (JSON), désérialiser fait l'inverse. Les types sont convertis : dict en objet JSON, None en null.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment traiter un gros CSV ?</button><div class="ab"><p>Sans tout charger : lecture ligne à ligne avec un générateur, ou par blocs avec pandas (<code>chunksize</code>), ou en passant par un moteur adapté comme Spark.</p></div></div></div>
+</section>
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Exceptions, fichiers, CSV et JSON</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="03"></div>
+</section>
+<section class="slide" data-ch="04" data-sec="04 Python pro" data-title="Python professionnel" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/python.svg" alt="Logo Python (impératif &amp; POO)"></div>
+<div class="kicker">Chapitre 04 · Python professionnel</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Générateurs, context managers, logging</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Générateur</span><p>Une fonction avec <code>yield</code> produit les valeurs <b>une à une</b>, à la demande : <b>mémoire constante</b> pour de gros flux (lignes d'un fichier de 10 Go). Un itérateur se consomme une seule fois.</p></div><div class="code"><div class="codeh"><span>python</span><button class="cpy" type="button">Copier</button></div><pre><code>def lignes_non_vides(chemin):
+    with open(chemin, encoding="utf-8") as f:
+        for ligne in f:                 <span class="c"># lit ligne à ligne</span>
+            if ligne.strip():
+                yield ligne.strip()     <span class="c"># produit une valeur</span>
+
+total = sum(1 for _ in lignes_non_vides("log.txt"))   <span class="c"># sans tout charger</span></code></pre></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Context manager</span><p>L'instruction <code>with</code> appelle <code><i>enter</i></code> puis <code><i>exit</i></code> : acquisition et <b>libération garanties</b> (fichier, connexion, verrou). <code>@contextmanager</code> en fait un générateur à deux temps.</p></div><div class="card"><span class="lab">Logging</span><ul><li><code>import logging</code> : niveaux <b>DEBUG &lt; INFO &lt; WARNING &lt; ERROR &lt; CRITICAL</b>.</li><li>Remplace <code>print</code> : horodatage, niveau, destination (fichier, console), filtrage.</li><li><code>logger.exception("échec")</code> journalise la <b>trace</b>.</li><li>Ne jamais journaliser de mot de passe ni de donnée personnelle.</li></ul></div></div></div>
+</section>
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Python professionnel</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Tests, ligne de commande, packaging, design patterns</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>python · pytest</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="c"># test_calcul.py</span>
+import pytest
+from calcul import moyenne
+
+def test_moyenne():
+    assert moyenne([10, 20]) == 15
+
+def test_liste_vide():
+    with pytest.raises(ValueError):       <span class="c"># tester aussi le cas d'erreur</span>
+        moyenne([])
+<span class="c"># pytest -q   (découvre test_*.py)</span></code></pre></div><div class="code"><div class="codeh"><span>python · argparse</span><button class="cpy" type="button">Copier</button></div><pre><code>import argparse
+p = argparse.ArgumentParser(description="Nettoie un CSV")
+p.add_argument("fichier")                      <span class="c"># positionnel</span>
+p.add_argument("<span class="c">--sep", default=";")            # option</span>
+args = p.parse_args()                           <span class="c"># python nettoie.py data.csv --sep ,</span></code></pre></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Structurer un projet</span><ul><li>Un module = un fichier ; un <b>package</b> = un dossier avec <code><i>init</i>.py</code>.</li><li><code>pyproject.toml</code> décrit le projet et ses dépendances ; <b>venv</b> isole.</li><li><code>if <i>name</i> == "<i>main</i>":</code> : code exécuté seulement en lançant le fichier.</li></ul></div><div class="card"><span class="lab">Design patterns (exemples)</span><ul><li><b>Singleton</b> : une seule instance (connexion, configuration).</li><li><b>State</b> : le comportement change selon l'état interne (lecteur audio : lecture, pause, arrêt).</li><li>Un pattern est une <b>solution reconnue</b> à un problème de conception récurrent.</li></ul></div></div></div>
+</section>
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Python professionnel</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Expressions régulières avec re</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>python</span><button class="cpy" type="button">Copier</button></div><pre><code>import re
+texte = "Commande 42 le 2026-03-15, contact : ana@ex.fr"
+re.search(r"\d+", texte).group()          <span class="c"># '42'  première correspondance</span>
+re.findall(r"\d{4}-\d{2}-\d{2}", texte)   <span class="c"># ['2026-03-15']  toutes, en liste</span>
+m = re.search(r"(\w+)@(\w+\.\w+)", texte)
+m.group(1), m.group(2)                   <span class="c"># ('ana', 'ex.fr')  groupes de capture</span>
+re.sub(r"\s+", " ", "a   b \t c")         <span class="c"># 'a b c'  remplacer</span>
+re.match(r"\d", texte)                    <span class="c"># None : match ancre au DÉBUT</span>
+motif = re.compile(r"^[A-Z]{2}\d{3}$")     <span class="c"># compiler un motif réutilisé</span>
+bool(motif.match("AB123"))                <span class="c"># True</span></code></pre></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>On écrit les motifs en <b>chaîne brute</b> <code>r"…"</code> : sans le <code>r</code>, Python interpréterait <code>\d</code> comme une séquence d'échappement.</p></div></div></div><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Symbole</th><th>Sens</th></tr></thead><tbody><tr><td><code>\d</code> <code>\w</code> <code>\s</code></td><td>chiffre, caractère de mot, espace</td></tr><tr><td><code>.</code></td><td>n'importe quel caractère</td></tr><tr><td><code>*</code> <code>+</code> <code>?</code></td><td>0 ou plus, 1 ou plus, 0 ou 1</td></tr><tr><td><code>{2,4}</code></td><td>entre 2 et 4 fois</td></tr><tr><td><code>^</code> <code>$</code></td><td>début, fin de chaîne</td></tr><tr><td><code>[A-Z]</code></td><td>un caractère de la classe</td></tr><tr><td><code>( )</code></td><td>groupe de capture</td></tr></tbody></table><div class="card"><span class="lab">Quelle fonction choisir</span><ul><li><code>re.match</code> : correspondance <b>au début</b> seulement.</li><li><code>re.search</code> : <b>première</b> correspondance n'importe où.</li><li><code>re.findall</code> : <b>toutes</b> les correspondances, en <b>liste</b>.</li><li><code>re.sub</code> : <b>remplacer</b> ; <code>re.split</code> : découper.</li><li>Usage data : valider un format (code postal, date), extraire, nettoyer. À garder <b>simple</b> et <b>testé</b>.</li></ul></div></div></div>
+</section>
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Python professionnel</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et résumé</h2>
+<div class="grid g2"><div class="trap-list"><div><b>Charger un gros fichier en mémoire</b> (<code>read()</code>, <code>list(...)</code>) : utiliser un générateur ou pandas par blocs.</div><div><b><code>print</code> en production</b> : aucun niveau ni horodatage ; utiliser <code>logging</code>.</div><div><b>Tester seulement le cas heureux</b> : tester aussi les erreurs et les cas limites.</div><div><b>Installer en global</b> : conflits de versions ; un venv par projet.</div><div><b>Singleton abusif</b> : état global caché, tests difficiles.</div></div><ol class="sum-list"><li><code>yield</code> : flux paresseux à mémoire constante.</li><li><code>with</code> : libération garantie ; <code>logging</code> à la place de <code>print</code>.</li><li>pytest : un test par comportement, y compris les erreurs.</li><li>argparse pour les scripts, <code>pyproject.toml</code> et package pour livrer.</li></ol></div>
+</section>
+<section class="slide" data-ch="04" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/python.svg" alt="Logo Python (impératif &amp; POO)"></div>
+<div class="kicker">Chapitre 04 · Python professionnel</div>
+<h2>Fiche — Python pro</h2>
+<div class="fiche"><div class="card"><span class="lab">Générateur</span><p><code>yield</code> : valeurs à la demande, mémoire constante, consommable une fois.</p></div><div class="card"><span class="lab">Context manager</span><p><code>with</code> : <code><i>enter</i></code> / <code><i>exit</i></code>, libération garantie.</p></div><div class="card"><span class="lab">Logging</span><p>DEBUG &lt; INFO &lt; WARNING &lt; ERROR &lt; CRITICAL ; jamais de secret.</p></div><div class="card"><span class="lab">pytest</span><p><code>assert</code>, <code>pytest.raises</code>, fixtures ; tester les erreurs.</p></div><div class="card"><span class="lab">Script</span><p>argparse ; <code>if <i>name</i> == "<i>main</i>"</code>.</p></div><div class="card"><span class="lab">Patterns</span><p>Singleton · State ; solutions reconnues à des problèmes de conception.</p></div></div>
+</section>
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Python professionnel</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 04</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Quel intérêt d'un générateur ?</button><div class="ab"><p>Il produit les valeurs à la demande avec <code>yield</code>, sans stocker toute la séquence : on traite des fichiers plus gros que la mémoire, avec une consommation constante.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi remplacer <code>print</code> par <code>logging</code> ?</button><div class="ab"><p><code>logging</code> ajoute un niveau de gravité, un horodatage, la source, et permet de choisir la destination et le filtrage sans modifier le code. C'est indispensable en production et dans les tâches planifiées.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment testez-vous votre code Python ?</button><div class="ab"><p>Avec pytest : un test par comportement, des <code>assert</code>, des fixtures pour préparer les données, <code>pytest.raises</code> pour les erreurs, et la couverture mesurée ; les tests tournent automatiquement en intégration continue.</p></div></div><div class="acc jq"><button class="ah" type="button">Qu'est-ce qu'un package Python ?</button><div class="ab"><p>Un dossier de modules contenant un <code><i>init</i>.py</code>, importable par son nom. Avec un <code>pyproject.toml</code>, on le décrit et on l'installe avec pip, ce qui permet de le partager entre projets.</p></div></div><div class="acc jq"><button class="ah" type="button">Qu'est-ce qu'un design pattern ?</button><div class="ab"><p>Une solution générique et éprouvée à un problème de conception récurrent, comme le Singleton pour une instance unique ou le State pour changer de comportement selon l'état. C'est un vocabulaire commun, pas du code à copier.</p></div></div></div>
+</section>
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Python professionnel</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="04"></div>
+</section>
+<section class="slide" data-ch="quiz" data-sec="Quiz final" data-title="Quiz final — 45 questions">
+<div class="kicker">Quiz final · Python (impératif &amp; POO)</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-target"/></svg> 45 questions pour affronter le jury</h2>
+<p class="lead">Tous chapitres mélangés ; l'ordre des questions et des réponses change à chaque tentative. Certaines questions ont <b>plusieurs bonnes réponses</b>.</p>
+<div data-quiz="final"></div>
+</section>
+
+</main>
+<button class="arrow" id="prev" type="button" aria-label="Diapositive précédente">‹</button>
+<button class="arrow" id="next" type="button" aria-label="Diapositive suivante">›</button>
+<nav id="tl" aria-label="Chapitres"></nav>
+<div id="hint">← → naviguer · ↑ ↓ défiler · H ampoule <svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg> · E Complète/Essentiel · M maîtrisé · S sommaire · T thème</div>
+<button id="bulbhint" type="button"><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></button>
+<div id="ctip" role="tooltip"></div>
+<div id="toc" role="dialog" aria-label="Sommaire">
+  <button class="btn xx" id="tocx" type="button">Fermer ✕</button>
+  <div class="kicker">Sommaire · Python (impératif &amp; POO)</div>
+  <h2>Python (impératif &amp; POO)</h2>
+  <div class="tg"></div>
+</div>
+
+<div id="fab">
+  <button id="helpbtn" type="button" aria-label="Ampoule : concepts expliqués au survol" aria-pressed="false" title="Ampoule : soulignez les concepts, survolez-les pour une explication (H)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></button>
+<button id="tocbtn" type="button" aria-label="Sommaire" title="Sommaire (S)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+  <div id="themebtn">
+    <div id="menu" role="menu"><h4>Thème</h4></div>
+    <button id="tbtn" type="button" aria-label="Changer de thème" aria-haspopup="true" title="Changer de thème (T)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.4-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16a5 5 0 0 0 5-5c0-4-4-7-9-7z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="7.5" r="1"/></svg>
+    </button>
+  </div>
+</div>
+
+</div>
+<script src="assets/icons.js?v=1795252877"></script>
+<script src="data/python-quiz.js?v=1795252877"></script>
+<script src="data/python-glossary.js?v=1795252877"></script>
+<script src="assets/engine.js?v=1795252877"></script>
+</body>
+</html>

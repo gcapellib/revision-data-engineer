@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spring &amp; Spring Boot · Révision Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/base.css?v=1795252877">
+<link rel="stylesheet" href="assets/photos.css?v=1795252877">
+<link rel="stylesheet" href="assets/revision.css?v=1795252877">
+</head>
+<body data-page="course" data-course="spring" data-title="Spring &amp; Spring Boot">
+<div id="app" data-theme="papier">
+
+<div id="bg" aria-hidden="true">
+  <div class="bgl bg-neon">
+    <svg viewBox="0 0 800 800"><path d="M40 760 L400 280 L760 760" stroke-width="3"/><path d="M110 760 L400 380 L690 760" stroke-width="2.4" opacity=".85"/><path d="M180 760 L400 470 L620 760" stroke-width="2" opacity=".7"/><path d="M250 760 L400 560 L550 760" stroke-width="1.6" opacity=".55"/><path d="M320 760 L400 650 L480 760" stroke-width="1.2" opacity=".4"/></svg>
+  </div>
+  <div class="bgl bg-sauge"><div class="panel"></div><div id="bignum"></div></div>
+  <div class="bgl bg-nuit"><i></i><i></i><i></i></div>
+  <div class="bgl bg-verre"><div class="blob a"></div><div class="blob b"></div><div class="blob c"></div></div>
+  <div class="bgl bg-papier"><i></i><i></i><i></i></div>
+  <div class="bgl bg-rubans"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f8fe0"/><stop offset="1" stop-color="#2fd0bd"/></linearGradient>
+      <linearGradient id="rg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fdcc4"/><stop offset=".55" stop-color="#26b2d2"/><stop offset="1" stop-color="#2f8fe0"/></linearGradient>
+      <linearGradient id="rg3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2fd0bd"/><stop offset="1" stop-color="#2f90e2"/></linearGradient>
+      <filter id="rsh" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="12"/></filter>
+    </defs>
+    <g class="rb" id="rb-a" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g class="rb b" id="rb-b" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+  </svg></div>
+  <div class="bgl bg-facettes"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="fcw" id="fc-top"></g><g class="fcw" id="fc-bot"></g></svg></div>
+  <div class="bgl photo bg-bulles"><i></i></div>
+  <div class="bgl photo bg-hexa"><i></i></div>
+  <div class="bgl photo bg-points"><i></i></div>
+</div>
+
+<svg id="defs" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+  <marker id="arrk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3a4458"/></marker>
+  <marker id="arrbad" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+</defs></svg>
+
+<div id="brand"><a href="index.html" title="Retour à l'accueil">← Accueil</a> · Spring &amp; Spring Boot</div>
+<div id="topbar">
+  <div id="vseg" role="group" aria-label="Version du cours"><button type="button" data-v="c" title="Tout le cours (E pour basculer)"><svg class="ico" aria-hidden="true"><use href="#ti-book"/></svg> Complète</button><button type="button" data-v="e" title="Ce qu'il faut maîtriser pour le jury (E)"><svg class="ico" aria-hidden="true"><use href="#ti-bolt"/></svg> Essentiel</button></div>
+  <button id="mast" type="button" title="Marquer ce chapitre comme maîtrisé (M)"></button>
+  <span id="prog"></span>
+</div>
+<div id="hud"><span id="count">1 / 1</span></div>
+<main id="deck">
+<section class="slide" data-ch="00" data-sec="Immersion" data-title="Immersion : découvrir Spring &amp; Spring Boot">
+<div class="chlogos"><img class="chlogo big" src="assets/logos/spring.svg" alt="Logo Spring &amp; Spring Boot"></div>
+<div class="kicker">Activité 3 · Concevoir et développer une application</div>
+<h1>Spring &amp; Spring Boot</h1>
+<p class="lead"><b>Spring</b> est le framework Java de référence pour bâtir des applications d'entreprise. Vous verrez l'<b>inversion de contrôle</b> et l'<b>injection de dépendances</b>, <b>Spring Boot</b> (démarrage rapide, auto-configuration), la construction d'une <b>API REST</b> avec Spring MVC, l'accès aux données avec <b>Spring Data JPA</b> et les <b>tests</b>. Les principes REST sont dans <a href="api-python.html">API Python</a> ; la livraison en conteneur dans <a href="docker.html">Docker</a>.</p>
+<div class="chips"><span class="pill solid">immersion + 4 chapitres</span><span class="pill">mini-quiz par chapitre</span><span class="pill">quiz final · 45 questions</span><span class="pill">IoC · Boot · REST · Data JPA</span></div>
+</section>
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 1 / 3</div>
+<h2>Comment une équipe construit-elle une API Java de qualité industrielle en quelques heures, sans écrire la plomberie (serveur, configuration, connexions) à chaque projet ?</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card bad"><span class="lab">Tout assembler à la main</span><p>Serveur d'applications à installer, fichiers XML de configuration, objets créés et reliés manuellement : lent, répétitif et difficile à tester.</p></div><div class="card hl"><span class="lab">Laisser un framework assembler l'application</span><p>On <b>déclare</b> les composants ; <b>Spring</b> les crée, les relie (<b>injection de dépendances</b>) et gère leur cycle de vie. <b>Spring Boot</b> ajoute un <b>serveur embarqué</b> et une <b>configuration automatique</b>.</p></div></div><div style="display:grid;gap:1.2vh"><p class="punch"><b>Spring</b> est un <b>conteneur d'inversion de contrôle</b> : ce n'est plus votre code qui crée ses collaborateurs, c'est <b>le framework qui les fournit</b>. Cela rend le code <b>modulaire</b> et <b>testable</b>. <b>Spring Boot</b> démarre un projet complet (serveur Tomcat embarqué, configuration, métriques) avec un minimum de réglages ; le tout se package en un seul <b>JAR exécutable</b>.</p><div class="analogy"><b>Analogie —</b> un chef de chantier : vous dites ce qu'il faut (les composants), il fait arriver chaque corps de métier au bon moment et les met en relation ; vous ne tirez plus les fils vous-même.</div></div></div>
+</section>
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 2 / 3</div>
+<h2>De J2EE à Spring Boot : vingt ans de simplification</h2>
+<div class="flow"><div class="step"><b>2002 · 2004</b><small><b>Rod Johnson</b> publie un livre critique sur J2EE ; <b>Spring 1.0</b> (2004)</small></div><div class="step"><b>2009 · 2013</b><small>Spring rachète le terrain de <b>Java EE</b> ; annotations, <b>Spring MVC</b>, <b>Spring Data</b></small></div><div class="step"><b>2014</b><small><b>Spring Boot 1.0</b> : starters, auto-configuration, JAR exécutable</small></div><div class="step"><b>2022</b><small><b>Spring 6 / Boot 3</b> : Java 17 minimum, espace de noms <code>jakarta.*</code></small></div><div class="step"><b>2025 · aujourd'hui</b><small><b>Spring 7 / Boot 4</b> (novembre 2025) ; écosystème : <b>Security</b>, <b>Cloud</b>, <b>Batch</b>, <b>Data</b>, GraalVM</small></div></div><div class="grid g2"><div class="card"><span class="lab">Qui l'utilise, pour quoi</span><ul><li>Applications d'entreprise, <b>API REST</b> et microservices (banque, assurance, e-commerce).</li><li><b>Data Engineers</b> : services d'accès aux données, API d'exposition, <b>Spring Batch</b> (traitement par lots), intégration avec <a href="kafka.html">Kafka</a>.</li><li>Alternatives : <b>Quarkus</b>, <b>Micronaut</b>, Jakarta EE ; en Python, <a href="api-python.html">FastAPI</a>.</li></ul></div><div class="sch free"><span class="cap">Spring dans l'architecture d'une API</span><svg class="dg" viewBox="0 -36 470 186" role="img" aria-label="Un client appelle un contrôleur, un service puis un repository ; le conteneur Spring crée et relie les composants"><rect class="b f3" x="10" y="20" width="90" height="46" rx="8"/><text class="t tc" x="55.0" y="41.0">Client</text><text class="s tc" x="55.0" y="56.0">navigateur</text><path class="e" d="M102 43 L118 43"/><rect class="b ok" x="120" y="20" width="110" height="46" rx="8"/><text class="t tc" x="175.0" y="41.0">Controller</text><text class="s tc" x="175.0" y="56.0">REST</text><path class="e" d="M232 43 L248 43"/><rect class="b ok" x="250" y="20" width="100" height="46" rx="8"/><text class="t tc" x="300.0" y="41.0">Service</text><text class="s tc" x="300.0" y="56.0">règles</text><path class="e" d="M352 43 L368 43"/><rect class="b ok" x="370" y="20" width="90" height="46" rx="8"/><text class="t tc" x="415.0" y="41.0">Repository</text><text class="s tc" x="415.0" y="56.0">JPA</text><rect class="b f2" x="10" y="90" width="450" height="40" rx="8"/><text class="t tc" x="235.0" y="115.0">Conteneur Spring : crée et injecte les beans</text>
+  <use class="il" href="#il-laptop" x="40.0" y="-13" width="30" height="30"/><use class="il" href="#il-code" x="160.0" y="-13" width="30" height="30"/><use class="il" href="#il-gear" x="285.0" y="-13" width="30" height="30"/><use class="il" href="#il-database" x="400.0" y="-13" width="30" height="30"/>
+</svg></div></div>
+</section>
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 3 / 3</div>
+<h2>Premier contact : une API en moins de vingt lignes</h2>
+<div class="grid g2"><div class="code"><div class="codeh"><span>java · Spring Boot</span><button class="cpy" type="button">Copier</button></div><pre><code>@SpringBootApplication
+public class App {
+    public static void main(String[] args) { SpringApplication.run(App.class, args); }
+}
+
+@RestController
+@RequestMapping("/api/clients")
+class ClientController {
+    private final ClientService service;                  <span class="c">// injecté par Spring</span>
+    ClientController(ClientService service) { this.service = service; }
+
+    @GetMapping("/{id}")
+    ClientDto lire(@PathVariable Long id) { return service.trouver(id); }
+}
+<span class="c">// mvn spring-boot:run  -&gt;  GET http://localhost:8080/api/clients/7  -&gt;  {"id":7,"nom":"Durand"}</span></code></pre></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Ce qu'il faut remarquer</span><p>Aucun serveur à installer : <b>Tomcat est embarqué</b>. <code>@SpringBootApplication</code> active l'<b>auto-configuration</b>. Le service est <b>injecté par le constructeur</b> : Spring le crée et le fournit. La sortie en JSON est automatique.</p></div><div class="card"><span class="lab">Ce que le jury attend</span><ul><li>Développer une application structurée en couches.</li><li>Concevoir et tester une API.</li></ul></div></div></div><div class="flow"><div class="step"><b>01</b><small>IoC, injection</small></div><div class="step"><b>02</b><small>Spring Boot</small></div><div class="step"><b>03</b><small>API REST</small></div><div class="step"><b>04</b><small>Data JPA, tests</small></div></div>
+</section>
+<section class="slide" data-ch="00" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/spring.svg" alt="Logo Spring &amp; Spring Boot"></div>
+<div class="kicker">Immersion · Essentiel</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Présenter Spring en une minute</h2>
+<div class="card hl"><p class="q">« <b>Spring</b> est un framework Java fondé sur l'<b>inversion de contrôle</b> : un <b>conteneur</b> crée les objets (les <b>beans</b>) et injecte leurs dépendances, de préférence <b>par le constructeur</b>. <b>Spring Boot</b> simplifie tout : <b>starters</b>, <b>auto-configuration</b>, <b>serveur embarqué</b>, <b>JAR exécutable</b>, configuration dans <code>application.yml</code>.</p><p class="q">Je structure en <b>couches</b> : <b>controller</b> (HTTP), <b>service</b> (règles métier), <b>repository</b> (accès aux données avec <b>Spring Data JPA</b>), avec des <b>DTO</b> et la <b>validation</b> (<code>@Valid</code>). Les erreurs sont centralisées dans un <b><code>@ControllerAdvice</code></b>. Je teste avec <b>JUnit</b>, <b>Mockito</b> et <b>MockMvc</b>.</p><p class="q">Les points d'attention : ne pas exposer les entités JPA, gérer les transactions (<code>@Transactional</code>), sécuriser avec <b>Spring Security</b>, externaliser la configuration et les secrets. »</p></div><div class="grid g3"><div class="card"><span class="lab">Les 3 mots à placer</span><p><b>Bean · injection · auto-configuration</b></p></div><div class="card"><span class="lab">Le choix à justifier</span><p><b>Spring Boot</b> pour une application Java d'entreprise : injection de dépendances, configuration externe, et un écosystème complet (sécurité, données, web).</p></div><div class="card"><span class="lab">Le lien</span><p><a href="api-python.html">API REST</a> · <a href="docker.html">Docker</a> · <a href="securite.html">Authentification</a></p></div></div>
+</section>
+<section class="slide" data-ch="00" data-sec="Le fil" data-title="Le fil du cours : 5 idées">
+<div class="kicker">Le fil du cours · Spring &amp; Spring Boot</div>
+<h2>5 idées font tout le cours</h2>
+<p class="lead fil-q">Tout le cours répond à : <b>comment construire une application Java d'entreprise dont les morceaux se branchent, se configurent et se testent sans tout réécrire ?</b> Cinq règles expliquent Spring.</p>
+<div class="grid g3 ideas"><div class="card idea"><span class="lab">Idée 1 · Le conteneur crée et relie les objets</span><p><b>Inversion de contrôle</b> : on ne crée pas soi-même les objets avec new. On déclare des <b>beans</b> (@Component, @Service, @Repository) ; Spring les crée et leur <b>injecte</b> leurs dépendances, de préférence par le <b>constructeur</b>.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si un service crée lui-même ses dépendances avec new, on ne peut pas les remplacer par un double dans les tests.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Recevoir les dépendances par le constructeur : dans un test, on passe un double à la place de la vraie dépendance.</p><p class="chs">ch. 01 · ch. 02</p></div><div class="card idea"><span class="lab">Idée 2 · Dépendre d'interfaces, pas d'implémentations</span><p>Une classe reçoit une <b>interface</b> ; on change l'implémentation (base réelle, double de test, profil) sans toucher au code qui l'utilise.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si une classe dépend directement d'une classe concrète, changer d'implémentation oblige à modifier tout le code qui l'utilise.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Faire dépendre la classe d'une interface (ClientRepository) ; Spring injecte l'implémentation choisie selon le contexte ou le profil.</p><p class="chs">ch. 01 · ch. 04</p></div><div class="card idea"><span class="lab">Idée 3 · Convention plutôt que configuration</span><p><b>Convention plutôt que configuration</b>. Avec Spring Boot, les <b>starters</b> apportent les bonnes dépendances, l'<b>auto-configuration</b> règle ce qui est présent, et la configuration est <b>externe</b> au code (application.yml, profils, variables d'environnement) : on l'adapte sans recompiler.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si le mot de passe de la base est écrit dans le code, il se retrouve dans Git, et il faut recompiler l'application pour le changer.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Lire le mot de passe dans une variable d'environnement, référencée dans application.yml : ${DB_PASSWORD}.</p><p class="chs">ch. 02</p></div><div class="card idea"><span class="lab">Idée 4 · Des couches séparées</span><p>On sépare l'application en <b>couches</b> : le <b>contrôleur</b> (HTTP), le <b>service</b> (règles métier, transactions), le <b>repository</b> (accès aux données). Les <b>DTO</b> (objets de transfert) séparent ce que montre l'API des entités de la base ; la validation et les erreurs sont gérées en un seul endroit.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'API renvoie directement l'entité JPA, la conversion en JSON peut tourner en boucle entre les relations, et des champs internes sont exposés.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Renvoyer un DTO qui ne contient que les champs utiles, construit à partir de l'entité.</p><p class="chs">ch. 03 · ch. 04</p></div><div class="card idea"><span class="lab">Idée 5 · Les données derrière des repositories et des transactions</span><p><b>Spring Data JPA</b> écrit les requêtes à partir des noms de méthodes (findByEmail). <b>@Transactional</b> rend une opération atomique : tout réussit ou tout est annulé. Attention au chargement paresseux des relations et au problème <b>N+1</b> (une requête de plus par élément d'une liste).</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on parcourt une liste et que chaque élément charge sa relation séparément, on déclenche une requête par ligne (le problème N+1).</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Charger la relation en une seule requête (JOIN FETCH ou @EntityGraph) et compter les requêtes dans les journaux.</p><p class="chs">ch. 04</p></div></div>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · Spring &amp; Spring Boot</div>
+<h2>Les règles d'une application Spring</h2>
+<div class="flow"><div class="step"><b>1</b><small>Qui crée cet objet, et qui le reçoit ?</small></div><div class="step"><b>2</b><small>De quelle interface dépend cette classe ?</small></div><div class="step"><b>3</b><small>Où vit ce réglage : code, application.yml ou variable ?</small></div><div class="step"><b>4</b><small>Dans quelle couche est cette logique, dans quelle transaction ?</small></div></div>
+<table class="cmp md"><thead><tr><th>Situation</th><th>Bon choix</th><th>À éviter</th></tr></thead><tbody><tr><td>Fournir une dépendance</td><td><b>injection par constructeur</b></td><td>new dans la classe, @Autowired sur un champ</td></tr><tr><td>Changer de base entre dev et prod</td><td><b>profil</b> + application-prod.yml</td><td>modifier le code</td></tr><tr><td>Exposer une entité</td><td><b>DTO</b> dédié</td><td>renvoyer l'entité JPA</td></tr><tr><td>Plusieurs écritures liées</td><td>méthode de service <b>@Transactional</b></td><td>aucune transaction, ou dans le contrôleur</td></tr><tr><td>Données invalides</td><td><b>@Valid</b> + @ControllerAdvice</td><td>try/catch dans chaque méthode</td></tr><tr><td>Tester la logique d'un service</td><td><b>mock</b> du repository</td><td>démarrer toute l'application pour un test unitaire</td></tr></tbody></table>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · Spring &amp; Spring Boot</div>
+<h2>Chaque chapitre applique les mêmes idées</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Chapitre</th><th><b>1</b></th><th><b>2</b></th><th><b>3</b></th><th><b>4</b></th><th><b>5</b></th></tr></thead><tbody><tr><td><b>01</b> IoC et DI</td><td>●</td><td>●</td><td></td><td></td><td></td></tr><tr><td><b>02</b> Spring Boot</td><td>●</td><td></td><td>●</td><td></td><td></td></tr><tr><td><b>03</b> API REST</td><td></td><td></td><td></td><td>●</td><td></td></tr><tr><td><b>04</b> Data JPA et tests</td><td></td><td>●</td><td></td><td>●</td><td>●</td></tr></tbody></table><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Ce qui revient dans <b>plusieurs chapitres</b> est une idée à comprendre ; ce qui n'apparaît qu'une fois est un <b>exemple</b> d'une de ces idées.</p></div></div></div><table class="cmp md"><thead><tr><th>Piège classique</th><th>Idée oubliée</th><th>Ce qui casse</th></tr></thead><tbody><tr><td>new d'un repository dans un service</td><td><b>1</b> · Le conteneur crée et relie les objets</td><td>impossible à remplacer en test</td></tr><tr><td>Entité renvoyée par l'API</td><td><b>4</b> · Des couches séparées</td><td>sérialisation infinie, champs sensibles exposés</td></tr><tr><td>Mot de passe dans le code</td><td><b>3</b> · Convention plutôt que configuration</td><td>secret versionné</td></tr><tr><td>Relations chargées une à une</td><td><b>5</b> · Les données derrière des repositories et des transactions</td><td>N+1 requêtes</td></tr><tr><td>Logique métier dans le contrôleur</td><td><b>4</b> · Des couches séparées</td><td>non réutilisable, mal testée</td></tr><tr><td>Dépendance vers une classe concrète</td><td><b>2</b> · Dépendre d'interfaces, pas d'implémentations</td><td>aucune implémentation de rechange possible</td></tr></tbody></table></div>
+</section>
+
+<section class="slide" data-ch="01" data-sec="01 IoC et DI" data-title="Inversion de contrôle et injection de dépendances" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/spring.svg" alt="Logo Spring &amp; Spring Boot"></div>
+<div class="kicker">Chapitre 01 · Inversion de contrôle et injection de dépendances</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Le conteneur Spring et les beans</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Pourquoi</span><p>Sans framework, une classe <b>crée</b> ses collaborateurs (<code>new ServiceMail()</code>) : elle y est <b>couplée</b>, impossible à tester isolément. Avec l'<b>inversion de contrôle (IoC)</b>, elle <b>déclare</b> ce dont elle a besoin et reçoit des instances : c'est l'<b>injection de dépendances (DI)</b>.</p></div><div class="card"><span class="lab">Vocabulaire</span><ul><li><b>Bean</b> : objet créé et géré par le conteneur.</li><li><b>ApplicationContext</b> : le conteneur ; il crée, relie et détruit les beans.</li><li><b>Scope</b> : <code>singleton</code> (par défaut, <b>une instance</b>), <code>prototype</code> (une par demande), <code>request</code>, <code>session</code>.</li><li><b>Profil</b> : jeu de beans actif selon l'environnement (<code>dev</code>, <code>prod</code>).</li></ul></div></div><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Annotation</th><th>Rôle</th></tr></thead><tbody><tr><td><code>@Component</code></td><td>bean générique détecté par <b>scan</b></td></tr><tr><td><code>@Service</code></td><td>bean de la couche métier</td></tr><tr><td><code>@Repository</code></td><td>accès aux données (traduit les exceptions)</td></tr><tr><td><code>@Controller</code> / <code>@RestController</code></td><td>couche web</td></tr><tr><td><code>@Configuration</code> + <code>@Bean</code></td><td>déclarer un bean <b>par une méthode</b></td></tr><tr><td><code>@Autowired</code> / constructeur</td><td><b>injecter</b> une dépendance</td></tr></tbody></table><div class="analogy"><b>Analogie —</b> un restaurant : la cuisine ne choisit pas ses fournisseurs ni ses équipements ; la direction (le conteneur) les fournit selon le contrat.</div></div></div>
+</section>
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Inversion de contrôle et injection de dépendances</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Injection par constructeur, interfaces, profils</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>java</span><button class="cpy" type="button">Copier</button></div><pre><code>public interface Notifier { void envoyer(String msg); }
+
+@Service @Profile("prod")
+class MailNotifier implements Notifier { public void envoyer(String m) { /* SMTP */ } }
+
+@Service @Profile("dev")
+class LogNotifier implements Notifier { public void envoyer(String m) { System.out.println(m); } }
+
+@Service
+class CommandeService {
+    private final Notifier notifier;                    <span class="c">// dépend d'une INTERFACE</span>
+    CommandeService(Notifier notifier) { this.notifier = notifier; }   <span class="c">// injection par constructeur</span>
+}</code></pre></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Une seule implémentation active selon le <b>profil</b> : le code métier ne change pas.</p></div></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Trois formes d'injection</span><ul><li><b>Par constructeur</b> (recommandée) : dépendances <b>obligatoires</b>, objet <b>immuable</b> (<code>final</code>), testable sans Spring.</li><li><b>Par setter</b> : dépendances optionnelles.</li><li><b>Par champ</b> (<code>@Autowired</code> sur l'attribut) : à éviter, difficile à tester.</li></ul></div><div class="card"><span class="lab">Choisir parmi plusieurs candidats</span><p><code>@Primary</code> (candidat par défaut), <code>@Qualifier("nom")</code> (désigner), <b>profils</b>. Programmer vers une <b>interface</b> (principe d'<b>inversion des dépendances</b>) rend les implémentations interchangeables.</p></div></div></div>
+</section>
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Inversion de contrôle et injection de dépendances</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et résumé</h2>
+<div class="grid g2"><div class="trap-list"><div><b><code>new</code> d'un service</b> dans une classe gérée : Spring ne l'injecte pas, plus de transactions ni d'aspects.</div><div><b>Injection par champ</b> : impossible de construire l'objet sans réflexion.</div><div><b>Dépendance circulaire</b> (A dépend de B dépend de A) : refactorer.</div><div><b>Singleton avec état modifiable</b> : accès concurrents.</div><div><b>Scan qui ne trouve pas le bean</b> : classe hors du paquet de <code>@SpringBootApplication</code>.</div></div><ol class="sum-list"><li>IoC : le conteneur crée et relie ; DI : les dépendances sont fournies.</li><li>Bean singleton par défaut ; stéréotypes @Component, @Service, @Repository, @RestController.</li><li>Injection par constructeur sur interface ; profils pour changer d'implémentation.</li><li>@Configuration + @Bean pour déclarer un bean à la main.</li></ol></div>
+</section>
+<section class="slide" data-ch="01" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/spring.svg" alt="Logo Spring &amp; Spring Boot"></div>
+<div class="kicker">Chapitre 01 · Inversion de contrôle et injection de dépendances</div>
+<h2>Fiche — IoC et DI</h2>
+<div class="fiche"><div class="card"><span class="lab">IoC / DI</span><p>Le conteneur crée et injecte ; la classe déclare ses besoins.</p></div><div class="card"><span class="lab">Bean</span><p>Objet géré par le conteneur ; singleton par défaut.</p></div><div class="card"><span class="lab">Stéréotypes</span><p>@Component, @Service, @Repository, @Controller.</p></div><div class="card"><span class="lab">Injection</span><p>Par constructeur (recommandée) ; setter ; champ (à éviter).</p></div><div class="card"><span class="lab">Profils</span><p>@Profile : beans selon l'environnement.</p></div><div class="card"><span class="lab">Interface</span><p>Programmer vers l'interface : implémentations interchangeables.</p></div></div>
+</section>
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Inversion de contrôle et injection de dépendances</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 01</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Qu'est-ce que l'inversion de contrôle ?</button><div class="ab"><p>Le fait que ce ne soit plus la classe qui crée et configure ses collaborateurs, mais un conteneur qui les lui fournit. La classe déclare ce dont elle a besoin, ce qui réduit le couplage et facilite les tests.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi préférer l'injection par constructeur ?</button><div class="ab"><p>Elle rend les dépendances explicites et obligatoires, permet des champs final donc des objets immuables, et autorise à instancier la classe dans un test sans lancer Spring en passant des doubles.</p></div></div><div class="acc jq"><button class="ah" type="button">Qu'est-ce qu'un bean et quel est son scope par défaut ?</button><div class="ab"><p>Un objet instancié et géré par le conteneur Spring. Par défaut son scope est singleton : une seule instance partagée dans le contexte.</p></div></div><div class="acc jq"><button class="ah" type="button">À quoi servent les profils ?</button><div class="ab"><p>À activer des beans ou des configurations selon l'environnement, par exemple un notificateur par e-mail en production et un simple affichage en développement, sans modifier le code métier.</p></div></div><div class="acc jq"><button class="ah" type="button">Que faire quand plusieurs beans correspondent au type demandé ?</button><div class="ab"><p>Désigner le candidat avec @Qualifier, marquer un défaut avec @Primary, ou activer un seul bean par profil. Sinon Spring échoue au démarrage avec une ambiguïté.</p></div></div></div>
+</section>
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Inversion de contrôle et injection de dépendances</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="01"></div>
+</section>
+<section class="slide" data-ch="02" data-sec="02 Spring Boot" data-title="Spring Boot : démarrage, configuration, exploitation" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/spring.svg" alt="Logo Spring &amp; Spring Boot"></div>
+<div class="kicker">Chapitre 02 · Spring Boot : démarrage, configuration, exploitation</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Starters, auto-configuration, JAR exécutable</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Ce que Boot apporte</span><ul><li><b>Starters</b> : un ajout au <code>pom.xml</code> apporte un ensemble cohérent (<code>spring-boot-starter-web</code>, <code>-data-jpa</code>, <code>-security</code>, <code>-test</code>).</li><li><b>Auto-configuration</b> : Boot configure ce qu'il détecte sur le classpath (une base H2 présente → source de données).</li><li><b>Serveur embarqué</b> (Tomcat) : on lance un <b>JAR exécutable</b> (<code>java -jar app.jar</code>).</li><li><b>Convention plutôt que configuration</b>.</li></ul></div><div class="card"><span class="lab">Créer un projet</span><p><b>Spring Initializr</b> (<code>start.spring.io</code>) : on choisit Maven ou Gradle, la version de Java (<b>17 ou plus</b> pour Boot 3), les dépendances ; on obtient un squelette prêt à lancer.</p></div></div><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>xml · pom.xml (extrait)</span><button class="cpy" type="button">Copier</button></div><pre><code>&lt;parent&gt;
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+  &lt;version&gt;3.3.0&lt;/version&gt;
+&lt;/parent&gt;
+&lt;dependencies&gt;
+  &lt;dependency&gt;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;&lt;/dependency&gt;
+  &lt;dependency&gt;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;&lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;&lt;/dependency&gt;
+&lt;/dependencies&gt;</code></pre></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p><code>@SpringBootApplication</code> = <code>@Configuration</code> + <code>@EnableAutoConfiguration</code> + <code>@ComponentScan</code> : tout ce qui est dans son <b>paquet et ses sous-paquets</b> est détecté.</p></div></div></div></div>
+</section>
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · Spring Boot : démarrage, configuration, exploitation</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Configuration externalisée, Actuator, conteneur</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">application.yml et profils</span><p>La configuration vit <b>hors du code</b>, dans <code>application.yml</code> (ou <code>.properties</code>), avec un fichier par profil (<code>application-prod.yml</code>) et des <b>variables d'environnement</b> qui priment. <b>Jamais de secret</b> dans le dépôt (<a href="secu-crypto.html">gestion des secrets</a>).</p></div><div class="code"><div class="codeh"><span>yaml · application.yml</span><button class="cpy" type="button">Copier</button></div><pre><code>server:
+  port: 8080
+spring:
+  datasource:
+    url: ${DB_URL}                     <span class="c"># variable d'environnement</span>
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate.ddl-auto: validate       <span class="c"># ne modifie pas le schéma en prod</span>
+management:
+  endpoints.web.exposure.include: health,info</code></pre></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Actuator : observer l'application</span><ul><li><code>/actuator/health</code> : <b>santé</b> (sert aux <b>sondes</b> Docker et Kubernetes).</li><li><code>/actuator/metrics</code>, <code>/actuator/info</code>, journaux, <b>Micrometer</b> vers Prometheus.</li><li><b>N'exposer que le nécessaire</b> : les points sensibles (<code>env</code>, <code>heapdump</code>) ne doivent pas être publics.</li></ul></div><div class="card"><span class="lab">Livrer</span><ul><li><code>mvn package</code> → <b>JAR exécutable</b> ; <b>image</b> : <code>Dockerfile</code> en plusieurs étapes ou <b>buildpacks</b> (<code>mvn spring-boot:build-image</code>) — <a href="docker.html">Docker</a>.</li><li><b>Journalisation</b> : SLF4J + Logback ; niveaux par paquet.</li><li><b>DevTools</b> : rechargement en développement.</li></ul></div></div></div>
+</section>
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · Spring Boot : démarrage, configuration, exploitation</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et résumé</h2>
+<div class="grid g2"><div class="trap-list"><div><b>Identifiants de base dans <code>application.yml</code> versionné</b> : variables d'environnement ou coffre.</div><div><b><code>ddl-auto: update</code> ou <code>create</code> en production</b> : modifie ou efface le schéma.</div><div><b>Actuator ouvert à tous</b> : fuite de configuration.</div><div><b>Classe principale mal placée</b> : le scan ne voit pas les composants.</div><div><b>Mélanger versions de starters</b> : laisser le parent Boot gérer les versions.</div></div><ol class="sum-list"><li>Starters + auto-configuration + serveur embarqué = JAR exécutable.</li><li>Initializr crée le squelette ; Java 17+ pour Boot 3.</li><li>application.yml + profils + variables d'environnement.</li><li>Actuator pour la santé et les métriques, exposé avec parcimonie.</li></ol></div>
+</section>
+<section class="slide" data-ch="02" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/spring.svg" alt="Logo Spring &amp; Spring Boot"></div>
+<div class="kicker">Chapitre 02 · Spring Boot : démarrage, configuration, exploitation</div>
+<h2>Fiche — Spring Boot</h2>
+<div class="fiche"><div class="card"><span class="lab">Starters</span><p>Dépendances cohérentes en une ligne.</p></div><div class="card"><span class="lab">Auto-configuration</span><p>Configure selon le classpath et les propriétés.</p></div><div class="card"><span class="lab">JAR exécutable</span><p><code>java -jar</code> : serveur embarqué.</p></div><div class="card"><span class="lab">Configuration</span><p>application.yml, profils, variables d'environnement.</p></div><div class="card"><span class="lab">Actuator</span><p>health, metrics, info ; exposer le minimum.</p></div><div class="card"><span class="lab">Boot 3</span><p>Java 17+, espace <code>jakarta.*</code>.</p></div></div>
+</section>
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · Spring Boot : démarrage, configuration, exploitation</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 02</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Qu'apporte Spring Boot par rapport à Spring seul ?</button><div class="ab"><p>Des starters de dépendances cohérentes, l'auto-configuration selon le classpath, un serveur embarqué et un JAR exécutable : un projet démarre avec très peu de configuration.</p></div></div><div class="acc jq"><button class="ah" type="button">Que fait @SpringBootApplication ?</button><div class="ab"><p>Elle combine la déclaration de configuration, l'activation de l'auto-configuration et le scan des composants du paquet de la classe et de ses sous-paquets.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment gérez-vous la configuration selon l'environnement ?</button><div class="ab"><p>Avec application.yml, des fichiers par profil et des variables d'environnement pour les valeurs sensibles ou propres au déploiement, jamais de secret dans le dépôt.</p></div></div><div class="acc jq"><button class="ah" type="button">À quoi sert Actuator ?</button><div class="ab"><p>À exposer l'état et les métriques de l'application : santé pour les sondes d'orchestration, métriques, informations. On limite les points exposés et on les protège.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment conteneuriser une application Spring Boot ?</button><div class="ab"><p>En construisant le JAR exécutable puis une image, avec un Dockerfile multi-étapes ou les buildpacks, sans secrets dans l'image, et une sonde de santé via Actuator.</p></div></div></div>
+</section>
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · Spring Boot : démarrage, configuration, exploitation</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="02"></div>
+</section>
+<section class="slide" data-ch="03" data-sec="03 API REST" data-title="API REST avec Spring MVC" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/spring.svg" alt="Logo Spring &amp; Spring Boot"></div>
+<div class="kicker">Chapitre 03 · API REST avec Spring MVC</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Contrôleurs, DTO, validation</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Un contrôleur REST</span><ul><li><code>@RestController</code> : retourne des <b>objets sérialisés en JSON</b> (Jackson).</li><li><code>@RequestMapping("/api/clients")</code> + <code>@GetMapping</code>, <code>@PostMapping</code>, <code>@PutMapping</code>, <code>@DeleteMapping</code>.</li><li><code>@PathVariable</code> (chemin), <code>@RequestParam</code> (requête), <code>@RequestBody</code> (corps JSON).</li><li><code>ResponseEntity</code> ou <code>@ResponseStatus</code> pour fixer le <b>code HTTP</b> (201, 204…).</li></ul></div><div class="card"><span class="lab">DTO plutôt qu'entité</span><p>On n'expose <b>pas</b> l'entité JPA : on retourne un <b>DTO</b> (Data Transfer Object). Cela évite les fuites (mot de passe), les boucles JSON et le couplage avec la base. Des <b>records</b> Java suffisent : <code>record ClientDto(Long id, String nom) {}</code>.</p></div></div><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>java</span><button class="cpy" type="button">Copier</button></div><pre><code>record ClientCreate(@NotBlank @Size(max = 60) String nom,
+                    @Email String email, @Min(18) int age) {}
+
+@PostMapping
+ResponseEntity&lt;ClientDto&gt; creer(@Valid @RequestBody ClientCreate dto) {
+    ClientDto cree = service.creer(dto);
+    return ResponseEntity.created(URI.create("/api/clients/" + cree.id())).body(cree);   <span class="c">// 201 + Location</span>
+}</code></pre></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p><code>@Valid</code> déclenche la <b>Bean Validation</b> (<code>@NotBlank</code>, <code>@Email</code>, <code>@Min</code>…) ; une donnée invalide lève une exception traduite en <b>400</b>. Principes REST et codes de retour : <a href="api-python.html">API Python</a>.</p></div></div></div></div>
+</section>
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · API REST avec Spring MVC</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Gestion des erreurs et pagination</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Centraliser les erreurs</span><p>Un <b><code>@RestControllerAdvice</code></b> capture les exceptions et produit <b>une réponse d'erreur uniforme</b> (format <b>RFC 9457 « Problem Details »</b> supporté par Spring). Le détail technique va dans les <b>journaux</b>, pas dans la réponse.</p></div><div class="code"><div class="codeh"><span>java</span><button class="cpy" type="button">Copier</button></div><pre><code>@RestControllerAdvice
+class ErreursApi {
+    @ExceptionHandler(ClientIntrouvable.class)
+    ResponseEntity&lt;ProblemDetail&gt; introuvable(ClientIntrouvable e) {
+        return ResponseEntity.status(404).body(ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage()));
+    }
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    ResponseEntity&lt;ProblemDetail&gt; invalide(MethodArgumentNotValidException e) { /* 400 + champs en erreur */ return null; }
+}</code></pre></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Autres éléments utiles</span><ul><li><b>Pagination</b> : <code>Pageable</code> en paramètre, <code>Page&lt;T&gt;</code> en retour (<code>?page=0&amp;size=20&amp;sort=nom</code>).</li><li><b>CORS</b> : autoriser explicitement les origines du front.</li><li><b>Documentation</b> : <b>springdoc-openapi</b> génère Swagger UI à partir des contrôleurs.</li><li><b>Versionnement</b> d'API (<code>/api/v1</code>).</li></ul></div><div class="card"><span class="lab">Sécurité</span><p><b>Spring Security</b> : chaîne de filtres ; <b>authentification</b> par session ou <b>JWT/OAuth 2.0</b> (Resource Server), <b>autorisation</b> par rôles (<code>@PreAuthorize</code>). Concepts : <a href="securite.html">Authentification</a> ; codage sûr : <a href="secu-applis.html">Applications</a>.</p></div></div></div>
+</section>
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · API REST avec Spring MVC</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et résumé</h2>
+<div class="grid g2"><div class="trap-list"><div><b>Retourner l'entité JPA</b> : fuite de champs, boucles de sérialisation, requêtes paresseuses imprévues.</div><div><b>Logique métier dans le contrôleur</b> : à placer dans un service.</div><div><b>Pas de validation</b> côté serveur.</div><div><b>Erreur 500 avec trace</b> : un <code>@RestControllerAdvice</code> et des réponses génériques.</div><div><b>Désactiver la sécurité « pour tester »</b> et l'oublier.</div></div><ol class="sum-list"><li>@RestController, mappings, @PathVariable / @RequestParam / @RequestBody.</li><li>DTO (records) + @Valid pour valider.</li><li>@RestControllerAdvice : erreurs uniformes (ProblemDetail).</li><li>Pageable pour paginer ; springdoc pour la documentation ; Spring Security pour protéger.</li></ol></div>
+</section>
+<section class="slide" data-ch="03" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/spring.svg" alt="Logo Spring &amp; Spring Boot"></div>
+<div class="kicker">Chapitre 03 · API REST avec Spring MVC</div>
+<h2>Fiche — API REST</h2>
+<div class="fiche"><div class="card"><span class="lab">Contrôleur</span><p>@RestController + mappings ; JSON automatique.</p></div><div class="card"><span class="lab">Paramètres</span><p>@PathVariable · @RequestParam · @RequestBody.</p></div><div class="card"><span class="lab">DTO</span><p>Ne pas exposer l'entité ; records Java.</p></div><div class="card"><span class="lab">Validation</span><p>@Valid + Bean Validation → 400.</p></div><div class="card"><span class="lab">Erreurs</span><p>@RestControllerAdvice, ProblemDetail.</p></div><div class="card"><span class="lab">Pagination</span><p>Pageable / Page&lt;T&gt;.</p></div></div>
+</section>
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · API REST avec Spring MVC</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 03</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Pourquoi utiliser des DTO ?</button><div class="ab"><p>Pour ne pas exposer l'entité de persistance : on contrôle les champs envoyés, on évite les fuites de données et les boucles de sérialisation, et on découple l'API du schéma de la base.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment valider les données d'entrée ?</button><div class="ab"><p>Avec la Bean Validation : des annotations comme @NotBlank, @Email ou @Min sur le DTO et @Valid sur le paramètre du contrôleur. Une donnée invalide produit une réponse 400 détaillée.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment centraliser la gestion des erreurs ?</button><div class="ab"><p>Avec une classe annotée @RestControllerAdvice contenant des méthodes @ExceptionHandler qui transforment chaque exception en réponse HTTP uniforme, sans exposer de détail technique.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment paginer une liste ?</button><div class="ab"><p>En acceptant un Pageable en paramètre du contrôleur et en renvoyant une Page : le client demande page, taille et tri par paramètres de requête, et le repository applique la pagination en base.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment sécuriser une API Spring ?</button><div class="ab"><p>Avec Spring Security : authentification par jeton JWT ou OAuth 2.0 en serveur de ressources, autorisation par rôles ou par permissions sur les méthodes, protection CSRF adaptée, et HTTPS.</p></div></div></div>
+</section>
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · API REST avec Spring MVC</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="03"></div>
+</section>
+<section class="slide" data-ch="04" data-sec="04 Data JPA et tests" data-title="Spring Data JPA, transactions et tests" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/spring.svg" alt="Logo Spring &amp; Spring Boot"></div>
+<div class="kicker">Chapitre 04 · Spring Data JPA, transactions et tests</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Entités, repositories et requêtes</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">JPA et Spring Data</span><p><b>JPA</b> est la spécification Java de <b>correspondance objet-relationnel</b> (ORM) ; <b>Hibernate</b> en est l'implémentation. <b>Spring Data JPA</b> génère les <b>repositories</b> à partir d'une <b>interface</b>.</p></div><div class="code"><div class="codeh"><span>java</span><button class="cpy" type="button">Copier</button></div><pre><code>@Entity
+class Client {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
+    @Column(nullable = false) String nom;
+    String ville;
+    @OneToMany(mappedBy = "client") List&lt;Commande&gt; commandes;     <span class="c">// relation 1-N</span>
+}
+
+interface ClientRepository extends JpaRepository&lt;Client, Long&gt; {
+    List&lt;Client&gt; findByVille(String ville);                       <span class="c">// requête dérivée du nom</span>
+    @Query("select c from Client c where c.nom like %:n%")
+    List&lt;Client&gt; chercher(@Param("n") String n);
+}</code></pre></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Ce que génère Spring Data</span><ul><li><code>save</code>, <code>findById</code>, <code>findAll(Pageable)</code>, <code>deleteById</code>, <code>count</code> sans écrire de code.</li><li><b>Requêtes dérivées</b> : <code>findByVilleAndAgeGreaterThan</code>.</li><li><b>JPQL</b> via <code>@Query</code> ; <b>requêtes natives</b> si besoin.</li><li><b>Migrations</b> de schéma : <b>Flyway</b> ou <b>Liquibase</b> (pas <code>ddl-auto</code> en production).</li></ul></div><div class="card"><span class="lab">Relations et chargement</span><p><code>@OneToMany</code>, <code>@ManyToOne</code>, <code>@ManyToMany</code> ; <b>chargement paresseux</b> (<code>LAZY</code>) par défaut pour les collections. Le <b>problème N+1</b> (une requête par élément) se règle par <code>join fetch</code> ou un <code>@EntityGraph</code>.</p></div></div></div>
+</section>
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Spring Data JPA, transactions et tests</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Transactions et tests</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">@Transactional</span><p>Une <b>transaction</b> regroupe des opérations qui réussissent <b>toutes ou aucune</b> (propriétés <b>ACID</b>, voir <a href="sql.html">SQL</a>). <code>@Transactional</code> sur une méthode <b>de service</b> ouvre la transaction, la <b>valide</b> à la sortie normale et la <b>annule</b> (rollback) sur une exception non contrôlée.</p></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Une méthode transactionnelle appelée <b>depuis la même classe</b> (<code>this.maMethode()</code>) <b>n'est pas interceptée</b> : l'annotation est ignorée. Elle s'applique via un <b>proxy</b> Spring.</p></div></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Tester une application Spring</span><ul><li><b>Unitaire</b> : JUnit 5 + <b>Mockito</b> (<code>@Mock</code>, <code>@InjectMocks</code>), <b>sans</b> Spring : rapide.</li><li><b>Tranche web</b> : <code>@WebMvcTest</code> + <b>MockMvc</b> : on teste le contrôleur seul.</li><li><b>Tranche données</b> : <code>@DataJpaTest</code> avec une base H2 ou <b>Testcontainers</b>.</li><li><b>Intégration</b> : <code>@SpringBootTest</code> : tout le contexte, plus lent.</li></ul></div><div class="code"><div class="codeh"><span>java</span><button class="cpy" type="button">Copier</button></div><pre><code>@WebMvcTest(ClientController.class)
+class ClientControllerTest {
+    @Autowired MockMvc mvc;
+    @MockBean ClientService service;
+
+    @Test void lire_retourne_200() throws Exception {
+        given(service.trouver(7L)).willReturn(new ClientDto(7L, "Durand"));
+        mvc.perform(get("/api/clients/7"))
+           .andExpect(status().isOk())
+           .andExpect(jsonPath("$.nom").value("Durand"));
+    }
+}</code></pre></div></div></div>
+</section>
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Spring Data JPA, transactions et tests</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et résumé</h2>
+<div class="grid g2"><div class="trap-list"><div><b>Problème N+1</b> : une liste de 100 clients déclenche 101 requêtes.</div><div><b><code>@Transactional</code> sur un contrôleur</b> ou sur une méthode appelée en interne : sans effet.</div><div><b><code>FetchType.EAGER</code> partout</b> : charge tout le graphe d'objets.</div><div><b>Tests qui ne chargent que le contexte complet</b> : lents ; privilégier les tranches.</div><div><b>Schéma géré par Hibernate en production</b> : utiliser des migrations versionnées.</div></div><ol class="sum-list"><li>JPA/Hibernate : ORM ; Spring Data : repositories par interface, requêtes dérivées, @Query.</li><li>Relations et chargement paresseux ; N+1 résolu par join fetch.</li><li>@Transactional sur la couche service : tout ou rien.</li><li>Tests : JUnit + Mockito, @WebMvcTest, @DataJpaTest, @SpringBootTest ; Flyway pour les migrations.</li></ol></div>
+</section>
+<section class="slide" data-ch="04" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/spring.svg" alt="Logo Spring &amp; Spring Boot"></div>
+<div class="kicker">Chapitre 04 · Spring Data JPA, transactions et tests</div>
+<h2>Fiche — Data JPA et tests</h2>
+<div class="fiche"><div class="card"><span class="lab">JPA / Hibernate</span><p>Spécification ORM / son implémentation.</p></div><div class="card"><span class="lab">Repository</span><p>Interface qui étend JpaRepository : CRUD généré.</p></div><div class="card"><span class="lab">Requêtes dérivées</span><p><code>findByVille</code>, <code>@Query</code> en JPQL.</p></div><div class="card"><span class="lab">N+1</span><p>Une requête par élément : join fetch ou EntityGraph.</p></div><div class="card"><span class="lab">@Transactional</span><p>Tout ou rien ; proxy ; couche service.</p></div><div class="card"><span class="lab">Tests</span><p>Mockito · @WebMvcTest · @DataJpaTest · @SpringBootTest.</p></div></div>
+</section>
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Spring Data JPA, transactions et tests</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 04</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Qu'est-ce que Spring Data JPA ?</button><div class="ab"><p>Une couche qui génère les repositories à partir d'interfaces : on obtient CRUD, pagination et requêtes dérivées du nom des méthodes sans écrire d'implémentation, au-dessus de JPA et d'Hibernate.</p></div></div><div class="acc jq"><button class="ah" type="button">Qu'est-ce que le problème N+1 ?</button><div class="ab"><p>Charger une liste d'entités puis déclencher une requête supplémentaire par élément pour sa relation paresseuse. On le résout par un join fetch, un EntityGraph ou une requête adaptée.</p></div></div><div class="acc jq"><button class="ah" type="button">Où placer @Transactional et pourquoi ?</button><div class="ab"><p>Sur les méthodes de la couche service, qui représentent une unité de travail métier : la transaction est ouverte au début, validée en cas de succès et annulée sur exception.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment testez-vous un contrôleur ?</button><div class="ab"><p>Avec @WebMvcTest et MockMvc : on charge seulement la couche web, on remplace le service par un mock, et on vérifie le statut et le corps JSON des réponses.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi des migrations Flyway plutôt que ddl-auto ?</button><div class="ab"><p>Parce que les migrations versionnées rendent le schéma reproductible, relu et déployable de façon contrôlée, alors que la génération automatique peut modifier ou détruire le schéma de production.</p></div></div></div>
+</section>
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Spring Data JPA, transactions et tests</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="04"></div>
+</section>
+<section class="slide" data-ch="quiz" data-sec="Quiz final" data-title="Quiz final — 45 questions">
+<div class="kicker">Quiz final · Spring &amp; Spring Boot</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-target"/></svg> 45 questions pour affronter le jury</h2>
+<p class="lead">Tous chapitres mélangés ; l'ordre des questions et des réponses change à chaque tentative. Certaines questions ont <b>plusieurs bonnes réponses</b>.</p>
+<div data-quiz="final"></div>
+</section>
+
+</main>
+<button class="arrow" id="prev" type="button" aria-label="Diapositive précédente">‹</button>
+<button class="arrow" id="next" type="button" aria-label="Diapositive suivante">›</button>
+<nav id="tl" aria-label="Chapitres"></nav>
+<div id="hint">← → naviguer · ↑ ↓ défiler · H ampoule <svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg> · E Complète/Essentiel · M maîtrisé · S sommaire · T thème</div>
+<button id="bulbhint" type="button"><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></button>
+<div id="ctip" role="tooltip"></div>
+<div id="toc" role="dialog" aria-label="Sommaire">
+  <button class="btn xx" id="tocx" type="button">Fermer ✕</button>
+  <div class="kicker">Sommaire · Spring &amp; Spring Boot</div>
+  <h2>Spring &amp; Spring Boot</h2>
+  <div class="tg"></div>
+</div>
+
+<div id="fab">
+  <button id="helpbtn" type="button" aria-label="Ampoule : concepts expliqués au survol" aria-pressed="false" title="Ampoule : soulignez les concepts, survolez-les pour une explication (H)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></button>
+<button id="tocbtn" type="button" aria-label="Sommaire" title="Sommaire (S)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+  <div id="themebtn">
+    <div id="menu" role="menu"><h4>Thème</h4></div>
+    <button id="tbtn" type="button" aria-label="Changer de thème" aria-haspopup="true" title="Changer de thème (T)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.4-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16a5 5 0 0 0 5-5c0-4-4-7-9-7z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="7.5" r="1"/></svg>
+    </button>
+  </div>
+</div>
+
+</div>
+<script src="assets/icons.js?v=1795252877"></script>
+<script src="data/spring-quiz.js?v=1795252877"></script>
+<script src="data/spring-glossary.js?v=1795252877"></script>
+<script src="assets/engine.js?v=1795252877"></script>
+</body>
+</html>

@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qualité &amp; gouvernance des données · Révision Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/base.css?v=1795252877">
+<link rel="stylesheet" href="assets/photos.css?v=1795252877">
+<link rel="stylesheet" href="assets/revision.css?v=1795252877">
+</head>
+<body data-page="course" data-course="data-qualite" data-title="Qualité &amp; gouvernance des données">
+<div id="app" data-theme="papier">
+
+<div id="bg" aria-hidden="true">
+  <div class="bgl bg-neon">
+    <svg viewBox="0 0 800 800"><path d="M40 760 L400 280 L760 760" stroke-width="3"/><path d="M110 760 L400 380 L690 760" stroke-width="2.4" opacity=".85"/><path d="M180 760 L400 470 L620 760" stroke-width="2" opacity=".7"/><path d="M250 760 L400 560 L550 760" stroke-width="1.6" opacity=".55"/><path d="M320 760 L400 650 L480 760" stroke-width="1.2" opacity=".4"/></svg>
+  </div>
+  <div class="bgl bg-sauge"><div class="panel"></div><div id="bignum"></div></div>
+  <div class="bgl bg-nuit"><i></i><i></i><i></i></div>
+  <div class="bgl bg-verre"><div class="blob a"></div><div class="blob b"></div><div class="blob c"></div></div>
+  <div class="bgl bg-papier"><i></i><i></i><i></i></div>
+  <div class="bgl bg-rubans"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f8fe0"/><stop offset="1" stop-color="#2fd0bd"/></linearGradient>
+      <linearGradient id="rg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fdcc4"/><stop offset=".55" stop-color="#26b2d2"/><stop offset="1" stop-color="#2f8fe0"/></linearGradient>
+      <linearGradient id="rg3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2fd0bd"/><stop offset="1" stop-color="#2f90e2"/></linearGradient>
+      <filter id="rsh" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="12"/></filter>
+    </defs>
+    <g class="rb" id="rb-a" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g class="rb b" id="rb-b" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+  </svg></div>
+  <div class="bgl bg-facettes"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="fcw" id="fc-top"></g><g class="fcw" id="fc-bot"></g></svg></div>
+  <div class="bgl photo bg-bulles"><i></i></div>
+  <div class="bgl photo bg-hexa"><i></i></div>
+  <div class="bgl photo bg-points"><i></i></div>
+</div>
+
+<svg id="defs" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+  <marker id="arrk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3a4458"/></marker>
+  <marker id="arrbad" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+</defs></svg>
+
+<div id="brand"><a href="index.html" title="Retour à l'accueil">← Accueil</a> · Qualité &amp; gouvernance des données</div>
+<div id="topbar">
+  <div id="vseg" role="group" aria-label="Version du cours"><button type="button" data-v="c" title="Tout le cours (E pour basculer)"><svg class="ico" aria-hidden="true"><use href="#ti-book"/></svg> Complète</button><button type="button" data-v="e" title="Ce qu'il faut maîtriser pour le jury (E)"><svg class="ico" aria-hidden="true"><use href="#ti-bolt"/></svg> Essentiel</button></div>
+  <button id="mast" type="button" title="Marquer ce chapitre comme maîtrisé (M)"></button>
+  <span id="prog"></span>
+</div>
+<div id="hud"><span id="count">1 / 1</span></div>
+<main id="deck">
+<!-- ================= 00 · IMMERSION ================= -->
+<section class="slide" data-ch="00" data-sec="Immersion" data-title="Immersion : qualité et gouvernance">
+<div class="kicker">Bloc 4B · Big Data &amp; IA</div>
+<h1>Qualité &amp; gouvernance des données</h1>
+<p class="lead">Une donnée n'a de valeur que si l'on peut lui <b>faire confiance</b> et si l'on a le <b>droit</b> de l'utiliser. Ce cours couvre les dimensions de la qualité, les référentiels (MDM), l'organisation de la gouvernance et le <b>RGPD</b>. Les contrôles <i>dans</i> le pipeline (quarantaine, data contract, tests) et IAM sont dans <a href="airflow.html">Airflow &amp; S3</a>, ch. 02 et 05.</p>
+<div class="chips"><span class="pill solid">immersion + 5 chapitres</span><span class="pill">mini-quiz par chapitre</span><span class="pill">quiz final · 45 questions</span><span class="pill">RGPD · MDM · catalogue · lineage</span></div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 1 / 3</div>
+<h2>Le tableau de bord du comité de direction annonce un chiffre d'affaires en hausse de 12 %. Comment savoir s'il est juste — et si l'on avait le droit d'utiliser ces données ?</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card bad"><span class="lab">Ce qui peut mal tourner</span><ul><li>Des commandes comptées deux fois → un CA gonflé, un audit invalide.</li><li>Un même client sous trois fiches dans le CRM, l'ERP et le site → trois adresses, aucune juste.</li><li>Un fichier de prospects importé sans consentement → une sanction de la CNIL.</li><li>Un analyste qui accède aux données de santé dont il n'a pas besoin.</li></ul></div>
+    <div class="card hl"><span class="lab">Les deux réponses</span><p>La <b>qualité des données</b> mesure et garantit que la donnée est exacte, complète, cohérente, à jour. La <b>gouvernance des données</b> fixe <b>qui</b> est responsable de quoi, <b>qui</b> peut accéder à quoi, et comment respecter la loi.</p></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <p class="punch">La <b>gouvernance des données</b> est l'ensemble des <b>règles, rôles, processus et outils</b> qui garantissent que les données sont <b>fiables</b>, <b>accessibles</b> à ceux qui en ont besoin, <b>protégées</b> de ceux qui n'y ont pas droit, et <b>conformes</b> à la réglementation (RGPD).</p>
+    <div class="analogy"><b>Analogie — le code de la route.</b> Des voitures puissantes (le Big Data) sans code de la route, c'est le chaos : accidents (fuites), mauvaises directions (décisions erronées), amendes. La gouvernance est le code ; la qualité, l'entretien des véhicules.</div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 2 / 3</div>
+<h2>D'une affaire d'informaticiens à une obligation légale</h2>
+<div class="flow">
+  <div class="step"><b>1978</b><small>Loi <b>Informatique et Libertés</b>, création de la CNIL</small></div>
+  <div class="step"><b>2000s</b><small>Montée du <b>MDM</b> et des référentiels uniques</small></div>
+  <div class="step"><b>2018</b><small>Le <b>RGPD</b> s'applique dans toute l'UE ; scandale Cambridge Analytica</small></div>
+  <div class="step"><b>2020s</b><small>Catalogues, <b>lineage</b>, data contracts, rôle de <b>CDO</b></small></div>
+  <div class="step"><b>2024 →</b><small><b>AI Act</b> (en vigueur en 2024, obligations appliquées par étapes) : qualité et traçabilité des données d'entraînement exigées pour l'IA à haut risque</small></div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Qui s'en occupe</span><p>Le <b>CDO</b> (Chief Data Officer) porte la stratégie ; les <b>data owners</b> métier sont responsables de leurs données ; les <b>data stewards</b> veillent au quotidien à leur qualité et à leur documentation ; le <b>DPO</b> à la conformité RGPD ; le <b>RSSI</b> à la sécurité. Le Data Engineer <b>implémente</b> : contrôles, traçabilité, droits, pseudonymisation.</p><p><b>Outils :</b> Collibra, Alation, DataHub, OpenMetadata (catalogues) ; Great Expectations, Soda, tests dbt (qualité) ; Informatica, Talend, SAP MDG (MDM).</p></div>
+  <div class="sch free"><span class="cap">Où agit la gouvernance dans le pipeline</span>
+  <svg class="dg" viewBox="0 -36 460 226" role="img" aria-label="Pipeline Bronze Silver Gold avec contrôles qualité, catalogue et lineage, droits d'accès et RGPD transverses">
+    <rect class="b f1" x="10" y="20" width="130" height="44" rx="8"/><text class="s tc" x="75" y="47">Bronze</text>
+    <rect class="b f2" x="165" y="20" width="130" height="44" rx="8"/><text class="s tc" x="230" y="47">Silver</text>
+    <rect class="b ok" x="320" y="20" width="130" height="44" rx="8"/><text class="s tc" x="385" y="47">Gold</text>
+    <path class="e" d="M140 42 H161"/><path class="e" d="M295 42 H316"/>
+    <rect class="z" x="10" y="78" width="440" height="26" rx="6"/><text class="a" x="20" y="96">qualité : règles, mesures, alertes</text>
+    <rect class="z" x="10" y="110" width="440" height="26" rx="6"/><text class="a" x="20" y="128">catalogue, métadonnées, lineage</text>
+    <rect class="z" x="10" y="142" width="440" height="26" rx="6"/><text class="a" x="20" y="160">accès, RGPD, audit</text>
+    <text class="s" x="10" y="186">Transverse à toutes les couches</text>
+  
+  <use class="il" href="#il-database" x="60.0" y="-13" width="30" height="30"/><use class="il" href="#il-funnel" x="215.0" y="-13" width="30" height="30"/><use class="il" href="#il-chart" x="370.0" y="-13" width="30" height="30"/><use class="il" href="#il-check" x="424" y="80" width="22" height="22"/><use class="il" href="#il-book" x="422" y="113" width="26" height="21"/><use class="il" href="#il-shield" x="426" y="143" width="20" height="24"/>
+</svg></div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 3 / 3</div>
+<h2>Premier contact : mesurer la qualité d'une table</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>sql · profil rapide de la table clients</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">SELECT</span>
+  <span class="kw">COUNT</span>(*)                                   <span class="kw">AS</span> lignes,
+  <span class="kw">COUNT</span>(*) - <span class="kw">COUNT</span>(email)                    <span class="kw">AS</span> emails_manquants,  <span class="c">-- complétude</span>
+  <span class="kw">COUNT</span>(*) - <span class="kw">COUNT</span>(<span class="kw">DISTINCT</span> email)         <span class="kw">AS</span> doublons_email,    <span class="c">-- unicité</span>
+  <span class="kw">SUM</span>(<span class="kw">CASE WHEN</span> email <span class="kw">NOT LIKE</span> <span class="s">'%@%.%'</span> <span class="kw">THEN</span> 1 <span class="kw">ELSE</span> 0 <span class="kw">END</span>) <span class="kw">AS</span> emails_invalides, <span class="c">-- validité</span>
+  <span class="kw">MAX</span>(maj_le)                               <span class="kw">AS</span> derniere_maj       <span class="c">-- fraîcheur</span>
+<span class="kw">FROM</span> clients;
+<span class="c">-- lignes | emails_manquants | doublons_email | emails_invalides | derniere_maj</span>
+<span class="c">-- 48 210 |            1 930 |            612 |              155 | 2026-11-17</span></code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card"><span class="lab">Ce qu'il faut remarquer</span><p>La qualité <b>se mesure</b> : 4 % d'e-mails manquants, 612 doublons, 155 formats invalides. Avec des <b>seuils</b> (« moins de 1 % d'invalides »), ces chiffres deviennent des <b>règles</b> que le pipeline vérifie à chaque exécution, et des indicateurs que l'on suit dans le temps.</p></div>
+    <div class="card"><span class="lab">Ce que le jury attend</span><ul><li>Garantir la qualité des données traitées.</li><li>Sécurité et conformité (RGPD) des données.</li><li>Intégrer la gouvernance à l'architecture.</li></ul></div>
+  </div>
+</div>
+<div class="flow">
+  <div class="step"><b>01</b><small>dimensions et mesure de la qualité</small></div>
+  <div class="step"><b>02</b><small>MDM et référentiels</small></div>
+  <div class="step"><b>03</b><small>organiser la gouvernance</small></div>
+  <div class="step"><b>04</b><small>RGPD et conformité</small></div>
+  <div class="step"><b>05</b><small>sécurité, failles, synthèse</small></div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="e">
+<div class="kicker">Immersion · Essentiel</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Présenter la qualité et la gouvernance en une minute</h2>
+<div class="card hl"><p class="q">« La <b>qualité des données</b> se mesure selon des dimensions — exactitude, complétude, cohérence, unicité, validité, fraîcheur — traduites en <b>règles et seuils</b> contrôlés automatiquement dans le pipeline, avec quarantaine des données invalides et alertes.</p><p class="q">La <b>gouvernance</b> organise la confiance : des <b>rôles</b> (data owner responsable, data steward au quotidien, DPO pour la conformité), un <b>catalogue</b> qui documente les données et leur <b>lineage</b>, un <b>MDM</b> pour un référentiel unique des clients et produits, et des <b>droits d'accès</b> au moindre privilège, tracés.</p><p class="q">Côté loi, le <b>RGPD</b> impose finalité, minimisation, durée de conservation, droits des personnes et sécurité ; concrètement, je <b>pseudonymise</b> les données personnelles avant le data lake, je ne garde que les champs utiles et je documente les traitements. »</p></div>
+<div class="grid g3">
+  <div class="card"><span class="lab">Les 3 mots à placer</span><p><b>Dimensions de qualité · data steward · minimisation</b></p></div>
+  <div class="card"><span class="lab">Le choix à justifier</span><p><b>Corriger à la source</b> plutôt que dans chaque rapport : une seule correction, et tous les usages en profitent.</p></div>
+  <div class="card"><span class="lab">Le lien</span><p>Contrôles et IAM implémentés : cours Airflow &amp; S3</p></div>
+</div>
+</section>
+<section class="slide" data-ch="00" data-sec="Le fil" data-title="Le fil du cours : 5 idées">
+<div class="kicker">Le fil du cours · Qualité &amp; gouvernance des données</div>
+<h2>5 idées font tout le cours</h2>
+<p class="lead fil-q">Tout le cours répond à : <b>comment garantir qu'une donnée est juste, que l'on sait qui en répond, et que l'on a le droit de l'utiliser ?</b> Cinq idées relient qualité, référentiel, gouvernance et RGPD.</p>
+<div class="grid g3 ideas"><div class="card idea"><span class="lab">Idée 1 · La qualité se définit, puis se mesure</span><p>La qualité se découpe en <b>dimensions</b> : exactitude (la valeur est juste), complétude (rien ne manque), cohérence (pas de contradiction), validité (bon format), unicité (pas de doublon), fraîcheur (à jour). Chacune devient un indicateur avec un <b>seuil</b> ; on contrôle, on surveille, et l'on corrige <b>à la source</b>.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si la qualité est jugée « à l'œil », sans seuil chiffré, aucune alerte ne se déclenche : c'est le métier qui découvre l'erreur dans son rapport.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Fixer un seuil par indicateur (par exemple : moins de 2 % d'emails vides) et déclencher une alerte dès qu'il est dépassé.</p><p class="chs">ch. 01 · ch. 05</p></div><div class="card idea"><span class="lab">Idée 2 · Une seule vérité par objet métier</span><p>Le <b>référentiel</b> (MDM, Master Data Management) regroupe les doublons et désigne une seule <b>fiche de référence</b> pour chaque client ou produit ; toutes les applications s'alignent sur elle.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si chaque application garde sa propre fiche client, le même client existe en trois versions et chaque outil donne un chiffre différent.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Garder une fiche client de référence dans le référentiel ; les autres applications lisent son identifiant au lieu de recopier le client.</p><p class="chs">ch. 02 · ch. 05</p></div><div class="card idea"><span class="lab">Idée 3 · Chaque donnée a un responsable</span><p>Chaque donnée importante a des responsables nommés : le <b>data owner</b> décide de ses règles, le <b>data steward</b> veille à sa qualité au quotidien, le <b>DPO</b> (délégué à la protection des données) contrôle le respect du RGPD. Sans nom, personne ne corrige.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si personne n'est nommé responsable d'une donnée, une erreur connue n'est jamais corrigée et se propage dans tous les rapports.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Écrire, pour chaque donnée clé, qui en est le propriétaire et le steward ; une erreur signalée part directement chez eux.</p><p class="chs">ch. 03 · ch. 04</p></div><div class="card idea"><span class="lab">Idée 4 · Savoir d'où vient la donnée et ce qu'elle est</span><p>Le <b>catalogue</b> liste les données disponibles et les décrit (métadonnées). Le <b>lignage</b> montre d'où vient chaque donnée et où elle va. La <b>classification</b> dit son niveau de sensibilité. Ensemble, ils permettent de retrouver, comprendre, auditer, et de savoir ce qu'un changement va casser.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on modifie une colonne sans savoir quels traitements l'utilisent (le lignage), des tableaux de bord cassent plus loin dans la chaîne.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Consulter le lignage avant de modifier une colonne, pour prévenir les responsables des rapports qui l'utilisent.</p><p class="chs">ch. 03 · ch. 05</p></div><div class="card idea"><span class="lab">Idée 5 · Le droit d'utiliser n'est jamais acquis</span><p>Le <b>RGPD</b> impose une finalité précise, une <b>base légale</b> (contrat, consentement, obligation légale…), de ne collecter que le nécessaire (<b>minimisation</b>), une durée de conservation limitée, la sécurité et le respect des droits des personnes. <b>Pseudonymiser</b> (remplacer le nom par un numéro) n'est pas anonymiser : on peut encore retrouver la personne.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on croit que des données pseudonymisées sont anonymes, on les utilise sans respecter le RGPD, alors qu'elles y restent soumises.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Traiter les données pseudonymisées comme des données personnelles : finalité, base légale, durée et droits d'accès s'appliquent toujours.</p><p class="chs">ch. 04 · ch. 05</p></div></div>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · Qualité &amp; gouvernance des données</div>
+<h2>Le cycle : à chaque étape, une décision</h2>
+<div class="flow"><div class="step"><b>1</b><small>Quelle dimension de qualité est en jeu, avec quel seuil ?</small></div><div class="step"><b>2</b><small>Où est la fiche de référence de cet objet ?</small></div><div class="step"><b>3</b><small>Qui répond de cette donnée ?</small></div><div class="step"><b>4</b><small>Pour quelle finalité, et sur quelle base légale, l'utilise-t-on ?</small></div></div>
+<table class="cmp md"><thead><tr><th>Étape</th><th>Décision</th><th>Livrable</th><th>Piège</th></tr></thead><tbody><tr><td>Définir</td><td>quelles dimensions, quels seuils</td><td><b>règles de qualité</b>, indicateurs</td><td>« données propres » sans définition</td></tr><tr><td>Contrôler</td><td>où vérifier, que faire des rejets</td><td>contrôles automatisés, <b>quarantaine</b></td><td>corriger à la main dans le rapport</td></tr><tr><td>Référencer</td><td>quelle fiche fait foi</td><td><b>référentiel MDM</b>, règles de fusion</td><td>un client par application</td></tr><tr><td>Gouverner</td><td>qui décide, qui veille</td><td>rôles <b>owner</b> et <b>steward</b>, catalogue, lignage</td><td>« tout le monde » responsable</td></tr><tr><td>Se conformer</td><td>a-t-on le droit, pour combien de temps</td><td><b>registre des traitements</b>, AIPD, durées de conservation</td><td>collecter « au cas où »</td></tr></tbody></table>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · Qualité &amp; gouvernance des données</div>
+<h2>Chaque chapitre applique les mêmes idées</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Chapitre</th><th><b>1</b></th><th><b>2</b></th><th><b>3</b></th><th><b>4</b></th><th><b>5</b></th></tr></thead><tbody><tr><td><b>01</b> Qualité</td><td>●</td><td></td><td></td><td></td><td></td></tr><tr><td><b>02</b> MDM</td><td></td><td>●</td><td></td><td></td><td></td></tr><tr><td><b>03</b> Gouvernance</td><td></td><td></td><td>●</td><td>●</td><td></td></tr><tr><td><b>04</b> RGPD</td><td></td><td></td><td>●</td><td></td><td>●</td></tr><tr><td><b>05</b> Synthèse</td><td>●</td><td>●</td><td></td><td>●</td><td>●</td></tr></tbody></table><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Ce qui revient dans <b>plusieurs chapitres</b> est une idée à comprendre ; ce qui n'apparaît qu'une fois est un <b>exemple</b> d'une de ces idées.</p></div></div></div><table class="cmp md"><thead><tr><th>Erreur de démarche</th><th>Idée oubliée</th><th>Ce qui casse</th></tr></thead><tbody><tr><td>Qualité jugée à l'œil</td><td><b>1</b> · La qualité se définit, puis se mesure</td><td>le problème est découvert par le métier, pas par une alerte</td></tr><tr><td>Trois fiches pour le même client</td><td><b>2</b> · Une seule vérité par objet métier</td><td>chiffres contradictoires selon l'outil</td></tr><tr><td>Erreur connue jamais corrigée</td><td><b>3</b> · Chaque donnée a un responsable</td><td>elle se propage dans tous les rapports</td></tr><tr><td>Colonne modifiée sans lignage</td><td><b>4</b> · Savoir d'où vient la donnée et ce qu'elle est</td><td>des tableaux de bord cassent en aval</td></tr><tr><td>Pseudonymisé traité comme anonyme</td><td><b>5</b> · Le droit d'utiliser n'est jamais acquis</td><td>obligations RGPD ignorées</td></tr><tr><td>Données gardées sans limite</td><td><b>5</b> · Le droit d'utiliser n'est jamais acquis</td><td>violation de la conservation limitée</td></tr></tbody></table></div>
+</section>
+
+
+<!-- ================= 01 · DIMENSIONS DE LA QUALITÉ ================= -->
+<section class="slide" data-ch="01" data-sec="01 Qualité" data-title="Les dimensions de la qualité" data-v="c">
+<div class="kicker">Chapitre 01 · Les dimensions de la qualité</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Six dimensions pour dire « cette donnée est bonne »</h2>
+<table class="cmp md"><tr><th>Dimension</th><th>Question</th><th>Exemple de défaut</th><th>Mesure</th></tr>
+  <tr><td><b>Exactitude</b></td><td>la valeur reflète-t-elle la réalité ?</td><td>une adresse périmée, une température fausse</td><td>% vérifié contre une source de référence</td></tr>
+  <tr><td><b>Complétude</b></td><td>les valeurs attendues sont-elles présentes ?</td><td>e-mail ou date de naissance vides</td><td>% de valeurs non nulles</td></tr>
+  <tr><td><b>Cohérence</b></td><td>les systèmes disent-ils la même chose ?</td><td>client « actif » dans le CRM, « clos » dans l'ERP</td><td>% d'écarts entre sources</td></tr>
+  <tr><td><b>Unicité</b></td><td>chaque entité n'apparaît-elle qu'une fois ?</td><td>une commande comptée deux fois</td><td>nombre de doublons sur la clé</td></tr>
+  <tr><td><b>Validité</b></td><td>la valeur respecte-t-elle le format et les règles ?</td><td>code postal à 4 chiffres, statut inconnu</td><td>% conforme au format, au domaine</td></tr>
+  <tr><td><b>Fraîcheur</b> (actualité)</td><td>la donnée est-elle assez récente ?</td><td>stock mis à jour il y a trois jours</td><td>âge de la dernière mise à jour vs SLA</td></tr></table>
+<div class="grid g2">
+  <div class="card bad"><span class="lab">Le coût de la non-qualité</span><p>Marketing : une campagne envoyée à de mauvaises adresses. Finance : une transaction comptée deux fois, un audit invalide. IoT : un capteur défaillant, de fausses alertes. Et surtout : des <b>décisions</b> prises sur des chiffres faux — <i>garbage in, garbage out</i>.</p></div>
+  <div class="analogy"><b>Analogie — le dossier médical.</b> Exact (le bon groupe sanguin), complet (les allergies renseignées), cohérent (le même traitement chez le médecin et à la pharmacie), unique (un seul dossier par patient), valide (une date possible), à jour (la dernière ordonnance).</div>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Les dimensions de la qualité</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Mesurer, contrôler, surveiller, corriger</h2>
+<div class="steps">
+  <div><b>1. Profiler</b> — décrire les données réelles : taux de nulls, valeurs distinctes, minimum, maximum, formats rencontrés.</div>
+  <div><b>2. Définir des règles</b> — une règle par dimension, avec un <b>seuil</b> d'acceptation fixé avec le métier (data owner).</div>
+  <div><b>3. Contrôler dès l'ingestion</b> — rejeter ou mettre en quarantaine ce qui viole les règles (voir <a href="airflow.html">Airflow &amp; S3</a> ch. 05).</div>
+  <div><b>4. Surveiller</b> — indicateurs de qualité suivis dans le temps, alertes automatiques, tableau de bord qualité.</div>
+  <div><b>5. Corriger à la source</b> — remonter au producteur ; nettoyer (doublons, formats, valeurs aberrantes) seulement en aval de Bronze.</div>
+  <div><b>6. Tracer</b> — savoir d'où vient chaque donnée et comment elle a été transformée (lineage, ch. 03).</div>
+</div>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Corriger silencieusement.</b> Remplacer un null par 0 sans le signaler fausse les moyennes : documenter, isoler, alerter.</div>
+    <div><b>Traiter la qualité une fois pour toutes.</b> C'est un processus continu : les sources changent.</div>
+    <div><b>Confondre validité et exactitude.</b> Un e-mail bien formé peut appartenir à quelqu'un d'autre.</div>
+  </div>
+  <ol class="sum-list">
+    <li>6 dimensions : exactitude, complétude, cohérence, unicité, validité, fraîcheur.</li>
+    <li>Chaque dimension → une mesure → une règle avec seuil.</li>
+    <li>Profiler, contrôler à l'entrée, surveiller, corriger à la source, tracer.</li>
+    <li>Outils : Great Expectations, Soda, tests dbt, contrôles Spark.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="e">
+<div class="kicker">Chapitre 01 · Les dimensions de la qualité</div>
+<h2>Fiche — Dimensions de la qualité</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Exactitude</span><p>Conforme à la réalité (vérifiée contre une référence).</p></div>
+  <div class="card"><span class="lab">Complétude</span><p>Valeurs attendues présentes (% non nul).</p></div>
+  <div class="card"><span class="lab">Cohérence</span><p>Mêmes valeurs entre systèmes et entre champs liés.</p></div>
+  <div class="card"><span class="lab">Unicité</span><p>Une entité = un enregistrement (doublons sur la clé).</p></div>
+  <div class="card"><span class="lab">Validité</span><p>Format, type, domaine de valeurs respectés.</p></div>
+  <div class="card"><span class="lab">Fraîcheur</span><p>Assez récente pour l'usage (âge vs SLA).</p></div>
+</div>
+<div class="card"><span class="lab">Démarche</span><p>Profiler → règles avec seuils → contrôle à l'ingestion → surveillance et alertes → correction à la source → traçabilité.</p></div>
+</section>
+
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Les dimensions de la qualité</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 01</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Quelles dimensions de la qualité des données connaissez-vous ?</button><div class="ab"><p>Exactitude (conforme à la réalité), complétude (pas de valeurs manquantes critiques), cohérence (mêmes valeurs entre systèmes), unicité (pas de doublons), validité (format et règles respectés) et fraîcheur (assez récente pour l'usage). Je les cite avec un exemple et une mesure pour chacune.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment mesurez-vous la qualité d'un jeu de données ?</button><div class="ab"><p>Je commence par un <b>profilage</b> (nulls, distincts, min/max, formats), puis je traduis chaque dimension en indicateur avec un seuil validé par le métier : taux de complétude, nombre de doublons, pourcentage de valeurs valides, âge de la dernière mise à jour. Ces indicateurs sont calculés à chaque exécution et suivis dans le temps, avec alerte en cas de dérive.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Un e-mail au bon format est-il forcément de bonne qualité ?</button><div class="ab"><p>Non : le format relève de la <b>validité</b>. L'<b>exactitude</b> demande que l'adresse soit réellement celle du client, ce qui se vérifie autrement (e-mail de confirmation, source de référence).</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Les dimensions de la qualité</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="01"></div>
+</section>
+
+<!-- ================= 02 · MDM ================= -->
+<section class="slide" data-ch="02" data-sec="02 MDM" data-title="MDM et référentiels" data-v="c">
+<div class="kicker">Chapitre 02 · MDM et référentiels</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Un client, une seule fiche de vérité</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <div class="card"><span class="lab">Trois natures de données</span><ul><li><b>Données maîtresses</b> : les entités clés, stables et partagées — clients, produits, fournisseurs, salariés.</li><li><b>Données transactionnelles</b> : les événements qui les impliquent — commandes, paiements, livraisons.</li><li><b>Données de référence</b> : les listes de valeurs autorisées — pays, devises, codes TVA, statuts.</li></ul></div>
+    <div class="card hl"><span class="lab">Master Data Management (MDM)</span><p>Méthode et outils pour <b>centraliser, dédoublonner, standardiser et diffuser</b> les données maîtresses. Objectifs : <b>unicité</b> (un client = une fiche), <b>qualité</b> (formats standard), <b>partage</b> (la même information dans tous les systèmes).</p></div>
+  </div>
+  <div style="display:grid;gap:1vh">
+    <div class="sch free"><span class="cap">Du doublon au golden record</span>
+    <svg class="dg" viewBox="0 0 460 200" role="img" aria-label="Trois fiches du même client venant du CRM, de l'ERP et du site sont rapprochées puis fusionnées en un golden record diffusé">
+      <rect class="b f3" x="10" y="15" width="170" height="44" rx="6"/><text class="s" x="20" y="34">CRM : J. Martin</text><text class="s" x="20" y="51">jmartin@mail.fr</text>
+      <rect class="b f3" x="10" y="75" width="170" height="44" rx="6"/><text class="s" x="20" y="94">ERP : MARTIN Jean</text><text class="s" x="20" y="111">12 rue des Lilas</text>
+      <rect class="b f3" x="10" y="135" width="170" height="44" rx="6"/><text class="s" x="20" y="154">Site : jean martin</text><text class="s" x="20" y="171">06 12 34 56 78</text>
+      <rect class="b ok" x="260" y="60" width="190" height="80" rx="10"/><text class="t tc" x="355" y="88" style="font-size:13px">golden record</text><text class="s tc" x="355" y="108">Jean MARTIN</text><text class="s tc" x="355" y="126">mail + adresse + tél.</text>
+      <path class="e" d="M180 37 L256 82"/><path class="e" d="M180 97 H256"/><path class="e" d="M180 157 L256 118"/>
+      <text class="a" x="190" y="196">rapprocher · fusionner</text>
+    
+  <use class="il" href="#il-user" x="148" y="22" width="26" height="30"/><use class="il" href="#il-database" x="150" y="82" width="24" height="30"/><use class="il" href="#il-laptop" x="146" y="142" width="30" height="24"/><use class="il" href="#il-user" x="266" y="70" width="28" height="32"/>
+</svg></div>
+    <div class="analogy"><b>Analogie — l'état civil.</b> Chaque administration a sa fiche, mais une seule fait foi pour le nom et la date de naissance ; les autres s'y alignent.</div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · MDM et référentiels</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Comment se construit un référentiel</h2>
+<div class="grid g2">
+  <div class="steps">
+    <div><b>1. Standardiser</b> — casse, accents, formats d'adresse et de téléphone, codes pays normalisés.</div>
+    <div><b>2. Rapprocher (matching)</b> — trouver les fiches d'une même entité : clé exacte (SIRET, e-mail) ou correspondance <b>approximative</b> (similarité de noms, distance d'édition).</div>
+    <div><b>3. Fusionner (survivorship)</b> — choisir, champ par champ, la valeur qui « survit » : la source la plus fiable, la plus récente, la plus complète.</div>
+    <div><b>4. Diffuser</b> — publier le <b>golden record</b> et son identifiant unique vers les applications et le data lake.</div>
+    <div><b>5. Gouverner</b> — un data steward arbitre les cas douteux et maintient les règles.</div>
+  </div>
+  <div>
+    <div class="card"><span class="lab">Lien avec le Big Data</span><p>Le Big Data <b>collecte</b> vite et beaucoup ; le MDM <b>harmonise</b>. En Silver, on joint les données transactionnelles aux référentiels (produits, clients) : sans référentiel fiable, toutes les analyses par client ou par produit sont faussées. Outils : Informatica MDM, SAP MDG, Talend, Semarchy.</p></div>
+    <div class="trap-list">
+      <div><b>Fusionner trop vite.</b> Deux « Jean Martin » à Paris ne sont pas forcément la même personne : seuil de similarité et revue humaine.</div>
+      <div><b>Un référentiel de plus, pas un référentiel unique.</b> Si les applications ne s'y alignent pas, on a ajouté une source de désaccord.</div>
+    </div>
+    <ol class="sum-list">
+      <li>Maîtresses (entités) · transactionnelles (événements) · de référence (listes).</li>
+      <li>MDM : unicité, qualité, partage des données maîtresses.</li>
+      <li>Standardiser → rapprocher → fusionner → diffuser le golden record.</li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="e">
+<div class="kicker">Chapitre 02 · MDM et référentiels</div>
+<h2>Fiche — MDM</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Types de données</span><p>Maîtresses (clients, produits) · transactionnelles (commandes) · de référence (pays, devises, statuts).</p></div>
+  <div class="card"><span class="lab">MDM</span><p>Centraliser, dédoublonner, standardiser, diffuser les données maîtresses.</p></div>
+  <div class="card"><span class="lab">Étapes</span><p>Standardisation → matching (exact ou approximatif) → survivorship → golden record → diffusion.</p></div>
+  <div class="card"><span class="lab">Golden record</span><p>La fiche de vérité d'une entité, avec un identifiant unique.</p></div>
+  <div class="card"><span class="lab">Big Data</span><p>Jointure des transactions aux référentiels en Silver.</p></div>
+  <div class="card"><span class="lab">Outils</span><p>Informatica, SAP MDG, Talend, Semarchy.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · MDM et référentiels</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 02</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce que le MDM et à quoi sert-il ?</button><div class="ab"><p>Le Master Data Management centralise et fiabilise les <b>données maîtresses</b> — clients, produits, fournisseurs — pour qu'il existe une fiche de vérité unique (golden record), partagée par tous les systèmes. Il évite les doublons et les incohérences entre CRM, ERP et site.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment dédoublonnez-vous des clients venant de plusieurs sources ?</button><div class="ab"><p>Je standardise d'abord (casse, accents, formats), puis je rapproche sur une clé exacte quand elle existe (e-mail, SIRET), sinon par similarité (nom, adresse) avec un seuil. Les cas incertains vont en revue. Enfin, je fusionne champ par champ selon des règles de priorité (source la plus fiable ou la plus récente).</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quelle différence entre données maîtresses et données de référence ?</button><div class="ab"><p>Les données maîtresses décrivent les entités clés de l'entreprise (un client, un produit) ; les données de référence sont des listes de valeurs autorisées utilisées pour les qualifier (pays, devises, statuts). Les deux sont stables et partagées, mais les référentiels de valeurs servent surtout à la validité.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · MDM et référentiels</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="02"></div>
+</section>
+
+<!-- ================= 03 · ORGANISER LA GOUVERNANCE ================= -->
+<section class="slide" data-ch="03" data-sec="03 Gouvernance" data-title="Organiser la gouvernance" data-v="c">
+<div class="kicker">Chapitre 03 · Organiser la gouvernance</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Des rôles clairs : qui est responsable de quelle donnée ?</h2>
+<div class="grid g2">
+  <table class="cmp md"><tr><th>Rôle</th><th>Responsabilité</th></tr>
+    <tr><td><b>CDO</b> (Chief Data Officer)</td><td>stratégie data, politique de gouvernance, arbitrages</td></tr>
+    <tr><td><b>Data owner</b></td><td>responsable <b>métier</b> d'un domaine de données : définit les règles, valide les accès</td></tr>
+    <tr><td><b>Data steward</b></td><td>au quotidien : qualité, documentation, glossaire, résolution des anomalies</td></tr>
+    <tr><td><b>Data custodian</b></td><td>équipe technique qui stocke, sécurise et opère (souvent le Data Engineer)</td></tr>
+    <tr><td><b>DPO</b></td><td>délégué à la protection des données : conformité RGPD, contact de la CNIL</td></tr>
+    <tr><td><b>RSSI</b></td><td>sécurité du système d'information</td></tr></table>
+  <div style="display:grid;gap:1vh">
+    <div class="card hl"><span class="lab">Les trois piliers</span><ul><li><b>Accès</b> : qui peut accéder à quoi, quand, d'où, et <b>pour quelle finalité</b> ?</li><li><b>Conformité</b> : RGPD et réglementations sectorielles.</li><li><b>Sécurité</b> : chiffrement, traçabilité des accès, gestion des incidents.</li></ul></div>
+    <div class="analogy"><b>Analogie — la bibliothèque municipale.</b> Le directeur fixe la politique (CDO) ; chaque section a un responsable qui décide de ses collections (owner) ; un bibliothécaire les catalogue et répare (steward) ; le service technique gère le bâtiment (custodian).</div>
+    <div class="card"><span class="lab">Exemple</span><p>Un analyste marketing a besoin de l'historique d'achats, <b>pas</b> des données de santé des clients : le data owner refuse cet accès, le custodian l'applique dans IAM, l'audit le prouve.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Organiser la gouvernance</div>
+<div class="pqrow"><span class="pq how">③ Comment</span></div>
+<h2>Les outils de la gouvernance : catalogue, métadonnées, lineage, classification</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <div class="card"><span class="lab">Métadonnées</span><p>Les « données sur les données » : <b>techniques</b> (schéma, type, taille, partition), <b>métier</b> (définition, propriétaire, règles de calcul), <b>opérationnelles</b> (dernière mise à jour, volumétrie, qualité mesurée).</p></div>
+    <div class="card"><span class="lab">Catalogue de données</span><p>Le moteur de recherche des données de l'entreprise : quelles tables existent, ce qu'elles contiennent, qui en est responsable, leur niveau de qualité et de sensibilité. Outils : Collibra, Alation, DataHub, OpenMetadata, AWS Glue Data Catalog, Unity Catalog.</p></div>
+    <div class="card"><span class="lab">Glossaire métier</span><p>Une définition unique pour chaque terme : qu'est-ce qu'un « client actif » ? un « chiffre d'affaires » (HT, TTC, avant ou après retours) ? Sans glossaire, deux tableaux de bord affichent deux vérités.</p></div>
+  </div>
+  <div style="display:grid;gap:1vh">
+    <div class="sch free"><span class="cap">Lineage : d'où vient ce KPI ?</span>
+    <svg class="dg" viewBox="0 0 460 170" role="img" aria-label="Le KPI CA mensuel provient d'une table Gold, elle-même issue d'une table Silver alimentée par deux sources Bronze">
+      <rect class="b f3" x="10" y="20" width="110" height="36" rx="6"/><text class="s tc" x="65" y="43">bronze.ventes</text>
+      <rect class="b f3" x="10" y="100" width="110" height="36" rx="6"/><text class="s tc" x="65" y="123">bronze.retours</text>
+      <rect class="b f2" x="160" y="60" width="120" height="36" rx="6"/><text class="s tc" x="220" y="83">silver.ventes_nettes</text>
+      <rect class="b ok" x="320" y="60" width="130" height="36" rx="6"/><text class="s tc" x="385" y="83">gold.ca_mensuel</text>
+      <path class="e" d="M120 38 L156 72"/><path class="e" d="M120 118 L156 86"/><path class="e" d="M280 78 H316"/>
+      <text class="s" x="10" y="162">Chaque flèche = une transformation documentée</text>
+    </svg></div>
+    <div class="card hl"><span class="lab">Lineage (traçabilité)</span><p>Le chemin d'une donnée de sa source à son usage, avec les transformations subies. Il sert à <b>expliquer</b> un chiffre, à mesurer l'<b>impact</b> d'un changement de source, et à prouver la conformité (où sont les données personnelles ?).</p></div>
+    <div class="card"><span class="lab">Classification de sensibilité</span><p>Chaque donnée reçoit un niveau — public, interne, confidentiel, <b>personnel</b>, <b>sensible</b> (santé, biométrie…) — qui détermine chiffrement, masquage, droits et durée de conservation.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Organiser la gouvernance</div>
+<div class="pqrow"><span class="pq ex">④ Exemple</span> <span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Ce que le Data Engineer met en place</h2>
+<div class="grid g2">
+  <div class="card"><span class="lab">Concrètement, dans le pipeline</span><ul><li>Documenter chaque table (description, propriétaire, colonnes) et la publier au catalogue.</li><li>Étiqueter les colonnes personnelles et sensibles ; les <b>pseudonymiser</b> ou les masquer avant les couches partagées.</li><li>Générer le lineage (outils comme OpenLineage, dbt, Unity Catalog).</li><li>Appliquer les droits décidés par les owners : rôles IAM par couche (lecture Bronze, écriture Silver), au <b>moindre privilège</b> — voir <a href="airflow.html">Airflow &amp; S3</a> ch. 02.</li><li>Tracer les accès (journaux d'audit) et publier les indicateurs de qualité.</li></ul></div>
+  <div>
+    <div class="trap-list">
+      <div><b>« La gouvernance, c'est la sécurité ».</b> Elle couvre aussi la qualité, la documentation, les rôles et la conformité.</div>
+      <div><b>« La gouvernance, c'est l'affaire de l'IT ».</b> Les <b>owners</b> sont métier : eux seuls savent ce qu'est une donnée juste et qui doit y accéder.</div>
+      <div><b>Un catalogue que personne ne tient à jour.</b> La documentation doit être générée ou vérifiée par le pipeline.</div>
+      <div><b>Ajouter la gouvernance à la fin.</b> Elle s'intègre dès la conception (<i>by design</i>).</div>
+    </div>
+    <ol class="sum-list">
+      <li>Rôles : CDO, data owner (métier), data steward, custodian, DPO, RSSI.</li>
+      <li>Piliers : accès (qui, quand, où, pourquoi), conformité, sécurité.</li>
+      <li>Outils : métadonnées, catalogue, glossaire, lineage, classification.</li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="e">
+<div class="kicker">Chapitre 03 · Organiser la gouvernance</div>
+<h2>Fiche — Organiser la gouvernance</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Définition</span><p>Règles, rôles, processus et outils pour des données fiables, accessibles aux bonnes personnes, protégées et conformes.</p></div>
+  <div class="card"><span class="lab">Rôles</span><p>CDO (stratégie) · owner (responsable métier) · steward (qualité, doc) · custodian (technique) · DPO · RSSI.</p></div>
+  <div class="card"><span class="lab">Accès</span><p>Qui, quoi, quand, d'où, pour quelle finalité ; moindre privilège ; audit.</p></div>
+  <div class="card"><span class="lab">Métadonnées</span><p>Techniques · métier · opérationnelles. Publiées dans un catalogue.</p></div>
+  <div class="card"><span class="lab">Lineage</span><p>Source → transformations → usage : expliquer, mesurer l'impact, prouver.</p></div>
+  <div class="card"><span class="lab">Classification</span><p>Public · interne · confidentiel · personnel · sensible → mesures de protection.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Organiser la gouvernance</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 03</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Quelle différence entre data owner et data steward ?</button><div class="ab"><p>Le <b>data owner</b> est le responsable métier d'un domaine : il définit les règles de qualité, décide des accès et répond de la donnée. Le <b>data steward</b> agit au quotidien : il documente, surveille la qualité, traite les anomalies et fait le lien entre métier et technique.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">À quoi sert le lineage ?</button><div class="ab"><p>À retracer le chemin d'une donnée de sa source jusqu'à un indicateur, transformation par transformation. On explique ainsi un chiffre contesté, on évalue l'impact d'un changement de source et l'on sait où circulent les données personnelles, ce qui est indispensable pour la conformité.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce qu'un catalogue de données ?</button><div class="ab"><p>Un inventaire consultable des données de l'entreprise, enrichi de métadonnées : description, schéma, propriétaire, sensibilité, qualité, fraîcheur, lineage. Il permet de trouver la bonne donnée et de savoir si l'on peut s'y fier et l'utiliser.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quel est votre rôle de Data Engineer dans la gouvernance ?</button><div class="ab"><p>Je l'<b>implémente</b> : contrôles qualité dans le pipeline, documentation et lineage publiés au catalogue, étiquetage et pseudonymisation des données personnelles, droits IAM par couche selon les décisions des owners, journaux d'audit. Les règles, elles, sont décidées avec le métier et le DPO.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Organiser la gouvernance</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="03"></div>
+</section>
+
+<!-- ================= 04 · RGPD ================= -->
+<section class="slide" data-ch="04" data-sec="04 RGPD" data-title="Le RGPD pour le Data Engineer" data-v="c">
+<div class="kicker">Chapitre 04 · Le RGPD pour le Data Engineer</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Les principes du RGPD</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <div class="card"><span class="lab">Le cadre</span><p>Le <b>Règlement général sur la protection des données</b> s'applique depuis mai 2018 à tout traitement de <b>données personnelles</b> de personnes situées dans l'UE. Donnée personnelle : toute information se rapportant à une personne <b>identifiée ou identifiable</b>, directement (nom) ou indirectement (identifiant client, adresse IP, combinaison âge + code postal + profession). Sanctions : jusqu'à <b>20 M€ ou 4 % du CA mondial</b>, le montant le plus élevé.</p></div>
+    <div class="card"><span class="lab">Données sensibles (art. 9)</span><p>Santé, origine, opinions politiques ou religieuses, orientation sexuelle, biométrie, génétique : traitement interdit sauf exceptions, protection renforcée.</p></div>
+    <div class="analogy"><b>Analogie — le prêt d'un objet personnel.</b> On vous confie quelque chose pour un usage précis : vous n'en prenez que ce qu'il faut, vous ne le gardez pas indéfiniment, vous le protégez, et vous le rendez ou le détruisez si son propriétaire le demande.</div>
+  </div>
+  <table class="cmp md"><tr><th>Principe (art. 5)</th><th>Traduction en data engineering</th></tr>
+    <tr><td><b>Licéité, loyauté, transparence</b></td><td>une base légale pour chaque traitement ; les personnes sont informées</td></tr>
+    <tr><td><b>Limitation des finalités</b></td><td>une donnée collectée pour livrer ne sert pas au ciblage sans nouvelle base</td></tr>
+    <tr><td><b>Minimisation</b></td><td>n'ingérer que les colonnes nécessaires</td></tr>
+    <tr><td><b>Exactitude</b></td><td>contrôles qualité, rectification possible</td></tr>
+    <tr><td><b>Limitation de la conservation</b></td><td>durées définies, purge automatique (lifecycle, TTL)</td></tr>
+    <tr><td><b>Intégrité et confidentialité</b></td><td>chiffrement, droits, journalisation</td></tr>
+    <tr><td><b>Responsabilité</b> (accountability)</td><td>pouvoir <b>prouver</b> la conformité : registre, documentation, lineage</td></tr></table>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Le RGPD pour le Data Engineer</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Bases légales, droits des personnes, pseudonymisation</h2>
+<div class="grid g3">
+  <div class="card"><span class="lab">6 bases légales (art. 6)</span><p>Consentement · exécution d'un contrat · obligation légale · sauvegarde des intérêts vitaux · mission d'intérêt public · intérêts légitimes. Le consentement n'est qu'une base parmi six ; il doit être libre, éclairé, spécifique et retirable.</p></div>
+  <div class="card"><span class="lab">Droits des personnes</span><p>Information · accès · rectification · <b>effacement</b> (droit à l'oubli) · limitation · <b>portabilité</b> · opposition · ne pas subir une décision entièrement automatisée. Le pipeline doit savoir <b>retrouver et supprimer</b> une personne partout, y compris dans le lac.</p></div>
+  <div class="card"><span class="lab">Obligations</span><p><b>Registre des traitements</b> · <b>AIPD</b> (analyse d'impact) pour les traitements à risque élevé · <b>privacy by design et by default</b> · notification d'une violation à la CNIL sous <b>72 h</b> · encadrement des transferts hors UE.</p></div>
+</div>
+<div class="grid g2">
+  <div class="card hl"><span class="lab">Pseudonymisation ≠ anonymisation</span><p><b>Pseudonymiser</b> : remplacer l'identifiant par un pseudonyme (jeton, hachage <b>avec clé secrète</b>), la table de correspondance étant gardée à part. La ré-identification reste possible : c'est <b>encore une donnée personnelle</b>, soumise au RGPD, mais beaucoup mieux protégée. <b>Anonymiser</b> : rendre la ré-identification <b>impossible</b>, de façon irréversible (agrégation, généralisation, bruit) : la donnée <b>sort</b> du RGPD. Un simple hachage d'e-mail n'anonymise pas : on peut le recalculer.</p></div>
+  <div class="code"><div class="codeh"><span>python · pseudonymiser avant Silver</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">import</span> hmac, hashlib, os
+CLE = os.environ[<span class="s">"PSEUDO_KEY"</span>].encode()      <span class="c"># secret hors du code</span>
+
+<span class="kw">def</span> pseudo(valeur: str) -&gt; str:
+    <span class="kw">return</span> hmac.new(CLE, valeur.lower().encode(),
+                    hashlib.sha256).hexdigest()
+
+ligne = {<span class="s">"email"</span>: <span class="s">"jean@mail.fr"</span>, <span class="s">"cp"</span>: <span class="s">"75011"</span>, <span class="s">"montant"</span>: 59.9}
+silver = {<span class="s">"client_id"</span>: pseudo(ligne[<span class="s">"email"</span>]),   <span class="c"># jointures possibles</span>
+          <span class="s">"departement"</span>: ligne[<span class="s">"cp"</span>][:2],          <span class="c"># généralisation</span>
+          <span class="s">"montant"</span>: ligne[<span class="s">"montant"</span>]}             <span class="c"># minimisation : rien d'autre</span></code></pre></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Le RGPD pour le Data Engineer</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Les pièges fréquents et les grandes sanctions</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <table class="cmp md"><tr><th>Affaire</th><th>Ce qu'il faut retenir</th></tr>
+      <tr><td>Cambridge Analytica (2018)</td><td>données de dizaines de millions de comptes Facebook exploitées sans consentement éclairé</td></tr>
+      <tr><td>Amazon (2021)</td><td>746 M€ d'amende (autorité luxembourgeoise) pour la publicité ciblée</td></tr>
+      <tr><td>Meta (2023)</td><td>1,2 Md€ (autorité irlandaise) pour des transferts de données vers les États-Unis</td></tr>
+      <tr><td>Capital One (2019)</td><td>rôle IAM trop permissif + faille SSRF : 106 millions de dossiers exposés</td></tr></table>
+    <div class="card"><span class="lab">Autres textes</span><p>CCPA (Californie), LGPD (Brésil) ; en Europe, l'<b>AI Act</b> exige des données d'entraînement de qualité et documentées pour les systèmes à haut risque.</p></div>
+  </div>
+  <div>
+    <div class="trap-list">
+      <div><b>« Les données sont hachées, donc anonymes ».</b> Un hachage simple se recalcule : c'est une pseudonymisation au mieux.</div>
+      <div><b>Tout garder « au cas où ».</b> Contraire à la minimisation et à la limitation de la conservation.</div>
+      <div><b>Oublier le data lake lors d'un droit à l'effacement.</b> Les copies Bronze, les sauvegardes et les exports comptent.</div>
+      <div><b>Réutiliser des données pour une autre finalité.</b> Il faut une base légale compatible.</div>
+      <div><b>Mettre des données personnelles dans les logs.</b> Elles s'y retrouvent sans contrôle ni durée.</div>
+    </div>
+    <ol class="sum-list">
+      <li>Donnée personnelle = personne identifiable, même indirectement.</li>
+      <li>7 principes : licéité, finalité, minimisation, exactitude, conservation, sécurité, responsabilité.</li>
+      <li>6 bases légales ; droits d'accès, d'effacement, de portabilité, d'opposition.</li>
+      <li>Pseudonymisé = encore personnel ; anonymisé = hors RGPD.</li>
+      <li>Violation notifiée sous 72 h ; jusqu'à 4 % du CA mondial.</li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="e">
+<div class="kicker">Chapitre 04 · Le RGPD pour le Data Engineer</div>
+<h2>Fiche — RGPD</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Champ</span><p>Données personnelles (personne identifiable, directement ou non) ; données sensibles protégées renforcées. Depuis 2018.</p></div>
+  <div class="card"><span class="lab">Principes</span><p>Licéité · finalité · minimisation · exactitude · conservation limitée · sécurité · responsabilité.</p></div>
+  <div class="card"><span class="lab">Bases légales</span><p>Consentement · contrat · obligation légale · intérêts vitaux · intérêt public · intérêts légitimes.</p></div>
+  <div class="card"><span class="lab">Droits</span><p>Accès · rectification · effacement · limitation · portabilité · opposition · pas de décision 100 % automatisée.</p></div>
+  <div class="card"><span class="lab">Obligations</span><p>Registre · AIPD · privacy by design · notification 72 h · transferts hors UE encadrés · DPO.</p></div>
+  <div class="card"><span class="lab">Techniques</span><p>Pseudonymisation (HMAC, jetons) · anonymisation (agrégation, généralisation) · masquage · purge automatique.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Le RGPD pour le Data Engineer</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 04</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Comment avez-vous pris en compte le RGPD dans votre pipeline ?</button><div class="ab"><p>J'ai identifié les colonnes personnelles, appliqué la <b>minimisation</b> (seules les colonnes utiles sont ingérées), <b>pseudonymisé</b> les identifiants avec une clé secrète avant les couches partagées, fixé des <b>durées de conservation</b> avec purge automatique, restreint et tracé les accès, et documenté le traitement pour le registre tenu avec le DPO.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pseudonymisation ou anonymisation : quelle différence ?</button><div class="ab"><p>La pseudonymisation remplace l'identifiant par un pseudonyme, mais la ré-identification reste possible avec une information conservée à part : la donnée reste personnelle et soumise au RGPD. L'anonymisation rend la ré-identification impossible de manière irréversible : la donnée n'est plus personnelle. Un hachage simple n'est pas une anonymisation.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Un client exerce son droit à l'effacement : que faites-vous ?</button><div class="ab"><p>Je dois retrouver ses données dans <b>tous</b> les systèmes, grâce au lineage et à un identifiant commun : bases opérationnelles, couches du lac, entrepôt, exports. On supprime ou anonymise, en tenant compte des obligations légales de conservation (factures). Les formats de table comme Delta ou Iceberg facilitent la suppression ciblée dans un lac.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Le consentement est-il toujours nécessaire ?</button><div class="ab"><p>Non, c'est une base légale parmi six. Un traitement peut reposer sur l'exécution d'un contrat (livrer une commande), une obligation légale (conserver des factures) ou un intérêt légitime, sous conditions. Le choix de la base se fait avec le DPO et figure au registre.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Le RGPD pour le Data Engineer</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="04"></div>
+</section>
+
+<!-- ================= 05 · SYNTHÈSE ================= -->
+<section class="slide" data-ch="05" data-sec="05 Synthèse" data-title="Sécurité, failles et synthèse" data-v="c">
+<div class="kicker">Chapitre 05 · Sécurité, failles et synthèse</div>
+<div class="pqrow"><span class="pq ex">④ Exemple</span> <span class="pq trap">⑤ Pièges</span></div>
+<h2>Les failles à éviter</h2>
+<table class="cmp md"><tr><th>Faille</th><th>Conséquence</th><th>Parade</th></tr>
+  <tr><td>Bucket de stockage rendu public</td><td>des millions d'enregistrements exposés</td><td>blocage de l'accès public, chiffrement par défaut, scans automatiques de configuration</td></tr>
+  <tr><td>Secrets dans Git ou dans les logs</td><td>clés exploitées par des robots en quelques minutes</td><td>gestionnaire de secrets (Vault), rotation systématique</td></tr>
+  <tr><td>Droits trop larges</td><td>un attaquant rebondit partout (cryptominage, exfiltration)</td><td>moindre privilège, MFA, durcissement SSH, revues d'accès périodiques</td></tr>
+  <tr><td>Non-conformité RGPD</td><td>amendes, arrêt d'activité, image dégradée</td><td>cartographie des données, DPO, pseudonymisation, registre</td></tr>
+  <tr><td>Données non tracées</td><td>impossible d'expliquer un chiffre ou d'effacer une personne</td><td>catalogue, lineage, journaux d'audit</td></tr></table>
+<div class="grid g2">
+  <div class="card"><span class="lab">Chiffrement et traçabilité</span><p>Données chiffrées <b>au repos</b> (stockage) et <b>en transit</b> (TLS) ; journaux d'audit : qui a accédé à quoi, quand ; procédure de réponse à incident. Détail technique : <a href="airflow.html">Airflow &amp; S3</a> ch. 02.</p></div>
+  <div class="card"><span class="lab">La sécurité ne suffit pas</span><p>Un pipeline parfaitement sécurisé peut produire des chiffres faux (qualité) ou traiter des données sans base légale (conformité) : la gouvernance couvre les trois.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Sécurité, failles et synthèse</div>
+<div class="pqrow"><span class="pq ex">④ Exemple</span> <span class="pq sum">⑥ Synthèse</span></div>
+<h2>Cas d'école : une banque de 15 millions de clients</h2>
+<div class="grid g2">
+  <div class="steps">
+    <div><b>Accès</b> — les données financières restent dans un entrepôt privé, accessible depuis le SI interne ; les données marketing <b>pseudonymisées</b> vont dans le cloud pour les data scientists.</div>
+    <div><b>Conformité</b> — tout transfert hors UE est validé par le DPO ; les données personnelles sont pseudonymisées avant le data lake ; registre et AIPD à jour.</div>
+    <div><b>Sécurité</b> — MFA obligatoire, accès tracés dans un SIEM, droits administrateurs revus chaque trimestre.</div>
+    <div><b>Qualité</b> — règles par domaine, indicateurs suivis, référentiel clients unique (MDM).</div>
+    <div><b>Organisation</b> — un data steward par domaine (marketing, finance, opérations), comité mensuel CDO + RSSI + DPO.</div>
+  </div>
+  <ol class="sum-list">
+    <li><b>Qualité</b> : six dimensions mesurées, règles avec seuils, contrôle à l'entrée, surveillance.</li>
+    <li><b>Référentiels</b> : MDM, golden record, données de référence.</li>
+    <li><b>Organisation</b> : owners métier, stewards, DPO ; catalogue, glossaire, lineage, classification.</li>
+    <li><b>Conformité</b> : RGPD by design — minimisation, pseudonymisation, conservation, droits.</li>
+    <li><b>Sécurité</b> : moindre privilège, chiffrement, audit, gestion des secrets.</li>
+    <li>La gouvernance est une <b>exigence légale et business</b>, intégrée dès la conception du pipeline.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="e">
+<div class="kicker">Chapitre 05 · Sécurité, failles et synthèse</div>
+<h2>Fiche — Synthèse qualité et gouvernance</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Qualité</span><p>Exactitude · complétude · cohérence · unicité · validité · fraîcheur → règles, seuils, alertes.</p></div>
+  <div class="card"><span class="lab">MDM</span><p>Golden record des données maîtresses ; standardiser, rapprocher, fusionner, diffuser.</p></div>
+  <div class="card"><span class="lab">Gouvernance</span><p>Rôles (owner, steward, DPO) · catalogue · glossaire · lineage · classification.</p></div>
+  <div class="card"><span class="lab">RGPD</span><p>Minimisation · finalité · conservation · droits · pseudonymisation · 72 h · 4 %.</p></div>
+  <div class="card"><span class="lab">Failles</span><p>Bucket public · secrets exposés · droits larges · non-conformité · absence de traçabilité.</p></div>
+  <div class="card"><span class="lab">Réflexe</span><p>By design, pas après coup.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · Sécurité, failles et synthèse</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — synthèse</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce que la gouvernance des données ?</button><div class="ab"><p>L'ensemble des règles, rôles, processus et outils qui garantissent que les données sont fiables, documentées, accessibles aux bonnes personnes pour une finalité légitime, protégées, et conformes à la réglementation. Elle ne se limite pas à la sécurité : elle couvre aussi la qualité, la responsabilité et la conformité.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment garantissez-vous la confiance dans un indicateur de votre tableau de bord ?</button><div class="ab"><p>Une définition au glossaire validée par l'owner, des contrôles qualité sur toute la chaîne avec des seuils, un lineage qui montre d'où vient chaque nombre, une fraîcheur affichée, et un responsable identifié en cas d'écart. Si un contrôle échoue, l'indicateur n'est pas publié silencieusement.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quelles failles de gouvernance sont les plus courantes ?</button><div class="ab"><p>Des buckets ouverts au public, des secrets dans le code ou les logs, des droits trop larges, l'absence de cartographie des données personnelles et l'absence de traçabilité. L'affaire Capital One combine un rôle trop permissif et une faille applicative ; les parades sont le moindre privilège, la gestion des secrets, les revues d'accès et le lineage.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi intégrer la gouvernance dès la conception ?</button><div class="ab"><p>Parce que la corriger après coup coûte cher : retrouver des données personnelles disséminées, rétro-documenter, reprendre des droits trop larges. Le RGPD l'impose d'ailleurs (privacy by design et by default), et les contrôles intégrés au pipeline évitent de découvrir les problèmes dans un rapport de direction.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · Sécurité, failles et synthèse</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="05"></div>
+</section>
+
+<!-- ================= QUIZ FINAL ================= -->
+<section class="slide" data-ch="quiz" data-sec="Quiz final" data-title="Quiz final — 45 questions">
+<div class="kicker">Quiz final · Qualité &amp; gouvernance</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-target"/></svg> 45 questions pour affronter le jury</h2>
+<p class="lead">Tous chapitres mélangés ; l'ordre des questions et des réponses change à chaque tentative. Certaines questions ont <b>plusieurs bonnes réponses</b>.</p>
+<div data-quiz="final"></div>
+</section>
+
+</main>
+<button class="arrow" id="prev" type="button" aria-label="Diapositive précédente">‹</button>
+<button class="arrow" id="next" type="button" aria-label="Diapositive suivante">›</button>
+<nav id="tl" aria-label="Chapitres"></nav>
+<div id="hint">← → naviguer · ↑ ↓ défiler · H ampoule <svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg> · E Complète/Essentiel · M maîtrisé · S sommaire · T thème</div>
+<button id="bulbhint" type="button"><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></button>
+<div id="ctip" role="tooltip"></div>
+<div id="toc" role="dialog" aria-label="Sommaire">
+  <button class="btn xx" id="tocx" type="button">Fermer ✕</button>
+  <div class="kicker">Sommaire · Qualité &amp; gouvernance des données</div>
+  <h2>Qualité &amp; gouvernance des données</h2>
+  <div class="tg"></div>
+</div>
+
+<div id="fab">
+  <button id="helpbtn" type="button" aria-label="Ampoule : concepts expliqués au survol" aria-pressed="false" title="Ampoule : soulignez les concepts, survolez-les pour une explication (H)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></button>
+<button id="tocbtn" type="button" aria-label="Sommaire" title="Sommaire (S)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+  <div id="themebtn">
+    <div id="menu" role="menu"><h4>Thème</h4></div>
+    <button id="tbtn" type="button" aria-label="Changer de thème" aria-haspopup="true" title="Changer de thème (T)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.4-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16a5 5 0 0 0 5-5c0-4-4-7-9-7z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="7.5" r="1"/></svg>
+    </button>
+  </div>
+</div>
+
+</div>
+<script src="assets/icons.js?v=1795252877"></script>
+<script src="data/data-qualite-quiz.js?v=1795252878"></script>
+<script src="data/data-qualite-glossary.js?v=1795252878"></script>
+<script src="assets/engine.js?v=1795252877"></script>
+</body>
+</html>

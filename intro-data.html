@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Big Data : architectures &amp; cloud · Révision Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/base.css?v=1795252877">
+<link rel="stylesheet" href="assets/photos.css?v=1795252877">
+<link rel="stylesheet" href="assets/revision.css?v=1795252877">
+</head>
+<body data-page="course" data-course="intro-data" data-title="Big Data : architectures &amp; cloud">
+<div id="app" data-theme="papier">
+
+<div id="bg" aria-hidden="true">
+  <div class="bgl bg-neon">
+    <svg viewBox="0 0 800 800"><path d="M40 760 L400 280 L760 760" stroke-width="3"/><path d="M110 760 L400 380 L690 760" stroke-width="2.4" opacity=".85"/><path d="M180 760 L400 470 L620 760" stroke-width="2" opacity=".7"/><path d="M250 760 L400 560 L550 760" stroke-width="1.6" opacity=".55"/><path d="M320 760 L400 650 L480 760" stroke-width="1.2" opacity=".4"/></svg>
+  </div>
+  <div class="bgl bg-sauge"><div class="panel"></div><div id="bignum"></div></div>
+  <div class="bgl bg-nuit"><i></i><i></i><i></i></div>
+  <div class="bgl bg-verre"><div class="blob a"></div><div class="blob b"></div><div class="blob c"></div></div>
+  <div class="bgl bg-papier"><i></i><i></i><i></i></div>
+  <div class="bgl bg-rubans"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f8fe0"/><stop offset="1" stop-color="#2fd0bd"/></linearGradient>
+      <linearGradient id="rg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fdcc4"/><stop offset=".55" stop-color="#26b2d2"/><stop offset="1" stop-color="#2f8fe0"/></linearGradient>
+      <linearGradient id="rg3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2fd0bd"/><stop offset="1" stop-color="#2f90e2"/></linearGradient>
+      <filter id="rsh" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="12"/></filter>
+    </defs>
+    <g class="rb" id="rb-a" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g class="rb b" id="rb-b" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+  </svg></div>
+  <div class="bgl bg-facettes"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="fcw" id="fc-top"></g><g class="fcw" id="fc-bot"></g></svg></div>
+  <div class="bgl photo bg-bulles"><i></i></div>
+  <div class="bgl photo bg-hexa"><i></i></div>
+  <div class="bgl photo bg-points"><i></i></div>
+</div>
+
+<svg id="defs" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+  <marker id="arrk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3a4458"/></marker>
+  <marker id="arrbad" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+</defs></svg>
+
+<div id="brand"><a href="index.html" title="Retour à l'accueil">← Accueil</a> · Big Data : architectures &amp; cloud</div>
+<div id="topbar">
+  <div id="vseg" role="group" aria-label="Version du cours"><button type="button" data-v="c" title="Tout le cours (E pour basculer)"><svg class="ico" aria-hidden="true"><use href="#ti-book"/></svg> Complète</button><button type="button" data-v="e" title="Ce qu'il faut maîtriser pour le jury (E)"><svg class="ico" aria-hidden="true"><use href="#ti-bolt"/></svg> Essentiel</button></div>
+  <button id="mast" type="button" title="Marquer ce chapitre comme maîtrisé (M)"></button>
+  <span id="prog"></span>
+</div>
+<div id="hud"><span id="count">1 / 1</span></div>
+<main id="deck">
+<!-- ================= 00 · IMMERSION ================= -->
+<section class="slide" data-ch="00" data-sec="Immersion" data-title="Immersion : le paysage Big Data">
+<div class="kicker">Bloc 4B · Big Data &amp; IA</div>
+<h1>Big Data : architectures &amp; cloud</h1>
+<p class="lead">La <b>carte générale</b> du métier : ce qu'est vraiment le Big Data, comment choisir entre SQL et NoSQL, pourquoi le cloud, comment s'organise une chaîne décisionnelle, et comment la donnée circule de la source au tableau de bord. Les outils sont détaillés ailleurs : <a href="hadoop.html">Hadoop</a>, <a href="spark.html">Spark</a>, <a href="kafka.html">Kafka</a>, <a href="mongodb.html">MongoDB</a>, <a href="airflow.html">Airflow</a>.</p>
+<div class="chips"><span class="pill solid">immersion + 5 chapitres</span><span class="pill">mini-quiz par chapitre</span><span class="pill">quiz final · 45 questions</span><span class="pill">cours « vue d'ensemble »</span></div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 1 / 3</div>
+<h2>Une enseigne veut savoir, chaque matin, quels produits manqueront demain dans chacun de ses 800 magasins. De quoi a-t-elle besoin ?</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">Ce qu'il faut réunir</span><p>Les ventes de caisse (des millions de lignes par jour), les stocks, la météo, les promotions, les clics du site… dans des <b>formats différents</b>, arrivant à des <b>rythmes différents</b>, de qualité inégale.</p></div>
+    <div class="card hl"><span class="lab">Ce qu'il faut construire</span><p>Une <b>architecture</b> : collecter, stocker sans rien perdre, nettoyer, croiser, calculer, puis exposer un tableau de bord ou un modèle de prévision. Chaque brique répond à une contrainte : volume, vitesse, variété, fiabilité, valeur.</p></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <p class="punch">Le <b>Big Data</b> désigne les données dont le <b>volume</b>, la <b>vélocité</b> ou la <b>variété</b> dépassent les capacités des outils classiques, et l'ensemble des <b>architectures distribuées</b> qui permettent de les collecter, stocker, traiter et transformer en <b>valeur</b>. Ce n'est pas « beaucoup de données » : c'est savoir les <b>exploiter</b>.</p>
+    <div class="analogy"><b>Analogie — la raffinerie.</b> La donnée brute est un pétrole : abondante, sale, inutilisable telle quelle. Une architecture Big Data est la raffinerie qui la transporte, la stocke, la distille par étapes et livre un carburant prêt à l'emploi (indicateur, prévision, alerte).</div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 2 / 3</div>
+<h2>Vingt ans d'évolution des architectures</h2>
+<div class="flow">
+  <div class="step"><b>1990s</b><small><b>Entrepôts de données</b> et BI : Inmon, Kimball, schéma en étoile</small></div>
+  <div class="step"><b>2004 – 2006</b><small>Google MapReduce, puis <b>Hadoop</b> : calcul distribué sur machines ordinaires</small></div>
+  <div class="step"><b>2009 – 2012</b><small>Vague <b>NoSQL</b> (MongoDB, Cassandra, Redis, Neo4j) ; Kafka, Spark</small></div>
+  <div class="step"><b>2012 – 2020</b><small>Le <b>cloud</b> s'impose : S3, BigQuery, Redshift, Snowflake</small></div>
+  <div class="step"><b>Aujourd'hui</b><small><b>Lakehouse</b>, médaillon, data + IA générative</small></div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Qui fait quoi</span><p><b>Data Engineer</b> : construit et fiabilise les pipelines. <b>Data Analyst</b> : explore et produit les tableaux de bord. <b>Data Scientist</b> : conçoit les modèles. <b>ML Engineer</b> : met les modèles en production. Autour : architecte data, data steward (qualité, gouvernance).</p><p>Usages : recommandation (Netflix, Amazon), tarification dynamique, détection de fraude, maintenance prédictive (IoT), pilotage commercial.</p></div>
+  <div class="sch free"><span class="cap">Les briques d'une architecture data</span>
+  <svg class="dg" viewBox="0 0 460 190" role="img" aria-label="Sources, ingestion, stockage, traitement, exposition, avec gouvernance et orchestration transverses">
+    <rect class="b f3" x="10" y="60" width="78" height="46" rx="8"/><text class="s tc" x="49" y="88">sources</text>
+    <rect class="b f2" x="98" y="60" width="78" height="46" rx="8"/><text class="s tc" x="137" y="88">ingestion</text>
+    <rect class="b f1" x="186" y="60" width="78" height="46" rx="8"/><text class="s tc" x="225" y="88">stockage</text>
+    <rect class="b ok" x="274" y="60" width="86" height="46" rx="8"/><text class="s tc" x="317" y="88">traitement</text>
+    <rect class="b f4" x="370" y="60" width="80" height="46" rx="8"/><text class="s tc" x="410" y="88">exposition</text>
+    <path class="e" d="M88 83 H94"/><path class="e" d="M176 83 H182"/><path class="e" d="M264 83 H270"/><path class="e" d="M360 83 H366"/>
+    <rect class="z" x="98" y="122" width="352" height="30" rx="8"/><text class="a" x="108" y="142">orchestration · qualité · sécurité</text>
+    <text class="s" x="10" y="182">Chaque cours du bloc 4B = une brique</text>
+  
+  <use class="il" href="#il-database" x="34.0" y="27" width="30" height="30"/><use class="il" href="#il-exchange" x="122.0" y="27" width="30" height="30"/><use class="il" href="#il-cloud" x="210.0" y="27" width="30" height="30"/><use class="il" href="#il-gear" x="302.0" y="27" width="30" height="30"/><use class="il" href="#il-chart" x="395.0" y="27" width="30" height="30"/>
+</svg></div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 3 / 3</div>
+<h2>Premier contact : la même question, trois architectures</h2>
+<table class="cmp md"><tr><th>Besoin</th><th>Volume · vitesse · variété</th><th>Architecture adaptée</th></tr>
+  <tr><td>Comptabilité d'une PME</td><td>quelques Go · quotidien · tables</td><td><b>Une base relationnelle</b> (PostgreSQL) — pas de Big Data</td></tr>
+  <tr><td>Ventes de 800 magasins + météo</td><td>To · nuit · fichiers et API</td><td><b>Data lake</b> en couches + Spark en batch + entrepôt pour la BI</td></tr>
+  <tr><td>Fraude carte bancaire</td><td>flux continu · millisecondes · événements</td><td><b>Streaming</b> : Kafka + traitement temps réel + modèle de scoring</td></tr></table>
+<div class="grid g2">
+  <div class="card"><span class="lab">Ce qu'il faut remarquer</span><p>On ne choisit pas une technologie parce qu'elle est à la mode : on part des <b>contraintes</b> (les V) et du <b>besoin métier</b> (latence acceptable, cohérence exigée, coût). La première réponse d'un bon Data Engineer est souvent : « une base relationnelle suffit ».</p></div>
+  <div class="card"><span class="lab">Ce que le jury attend</span><ul><li>Analyser un besoin et justifier une architecture Big Data.</li><li>Choisir le bon modèle de stockage (relationnel, NoSQL, lac, entrepôt).</li><li>Situer l'architecture dans le SI (cloud, sécurité, coûts).</li></ul></div>
+</div>
+<div class="flow">
+  <div class="step"><b>01</b><small>Big Data, 5V, métiers</small></div>
+  <div class="step"><b>02</b><small>NoSQL, ACID/BASE, CAP</small></div>
+  <div class="step"><b>03</b><small>le cloud pour la data</small></div>
+  <div class="step"><b>04</b><small>BI : lac, entrepôt, étoile</small></div>
+  <div class="step"><b>05</b><small>médaillon, batch, streaming</small></div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="e">
+<div class="kicker">Immersion · Essentiel</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Présenter une architecture Big Data en une minute</h2>
+<div class="card hl"><p class="q">« Le Big Data, ce sont des données dont le <b>volume</b>, la <b>vélocité</b> ou la <b>variété</b> dépassent une base classique, et qu'il faut pourtant rendre <b>fiables</b> et <b>utiles</b> : ce sont les 5V. La réponse est une architecture <b>distribuée</b>, aujourd'hui le plus souvent dans le <b>cloud</b>.</p><p class="q">Elle suit toujours la même chaîne : <b>ingestion</b> en batch ou en streaming, <b>stockage</b> dans un data lake organisé en couches Bronze, Silver, Gold, <b>traitement</b> distribué avec Spark, puis <b>exposition</b> dans un entrepôt modélisé en étoile pour la BI, ou vers des modèles d'IA. L'orchestration, la qualité et la sécurité sont transverses.</p><p class="q">Le choix des briques découle des contraintes : base relationnelle quand la cohérence prime et que le volume reste raisonnable, NoSQL quand il faut un schéma souple et une montée en charge horizontale, streaming seulement quand la latence a un coût métier. »</p></div>
+<div class="grid g3">
+  <div class="card"><span class="lab">Les 3 mots à placer</span><p><b>5V · scalabilité horizontale · médaillon</b></p></div>
+  <div class="card"><span class="lab">Le choix à justifier</span><p><b>Le bon outil selon les 5V</b> : on ne passe au Big Data distribué que si le volume, la vitesse ou la variété l'exigent vraiment.</p></div>
+  <div class="card"><span class="lab">Le lien</span><p>Chapeau de tous les cours du bloc 4B</p></div>
+</div>
+</section>
+<section class="slide" data-ch="00" data-sec="Le fil" data-title="Le fil du cours : 6 idées">
+<div class="kicker">Le fil du cours · Big Data : architectures &amp; cloud</div>
+<h2>6 idées font tout le cours</h2>
+<p class="lead fil-q">Tout le cours répond à : <b>quelle architecture choisir quand les données sont trop grosses, trop rapides ou trop variées pour une base classique ?</b> Six idées permettent de justifier n'importe quel choix.</p>
+<div class="grid g3 ideas"><div class="card idea"><span class="lab">Idée 1 · Les 5V sont des contraintes, pas un slogan</span><p>Les <b>5V</b> sont des contraintes concrètes : <b>volume</b> (il faut répartir les données), <b>vélocité</b> (il faut traiter au fil de l'eau), <b>variété</b> (il faut un schéma souple), <b>véracité</b> (il faut contrôler la qualité), <b>valeur</b> (il faut un usage). Sans valeur identifiée, il n'y a pas de projet.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on lance un projet Big Data sans cas d'usage, on remplit un lac de données que personne n'exploite.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Partir d'une question métier précise (« réduire les ruptures de stock ») et ne collecter que les données qui y répondent.</p><p class="chs">ch. 01 · ch. 05</p></div><div class="card idea"><span class="lab">Idée 2 · Grandir en largeur</span><p>Quand une machine ne suffit plus, on en ajoute d'autres (<b>scale-out</b>, ou mise à l'échelle horizontale) plutôt que d'en acheter une plus grosse (<b>scale-up</b>). C'est ce choix qui oblige à répartir les données, à les copier et à accepter des compromis.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on achète un serveur toujours plus gros au lieu d'ajouter des machines, on se heurte à une limite physique et à un coût qui explose.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Répartir la charge sur plusieurs machines ordinaires, et en ajouter une quand le volume augmente.</p><p class="chs">ch. 01 · ch. 02 · ch. 03</p></div><div class="card idea"><span class="lab">Idée 3 · Distribuer oblige à choisir</span><p>Quand le réseau se coupe entre deux serveurs, il faut choisir : refuser de répondre pour rester juste (<b>cohérence</b>) ou répondre quitte à donner une donnée pas à jour (<b>disponibilité</b>). C'est le théorème <b>CAP</b>. <b>ACID</b> garantit une donnée juste immédiatement ; <b>BASE</b> accepte qu'elle devienne juste un peu plus tard. Chaque base NoSQL fait son choix selon l'usage.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on choisit une base à cohérence à terme pour des virements, un solde peut être faux pendant un instant, ce qui est inacceptable pour une banque.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Prendre une base ACID (PostgreSQL, par exemple) pour l'argent ; garder la cohérence à terme pour un compteur de vues ou un fil d'actualité.</p><p class="chs">ch. 02</p></div><div class="card idea"><span class="lab">Idée 4 · Séparer stocker et analyser</span><p>On sépare stocker et analyser. Le <b>data lake</b> garde le brut à bas coût ; l'<b>entrepôt</b> (data warehouse) sert l'analyse avec un <b>modèle en étoile</b> (une table de faits, entourée de dimensions) ; le <b>datamart</b> est une partie de l'entrepôt pour un métier. On raffine par couches.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on lance les rapports directement sur la base de production, les requêtes d'analyse ralentissent l'activité de tous les utilisateurs.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Copier les données vers un entrepôt (ou une réplique) chaque nuit, et faire tourner les rapports là-bas.</p><p class="chs">ch. 04 · ch. 05</p></div><div class="card idea"><span class="lab">Idée 5 · Batch et flux se combinent</span><p>Le <b>batch</b> traite un gros volume d'un coup, à intervalles réguliers (chaque nuit). Le <b>streaming</b> traite chaque événement dès qu'il arrive. L'architecture <b>Lambda</b> fait tourner les deux côte à côte ; <b>Kappa</b> ne garde que le flux. On choisit selon la <b>fraîcheur</b> dont le métier a besoin.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on met en place du streaming pour un rapport consulté une fois par mois, on paie toute la complexité du temps réel sans aucun bénéfice.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Demander au métier quelle fraîcheur il lui faut : une fois par jour → batch ; en quelques secondes → streaming.</p><p class="chs">ch. 05</p></div><div class="card idea"><span class="lab">Idée 6 · Le cloud loue ce qu'on achetait</span><p>Le cloud loue ce qu'on achetait : des ressources <b>à la demande</b>, payées <b>à l'usage</b>. À condition de maîtriser la sécurité (la <b>responsabilité est partagée</b> entre le fournisseur et le client), les coûts, et la dépendance au fournisseur.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on oublie d'éteindre les ressources cloud inutilisées, on paie à l'usage pour des machines qui ne servent à rien.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Programmer l'arrêt automatique des environnements de test la nuit et poser des alertes de budget.</p><p class="chs">ch. 03</p></div></div>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · Big Data : architectures &amp; cloud</div>
+<h2>Le modèle mental : choisir une architecture en quatre questions</h2>
+<div class="flow"><div class="step"><b>1</b><small>Lequel des 5V pose vraiment problème ici ?</small></div><div class="step"><b>2</b><small>Faut-il une cohérence immédiate, ou une cohérence à terme suffit-elle ?</small></div><div class="step"><b>3</b><small>Quelle fraîcheur le métier attend-il : la nuit, la minute, la seconde ?</small></div><div class="step"><b>4</b><small>Qui lit la donnée, et sous quelle forme : brut ou modèle en étoile ?</small></div></div>
+<table class="cmp md"><thead><tr><th>Besoin</th><th>Choix</th><th>Pourquoi</th></tr></thead><tbody><tr><td>Transactions bancaires</td><td><b>SQL</b>, ACID</td><td>cohérence immédiate exigée</td></tr><tr><td>Catalogue aux attributs variables</td><td>base <b>documentaire</b></td><td>schéma souple, lecture d'un bloc</td></tr><tr><td>Relations complexes (fraude, réseau social)</td><td>base <b>orientée graphe</b></td><td>parcours de liens</td></tr><tr><td>Tableaux de bord métier</td><td><b>entrepôt</b>, schéma en étoile</td><td>agrégations simples et rapides</td></tr><tr><td>Capteurs en temps réel</td><td><b>streaming</b> (Kafka, Spark)</td><td>fraîcheur à la seconde</td></tr><tr><td>Données brutes à garder longtemps</td><td><b>lac</b>, stockage objet</td><td>coût faible, schéma à la lecture</td></tr></tbody></table>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · Big Data : architectures &amp; cloud</div>
+<h2>Chaque chapitre applique les mêmes idées</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Chapitre</th><th><b>1</b></th><th><b>2</b></th><th><b>3</b></th><th><b>4</b></th><th><b>5</b></th><th><b>6</b></th></tr></thead><tbody><tr><td><b>01</b> Big Data</td><td>●</td><td>●</td><td></td><td></td><td></td><td></td></tr><tr><td><b>02</b> NoSQL</td><td></td><td>●</td><td>●</td><td></td><td></td><td></td></tr><tr><td><b>03</b> Cloud</td><td></td><td>●</td><td></td><td></td><td></td><td>●</td></tr><tr><td><b>04</b> BI</td><td></td><td></td><td></td><td>●</td><td></td><td></td></tr><tr><td><b>05</b> Flux</td><td>●</td><td></td><td></td><td>●</td><td>●</td><td></td></tr></tbody></table><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Ce qui revient dans <b>plusieurs chapitres</b> est une idée à comprendre ; ce qui n'apparaît qu'une fois est un <b>exemple</b> d'une de ces idées.</p></div></div></div><table class="cmp md"><thead><tr><th>Panne ou erreur classique</th><th>Idée oubliée</th><th>Ce qui casse</th></tr></thead><tbody><tr><td>Projet Big Data sans cas d'usage</td><td><b>1</b> · Les 5V sont des contraintes, pas un slogan</td><td>un lac que personne n'exploite</td></tr><tr><td>NoSQL à cohérence à terme pour des virements</td><td><b>3</b> · Distribuer oblige à choisir</td><td>un solde faux, même brièvement, est inacceptable</td></tr><tr><td>Rapports sur la base de production</td><td><b>4</b> · Séparer stocker et analyser</td><td>les requêtes lourdes ralentissent l'activité</td></tr><tr><td>Streaming pour un rapport mensuel</td><td><b>5</b> · Batch et flux se combinent</td><td>complexité sans bénéfice</td></tr><tr><td>Ressources cloud jamais éteintes</td><td><b>6</b> · Le cloud loue ce qu'on achetait</td><td>facture qui explose</td></tr><tr><td>Serveur toujours plus gros</td><td><b>2</b> · Grandir en largeur</td><td>limite physique et coût</td></tr></tbody></table></div>
+</section>
+
+
+<!-- ================= 01 · BIG DATA, 5V, MÉTIERS ================= -->
+<section class="slide" data-ch="01" data-sec="01 Big Data" data-title="Big Data : définition, 5V et métiers" data-v="c">
+<div class="kicker">Chapitre 01 · Big Data, 5V et métiers</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Les 5V : cinq contraintes, cinq réponses</h2>
+<table class="cmp md"><tr><th>V</th><th>Ce que c'est</th><th>Exemple</th><th>Réponse technique</th></tr>
+  <tr><td><b>Volume</b></td><td>des quantités qui dépassent une machine</td><td>des pétaoctets de vidéos, des To de logs par jour</td><td>stockage distribué (HDFS, S3), calcul distribué (Spark)</td></tr>
+  <tr><td><b>Vélocité</b></td><td>la vitesse de production et de traitement</td><td>une transaction bancaire validée en millisecondes</td><td>streaming (Kafka, Spark Structured Streaming)</td></tr>
+  <tr><td><b>Variété</b></td><td>structuré, semi-structuré, non structuré</td><td>tables, JSON, logs, images, capteurs</td><td>data lake, NoSQL, schema on read</td></tr>
+  <tr><td><b>Véracité</b></td><td>la fiabilité, la qualité</td><td>capteur défaillant, doublons, fausses informations</td><td>contrôles qualité, quarantaine, gouvernance</td></tr>
+  <tr><td><b>Valeur</b></td><td>la capacité à en tirer une décision</td><td>une part importante des ventes d'Amazon issue de ses recommandations</td><td>BI, data science, IA</td></tr></table>
+<div class="grid g2">
+  <div class="card bad"><span class="lab">Les limites d'un SGBDR classique</span><ul><li><b>Volumétrie</b> : pensé pour des Go ou des To, pas des Po.</li><li><b>Scalabilité</b> : on ajoute de la RAM et du CPU à <b>un</b> serveur (scale-up) jusqu'à un plafond.</li><li><b>Non structuré</b> : des tables, pas des vidéos ou d'énormes JSON.</li></ul></div>
+  <div class="analogy"><b>Analogie — le restaurant.</b> Volume : nourrir 10 000 couverts. Vélocité : les servir en 5 minutes. Variété : végétarien, halal, sans gluten. Véracité : des ingrédients frais. Valeur : des clients qui reviennent. Une seule cuisine, même immense, ne suffit plus.</div>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Big Data, 5V et métiers</div>
+<div class="pqrow"><span class="pq ex">④ Exemples</span> <span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Usages et métiers</h2>
+<div class="grid g3">
+  <div class="card"><span class="lab">Data mining</span><p>Explorer de grands volumes pour en extraire des connaissances : classification, clustering, règles d'association, détection d'anomalies. Ex. : paniers d'achat, fraude.</p></div>
+  <div class="card"><span class="lab">Machine learning</span><p>Des algorithmes qui apprennent des données : <b>supervisé</b> (prédire une étiquette ou une valeur), <b>non supervisé</b> (regrouper), <b>par renforcement</b> (essais-erreurs). Voir <a href="ml.html">Machine Learning</a>.</p></div>
+  <div class="card"><span class="lab">IoT</span><p>Des objets connectés qui émettent en continu : volume et vélocité extrêmes, formats hétérogènes. Ex. : maintenance prédictive, compteurs intelligents.</p></div>
+</div>
+<div class="grid g2">
+  <table class="cmp md"><tr><th>Métier</th><th>Livrable typique</th></tr>
+    <tr><td><b>Data Engineer</b></td><td>pipelines fiables, données propres et disponibles</td></tr>
+    <tr><td><b>Data Analyst</b></td><td>analyses, tableaux de bord, indicateurs</td></tr>
+    <tr><td><b>Data Scientist</b></td><td>modèles prédictifs, expérimentations</td></tr>
+    <tr><td><b>ML Engineer</b></td><td>modèles déployés, surveillés en production</td></tr></table>
+  <div>
+    <div class="trap-list">
+      <div><b>« Big Data = gros volume ».</b> Un flux rapide ou très varié de taille modeste pose aussi un problème Big Data ; et un gros volume inexploité n'apporte aucune valeur.</div>
+      <div><b>Sortir Hadoop pour 50 Go.</b> Une base relationnelle bien indexée ou DuckDB suffit : le distribué a un coût de complexité.</div>
+    </div>
+    <ol class="sum-list">
+      <li>Big Data = données qui dépassent les outils classiques <b>et</b> leur exploitation.</li>
+      <li><b>5V</b> : volume, vélocité, variété, véracité, valeur.</li>
+      <li>SGBDR limité par la volumétrie, le scale-up et le non-structuré (détails : <a href="hadoop.html">Hadoop</a> ch. 01).</li>
+      <li>Quatre métiers complémentaires autour de la donnée.</li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="e">
+<div class="kicker">Chapitre 01 · Big Data, 5V et métiers</div>
+<h2>Fiche — Big Data et 5V</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Définition</span><p>Données dépassant les outils classiques par leur volume, vélocité ou variété + architectures distribuées pour en tirer de la valeur.</p></div>
+  <div class="card"><span class="lab">5V</span><p>Volume (stockage distribué) · Vélocité (streaming) · Variété (lac, NoSQL) · Véracité (qualité) · Valeur (BI, IA).</p></div>
+  <div class="card"><span class="lab">Limites SGBDR</span><p>Volumétrie · scale-up plafonné · données non structurées.</p></div>
+  <div class="card"><span class="lab">Usages</span><p>Data mining · ML (supervisé, non supervisé, renforcement) · IoT · recommandation, fraude, maintenance prédictive.</p></div>
+  <div class="card"><span class="lab">Métiers</span><p>Data Engineer (pipelines) · Analyst (tableaux de bord) · Scientist (modèles) · ML Engineer (mise en production).</p></div>
+  <div class="card"><span class="lab">Réflexe</span><p>Partir des contraintes et du besoin, pas de la technologie.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Big Data, 5V et métiers</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 01</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce que le Big Data, selon vous ?</button><div class="ab"><p>Des données dont le volume, la vitesse ou la diversité dépassent ce qu'une base classique sur un serveur peut traiter, <b>et</b> l'ensemble des architectures distribuées qui permettent de les rendre fiables et exploitables. On le résume par les 5V. L'enjeu n'est pas d'accumuler, mais d'en tirer de la valeur.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Votre projet relève-t-il vraiment du Big Data ?</button><div class="ab"><p>Je le justifie par les V concernés : par exemple la <b>variété</b> (JSON d'API, CSV, logs) et la <b>vélocité</b> (flux de capteurs), même si le volume reste modéré. Et si un V n'est pas en jeu, je l'assume : j'ai dimensionné l'architecture au besoin réel, sans distribuer ce qui n'en avait pas besoin.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quelle différence entre Data Engineer et Data Scientist ?</button><div class="ab"><p>Le Data Engineer construit et fiabilise la <b>chaîne</b> : ingestion, stockage, transformation, qualité, orchestration. Le Data Scientist exploite ces données pour construire des <b>modèles</b>. Le ML Engineer industrialise ces modèles ; l'analyste produit les indicateurs.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Big Data, 5V et métiers</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="01"></div>
+</section>
+
+<!-- ================= 02 · NOSQL ================= -->
+<section class="slide" data-ch="02" data-sec="02 NoSQL" data-title="NoSQL : ACID, BASE, familles et CAP" data-v="c">
+<div class="kicker">Chapitre 02 · NoSQL</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>ACID ou BASE : deux contrats différents</h2>
+<div class="grid g2">
+  <div class="card"><span class="lab">ACID — le contrat relationnel</span><ul><li><b>Atomicité</b> : une transaction s'applique entièrement ou pas du tout (rollback).</li><li><b>Cohérence</b> : on passe d'un état valide à un état valide (contraintes respectées).</li><li><b>Isolation</b> : les transactions concurrentes ne voient pas leurs états intermédiaires.</li><li><b>Durabilité</b> : une transaction validée survit à une panne.</li></ul><p>Idéal pour la banque, la facturation, les stocks.</p></div>
+  <div class="card hl"><span class="lab">BASE — le contrat distribué</span><ul><li><b>Basically Available</b> : le système répond, même si une partie est en panne.</li><li><b>Soft state</b> : l'état peut être transitoire pendant la propagation.</li><li><b>Eventually consistent</b> : toutes les copies finissent par converger.</li></ul><p>Idéal pour un fil d'actualité, des compteurs de vues, un catalogue très consulté.</p></div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Scale-up ou scale-out</span><p><b>Vertical</b> : un serveur plus puissant — simple, mais plafonné et coûteux. <b>Horizontal</b> : plus de serveurs — quasi illimité et résilient (réplication), mais plus complexe et parfois plus latent. Les bases NoSQL sont conçues pour l'horizontal (sharding).</p></div>
+  <div class="analogy"><b>Analogie — le virement et le « j'aime ».</b> Un virement doit être exact immédiatement (ACID). Un compteur de « j'aime » peut afficher 1 203 ici et 1 205 ailleurs pendant une seconde (BASE) : personne n'en souffre, et le service reste disponible.</div>
+</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · NoSQL</div>
+<div class="pqrow"><span class="pq">② Quoi</span> <span class="pq how">③ Comment</span></div>
+<h2>Les quatre familles NoSQL</h2>
+<div class="grid g2">
+  <table class="cmp md"><tr><th>Famille</th><th>Modèle</th><th>Exemples</th><th>Cas d'usage</th></tr>
+    <tr><td><b>Clé-valeur</b></td><td>une clé → une valeur opaque</td><td>Redis, DynamoDB</td><td>cache, sessions, compteurs</td></tr>
+    <tr><td><b>Document</b></td><td>documents JSON/BSON imbriqués</td><td>MongoDB, Couchbase</td><td>catalogue, profils, contenus</td></tr>
+    <tr><td><b>Colonnes larges</b></td><td>lignes à colonnes variables, regroupées en familles</td><td>Cassandra, HBase</td><td>séries temporelles, IoT, très forte écriture</td></tr>
+    <tr><td><b>Graphe</b></td><td>nœuds et relations</td><td>Neo4j</td><td>réseaux sociaux, recommandation, fraude en réseau</td></tr></table>
+  <div style="display:grid;gap:1vh">
+    <div class="card"><span class="lab">Requêtes propres à chaque modèle</span><p>Pas de SQL universel : filtres JSON et pipelines d'agrégation pour MongoDB, CQL pour Cassandra, Cypher pour Neo4j, commandes GET/SET pour Redis. On modélise <b>selon les requêtes</b>, sans jointures ni clés étrangères.</p></div>
+    <div class="card"><span class="lab">Approfondir</span><p>Document : <a href="mongodb.html">MongoDB</a>. Colonnes : HBase dans <a href="hadoop.html">Hadoop</a> ch. 07. Relationnel : <a href="sql.html">SQL</a> et <a href="merise.html">Merise</a>.</p></div>
+  </div>
+</div>
+<div class="sch free"><span class="cap">Les quatre modèles en un coup d'œil</span>
+<svg class="dg" viewBox="0 0 960 130" role="img" aria-label="Clé-valeur, document imbriqué, colonnes larges, graphe de nœuds">
+  <text class="a" x="10" y="18">CLÉ-VALEUR</text>
+  <rect class="b f1" x="10" y="30" width="80" height="26" rx="4"/><text class="s tc" x="50" y="48">user:42</text><rect class="b f2" x="100" y="30" width="110" height="26" rx="4"/><text class="s tc" x="155" y="48">session…</text>
+  <rect class="b f1" x="10" y="64" width="80" height="26" rx="4"/><text class="s tc" x="50" y="82">cart:42</text><rect class="b f2" x="100" y="64" width="110" height="26" rx="4"/><text class="s tc" x="155" y="82">[3 items]</text>
+  <text class="a" x="250" y="18">DOCUMENT</text>
+  <rect class="b f2" x="250" y="30" width="200" height="90" rx="6"/><text class="s" x="262" y="50">{ nom: "TV",</text><text class="s" x="262" y="70">  specs: {…},</text><text class="s" x="262" y="90">  avis: [ … ] }</text>
+  <text class="a" x="490" y="18">COLONNES LARGES</text>
+  <rect class="b f3" x="490" y="30" width="60" height="26" rx="4"/><text class="s tc" x="520" y="48">row1</text><rect class="b f1" x="555" y="30" width="55" height="26" rx="4"/><rect class="b f1" x="615" y="30" width="55" height="26" rx="4"/><rect class="b f1" x="675" y="30" width="55" height="26" rx="4"/>
+  <rect class="b f3" x="490" y="64" width="60" height="26" rx="4"/><text class="s tc" x="520" y="82">row2</text><rect class="b f1" x="555" y="64" width="55" height="26" rx="4"/>
+  <text class="a" x="770" y="18">GRAPHE</text>
+  <circle class="b f4" cx="800" cy="60" r="16"/><circle class="b f4" cx="900" cy="45" r="16"/><circle class="b f4" cx="870" cy="105" r="16"/>
+  <path class="e" d="M816 56 L884 48"/><path class="e" d="M812 72 L856 98"/><path class="e" d="M896 61 L878 90"/>
+</svg></div>
+</section>
+
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · NoSQL</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Le théorème CAP et le choix SQL / NoSQL</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <div class="card hl"><span class="lab">Théorème CAP (Brewer, 2000)</span><p>Un système distribué ne peut garantir à la fois <b>C</b>ohérence (toutes les lectures voient la dernière écriture), <b>D</b>isponibilité (<i>Availability</i> : toute requête reçoit une réponse) et <b>T</b>olérance au partitionnement (<b>P</b> : il continue malgré une coupure réseau). Comme les coupures réseau <b>arrivent</b>, P est imposé : <b>en cas de partition</b>, on choisit entre <b>CP</b> (refuser de répondre plutôt que répondre faux — MongoDB, HBase) et <b>AP</b> (répondre, quitte à être périmé — Cassandra, DynamoDB par défaut).</p></div>
+    <div class="card"><span class="lab">Choisir</span><p><b>Relationnel</b> : données très liées, contraintes d'intégrité, transactions multi-tables, requêtes ad hoc. <b>NoSQL</b> : schéma qui varie, très forte charge, répartition horizontale, modèle naturel (document, graphe). Beaucoup de SI combinent les deux (<b>persistance polyglotte</b>).</p></div>
+  </div>
+  <div style="display:grid;gap:1vh">
+    <div class="trap-list">
+      <div><b>« NoSQL = sans SQL ».</b> Not <b>Only</b> SQL : plusieurs moteurs NoSQL proposent un langage proche du SQL, et PostgreSQL stocke du JSON.</div>
+      <div><b>« NoSQL = pas de transactions ».</b> Le document est atomique et MongoDB propose des transactions multi-documents ; c'est la cohérence globale distribuée qui coûte.</div>
+      <div><b>« CAP : on choisit 2 lettres sur 3 ».</b> Le choix C/A ne se pose qu'en cas de partition ; sans partition, on peut avoir les deux.</div>
+      <div><b>Le NoSQL n'a pas de schéma.</b> Il est dans le code : sans discipline (validation), les types divergent.</div>
+    </div>
+    <ol class="sum-list">
+      <li>ACID (exactitude immédiate) vs BASE (disponibilité, cohérence à terme).</li>
+      <li>4 familles : clé-valeur, document, colonnes larges, graphe.</li>
+      <li>CAP : face à une partition, CP ou AP.</li>
+      <li>Choix guidé par les requêtes, la cohérence exigée et l'échelle.</li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="e">
+<div class="kicker">Chapitre 02 · NoSQL</div>
+<h2>Fiche — NoSQL</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">ACID</span><p>Atomicité · Cohérence · Isolation · Durabilité. Transactions exactes, SGBDR.</p></div>
+  <div class="card"><span class="lab">BASE</span><p>Basically Available · Soft state · Eventually consistent. Disponibilité d'abord.</p></div>
+  <div class="card"><span class="lab">Familles</span><p>Clé-valeur (Redis) · document (MongoDB) · colonnes larges (Cassandra, HBase) · graphe (Neo4j).</p></div>
+  <div class="card"><span class="lab">CAP</span><p>Partition inévitable → CP (MongoDB, HBase) ou AP (Cassandra).</p></div>
+  <div class="card"><span class="lab">Scalabilité</span><p>Verticale (un serveur plus gros, plafond) vs horizontale (plus de serveurs, sharding, réplication).</p></div>
+  <div class="card"><span class="lab">Choix</span><p>Relationnel : intégrité, transactions, ad hoc. NoSQL : schéma variable, charge, horizontal. Souvent les deux.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · NoSQL</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 02</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Pourquoi avoir choisi une base NoSQL plutôt que relationnelle (ou l'inverse) ?</button><div class="ab"><p>Je pars des <b>accès</b> et des <b>contraintes</b> : si les données sont très liées, avec des transactions et des contraintes d'intégrité, le relationnel s'impose. Si le schéma varie d'un enregistrement à l'autre, que l'on lit l'objet entier et qu'il faut monter en charge horizontalement, un modèle document est plus naturel. Je cite la cohérence exigée (CAP) et le coût d'exploitation.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Expliquez le théorème CAP.</button><div class="ab"><p>Dans un système distribué, lors d'une coupure réseau entre nœuds, on ne peut garantir à la fois que toutes les lectures sont à jour (C) et que toutes les requêtes reçoivent une réponse (A). Les partitions étant inévitables, on choisit : CP refuse de répondre plutôt que de répondre faux, AP répond avec une donnée éventuellement périmée.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Citez les familles NoSQL avec un cas d'usage chacune.</button><div class="ab"><p>Clé-valeur (Redis) pour un cache ou des sessions ; document (MongoDB) pour un catalogue produit ; colonnes larges (Cassandra, HBase) pour des séries temporelles à très forte écriture ; graphe (Neo4j) pour des recommandations ou la détection de réseaux de fraude.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce que la cohérence à terme ?</button><div class="ab"><p>Après une écriture, les répliques ne sont pas toutes mises à jour immédiatement : pendant un court délai, une lecture peut renvoyer l'ancienne valeur, mais toutes convergent vers la même. C'est le prix de la disponibilité et de la latence faible dans un système réparti.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · NoSQL</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="02"></div>
+</section>
+
+<!-- ================= 03 · CLOUD ================= -->
+<section class="slide" data-ch="03" data-sec="03 Cloud" data-title="Le Big Data dans le cloud" data-v="c">
+<div class="kicker">Chapitre 03 · Le Big Data dans le cloud</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>De l'achat de serveurs à la location à la minute</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <table class="cmp md"><tr><th></th><th>On-premise</th><th>Cloud</th></tr>
+      <tr><td>Déploiement</td><td>semaines (achat, installation)</td><td>minutes</td></tr>
+      <tr><td>Coût</td><td>investissement initial (CapEx)</td><td>paiement à l'usage (OpEx)</td></tr>
+      <tr><td>Capacité</td><td>dimensionnée pour le pic</td><td>ajustée à la demande</td></tr>
+      <tr><td>Maintenance</td><td>équipe interne</td><td>infrastructure gérée par le fournisseur</td></tr></table>
+    <div class="card"><span class="lab">Exemple</span><p>Analyser 50 To de logs : en interne, acheter et configurer une vingtaine de serveurs prend des semaines ; sur EMR ou Dataproc, un cluster Spark est prêt en quelques minutes, puis <b>détruit</b> après le traitement.</p></div>
+  </div>
+  <div style="display:grid;gap:1vh">
+    <div class="card hl"><span class="lab">Les 4 apports pour la data</span><ul><li><b>Scalabilité</b> : ajouter des nœuds ou du stockage en quelques minutes.</li><li><b>Élasticité</b> : la capacité suit la charge, à la hausse <b>et à la baisse</b> ; on ne paie que ce qui tourne.</li><li><b>Services managés</b> : le fournisseur gère correctifs, matériel, haute disponibilité.</li><li><b>Accès global</b> : des équipes de plusieurs pays sur les mêmes données.</li></ul></div>
+    <div class="analogy"><b>Analogie — la voiture.</b> On-premise, c'est acheter une voiture : elle coûte même au garage. Le cloud, c'est la location ou le VTC : on paie le trajet, on choisit la taille du véhicule à chaque fois — mais un abonnement oublié coûte cher.</div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Le Big Data dans le cloud</div>
+<div class="pqrow"><span class="pq how">③ Comment</span></div>
+<h2>Types de cloud et architecture type</h2>
+<div class="grid g3">
+  <div class="card"><span class="lab">Cloud public</span><p>AWS, Azure, GCP : très flexible, rien à gérer, payé à l'usage. Limites : dépendance au fournisseur (<b>vendor lock-in</b>), moins de contrôle physique.</p></div>
+  <div class="card"><span class="lab">Cloud privé</span><p>OpenStack, VMware, dans son datacenter ou chez un hébergeur dédié : contrôle total, adapté aux données sensibles (banque, santé). Limites : coût, capacité à anticiper.</p></div>
+  <div class="card"><span class="lab">Cloud hybride</span><p>Données sensibles dans le privé, calcul massif dans le public. Limite : intégration et synchronisation complexes. <b>Multi-cloud</b> : plusieurs fournisseurs publics.</p></div>
+</div>
+<div class="sch free"><span class="cap">Architecture Big Data type dans le cloud</span>
+<svg class="dg" viewBox="0 0 960 150" role="img" aria-label="Ingestion Kafka ou Kinesis, stockage S3 ou BigQuery, traitement Spark sur EMR ou Dataproc, visualisation Power BI ou Looker">
+  <rect class="b f3" x="10" y="30" width="210" height="80" rx="10"/><text class="t tc" x="115" y="60" style="font-size:14px">Ingestion</text><text class="s tc" x="115" y="82">Kafka · Kinesis</text><text class="s tc" x="115" y="100">batch ou streaming</text>
+  <rect class="b f1" x="250" y="30" width="210" height="80" rx="10"/><text class="t tc" x="355" y="60" style="font-size:14px">Stockage</text><text class="s tc" x="355" y="82">S3 · Blob · GCS</text><text class="s tc" x="355" y="100">BigQuery · Snowflake</text>
+  <rect class="b ok" x="490" y="30" width="210" height="80" rx="10"/><text class="t tc" x="595" y="60" style="font-size:14px">Traitement</text><text class="s tc" x="595" y="82">Spark : EMR, Dataproc</text><text class="s tc" x="595" y="100">Databricks</text>
+  <rect class="b f4" x="730" y="30" width="220" height="80" rx="10"/><text class="t tc" x="840" y="60" style="font-size:14px">Analyse</text><text class="s tc" x="840" y="82">Power BI · Tableau</text><text class="s tc" x="840" y="100">Looker · modèles IA</text>
+  <path class="e" d="M220 70 H246"/><path class="e" d="M460 70 H486"/><path class="e" d="M700 70 H726"/>
+  <text class="s" x="10" y="140">Transverse : IAM, chiffrement, orchestration (Airflow), suivi des coûts</text>
+
+  <use class="il" href="#il-exchange" x="18" y="38" width="32" height="28"/><use class="il" href="#il-cloud" x="258" y="38" width="34" height="26"/><use class="il" href="#il-gear" x="498" y="38" width="30" height="30"/><use class="il" href="#il-chart" x="738" y="38" width="32" height="28"/>
+</svg></div>
+<div class="card"><span class="lab">Accéder aux machines</span><p><b>SSH</b> (terminal distant, port 22, clé plutôt que mot de passe) · <b>SFTP</b> (transfert chiffré ; <b>FTP</b> est en clair, à éviter) · <b>RDP</b> (bureau Windows distant). Outils : PuTTY, FileZilla. On se connecte à l'<b>endpoint</b> (IP ou nom DNS) de l'instance.</p></div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Le Big Data dans le cloud</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Bonnes pratiques : sécurité, coût, performance, dépendance</h2>
+<div class="grid g2">
+  <div class="card"><span class="lab">Les 4 vigilances</span><ul><li><b>Sécurité</b> : IAM au moindre privilège, chiffrement au repos et en transit, journaux d'accès. Un bucket public mal configuré expose des millions de clients.</li><li><b>Coût</b> : tableaux de bord de consommation, arrêt des clusters inactifs, instances <b>spot</b>/préemptibles pour les calculs interruptibles.</li><li><b>Performance</b> : formats colonnaires (Parquet, ORC), partitionnement, cluster dimensionné (trop petit = lent, trop grand = cher).</li><li><b>Dépendance</b> : formats ouverts, outils portables, éventuellement multi-cloud.</li></ul><p>Modèles IaaS / PaaS / serverless, responsabilité partagée, FinOps : voir <a href="airflow.html">Airflow &amp; S3</a> ch. 06.</p></div>
+  <div>
+    <div class="trap-list">
+      <div><b>« Le cloud coûte toujours moins cher ».</b> Pour une charge stable 24 h/24, l'on-premise peut l'être ; le cloud gagne sur les charges variables et ponctuelles.</div>
+      <div><b>« La sécurité, c'est le fournisseur ».</b> Il sécurise l'infrastructure ; la configuration des accès et des données reste à nous.</div>
+      <div><b>Laisser un cluster allumé le week-end.</b> La facture continue : arrêt automatique, clusters éphémères.</div>
+      <div><b>Confondre scalabilité et élasticité.</b> Pouvoir grandir ≠ s'ajuster automatiquement à la charge, y compris à la baisse.</div>
+    </div>
+    <ol class="sum-list">
+      <li>Cloud = location à la demande : scalabilité, élasticité, services managés.</li>
+      <li>Public, privé, hybride selon la sensibilité et le coût.</li>
+      <li>Chaîne type : ingestion → stockage → traitement → analyse.</li>
+      <li>Sans gouvernance, les coûts et les fuites explosent.</li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="e">
+<div class="kicker">Chapitre 03 · Le Big Data dans le cloud</div>
+<h2>Fiche — Cloud et données</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Apports</span><p>Scalabilité · élasticité (paiement à l'usage) · services managés · accès global.</p></div>
+  <div class="card"><span class="lab">Types</span><p>Public (flexible, lock-in) · privé (contrôle, coût) · hybride (les deux, complexe) · multi-cloud.</p></div>
+  <div class="card"><span class="lab">Chaîne</span><p>Kafka/Kinesis → S3/BigQuery → Spark (EMR, Dataproc, Databricks) → Power BI/Looker.</p></div>
+  <div class="card"><span class="lab">Vigilances</span><p>IAM et chiffrement · arrêt des clusters, spot · Parquet et partitions · formats ouverts.</p></div>
+  <div class="card"><span class="lab">Accès</span><p>SSH (22) · SFTP (chiffré) · FTP (en clair, à éviter) · RDP (Windows).</p></div>
+  <div class="card"><span class="lab">Coût</span><p>CapEx → OpEx ; le cloud gagne sur les charges variables.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Le Big Data dans le cloud</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 03</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Pourquoi le cloud est-il adapté au Big Data ?</button><div class="ab"><p>Les traitements Big Data sont souvent <b>ponctuels et massifs</b> : le cloud permet de créer un cluster de cent nœuds pour deux heures, puis de le détruire, en ne payant que l'usage. Le stockage objet est quasi illimité, les services managés évitent l'administration, et l'on sépare stockage et calcul.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Cloud public, privé ou hybride : que recommanderiez-vous à une banque ?</button><div class="ab"><p>Souvent un <b>hybride</b> : les données les plus sensibles et réglementées dans un environnement privé ou un cloud qualifié (SecNumCloud en France), et les calculs analytiques sur données anonymisées ou pseudonymisées dans un cloud public. Le choix dépend de la réglementation, de la sensibilité et du coût.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment maîtrisez-vous les coûts d'une plateforme cloud ?</button><div class="ab"><p>Clusters éphémères et arrêt automatique, instances spot pour les traitements interruptibles, stockage en Parquet partitionné pour réduire les données scannées, lifecycle policies vers des classes froides, budgets et alertes de consommation, étiquetage des ressources par projet.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce que le vendor lock-in et comment l'éviter ?</button><div class="ab"><p>La dépendance à un fournisseur qui rend la migration coûteuse (services propriétaires, formats fermés, frais de sortie des données). On le limite avec des formats ouverts (Parquet, Iceberg), des outils portables (Spark, Airflow, Kubernetes), l'infrastructure as code et une abstraction des services propriétaires.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Le Big Data dans le cloud</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="03"></div>
+</section>
+
+<!-- ================= 04 · BI ================= -->
+<section class="slide" data-ch="04" data-sec="04 BI" data-title="Business Intelligence et modélisation décisionnelle" data-v="c">
+<div class="kicker">Chapitre 04 · BI et décisionnel</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Lac, entrepôt, datamart : trois rôles</h2>
+<div class="grid g3">
+  <div class="card"><span class="lab">Data lake</span><p>Stocke <b>tout, brut</b>, dans tous les formats, à bas coût (S3, ADLS). Schéma à la lecture. Pour l'exploration, la data science, l'historique complet.</p></div>
+  <div class="card hl"><span class="lab">Data warehouse (entrepôt)</span><p>Données <b>intégrées, nettoyées, historisées</b>, modélisées pour l'analyse. Schéma à l'écriture, SQL rapide. Ex. : Snowflake, BigQuery, Redshift.</p></div>
+  <div class="card"><span class="lab">Datamart</span><p>Un <b>sous-ensemble</b> de l'entrepôt dédié à un métier (marketing, finance) : plus petit, plus simple, plus rapide.</p></div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">OLTP vs OLAP</span><p><b>OLTP</b> (transactionnel) : nombreuses petites écritures, données normalisées (3FN), l'application. <b>OLAP</b> (analytique) : grosses lectures agrégées sur l'historique, données dénormalisées, la BI. On ne fait pas d'analytique lourde sur la base de production.</p></div>
+  <div class="card"><span class="lab">ETL ou ELT</span><p><b>ETL</b> : on transforme <b>avant</b> de charger dans l'entrepôt (outil dédié). <b>ELT</b> : on charge brut puis on transforme <b>dans</b> la plateforme (lac, entrepôt cloud puissant, dbt) — l'approche moderne du Big Data.</p></div>
+</div>
+<div class="analogy"><b>Analogie — la bibliothèque.</b> Le lac est la réserve où l'on entasse tout ce qui arrive. L'entrepôt est la bibliothèque classée et cataloguée. Le datamart est le rayon « jeunesse » : seulement ce qu'un public précis consulte.</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · BI et décisionnel</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Faits et dimensions : le schéma en étoile</h2>
+<div class="sch free"><span class="cap">Schéma en étoile des ventes</span>
+<svg class="dg" viewBox="0 0 960 200" role="img" aria-label="Table de faits ventes au centre reliée aux dimensions date, magasin, produit et client">
+  <rect class="b ok" x="380" y="60" width="200" height="90" rx="10"/><text class="t tc" x="480" y="85" style="font-size:14px">fait_ventes</text><text class="s tc" x="480" y="106">id_date · id_mag · id_prod</text><text class="s tc" x="480" y="124">quantité · montant</text>
+  <rect class="b f1" x="60" y="20" width="200" height="56" rx="8"/><text class="s tc" x="160" y="44">dim_date</text><text class="s tc" x="160" y="62">jour, mois, trimestre</text>
+  <rect class="b f2" x="60" y="130" width="200" height="56" rx="8"/><text class="s tc" x="160" y="154">dim_magasin</text><text class="s tc" x="160" y="172">ville, région</text>
+  <rect class="b f3" x="700" y="20" width="200" height="56" rx="8"/><text class="s tc" x="800" y="44">dim_produit</text><text class="s tc" x="800" y="62">nom, catégorie</text>
+  <rect class="b f4" x="700" y="130" width="200" height="56" rx="8"/><text class="s tc" x="800" y="154">dim_client</text><text class="s tc" x="800" y="172">segment, âge</text>
+  <path class="e" d="M260 48 L376 85"/><path class="e" d="M260 158 L376 125"/><path class="e" d="M696 48 L584 85"/><path class="e" d="M696 158 L584 125"/>
+</svg></div>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <div class="card"><span class="lab">Table de faits</span><p>Les <b>événements mesurés</b> (une vente) : des <b>mesures</b> numériques additionnables (quantité, montant) et des clés vers les dimensions. Très longue. Sa <b>granularité</b> (une ligne = une vente ? un jour par magasin ?) se décide en premier.</p></div>
+    <div class="card"><span class="lab">Tables de dimensions</span><p>Les <b>axes d'analyse</b> : qui, quoi, où, quand. Descriptives, dénormalisées, relativement courtes.</p></div>
+  </div>
+  <div class="code"><div class="codeh"><span>sql · une question métier</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">SELECT</span> d.trimestre, m.region, <span class="kw">SUM</span>(f.montant) <span class="kw">AS</span> ca
+<span class="kw">FROM</span> fait_ventes f
+<span class="kw">JOIN</span> dim_date    d <span class="kw">ON</span> f.id_date = d.id_date
+<span class="kw">JOIN</span> dim_magasin m <span class="kw">ON</span> f.id_mag  = m.id_mag
+<span class="kw">WHERE</span> d.annee = 2026
+<span class="kw">GROUP BY</span> d.trimestre, m.region;
+<span class="c">-- une seule jointure par axe : simple et rapide</span></code></pre></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · BI et décisionnel</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Étoile, flocon, constellation — et les outils</h2>
+<div class="grid g3">
+  <div class="card"><span class="lab">Étoile</span><p>Faits au centre, dimensions <b>dénormalisées</b> autour. Requêtes simples et rapides, un peu de redondance. Le choix par défaut.</p></div>
+  <div class="card"><span class="lab">Flocon</span><p>Dimensions <b>normalisées</b> en sous-tables (produit → catégorie → rayon). Moins de redondance, plus de jointures, plus lent.</p></div>
+  <div class="card"><span class="lab">Constellation (galaxie)</span><p>Plusieurs tables de faits (ventes, stocks) partagent des <b>dimensions conformes</b> (date, produit) : analyses croisées entre processus métier.</p></div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Outils de BI</span><p><b>Power BI</b> (Microsoft, très répandu en entreprise — voir <a href="powerbi.html">Power BI</a>), <b>Tableau</b>, <b>Qlik Sense</b>, <b>Looker</b>, Superset et Metabase en open source. Ils se connectent à l'entrepôt ou à la couche Gold et produisent des tableaux de bord et des <b>KPI</b>.</p></div>
+  <div>
+    <div class="trap-list">
+      <div><b>Normaliser l'entrepôt comme une base applicative.</b> L'analytique préfère la dénormalisation (étoile) : moins de jointures.</div>
+      <div><b>Mélanger des granularités dans une même table de faits.</b> Les sommes deviennent fausses.</div>
+      <div><b>Brancher la BI sur la base de production.</b> On ralentit l'application : passer par l'entrepôt ou une réplique.</div>
+    </div>
+    <ol class="sum-list">
+      <li>Lac (brut, tout) · entrepôt (modélisé, fiable) · datamart (par métier).</li>
+      <li>OLTP normalisé vs OLAP dénormalisé ; ETL vs ELT.</li>
+      <li>Faits (mesures) + dimensions (axes) ; granularité d'abord.</li>
+      <li>Étoile par défaut, flocon, constellation.</li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="e">
+<div class="kicker">Chapitre 04 · BI et décisionnel</div>
+<h2>Fiche — BI et modélisation décisionnelle</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Stockages</span><p>Data lake (brut, tous formats) · data warehouse (intégré, historisé, SQL) · datamart (sous-ensemble métier).</p></div>
+  <div class="card"><span class="lab">OLTP / OLAP</span><p>Transactions courtes, normalisé vs analyses agrégées, dénormalisé.</p></div>
+  <div class="card"><span class="lab">ETL / ELT</span><p>Transformer avant de charger vs charger brut puis transformer dans la plateforme.</p></div>
+  <div class="card"><span class="lab">Faits / dimensions</span><p>Faits : mesures + clés, granularité. Dimensions : qui, quoi, où, quand.</p></div>
+  <div class="card"><span class="lab">Modèles</span><p>Étoile (dénormalisé, rapide) · flocon (normalisé) · constellation (faits multiples, dimensions conformes).</p></div>
+  <div class="card"><span class="lab">Outils</span><p>Power BI · Tableau · Qlik · Looker · Superset.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · BI et décisionnel</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 04</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Quelle différence entre data lake et data warehouse ?</button><div class="ab"><p>Le lac stocke tout, brut, dans tous les formats, à bas coût, avec un schéma appliqué à la lecture : idéal pour l'historique et l'exploration. L'entrepôt contient des données nettoyées, intégrées et modélisées (étoile), avec un schéma imposé à l'écriture : idéal pour une BI fiable et rapide. Le lakehouse cherche à réunir les deux.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi un schéma en étoile plutôt qu'un modèle normalisé ?</button><div class="ab"><p>Parce que l'usage est analytique : des lectures massives et agrégées. L'étoile limite les jointures (une par axe d'analyse), reste lisible par les métiers et les outils de BI, et accepte une redondance dans les dimensions qui ne gêne pas puisqu'on écrit peu. Le modèle normalisé (3FN) est fait pour des écritures transactionnelles cohérentes.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">ETL ou ELT : lequel avez-vous utilisé et pourquoi ?</button><div class="ab"><p>Dans une architecture moderne, plutôt <b>ELT</b> : on charge les données brutes dans le lac (Bronze), puis on transforme dans la plateforme avec Spark ou SQL, ce qui garde l'historique brut et permet de rejouer. L'ETL classique reste pertinent quand la cible impose un format strict ou qu'il faut filtrer des données sensibles avant chargement.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce que la granularité d'une table de faits ?</button><div class="ab"><p>Le niveau de détail d'une ligne : une ligne par ticket, par article vendu, ou par jour et par magasin. On la fixe en premier, car elle détermine les questions possibles et la justesse des agrégats ; on ne mélange jamais deux granularités dans la même table.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · BI et décisionnel</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="04"></div>
+</section>
+
+<!-- ================= 05 · FLUX, MÉDAILLON ================= -->
+<section class="slide" data-ch="05" data-sec="05 Flux" data-title="Flux de données, médaillon et synthèse" data-v="c">
+<div class="kicker">Chapitre 05 · Flux de données et médaillon</div>
+<div class="pqrow"><span class="pq">② Quoi</span> <span class="pq how">③ Comment</span></div>
+<h2>Le pipeline de raffinement</h2>
+<div class="sch free"><span class="cap">Architecture médaillon : la qualité augmente à chaque couche</span>
+<svg class="dg" viewBox="0 0 960 170" role="img" aria-label="Sources vers Bronze brut, Silver nettoyé, Gold agrégé, puis BI et ML">
+  <rect class="b f3" x="10" y="55" width="130" height="60" rx="8"/><text class="s tc" x="75" y="80">applis, IoT,</text><text class="s tc" x="75" y="98">API, bases</text>
+  <rect class="b f1" x="180" y="40" width="200" height="90" rx="10"/><text class="t tc" x="280" y="68" style="font-size:14px">Bronze</text><text class="s tc" x="280" y="90">brut, tel qu'ingéré</text><text class="s tc" x="280" y="108">historique, rejouable</text>
+  <rect class="b f2" x="410" y="40" width="200" height="90" rx="10"/><text class="t tc" x="510" y="68" style="font-size:14px">Silver</text><text class="s tc" x="510" y="90">nettoyé, dédoublonné</text><text class="s tc" x="510" y="108">typé, validé</text>
+  <rect class="b ok" x="640" y="40" width="190" height="90" rx="10"/><text class="t tc" x="735" y="68" style="font-size:14px">Gold</text><text class="s tc" x="735" y="90">agrégé, modélisé</text><text class="s tc" x="735" y="108">étoile, KPI</text>
+  <rect class="b f4" x="860" y="55" width="90" height="60" rx="8"/><text class="s tc" x="905" y="80">BI</text><text class="s tc" x="905" y="98">ML</text>
+  <path class="e" d="M140 85 H176"/><path class="e" d="M380 85 H406"/><path class="e" d="M610 85 H636"/><path class="e" d="M830 85 H856"/>
+  <text class="s" x="180" y="160">minerai extrait → minerai raffiné → carburant prêt à l'emploi</text>
+
+  <use class="il" href="#il-sensor" x="60" y="20" width="30" height="30"/><use class="il" href="#il-database" x="188" y="48" width="24" height="28"/><use class="il" href="#il-funnel" x="418" y="48" width="26" height="28"/><use class="il" href="#il-chart" x="648" y="48" width="28" height="26"/><use class="il" href="#il-chart" x="890" y="20" width="30" height="28"/>
+</svg></div>
+<div class="grid g3">
+  <div class="card"><span class="lab">Bronze (raw)</span><p>Clics, logs, JSON d'API tels quels, souvent convertis en Parquet. On garde tout pour <b>rejouer</b>.</p></div>
+  <div class="card"><span class="lab">Silver (refined)</span><p>Dédoublonnage, schémas standardisés, dates normalisées, contrôles (non-null, types, valeurs aberrantes), jointures avec les référentiels. La base de travail des Data Engineers.</p></div>
+  <div class="card"><span class="lab">Gold (curated)</span><p>Tables prêtes pour un usage : <code>ventes_mensuelles_par_region</code>, <code>clients_a_risque</code>, souvent en étoile. Consommées par les métiers.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Flux de données et médaillon</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Batch, streaming, et les architectures qui les combinent</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <table class="cmp md"><tr><th></th><th>Batch</th><th>Streaming</th></tr>
+      <tr><td>Principe</td><td>accumuler puis traiter un lot</td><td>traiter chaque événement à l'arrivée</td></tr>
+      <tr><td>Latence</td><td>minutes à jours</td><td>millisecondes à secondes</td></tr>
+      <tr><td>Coût, complexité</td><td>faibles, reproductible</td><td>élevés, cluster permanent</td></tr>
+      <tr><td>Outils</td><td>Spark batch, Airflow</td><td>Kafka, Spark Streaming, Flink</td></tr>
+      <tr><td>Exemple</td><td>rapport des ventes de la veille</td><td>blocage d'une fraude</td></tr></table>
+    <div class="card"><span class="lab">Ils se complètent</span><p>Architecture hybride courante : ingestion en <b>streaming</b> vers Bronze (Kafka), puis <b>batch</b> nocturne pour Silver et Gold, et un traitement temps réel seulement pour les cas qui l'exigent.</p></div>
+  </div>
+  <div style="display:grid;gap:1vh">
+    <div class="card hl"><span class="lab">Lambda et Kappa (culture d'architecte)</span><p><b>Lambda</b> : deux chemins en parallèle — une couche <b>batch</b> exacte et complète, une couche <b>vitesse</b> (speed) approximative et récente, fusionnées par une couche de service. Inconvénient : deux codes à maintenir. <b>Kappa</b> : un <b>seul</b> chemin streaming ; pour recalculer, on <b>rejoue</b> le journal (Kafka). Plus simple, si tout s'exprime en flux.</p></div>
+    <div class="card"><span class="lab">Exemple e-commerce</span><p><b>Bronze</b> : événements (clic, panier, commande) arrivés par Kafka, écrits en Parquet sur S3. <b>Silver</b> : Spark, chaque nuit, supprime les doublons, valide les prix, joint les référentiels → <code>orders_clean</code>. <b>Gold</b> : <code>ventes_jour_categorie_region</code> pour la BI, <code>clients_dernier_achat</code> pour le marketing. Une détection de fraude lit le flux en direct.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Flux de données et médaillon</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Synthèse du cours</span></div>
+<h2>Synthèse : choisir une architecture</h2>
+<div class="grid g2">
+  <div class="steps">
+    <div><b>1. Le besoin</b> — quelle décision, quel utilisateur, quelle latence acceptable ?</div>
+    <div><b>2. Les V</b> — volume, vélocité, variété, véracité : lesquels sont réellement en jeu ?</div>
+    <div><b>3. Le stockage</b> — relationnel, NoSQL (quelle famille, CP ou AP), lac, entrepôt.</div>
+    <div><b>4. Le traitement</b> — batch par défaut, streaming si la latence a un coût ; Spark si le volume l'exige.</div>
+    <div><b>5. L'organisation</b> — Bronze, Silver, Gold ; étoile pour la BI.</div>
+    <div><b>6. L'hébergement</b> — cloud public, privé, hybride ; sécurité et coûts.</div>
+  </div>
+  <div>
+    <div class="trap-list">
+      <div><b>Modifier Bronze.</b> On perd la capacité de rejouer : on corrige en Silver.</div>
+      <div><b>Tout faire en streaming.</b> Plus cher et plus complexe sans bénéfice si le rapport est lu le lendemain.</div>
+      <div><b>Un Gold « fourre-tout ».</b> Chaque table Gold répond à un usage précis.</div>
+    </div>
+    <ol class="sum-list">
+      <li>Médaillon : Bronze brut, Silver propre, Gold prêt à l'emploi.</li>
+      <li>Batch et streaming se combinent ; Lambda (deux chemins) vs Kappa (un flux rejouable).</li>
+      <li>Une architecture se <b>justifie</b> par le besoin et les contraintes, brique par brique.</li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="e">
+<div class="kicker">Chapitre 05 · Flux de données et médaillon</div>
+<h2>Fiche — Flux et médaillon</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Pipeline</span><p>Collecte → stockage brut → transformation → diffusion.</p></div>
+  <div class="card"><span class="lab">Bronze</span><p>Brut, tel qu'ingéré, historisé, rejouable.</p></div>
+  <div class="card"><span class="lab">Silver</span><p>Dédoublonné, typé, validé, joint aux référentiels.</p></div>
+  <div class="card"><span class="lab">Gold</span><p>Agrégé, modélisé (étoile), une table par usage.</p></div>
+  <div class="card"><span class="lab">Batch / streaming</span><p>Lots, latence minutes-jours, simple vs événement par événement, ms, coûteux. Souvent combinés.</p></div>
+  <div class="card"><span class="lab">Lambda / Kappa</span><p>Lambda : batch + speed fusionnés (deux codes). Kappa : un flux unique, recalcul par rejeu du journal.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · Flux de données et médaillon</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — synthèse</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Expliquez l'architecture médaillon.</button><div class="ab"><p>Une organisation du lac en trois couches de qualité croissante. <b>Bronze</b> garde les données brutes telles qu'ingérées, pour l'historique et le rejeu. <b>Silver</b> contient des données nettoyées, dédoublonnées, typées et validées. <b>Gold</b> expose des tables agrégées et modélisées pour la BI et le ML. Chaque passage est un traitement contrôlé et reproductible.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Architecture Lambda ou Kappa ?</button><div class="ab"><p>Lambda combine une couche batch, exacte, et une couche temps réel, rapide, fusionnées à la lecture : robuste mais deux implémentations à maintenir. Kappa n'a qu'un chemin streaming et recalcule en rejouant le journal d'événements : plus simple, si tous les traitements s'expriment en flux et que le journal conserve assez d'historique.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Justifiez l'architecture de votre projet de bout en bout.</button><div class="ab"><p>Je déroule la grille : le besoin et la latence acceptable, les V réellement présents, le choix du stockage (et pourquoi pas l'alternative), batch ou streaming, l'organisation en couches, la modélisation pour la BI, l'hébergement, puis la sécurité, la qualité et les coûts. Pour chaque brique, une raison liée au besoin, et une limite assumée.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce qui différencie un data lake d'un data swamp ?</button><div class="ab"><p>L'organisation et la gouvernance : couches définies, conventions de nommage et de partitionnement, catalogue et métadonnées, contrôles qualité, responsables identifiés. Sans cela, le lac devient un marécage où personne ne trouve ni ne fait confiance aux données.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · Flux de données et médaillon</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="05"></div>
+</section>
+
+<!-- ================= QUIZ FINAL ================= -->
+<section class="slide" data-ch="quiz" data-sec="Quiz final" data-title="Quiz final — 45 questions">
+<div class="kicker">Quiz final · Big Data : architectures &amp; cloud</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-target"/></svg> 45 questions pour affronter le jury</h2>
+<p class="lead">Tous chapitres mélangés ; l'ordre des questions et des réponses change à chaque tentative. Certaines questions ont <b>plusieurs bonnes réponses</b>.</p>
+<div data-quiz="final"></div>
+</section>
+
+</main>
+<button class="arrow" id="prev" type="button" aria-label="Diapositive précédente">‹</button>
+<button class="arrow" id="next" type="button" aria-label="Diapositive suivante">›</button>
+<nav id="tl" aria-label="Chapitres"></nav>
+<div id="hint">← → naviguer · ↑ ↓ défiler · H ampoule <svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg> · E Complète/Essentiel · M maîtrisé · S sommaire · T thème</div>
+<button id="bulbhint" type="button"><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></button>
+<div id="ctip" role="tooltip"></div>
+<div id="toc" role="dialog" aria-label="Sommaire">
+  <button class="btn xx" id="tocx" type="button">Fermer ✕</button>
+  <div class="kicker">Sommaire · Big Data : architectures &amp; cloud</div>
+  <h2>Big Data : architectures &amp; cloud</h2>
+  <div class="tg"></div>
+</div>
+
+<div id="fab">
+  <button id="helpbtn" type="button" aria-label="Ampoule : concepts expliqués au survol" aria-pressed="false" title="Ampoule : soulignez les concepts, survolez-les pour une explication (H)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></button>
+<button id="tocbtn" type="button" aria-label="Sommaire" title="Sommaire (S)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+  <div id="themebtn">
+    <div id="menu" role="menu"><h4>Thème</h4></div>
+    <button id="tbtn" type="button" aria-label="Changer de thème" aria-haspopup="true" title="Changer de thème (T)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.4-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16a5 5 0 0 0 5-5c0-4-4-7-9-7z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="7.5" r="1"/></svg>
+    </button>
+  </div>
+</div>
+
+</div>
+<script src="assets/icons.js?v=1795252877"></script>
+<script src="data/intro-data-quiz.js?v=1795252878"></script>
+<script src="data/intro-data-glossary.js?v=1795252878"></script>
+<script src="assets/engine.js?v=1795252877"></script>
+</body>
+</html>

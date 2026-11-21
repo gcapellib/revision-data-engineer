@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NoSQL : MongoDB &amp; Python · Révision Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/base.css?v=1795252877">
+<link rel="stylesheet" href="assets/photos.css?v=1795252877">
+<link rel="stylesheet" href="assets/revision.css?v=1795252877">
+</head>
+<body data-page="course" data-course="mongodb" data-title="NoSQL : MongoDB &amp; Python">
+<div id="app" data-theme="papier">
+
+<div id="bg" aria-hidden="true">
+  <div class="bgl bg-neon">
+    <svg viewBox="0 0 800 800"><path d="M40 760 L400 280 L760 760" stroke-width="3"/><path d="M110 760 L400 380 L690 760" stroke-width="2.4" opacity=".85"/><path d="M180 760 L400 470 L620 760" stroke-width="2" opacity=".7"/><path d="M250 760 L400 560 L550 760" stroke-width="1.6" opacity=".55"/><path d="M320 760 L400 650 L480 760" stroke-width="1.2" opacity=".4"/></svg>
+  </div>
+  <div class="bgl bg-sauge"><div class="panel"></div><div id="bignum"></div></div>
+  <div class="bgl bg-nuit"><i></i><i></i><i></i></div>
+  <div class="bgl bg-verre"><div class="blob a"></div><div class="blob b"></div><div class="blob c"></div></div>
+  <div class="bgl bg-papier"><i></i><i></i><i></i></div>
+  <div class="bgl bg-rubans"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f8fe0"/><stop offset="1" stop-color="#2fd0bd"/></linearGradient>
+      <linearGradient id="rg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fdcc4"/><stop offset=".55" stop-color="#26b2d2"/><stop offset="1" stop-color="#2f8fe0"/></linearGradient>
+      <linearGradient id="rg3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2fd0bd"/><stop offset="1" stop-color="#2f90e2"/></linearGradient>
+      <filter id="rsh" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="12"/></filter>
+    </defs>
+    <g class="rb" id="rb-a" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g class="rb b" id="rb-b" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+  </svg></div>
+  <div class="bgl bg-facettes"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="fcw" id="fc-top"></g><g class="fcw" id="fc-bot"></g></svg></div>
+  <div class="bgl photo bg-bulles"><i></i></div>
+  <div class="bgl photo bg-hexa"><i></i></div>
+  <div class="bgl photo bg-points"><i></i></div>
+</div>
+
+<svg id="defs" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+  <marker id="arrk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3a4458"/></marker>
+  <marker id="arrbad" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+</defs></svg>
+
+<div id="brand"><a href="index.html" title="Retour à l'accueil">← Accueil</a> · NoSQL : MongoDB &amp; Python</div>
+<div id="topbar">
+  <div id="vseg" role="group" aria-label="Version du cours"><button type="button" data-v="c" title="Tout le cours (E pour basculer)"><svg class="ico" aria-hidden="true"><use href="#ti-book"/></svg> Complète</button><button type="button" data-v="e" title="Ce qu'il faut maîtriser pour le jury (E)"><svg class="ico" aria-hidden="true"><use href="#ti-bolt"/></svg> Essentiel</button></div>
+  <button id="mast" type="button" title="Marquer ce chapitre comme maîtrisé (M)"></button>
+  <span id="prog"></span>
+</div>
+<div id="hud"><span id="count">1 / 1</span></div>
+<main id="deck">
+<!-- ================= 00 · IMMERSION ================= -->
+<section class="slide" data-ch="00" data-sec="Immersion" data-title="Immersion : découvrir MongoDB">
+<div class="chlogos"><img class="chlogo big" src="assets/logos/mongodb.png" alt="Logo MongoDB"></div>
+<div class="kicker">Bloc 4B · Bases NoSQL</div>
+<h1>MongoDB &amp; Python</h1>
+<p class="lead">La base <b>NoSQL orientée documents</b> la plus répandue : des documents JSON (BSON) flexibles, regroupés en collections, manipulés depuis Python avec PyMongo. Ce cours prolonge <a href="merise.html">Merise</a> (modélisation relationnelle) et <a href="hadoop.html">HBase</a> (NoSQL colonnes) sans les répéter.</p>
+<div class="chips"><span class="pill solid">immersion + 4 chapitres</span><span class="pill">mini-quiz par chapitre</span><span class="pill">quiz final · 45 questions</span><span class="pill">MongoDB 8 · PyMongo</span></div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 1 / 3</div>
+<h2>Comment stocker un catalogue où chaque produit a des caractéristiques différentes, sans des centaines de colonnes vides ?</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card bad"><span class="lab">En relationnel</span><p>Un téléviseur a une diagonale, un t-shirt une taille, un livre un ISBN. Soit une table de 300 colonnes presque toutes à <code>NULL</code>, soit une dizaine de tables et de jointures pour afficher <b>une seule fiche produit</b>.</p></div>
+    <div class="card hl"><span class="lab">En documentaire</span><p>Chaque produit est <b>un document</b> qui porte exactement ses champs, avec ses avis et ses variantes <b>imbriqués</b> : une fiche = une lecture, sans jointure.</p></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <p class="punch"><b>MongoDB</b> est une <b>base de données NoSQL orientée documents</b> : elle stocke des documents au format <b>BSON</b> (JSON binaire typé), regroupés en <b>collections</b>, avec un <b>schéma souple</b>, de la réplication et du sharding natifs.</p>
+    <div class="analogy"><b>Analogie — le dossier patient.</b> Plutôt que de répartir la vie d'un patient dans dix registres (identité, consultations, ordonnances), on range tout ce qu'on consulte ensemble dans <b>une même pochette</b>. Chaque pochette peut contenir des pièces différentes.</div>
+    <div class="card"><span class="lab">D'où le nom ?</span><p>De l'anglais <i>humongous</i>, « gigantesque » : une base pensée pour de très gros volumes.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 2 / 3</div>
+<h2>D'une start-up new-yorkaise à la base NoSQL n° 1</h2>
+<div class="flow">
+  <div class="step"><b>2007</b><small>La société <b>10gen</b> (New York) le développe pour sa plateforme cloud</small></div>
+  <div class="step"><b>2009</b><small>Publié en open source</small></div>
+  <div class="step"><b>2015 · 2016</b><small>Moteur <b>WiredTiger</b> · service cloud <b>Atlas</b></small></div>
+  <div class="step"><b>2018</b><small>Transactions <b>multi-documents</b> (4.0) · licence SSPL</small></div>
+  <div class="step"><b>Aujourd'hui</b><small>MongoDB 8 : recherche plein texte et vectorielle (IA)</small></div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Qui l'utilise</span><p>Catalogues e-commerce, profils utilisateurs, gestion de contenus, applications mobiles, IoT, jeux vidéo, journaux d'événements : partout où les données sont <b>variées</b> et lues par « objet entier ». Hébergé en local, en Docker ou sur <b>MongoDB Atlas</b> (AWS, Azure, GCP).</p><p><b>Alternatives :</b> PostgreSQL + JSONB, Couchbase, Amazon DocumentDB (compatible API) ; Cassandra/HBase (colonnes), Redis (clé-valeur), Neo4j (graphe).</p></div>
+  <div class="sch free"><span class="cap">La place de MongoDB dans le pipeline</span>
+  <svg class="dg" viewBox="0 0 460 190" role="img" aria-label="Application et API écrivent dans MongoDB, qui alimente le data lake par change streams et un script Python">
+    <rect class="b f3" x="10" y="70" width="100" height="50" rx="8"/><text class="t tc" x="60" y="92" style="font-size:13px">Application</text><text class="a" x="60" y="110" text-anchor="middle">API · mobile</text>
+    <rect class="b ok" x="150" y="55" width="140" height="80" rx="10"/><text class="t tc" x="232" y="88">MongoDB</text><text class="s tc" x="220" y="110">documents BSON</text><text class="s tc" x="220" y="126">replica set</text>
+    <rect class="b f1" x="330" y="40" width="120" height="44" rx="8"/><text class="s tc" x="390" y="66">data lake · Spark</text>
+    <rect class="b f4" x="330" y="106" width="120" height="44" rx="8"/><text class="s tc" x="390" y="132">tableaux de bord</text>
+    <path class="e" d="M110 95 H146"/><path class="e" d="M290 80 L326 64"/><path class="e" d="M290 110 L326 126"/>
+    <text class="s" x="10" y="182">Base opérationnelle · export par PyMongo ou change streams</text>
+  
+  <use class="il" href="#il-laptop" x="40" y="34" width="40" height="32"/><use class="il" href="#il-database" x="160" y="64" width="26" height="32"/>
+<use class="il" href="#il-cloud" x="372" y="10" width="36" height="28"/><use class="il" href="#il-chart" x="376" y="153" width="28" height="26"/></svg></div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 3 / 3</div>
+<h2>Premier contact : insérer et retrouver un document</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>mongosh · conteneur du cours</span><button class="cpy" type="button">Copier</button></div><pre><code>use boutique                                  <span class="c">// la base est créée à la 1re écriture</span>
+db.produits.insertOne({
+  nom: <span class="s">"Téléviseur 55\""</span>, prix: 599,
+  specs: { diagonale_cm: 140, hdr: <span class="kw">true</span> },  <span class="c">// sous-document</span>
+  avis: [ { note: 5, auteur: <span class="s">"Lina"</span> } ]       <span class="c">// tableau imbriqué</span>
+})
+db.produits.insertOne({ nom: <span class="s">"T-shirt"</span>, prix: 15, taille: <span class="s">"M"</span> })
+                                              <span class="c">// autres champs : aucun souci</span>
+db.produits.find({ prix: { $lt: 100 } }, { nom: 1, _id: 0 })
+<span class="c">// [ { nom: 'T-shirt' } ]</span>
+db.produits.find({ <span class="s">"avis.note"</span>: 5 }).count()   <span class="c">// on interroge dans le tableau</span>
+<span class="c">// 1</span></code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card"><span class="lab">Ce qu'il faut remarquer</span><p>Aucun <code>CREATE TABLE</code> : la collection naît à la première insertion, et deux documents de forme différente cohabitent. La notation pointée (<code>"avis.note"</code>) interroge directement l'intérieur des documents. Revers : <b>rien n'empêche une faute de frappe</b> dans un nom de champ — d'où la validation par JSON Schema.</p></div>
+    <div class="card"><span class="lab">Ce que le jury attend</span><ul><li>Documentaire ou relationnel ? imbriquer ou référencer ?</li><li>Justifier le choix selon la <b>variété</b> et les accès.</li><li>Importer de façon fiable et idempotente.</li></ul></div>
+  </div>
+</div>
+<div class="flow">
+  <div class="step"><b>01 · Documentaire</b><small>BSON, NoSQL, CAP</small></div>
+  <div class="step"><b>02 · CRUD</b><small>mongosh, PyMongo, upsert</small></div>
+  <div class="step"><b>03 · Modéliser</b><small>imbriquer, référencer, patterns</small></div>
+  <div class="step"><b>04 · Performance</b><small>index, agrégation, réplication</small></div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/mongodb.png" alt="Logo MongoDB"></div>
+<div class="kicker">Immersion · Essentiel</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Présenter MongoDB en une minute</h2>
+<div class="card hl"><p class="q">« MongoDB est une <b>base NoSQL orientée documents</b>, publiée en 2009. Elle stocke des documents <b>BSON</b> — du JSON binaire typé — regroupés en collections, avec un <b>schéma souple</b> : deux documents d'une même collection peuvent avoir des champs différents.</p><p class="q">On modélise <b>selon les requêtes</b> : ce qui est lu ensemble est <b>imbriqué</b> dans le même document, ce qui est partagé ou non borné est <b>référencé</b>. L'écriture sur un document est atomique ; les transactions multi-documents existent depuis la version 4.0. Elle passe à l'échelle avec les <b>replica sets</b> pour la haute disponibilité et le <b>sharding</b> pour la répartition.</p><p class="q">Je la choisis pour des données variées lues par objet entier, comme un catalogue. Pour des données très liées avec des contraintes d'intégrité fortes, je garde une base relationnelle. »</p></div>
+<div class="grid g3">
+  <div class="card"><span class="lab">Les 3 mots à placer</span><p><b>Document BSON · imbriquer/référencer · schéma souple</b></p></div>
+  <div class="card"><span class="lab">Le choix à justifier</span><p><b>MongoDB plutôt qu'une base relationnelle</b> quand les données se lisent par document entier et que leur forme varie ; pas pour des transactions entre de nombreuses tables.</p></div>
+  <div class="card"><span class="lab">Le lien</span><p>Contraste avec Merise/SQL · source pour Spark</p></div>
+</div>
+</section>
+<section class="slide" data-ch="00" data-sec="Le fil" data-title="Le fil du cours : 5 idées">
+<div class="kicker">Le fil du cours · NoSQL : MongoDB &amp; Python</div>
+<h2>5 idées font tout le cours</h2>
+<p class="lead fil-q">Tout le cours répond à : <b>comment stocker des données à structure variable pour les lire d'un seul coup, sans perdre la fiabilité ?</b> Cinq idées guident chaque choix de modélisation et de code.</p>
+<div class="grid g3 ideas"><div class="card idea"><span class="lab">Idée 1 · Modéliser selon les lectures</span><p>En relationnel, on modélise les <b>données</b> puis on les assemble à la lecture. En base documentaire, on modélise l'<b>usage</b> : ce qui se lit ensemble se <b>stocke ensemble</b>. Une commande et ses lignes forment un seul document.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on recopie un schéma relationnel en collections, chaque lecture doit reconstituer les données avec des $lookup, et l'on perd l'intérêt du modèle documentaire.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Lister les écrans et requêtes à servir, et construire un document par lecture principale (la commande avec ses lignes).</p><p class="chs">ch. 01 · ch. 03</p></div><div class="card idea"><span class="lab">Idée 2 · Imbriquer ou référencer</span><p>On <b>imbrique</b> dans le document ce qui lui appartient, reste de taille limitée et se lit avec lui (les lignes d'une commande). On <b>référence</b> par un identifiant ce qui est partagé, volumineux ou qui grossit sans fin (le client, les mesures d'un capteur). Un document ne peut pas dépasser 16 Mo.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on imbrique une liste qui grossit sans limite (toutes les mesures d'un capteur), le document s'alourdit jusqu'à dépasser la limite de 16 Mo.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Mettre les mesures d'un capteur dans une collection à part, chaque mesure portant l'identifiant du capteur.</p><p class="chs">ch. 03 · ch. 04</p></div><div class="card idea"><span class="lab">Idée 3 · Schéma souple ne veut pas dire sans schéma</span><p>Sans schéma imposé par la base, c'est l'application qui garantit la forme des données : types précis (<b>Decimal128</b> pour l'argent, vraies dates), différence entre <b>null</b> (valeur vide) et champ absent, <b>validation</b> par JSON Schema, et un champ <b>schema_version</b> pour faire évoluer les documents.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on stocke un prix en nombre décimal ordinaire (double), les centimes s'arrondissent mal ; et si l'on confond null et champ absent, des requêtes ratent des documents.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Stocker les prix en Decimal128, poser une validation JSON Schema sur la collection et toujours écrire les mêmes champs.</p><p class="chs">ch. 01 · ch. 02 · ch. 03</p></div><div class="card idea"><span class="lab">Idée 4 · Écrire de façon idempotente</span><p>Un import doit pouvoir être relancé sans doublon. On utilise l'<b>upsert</b> (mettre à jour si le document existe, sinon le créer) sur une clé métier, un <b>index unique</b> sur cette clé, et des mises à jour ciblées ($set, $inc) plutôt que le remplacement du document entier.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'import du lendemain insère une seconde fois les mêmes documents, la collection se remplit de doublons.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Importer avec updateOne(..., upsert: true) sur la clé métier, et poser un index unique sur cette clé.</p><p class="chs">ch. 02</p></div><div class="card idea"><span class="lab">Idée 5 · Sans index, tout est un scan</span><p>Sans index, une requête lit toute la collection (<b>COLLSCAN</b>). Un index sur plusieurs champs suit la règle <b>ESR</b> : d'abord les champs testés par égalité, puis ceux du tri, puis les intervalles. Dans une agrégation, on filtre ($match) le plus tôt possible.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on filtre sur un champ sans index, MongoDB lit chaque document de la collection, ce qui devient très lent sur des millions de documents.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Créer un index sur le champ filtré, puis vérifier avec explain() que la requête passe en IXSCAN (lecture d'index).</p><p class="chs">ch. 02 · ch. 04</p></div></div>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · NoSQL : MongoDB &amp; Python</div>
+<h2>Le modèle mental : partir des lectures, pas des tables</h2>
+<div class="flow"><div class="step"><b>1</b><small>Quelles lectures sont les plus fréquentes ?</small></div><div class="step"><b>2</b><small>Cette donnée est-elle possédée et bornée, ou partagée et illimitée ?</small></div><div class="step"><b>3</b><small>Quel type exact a chaque champ, et qui le garantit ?</small></div><div class="step"><b>4</b><small>Quel index sert cette requête (explain) ?</small></div></div>
+<table class="cmp md"><thead><tr><th>Situation</th><th>Choix</th><th>Pourquoi</th></tr></thead><tbody><tr><td>Commande et ses lignes</td><td><b>imbriquer</b></td><td>lues ensemble, elles appartiennent à la commande</td></tr><tr><td>Produit partagé par des milliers de commandes</td><td><b>référencer</b>, et copier dans la commande le prix payé</td><td>le produit évolue sans réécrire les commandes ; le prix d'achat, lui, reste figé</td></tr><tr><td>Mesures d'un capteur</td><td>regrouper par période (<b>bucket</b>)</td><td>sinon un document grossit sans fin</td></tr><tr><td>Montant financier</td><td><b>Decimal128</b></td><td>un double arrondit les centimes</td></tr><tr><td>Import quotidien rejoué</td><td><b>upsert</b> sur une clé + index unique</td><td>pas de doublon au second passage</td></tr><tr><td>Requête lente</td><td>index composé <b>ESR</b>, vérifier IXSCAN</td><td>éviter le COLLSCAN</td></tr></tbody></table>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · NoSQL : MongoDB &amp; Python</div>
+<h2>Chaque chapitre applique les mêmes idées</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Chapitre</th><th><b>1</b></th><th><b>2</b></th><th><b>3</b></th><th><b>4</b></th><th><b>5</b></th></tr></thead><tbody><tr><td><b>01</b> Documentaire</td><td>●</td><td></td><td>●</td><td></td><td></td></tr><tr><td><b>02</b> CRUD</td><td></td><td></td><td>●</td><td>●</td><td>●</td></tr><tr><td><b>03</b> Modéliser</td><td>●</td><td>●</td><td>●</td><td></td><td></td></tr><tr><td><b>04</b> Performance</td><td></td><td>●</td><td></td><td></td><td>●</td></tr></tbody></table><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Ce qui revient dans <b>plusieurs chapitres</b> est une idée à comprendre ; ce qui n'apparaît qu'une fois est un <b>exemple</b> d'une de ces idées.</p></div></div></div><table class="cmp md"><thead><tr><th>Panne ou erreur classique</th><th>Idée oubliée</th><th>Ce qui casse</th></tr></thead><tbody><tr><td>Tableau imbriqué sans limite</td><td><b>2</b> · Imbriquer ou référencer</td><td>document trop lourd, puis refusé</td></tr><tr><td>Prix stocké en double</td><td><b>3</b> · Schéma souple ne veut pas dire sans schéma</td><td>erreurs d'arrondi dans les totaux</td></tr><tr><td>insert_one rejoué par l'import</td><td><b>4</b> · Écrire de façon idempotente</td><td>doublons</td></tr><tr><td>Filtre sur un champ non indexé</td><td><b>5</b> · Sans index, tout est un scan</td><td>COLLSCAN sur des millions de documents</td></tr><tr><td>Schéma relationnel recopié en collections</td><td><b>1</b> · Modéliser selon les lectures</td><td>des jointures partout, des lectures lentes</td></tr></tbody></table></div>
+</section>
+
+
+<!-- ================= 01 · LE DOCUMENTAIRE ================= -->
+<section class="slide" data-ch="01" data-sec="01 Documentaire" data-title="Le modèle documentaire" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/mongodb.png" alt="Logo MongoDB"></div>
+<div class="kicker">Chapitre 01 · Le modèle documentaire</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Une commande = un document, pas quatre tables</h2>
+<div class="grid g2">
+  <div class="card"><span class="lab">En relationnel (voir Merise)</span><p>Une commande s'éclate en <code>client</code>, <code>commande</code>, <code>ligne_commande</code>, <code>produit</code> : 4 tables, 3 jointures pour afficher la page « détail de commande ».</p></div>
+  <div class="code"><div class="codeh"><span>En documentaire : un document</span></div><pre><code>{ <span class="s">"_id"</span>: ObjectId(<span class="s">"…"</span>),
+  <span class="s">"date"</span>: ISODate(<span class="s">"2026-11-17T09:30:00Z"</span>),
+  <span class="s">"client"</span>: { <span class="s">"id"</span>: ObjectId(<span class="s">"…"</span>), <span class="s">"nom"</span>: <span class="s">"Ada"</span> },
+  <span class="s">"lignes"</span>: [
+    { <span class="s">"sku"</span>: <span class="s">"BAG-01"</span>, <span class="s">"qte"</span>: 2, <span class="s">"prix"</span>: NumberDecimal(<span class="s">"1.30"</span>) },
+    { <span class="s">"sku"</span>: <span class="s">"CRO-02"</span>, <span class="s">"qte"</span>: 4, <span class="s">"prix"</span>: NumberDecimal(<span class="s">"1.10"</span>) } ],
+  <span class="s">"total"</span>: NumberDecimal(<span class="s">"7.00"</span>) }</code></pre></div>
+</div>
+<table class="cmp md small"><thead><tr><th>Relationnel</th><th>MongoDB</th></tr></thead><tbody>
+  <tr><td>base · table · ligne · colonne</td><td>base · <b>collection</b> · <b>document</b> · <b>champ</b></td></tr>
+  <tr><td>PRIMARY KEY</td><td><code>_id</code> (souvent un <b>ObjectId</b> généré côté client)</td></tr>
+  <tr><td>JOIN</td><td><b>imbrication</b> (ou <code>$lookup</code>, à éviter en routine)</td></tr>
+  <tr><td>FOREIGN KEY</td><td>aucune : la cohérence entre collections est <b>votre responsabilité</b></td></tr>
+  <tr><td>schéma imposé (DDL)</td><td>schéma <b>souple</b> ; validation JSON Schema optionnelle</td></tr>
+</tbody></table>
+<div class="analogy"><b>Analogie — le dossier patient.</b> En relationnel, l'hôpital range les ordonnances dans une armoire, les radios dans une autre, et recompose le dossier à chaque visite. En documentaire, chaque patient a sa <b>pochette</b> qui contient tout ce qu'on consulte ensemble.</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Le modèle documentaire</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq trap">⑤ Pièges</span></div>
+<h2>Quatre spécificités, trois pièges de typage</h2>
+<div class="grid g2">
+  <div class="card"><span class="lab">Les 4 spécificités du documentaire</span><ol class="steps sm"><li>Deux documents d'une même collection peuvent avoir des <b>champs différents</b>.</li><li>Le schéma n'a pas disparu : il est <b>dans le code</b> qui lit et écrit.</li><li>On modélise les <b>requêtes</b> (les écrans), pas les entités ; dupliquer est un choix assumé.</li><li>Pas d'intégrité référentielle ni de jointure gratuite ; le <b>document est l'unité d'atomicité</b>.</li></ol></div>
+  <div class="card"><span class="lab">BSON (Binary JSON)</span><p>Ce que MongoDB stocke réellement : du JSON <b>binaire et typé</b> (int32, int64, double, Decimal128, Date, ObjectId…). Limite : <b>16 Mo par document</b>.</p></div>
+</div>
+<div class="trap-list">
+  <div><b>1 · null n'est pas « absent ».</b> <code>{remise: null}</code> et <code>{}</code> sont différents, mais la requête <code>{remise: null}</code> renvoie <b>les deux</b>. Pour distinguer : <code>{remise: {$exists: false}}</code> ou <code>{$type: "null"}</code>.</div>
+  <div><b>2 · Jamais d'argent en float/double.</b> <code>0.1 + 0.2 ≠ 0.3</code> : utiliser <b>Decimal128</b> ou des centimes en entier.</div>
+  <div><b>3 · Les dates sont en UTC.</b> Passer des <code>datetime</code> avec fuseau (<code>datetime.now(timezone.utc)</code>) et ouvrir le client avec <code>tz_aware=True</code>.</div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Cohérence : CAP</span><p>En cas de <b>partition</b> réseau, un système distribué choisit entre <b>cohérence</b> et <b>disponibilité</b>. MongoDB est <b>CP</b> par défaut : si le primaire est isolé, il refuse d'écrire le temps d'élire un remplaçant. Réglable par opération (<code>writeConcern</code>, <code>readConcern</code>, <code>readPreference</code>). Cassandra penche AP.</p></div>
+  <div class="card bad"><span class="lab">Quand NE PAS choisir le documentaire</span><p>Données très <b>normalisées et reliées</b> (comptabilité, ERP), requêtes <b>imprévisibles et analytiques</b>, besoin de nombreuses transactions multi-entités : rester en relationnel.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/mongodb.png" alt="Logo MongoDB"></div>
+<div class="kicker">Chapitre 01 · Le modèle documentaire</div>
+<h2>Fiche — Le documentaire</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Vocabulaire</span><p>Base → <b>collection</b> → <b>document</b> (BSON) → <b>champ</b>. <code>_id</code> = clé (ObjectId). Pas de FK, pas de JOIN gratuit : on <b>imbrique</b>.</p></div>
+  <div class="card"><span class="lab">Principes</span><ul><li>Documents d'une collection hétérogènes.</li><li>Schéma dans le code.</li><li>Modéliser les requêtes ; dupliquer est assumé.</li><li>Document = unité d'atomicité ; 16 Mo max.</li></ul></div>
+  <div class="card"><span class="lab">Pièges de typage</span><p><code>{x: null}</code> matche null <b>et</b> absent → <code>$exists</code>. Argent : <b>Decimal128</b>. Dates : <b>UTC</b>, <code>tz_aware=True</code>.</p></div>
+  <div class="card"><span class="lab">CAP et choix</span><p>MongoDB <b>CP</b> par défaut, réglable (writeConcern…). Relationnel si données très reliées, analytique imprévisible, ERP.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Le modèle documentaire</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 01</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Pourquoi choisir MongoDB plutôt qu'une base relationnelle ?</button><div class="ab"><p>Quand les données sont <b>variées et évolutives</b> (catalogue de produits aux attributs différents), que l'on connaît les écrans à servir et qu'on veut les lire <b>en une requête sans jointure</b>, et qu'il faut passer à l'échelle horizontalement (sharding). On renonce en échange aux clés étrangères et aux jointures : la cohérence entre collections devient la responsabilité de l'application.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Que signifie « le schéma a déménagé dans le code » ?</button><div class="ab"><p>La base n'impose pas de structure : c'est le code qui décide des champs, de leurs types et de leurs valeurs par défaut. Le risque : des documents incohérents (types mélangés, champs absents) ignorés silencieusement par les requêtes. On le maîtrise par des audits, une validation JSON Schema sur le noyau commun et un champ <code>schema_version</code>.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Expliquez le théorème CAP.</button><div class="ab"><p>En cas de <b>partition</b> réseau (inévitable), un système distribué doit choisir entre la <b>cohérence</b> (tous voient la même donnée, quitte à refuser des écritures) et la <b>disponibilité</b> (toujours répondre, quitte à diverger). MongoDB est CP par défaut, avec des réglages par opération ; Cassandra est AP.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Le modèle documentaire</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="01"></div>
+</section>
+
+<!-- ================= 02 · CRUD AVEC PYMONGO ================= -->
+<section class="slide" data-ch="02" data-sec="02 CRUD" data-title="CRUD avec mongosh et PyMongo" data-v="c">
+<div class="chlogos"><div class="chlogos"><img class="chlogo" src="assets/logos/mongodb.png" alt="Logo MongoDB"><img class="chlogo" src="assets/logos/python.svg" alt="Logo Python"></div>
+</div>
+<div class="kicker">Chapitre 02 · CRUD</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Se connecter, créer, lire</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · db.py</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">import</span> os
+<span class="kw">from</span> pymongo <span class="kw">import</span> MongoClient
+client = MongoClient(os.environ[<span class="s">"MONGO_URI"</span>],      <span class="c"># URI dans .env</span>
+                     serverSelectionTimeoutMS=3000,
+                     tz_aware=<span class="kw">True</span>)
+client.admin.command(<span class="s">"ping"</span>)     <span class="c"># MongoClient NE se connecte PAS : on teste</span>
+db = client[<span class="s">"boutique"</span>]          <span class="c"># ne crée rien, ne vérifie rien</span>
+
+res = db.produits.insert_one({<span class="s">"sku"</span>: <span class="s">"BAG-01"</span>, <span class="s">"nom"</span>: <span class="s">"Baguette"</span>,
+        <span class="s">"prix"</span>: Decimal128(<span class="s">"1.30"</span>), <span class="s">"stock"</span>: 40})
+res.inserted_id                     <span class="c"># ObjectId généré côté client</span>
+
+db.produits.find_one({<span class="s">"_id"</span>: ObjectId(id_str)})   <span class="c"># chaîne ≠ ObjectId !</span>
+<span class="kw">for</span> p <span class="kw">in</span> db.produits.find({<span class="s">"prix"</span>: {<span class="s">"$lt"</span>: 5}, <span class="s">"tags"</span>: <span class="s">"bio"</span>},
+                         {<span class="s">"nom"</span>: 1, <span class="s">"prix"</span>: 1, <span class="s">"_id"</span>: 0}) \
+                   .sort(<span class="s">"prix"</span>, -1).limit(20):     <span class="c"># projection, tri, limite</span>
+    print(p)</code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card"><span class="lab">Un client par processus</span><p><code>MongoClient</code> gère un <b>pool</b> de connexions : on le crée une fois au démarrage, on le partage, on le ferme à l'arrêt. Sa construction est <b>non bloquante</b> : un serveur éteint ne se voit qu'à la première requête, d'où le <code>ping</code> explicite.</p></div>
+    <div class="card"><span class="lab">Filtres = objets</span><p><code>$eq $ne $gt $gte $lt $lte $in $nin $exists $type $regex</code> ; notation pointée pour les sous-documents (<code>"client.nom"</code>) ; une valeur cherchée dans un tableau matche si un élément correspond.</p></div>
+    <div class="card"><span class="lab">find renvoie un curseur</span><p>Paresseux et parcourable <b>une seule fois</b>. Pagination : éviter <code>skip</code> (lit tout ce qui est sauté), préférer <code>{"_id": {"$gt": dernier_id}}</code>.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · CRUD</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Modifier, supprimer, importer de façon idempotente</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · mises à jour et import réexécutable</span><button class="cpy" type="button">Copier</button></div><pre><code>r = db.produits.update_one({<span class="s">"sku"</span>: <span class="s">"BAG-01"</span>},
+                           {<span class="s">"$set"</span>: {<span class="s">"stock"</span>: 8}, <span class="s">"$inc"</span>: {<span class="s">"ventes"</span>: 1}})
+r.matched_count, r.modified_count   <span class="c"># existe ? a changé ?</span>
+
+<span class="c"># décrément atomique, condition métier DANS le filtre</span>
+db.produits.find_one_and_update(
+    {<span class="s">"sku"</span>: <span class="s">"BAG-01"</span>, <span class="s">"stock"</span>: {<span class="s">"$gte"</span>: 2}},
+    {<span class="s">"$inc"</span>: {<span class="s">"stock"</span>: -2}})
+
+<span class="c"># import idempotent : upsert sur la clé d'identité</span>
+<span class="kw">from</span> pymongo <span class="kw">import</span> UpdateOne
+ops = [UpdateOne({<span class="s">"sku"</span>: r[<span class="s">"sku"</span>]},
+                 {<span class="s">"$set"</span>: {<span class="s">"prix"</span>: r[<span class="s">"prix"</span>]},
+                  <span class="s">"$setOnInsert"</span>: {<span class="s">"cree_le"</span>: maintenant}},
+                 upsert=<span class="kw">True</span>) <span class="kw">for</span> r <span class="kw">in</span> lignes]
+db.produits.bulk_write(ops, ordered=<span class="kw">False</span>)   <span class="c"># par tranches de ~1 000</span></code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="trap-list">
+      <div><b>Oublier l'opérateur</b> : <code>update_one(f, {"nom": "x"})</code> → <code>WriteError</code>. Pour remplacer tout le document : <code>replace_one</code> (qui supprime les champs non fournis).</div>
+      <div><b>matched ≠ modified</b> : 1 trouvé, 0 modifié si la valeur était déjà la bonne.</div>
+      <div><b><code>$set</code>, <code>$inc</code>, <code>$push</code> créent</b> les champs absents (c'est ainsi que le schéma évolue).</div>
+      <div><b><code>delete_many({})</code></b> vide la collection sans confirmation : compter d'abord avec le même filtre.</div>
+    </div>
+    <div class="card"><span class="lab">Supprimer en production</span><p><b>Suppression logique</b> (<i>soft delete</i>) : <code>{"$set": {"supprime_le": maintenant}}</code>, puis purge automatique par un <b>index TTL</b> (<code>expireAfterSeconds</code>). Erreur <b>E11000</b> = violation d'index unique (<code>DuplicateKeyError</code>) : on tente l'insertion et on l'attrape, plutôt que de tester l'existence avant.</p></div>
+  </div>
+</div>
+<ol class="sum-list">
+  <li>Un <code>MongoClient</code> par processus, <code>ping</code> au démarrage, URI dans <code>.env</code>.</li>
+  <li>CRUD : <code>insert_one/many</code>, <code>find/find_one</code> (curseur, ObjectId), <code>update_one/many</code> avec opérateurs, <code>delete_one/many</code>.</li>
+  <li>Idempotence : <code>bulk_write</code> + <code>UpdateOne(upsert=True)</code> + <code>$setOnInsert</code>.</li>
+  <li>Atomicité sans transaction : condition métier dans le filtre de <code>find_one_and_update</code>.</li>
+</ol>
+</section>
+
+<section class="slide" data-ch="02" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/mongodb.png" alt="Logo MongoDB"></div>
+<div class="kicker">Chapitre 02 · CRUD</div>
+<h2>Fiche — CRUD avec PyMongo</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Connexion</span><p>1 <code>MongoClient</code> par processus (pool) ; il ne se connecte pas : <code>ping</code> ; <code>tz_aware=True</code> ; URI dans <code>.env</code> ; <code>authSource</code> = base de l'utilisateur.</p></div>
+  <div class="card"><span class="lab">Lire</span><div class="cmdlist"><div><code>find_one</code><span>un document ou None</span></div><div><code>find(filtre, projection)</code><span>curseur paresseux</span></div><div><code>ObjectId(s)</code><span>une chaîne ne matche pas</span></div><div><code>_id &gt; dernier</code><span>pagination sans skip</span></div></div></div>
+  <div class="card"><span class="lab">Écrire</span><div class="cmdlist"><div><code>$set $inc $push $unset</code><span>opérateurs obligatoires</span></div><div><code>matched / modified</code><span>trouvé / changé</span></div><div><code>upsert + $setOnInsert</code><span>import idempotent</span></div><div><code>bulk_write(ordered=False)</code><span>par lots</span></div></div></div>
+  <div class="card"><span class="lab">Supprimer et erreurs</span><p>Soft delete + index <b>TTL</b>. <code>delete_many({})</code> = tout. <b>E11000</b> = doublon sur index unique. <code>BulkWriteError</code> = échec partiel.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · CRUD</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 02</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Comment rendre un import MongoDB réexécutable sans doublons ?</button><div class="ab"><p>Avec un <b>upsert sur la clé d'identité métier</b> (un index unique sur <code>sku</code>), regroupé dans un <code>bulk_write</code> : <code>UpdateOne({"sku": …}, {"$set": champs, "$setOnInsert": champs_de_creation}, upsert=True)</code>. Relancer l'import met à jour les documents existants et n'en crée pas de nouveaux : il est idempotent.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment décrémenter un stock sans risque de concurrence ?</button><div class="ab"><p>En mettant la condition métier dans le filtre d'une seule opération atomique : <code>find_one_and_update({"sku": s, "stock": {"$gte": q}}, {"$inc": {"stock": -q}})</code>. Si le stock est insuffisant, rien n'est trouvé ni modifié. Le document étant l'unité d'atomicité, pas besoin de transaction.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi ne supprime-t-on presque jamais physiquement en production ?</button><div class="ab"><p>Pour garder une trace (audit, restauration, RGPD avec délai), on marque le document (<code>supprime_le</code>) : c'est la suppression logique. Un index <b>TTL</b> purge ensuite automatiquement les documents après le délai voulu.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · CRUD</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="02"></div>
+</section>
+
+<!-- ================= 03 · SCHÉMA SOUPLE ET MODÉLISATION ================= -->
+<section class="slide" data-ch="03" data-sec="03 Modéliser" data-title="Schéma souple et modélisation documentaire" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/mongodb.png" alt="Logo MongoDB"></div>
+<div class="kicker">Chapitre 03 · Modéliser</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq how">③ Comment</span></div>
+<h2>Imbriquer ou référencer : la seule vraie question</h2>
+<div class="grid g2">
+  <div class="card hl"><span class="lab">Imbriquer (embedding)</span><p>Le sous-objet vit <b>dans</b> le document parent (les lignes dans la commande). Une seule lecture, mise à jour atomique. Pour ce qui est <b>lu ensemble</b>, <b>possédé</b> par le parent et <b>borné</b> en taille.</p></div>
+  <div class="card"><span class="lab">Référencer</span><p>On stocke l'<code>_id</code> d'un document d'une autre collection (le client d'une commande). Pour ce qui est <b>partagé</b> entre plusieurs parents, <b>volumineux</b>, <b>non borné</b> ou mis à jour indépendamment.</p></div>
+</div>
+<table class="cmp md">
+<thead><tr><th>Question qui décide</th><th>Plutôt imbriquer si…</th><th>Plutôt référencer si…</th></tr></thead>
+<tbody>
+<tr><td>Lu ensemble ?</td><td>affiché sur le même écran</td><td>lu séparément</td></tr>
+<tr><td>Cardinalité ?</td><td>1-1, 1-quelques</td><td>1-beaucoup, 1-« des milliers », n-n</td></tr>
+<tr><td>Croissance ?</td><td>bornée</td><td>non bornée (limite <b>16 Mo</b> par document)</td></tr>
+<tr><td>Partagé ?</td><td>propre au parent</td><td>utilisé par plusieurs parents</td></tr>
+<tr><td>Mises à jour ?</td><td>rares, avec le parent</td><td>fréquentes, indépendantes</td></tr>
+</tbody></table>
+<div class="grid g2">
+  <div class="note tip"><i><svg class="ico" aria-hidden="true"><use href="#ti-repeat"/></svg></i><div><p><b>Dupliquer, c'est normal</b> — à condition de désigner une <b>source de vérité</b> et un processus de propagation. Distinguer le <b>cache</b> (le nom du client dans la commande : à propager s'il change) de l'<b>instantané</b> (le prix au moment de la commande : à figer, jamais propager).</p></div></div>
+  <div class="note warn"><i><svg class="ico" aria-hidden="true"><use href="#ti-alert-triangle"/></svg></i><div><p><b><code>$lookup</code> systématique</b> = modèle relationnel déguisé : on paie les jointures sans les garanties (FK, transactions) du relationnel.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Modéliser</div>
+<div class="pqrow"><span class="pq">② Quoi — patterns</span> <span class="pq how">③ Comment — schéma souple</span></div>
+<h2>Patterns de conception et maîtrise du schéma</h2>
+<table class="cmp md small"><thead><tr><th>Pattern</th><th>Idée</th><th>Quand</th></tr></thead><tbody>
+  <tr><td><b>Extended Reference</b></td><td>dupliquer les 2-3 champs du référencé toujours affichés</td><td>éviter un <code>$lookup</code> par ligne de liste</td></tr>
+  <tr><td><b>Subset</b></td><td>les N derniers éléments dans le parent, le reste à part</td><td>10 derniers avis d'un produit qui en a 5 000</td></tr>
+  <tr><td><b>Computed</b></td><td>pré-calculer les agrégats à l'écriture</td><td>lectures ≫ écritures (total, note moyenne)</td></tr>
+  <tr><td><b>Bucket</b></td><td>grouper N mesures par document</td><td>IoT, séries temporelles (1 document = 1 heure)</td></tr>
+  <tr><td><b>Outlier</b></td><td>traiter à part les rares documents hors norme</td><td>le compte à 2 millions d'abonnés</td></tr>
+  <tr><td><b>Attribute</b></td><td><code>[{k: "hz", v: 144}]</code> au lieu de champs variables</td><td>attributs hétérogènes, un seul index</td></tr>
+  <tr><td><b>Schema Versioning</b></td><td><code>schema_version</code> dans chaque document</td><td>migrer sans interruption</td></tr>
+</tbody></table>
+<div class="grid g3">
+  <div class="card"><span class="lab">Pourquoi les documents diffèrent</span><p>Trois raisons <b>saines</b> (familles métier, évolution du schéma, champ optionnel) et une <b>subie</b> (incohérence à corriger : <code>"prix": "12.5"</code> en texte).</p></div>
+  <div class="card bad"><span class="lab">Le bug le plus coûteux</span><p>Un champ stocké dans un <b>mauvais type</b> est <b>ignoré silencieusement</b> par les filtres (<code>{prix: {$lt: 20}}</code> ne voit pas le texte). On le débusque avec <code>$type</code>, on audite avec <code>$objectToArray</code> + <code>$group</code>.</p></div>
+  <div class="card"><span class="lab">Garde-fous</span><p><b>Validation JSON Schema</b> sur le <b>noyau commun</b> (<code>additionalProperties: true</code>), déployée en <code>moderate/warn</code> puis durcie en <code>strict/error</code>. Le code lit toutes les versions, n'écrit que la dernière.</p></div>
+</div>
+<ol class="sum-list">
+  <li>Imbriquer ce qui est lu ensemble et borné ; référencer ce qui est partagé ou non borné.</li>
+  <li>Dupliquer avec une source de vérité ; cache (propager) vs instantané (figer).</li>
+  <li>Patterns : extended reference, subset, computed, bucket, outlier, attribute, versioning.</li>
+  <li>Auditer les types, valider le noyau commun, versionner le schéma.</li>
+</ol>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Modéliser</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span></div>
+<h2>Les pièges de la modélisation documentaire</h2>
+<div class="trap-list"><div><b>Le tableau qui grossit sans limite</b> : imbriquer tous les commentaires ou tous les événements dans un document le rapproche de la limite de <b>16 Mo</b> et alourdit chaque lecture et chaque index : référencer ou utiliser le pattern bucket.</div><div><b>Imbriquer une donnée partagée et changeante</b> : copier l'adresse d'un fournisseur dans 10 000 produits oblige à 10 000 mises à jour quand elle change : on référence ce qui est partagé et modifié.</div><div><b>Recopier le modèle relationnel</b> : une collection par table et des <code>$lookup</code> partout : on paie MongoDB sans profiter du document, qui se modélise d'après les <b>requêtes</b>.</div><div><b>« Sans schéma » donc sans règles</b> : le schéma est souple, pas absent : un validateur <code>$jsonSchema</code> sur la collection refuse les documents mal formés.</div><div><b>Dupliquer sans plan de mise à jour</b> : toute donnée dupliquée (pattern extended reference) doit avoir une règle claire de mise à jour, sinon les copies divergent.</div></div>
+</section>
+
+<section class="slide" data-ch="03" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/mongodb.png" alt="Logo MongoDB"></div>
+<div class="kicker">Chapitre 03 · Modéliser</div>
+<h2>Fiche — Modélisation documentaire</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Imbriquer / référencer</span><p><b>Imbriquer</b> : lu ensemble, possédé, borné (16 Mo). <b>Référencer</b> : partagé, non borné, mis à jour à part. <code>$lookup</code> systématique = relationnel déguisé.</p></div>
+  <div class="card"><span class="lab">Duplication</span><p>Normale avec une <b>source de vérité</b>. <b>Cache</b> (nom du client) : propager. <b>Instantané</b> (prix à la commande) : figer.</p></div>
+  <div class="card"><span class="lab">Patterns</span><p>Extended Reference · Subset · Computed · Bucket · Outlier · Attribute · Schema Versioning.</p></div>
+  <div class="card"><span class="lab">Schéma souple maîtrisé</span><p>Mauvais type = ignoré en silence → <code>$type</code>. Audit par agrégation. JSON Schema sur le noyau commun (moderate puis strict). <code>schema_version</code>.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Modéliser</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 03</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Comment décidez-vous d'imbriquer ou de référencer ?</button><div class="ab"><p>Je pars des <b>requêtes</b> : ce qui est affiché ensemble et appartient au parent, en quantité bornée, est imbriqué (les lignes d'une commande). Ce qui est partagé entre documents, volumineux, non borné ou mis à jour indépendamment est référencé (le client, les avis par milliers). Je vérifie la limite de 16 Mo et les cardinalités.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">La duplication des données n'est-elle pas une faute ?</button><div class="ab"><p>En documentaire, c'est un choix assumé pour lire sans jointure, à condition d'identifier une <b>source de vérité</b> et un mécanisme de propagation. Je distingue le cache (à mettre à jour quand la source change) de l'instantané historique (le prix payé, qui ne doit jamais changer).</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment garder la qualité avec un schéma souple ?</button><div class="ab"><p>Audit régulier des champs et de leurs types par agrégation, validation JSON Schema sur les champs obligatoires communs, convention « un champ sans valeur n'est pas écrit » (plutôt que null), champ <code>schema_version</code> et migrations progressives. Le schéma est dans le code : il doit être testé comme du code.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Modéliser</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="03"></div>
+</section>
+
+<!-- ================= 04 · INDEX, AGRÉGATION, EXPLOITATION ================= -->
+<section class="slide" data-ch="04" data-sec="04 Performance" data-title="Index, agrégation et exploitation" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/mongodb.png" alt="Logo MongoDB"></div>
+<div class="kicker">Chapitre 04 · Index et exploitation</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Index : COLLSCAN, IXSCAN et la règle ESR</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · index et mesure</span><button class="cpy" type="button">Copier</button></div><pre><code>db.produits.create_index([(<span class="s">"categorie"</span>, 1),   <span class="c"># E · égalité</span>
+                          (<span class="s">"stock"</span>, -1),      <span class="c"># S · tri</span>
+                          (<span class="s">"prix"</span>, 1)])      <span class="c"># R · plage</span>
+db.produits.create_index(<span class="s">"sku"</span>, unique=<span class="kw">True</span>)
+db.produits.create_index(<span class="s">"supprime_le"</span>, expireAfterSeconds=30*86400) <span class="c"># TTL</span>
+
+plan = db.produits.find({<span class="s">"categorie"</span>: <span class="s">"pain"</span>, <span class="s">"prix"</span>: {<span class="s">"$lt"</span>: 3}}) \
+                  .sort(<span class="s">"stock"</span>, -1).explain()
+<span class="c"># winningPlan : IXSCAN (index) plutôt que COLLSCAN (tout lire)</span>
+<span class="c"># executionStats : totalDocsExamined ≈ nReturned  → ratio proche de 1:1</span></code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card hl"><span class="lab">ESR : Equality, Sort, Range</span><p>Dans un index composé, placer d'abord les champs testés en <b>égalité</b>, puis ceux du <b>tri</b>, puis ceux en <b>plage</b> (<code>$lt</code>, <code>$gt</code>). C'est l'<b>ordre des champs</b> qui fait la performance.</p></div>
+    <div class="card"><span class="lab">Règle du préfixe</span><p>L'index <code>{a, b, c}</code> sert les requêtes sur <code>{a}</code> et <code>{a, b}</code>, <b>jamais</b> sur <code>{b}</code> seul.</p></div>
+    <div class="card"><span class="lab">Index utiles</span><p><b>Unique</b> (identité métier) · <b>partiel</b> (sur une collection hétérogène, ou un unique sur un champ optionnel) · <b>TTL</b> (purge automatique) · requête <b>couverte</b> (tout est dans l'index, aucun document lu).</p></div>
+  </div>
+</div>
+<div class="trap-list">
+  <div><b>Perdre son index :</b> <code>$regex</code> non ancré (<code>/pain/</code> au lieu de <code>/^pain/</code>), tri de directions mixtes non prévu par l'index, tri en mémoire (100 Mo maximum ; au-delà, échec ou débordement sur disque, permis par défaut depuis MongoDB 6.0). Et chaque index <b>coûte à l'écriture</b> : supprimer ceux que <code>$indexStats</code> montre inutilisés.</div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Index et exploitation</div>
+<div class="pqrow"><span class="pq ex">④ Exemple — agrégation</span> <span class="pq how">③ Comment — exploitation</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pipeline d'agrégation et mise en production</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · chiffre d'affaires par catégorie en 2026</span><button class="cpy" type="button">Copier</button></div><pre><code>pipeline = [
+  {<span class="s">"$match"</span>:  {<span class="s">"date"</span>: {<span class="s">"$gte"</span>: debut_2026}}},          <span class="c"># WHERE (tôt !)</span>
+  {<span class="s">"$unwind"</span>: <span class="s">"$lignes"</span>},                                <span class="c"># 1 doc par ligne</span>
+  {<span class="s">"$group"</span>:  {<span class="s">"_id"</span>: <span class="s">"$lignes.categorie"</span>,               <span class="c"># GROUP BY</span>
+               <span class="s">"ca"</span>: {<span class="s">"$sum"</span>: {<span class="s">"$multiply"</span>: [<span class="s">"$lignes.qte"</span>, <span class="s">"$lignes.prix"</span>]}}}},
+  {<span class="s">"$sort"</span>:   {<span class="s">"ca"</span>: -1}},                                  <span class="c"># ORDER BY</span>
+  {<span class="s">"$project"</span>: {<span class="s">"categorie"</span>: <span class="s">"$_id"</span>, <span class="s">"ca"</span>: 1, <span class="s">"_id"</span>: 0}} <span class="c"># SELECT</span>
+]
+<span class="kw">for</span> r <span class="kw">in</span> db.commandes.aggregate(pipeline): print(r)</code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card"><span class="lab">Le pipeline d'agrégation</span><p>Une suite d'<b>étapes</b> : chacune transforme les documents et les passe à la suivante. <code>$match</code> (filtrer, à placer <b>en premier</b> pour utiliser un index), <code>$group</code>, <code>$unwind</code> (déplier un tableau), <code>$project</code>, <code>$sort</code>, <code>$lookup</code>, <code>$out</code>/<code>$merge</code> (écrire le résultat).</p></div>
+    <div class="card"><span class="lab">Exploitation</span><ul><li><b>Replica set</b> (primaire + secondaires) : haute disponibilité, élection automatique ; exigé pour les <b>transactions</b> multi-documents et les <i>change streams</i>, même à un seul nœud.</li><li><b>Sharding</b> : répartition horizontale par clé de shard.</li><li>Docker : <b>volume nommé</b> (sinon les données disparaissent), image épinglée (<code>mongo:8.0</code>), port publié sur 127.0.0.1.</li><li>Sécurité : compte applicatif <code>readWrite</code> sur une seule base, jamais root.</li><li>Sauvegarde : <code>mongodump</code>/<code>mongorestore</code> (BSON, types conservés).</li></ul></div>
+  </div>
+</div>
+<ol class="sum-list">
+  <li><code>explain</code> : viser IXSCAN et un ratio examinés/rendus proche de 1.</li>
+  <li>Index composé selon <b>ESR</b> ; règle du préfixe ; index unique, partiel, TTL.</li>
+  <li>Agrégation : <code>$match</code> d'abord, puis <code>$group</code>, <code>$unwind</code>, <code>$project</code>, <code>$sort</code>.</li>
+  <li>Replica set pour la disponibilité et les transactions ; sharding pour l'échelle ; volumes et comptes dédiés.</li>
+</ol>
+</section>
+
+<section class="slide" data-ch="04" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/mongodb.png" alt="Logo MongoDB"></div>
+<div class="kicker">Chapitre 04 · Index et exploitation</div>
+<h2>Fiche — Index, agrégation, exploitation</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Index</span><p>Sans index : <b>COLLSCAN</b>. <code>explain("executionStats")</code> : IXSCAN, examinés ≈ rendus. <b>ESR</b> : égalité, tri, plage. Préfixe : <code>{a,b,c}</code> sert <code>{a}</code>, <code>{a,b}</code>, pas <code>{b}</code>.</p></div>
+  <div class="card"><span class="lab">Types d'index</span><p>Unique (E11000 si doublon) · partiel · <b>TTL</b> (expireAfterSeconds) · composé · requête couverte. Coût à l'écriture : supprimer les inutilisés.</p></div>
+  <div class="card"><span class="lab">Agrégation</span><p><code>$match</code> (en premier) → <code>$unwind</code> → <code>$group</code> → <code>$sort</code> → <code>$project</code> ; <code>$lookup</code>, <code>$merge</code>.</p></div>
+  <div class="card"><span class="lab">Exploitation</span><p>Replica set (HA, transactions, change streams) ; sharding ; volume Docker nommé ; compte readWrite ; mongodump/mongorestore.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Index et exploitation</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 04</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Comment concevez-vous un index composé dans MongoDB ?</button><div class="ab"><p>À partir de la requête réelle, selon la règle <b>ESR</b> : d'abord les champs d'égalité, puis ceux du tri, enfin ceux en plage. Je vérifie avec <code>explain("executionStats")</code> qu'on obtient un IXSCAN sans tri en mémoire et que le nombre de documents examinés est proche du nombre de documents rendus. Je tiens compte de la règle du préfixe pour qu'un même index serve plusieurs requêtes.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quelle est la différence entre un replica set et le sharding ?</button><div class="ab"><p>Le <b>replica set</b> copie les mêmes données sur plusieurs nœuds (un primaire, des secondaires) : <b>haute disponibilité</b> et lecture répartie, avec élection automatique d'un nouveau primaire. Le <b>sharding</b> <b>répartit</b> des données différentes sur plusieurs serveurs selon une clé de shard : <b>passage à l'échelle</b> horizontal. En production, chaque shard est lui-même un replica set.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Traduisez un GROUP BY SQL en MongoDB.</button><div class="ab"><p>Avec le pipeline d'agrégation : <code>$match</code> pour le WHERE (placé en premier pour profiter des index), <code>$group</code> avec <code>_id</code> = clé de regroupement et des accumulateurs (<code>$sum</code>, <code>$avg</code>), <code>$sort</code> pour l'ORDER BY, <code>$project</code> pour choisir les champs. <code>$unwind</code> déplie un tableau imbriqué avant le regroupement.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Index et exploitation</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="04"></div>
+</section>
+
+<!-- ================= QUIZ FINAL ================= -->
+<section class="slide" data-ch="quiz" data-sec="Quiz final" data-title="Quiz final — 45 questions">
+<div class="kicker">Quiz final · MongoDB</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-target"/></svg> 45 questions pour affronter le jury</h2>
+<p class="lead">Tous chapitres mélangés ; l'ordre change à chaque tentative. Certaines questions ont <b>plusieurs bonnes réponses</b>.</p>
+<div data-quiz="final"></div>
+</section>
+
+</main>
+<button class="arrow" id="prev" type="button" aria-label="Diapositive précédente">‹</button>
+<button class="arrow" id="next" type="button" aria-label="Diapositive suivante">›</button>
+<nav id="tl" aria-label="Chapitres"></nav>
+<div id="hint">← → naviguer · ↑ ↓ défiler · H ampoule <svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg> · E Complète/Essentiel · M maîtrisé · S sommaire · T thème</div>
+<button id="bulbhint" type="button"><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></button>
+<div id="ctip" role="tooltip"></div>
+<div id="toc" role="dialog" aria-label="Sommaire">
+  <button class="btn xx" id="tocx" type="button">Fermer ✕</button>
+  <div class="kicker">Sommaire · NoSQL : MongoDB &amp; Python</div>
+  <h2>NoSQL : MongoDB &amp; Python</h2>
+  <div class="tg"></div>
+</div>
+
+<div id="fab">
+  <button id="helpbtn" type="button" aria-label="Ampoule : concepts expliqués au survol" aria-pressed="false" title="Ampoule : soulignez les concepts, survolez-les pour une explication (H)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></button>
+<button id="tocbtn" type="button" aria-label="Sommaire" title="Sommaire (S)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+  <div id="themebtn">
+    <div id="menu" role="menu"><h4>Thème</h4></div>
+    <button id="tbtn" type="button" aria-label="Changer de thème" aria-haspopup="true" title="Changer de thème (T)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.4-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16a5 5 0 0 0 5-5c0-4-4-7-9-7z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="7.5" r="1"/></svg>
+    </button>
+  </div>
+</div>
+
+</div>
+<script src="assets/icons.js?v=1795252877"></script>
+<script src="data/mongodb-quiz.js?v=1795252878"></script>
+<script src="data/mongodb-glossary.js?v=1795252878"></script>
+<script src="assets/engine.js?v=1795252877"></script>
+</body>
+</html>

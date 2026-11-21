@@ -1,0 +1,1718 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hadoop · Révision Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/base.css?v=1795252877">
+<link rel="stylesheet" href="assets/photos.css?v=1795252877">
+<link rel="stylesheet" href="assets/revision.css?v=1795252877">
+</head>
+<body data-page="course" data-course="hadoop" data-title="Hadoop">
+<div id="app" data-theme="papier">
+
+<div id="bg" aria-hidden="true">
+  <div class="bgl bg-neon">
+    <svg viewBox="0 0 800 800"><path d="M40 760 L400 280 L760 760" stroke-width="3"/><path d="M110 760 L400 380 L690 760" stroke-width="2.4" opacity=".85"/><path d="M180 760 L400 470 L620 760" stroke-width="2" opacity=".7"/><path d="M250 760 L400 560 L550 760" stroke-width="1.6" opacity=".55"/><path d="M320 760 L400 650 L480 760" stroke-width="1.2" opacity=".4"/></svg>
+  </div>
+  <div class="bgl bg-sauge"><div class="panel"></div><div id="bignum"></div></div>
+  <div class="bgl bg-nuit"><i></i><i></i><i></i></div>
+  <div class="bgl bg-verre"><div class="blob a"></div><div class="blob b"></div><div class="blob c"></div></div>
+  <div class="bgl bg-papier"><i></i><i></i><i></i></div>
+  <div class="bgl bg-rubans"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f8fe0"/><stop offset="1" stop-color="#2fd0bd"/></linearGradient>
+      <linearGradient id="rg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fdcc4"/><stop offset=".55" stop-color="#26b2d2"/><stop offset="1" stop-color="#2f8fe0"/></linearGradient>
+      <linearGradient id="rg3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2fd0bd"/><stop offset="1" stop-color="#2f90e2"/></linearGradient>
+      <filter id="rsh" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="12"/></filter>
+    </defs>
+    <g class="rb" id="rb-a" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g class="rb b" id="rb-b" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+  </svg></div>
+  <div class="bgl bg-facettes"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="fcw" id="fc-top"></g><g class="fcw" id="fc-bot"></g></svg></div>
+  <div class="bgl photo bg-bulles"><i></i></div>
+  <div class="bgl photo bg-hexa"><i></i></div>
+  <div class="bgl photo bg-points"><i></i></div>
+</div>
+
+<svg id="defs" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+  <marker id="arrk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3a4458"/></marker>
+  <marker id="arrbad" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+</defs></svg>
+
+<div id="brand"><a href="index.html" title="Retour à l'accueil">← Accueil</a> · Hadoop</div>
+<div id="topbar">
+  <div id="vseg" role="group" aria-label="Version du cours"><button type="button" data-v="c" title="Tout le cours (E pour basculer)"><svg class="ico" aria-hidden="true"><use href="#ti-book"/></svg> Complète</button><button type="button" data-v="e" title="Ce qu'il faut maîtriser pour le jury (E)"><svg class="ico" aria-hidden="true"><use href="#ti-bolt"/></svg> Essentiel</button></div>
+  <button id="mast" type="button" title="Marquer ce chapitre comme maîtrisé (M)"></button>
+  <span id="prog"></span>
+</div>
+<div id="hud"><span id="count">1 / 1</span></div>
+<main id="deck">
+<!-- ================= 00 · IMMERSION ================= -->
+<section class="slide" data-ch="00" data-sec="Immersion" data-title="Immersion : découvrir Hadoop">
+<div class="chlogos"><img class="chlogo big" src="assets/logos/hadoop.svg" alt="Logo Apache Hadoop"></div>
+<div class="kicker">Bloc 4B · Big Data &amp; IA</div>
+<h1>Hadoop</h1>
+<p class="lead">L'écosystème qui a rendu le Big Data possible : stocker et traiter des volumes qu'<b>aucune machine seule</b> ne peut tenir. HDFS stocke, YARN alloue, MapReduce calcule, Hive interroge en SQL, HBase sert en temps réel, NiFi fait entrer les données.</p>
+<div class="chips"><span class="pill solid">immersion + 9 chapitres</span><span class="pill">mini-quiz par chapitre</span><span class="pill">quiz final · 45 questions</span><span class="pill">Hadoop 3.3.6 · Hive 4.1 · HBase 2.5 · NiFi 2.x</span></div>
+<div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-compass"/></svg></i><div><p><b>Mode d'emploi.</b> <b><svg class="ico" aria-hidden="true"><use href="#ti-book"/></svg> Complète / <svg class="ico" aria-hidden="true"><use href="#ti-bolt"/></svg> Essentiel</b> en haut (touche <code>E</code>) ; <b>« Marquer maîtrisé »</b> (touche <code>M</code>) quand tu sais réexpliquer un chapitre sans notes ; l'<b>ampoule <svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></b> (touche <code>H</code>) souligne les concepts et les explique au survol. Ta position est mémorisée.</p></div></div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 1 / 3</div>
+<h2>Comment stocker et analyser un pétaoctet quand le plus gros disque du marché en contient vingt téraoctets ?</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card bad"><span class="lab">Le mur</span><p>1 Po = 1 000 To. Même avec le plus gros serveur, il faudrait des dizaines de disques, et lire 1 Po à 200 Mo/s prendrait <b>près de deux mois</b>. Et si ce serveur tombe, tout s'arrête.</p></div>
+    <div class="card hl"><span class="lab">L'idée</span><p>Découper les données en morceaux, les <b>répartir sur des centaines de machines ordinaires</b>, et faire travailler chaque machine sur ses propres morceaux <b>en même temps</b>. 1 000 disques lus en parallèle vont 1 000 fois plus vite.</p></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <p class="punch"><b>Apache Hadoop</b> est un <b>framework open source</b> qui stocke des fichiers géants <b>répartis sur un cluster</b> de machines standards et y exécute des traitements <b>en parallèle</b>, en tolérant la panne de n'importe quelle machine.</p>
+    <div class="analogy"><b>Analogie — le déménagement.</b> Plutôt qu'un camion géant qui n'existe pas, on loue cent camionnettes ; chacune transporte une partie des cartons, toutes roulent en même temps, et si l'une tombe en panne, les cartons ont été dupliqués dans une autre.</div>
+    <div class="card"><span class="lab">D'où le nom ?</span><p>« Hadoop » était le nom de l'éléphant en peluche du fils de Doug Cutting, son créateur — d'où le logo.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 2 / 3</div>
+<h2>De Google à tout le Big Data</h2>
+<div class="flow">
+  <div class="step"><b>2003 – 2004</b><small>Google publie GFS (fichiers distribués) et <b>MapReduce</b> (calcul distribué)</small></div>
+  <div class="step"><b>2006</b><small>Doug Cutting et Mike Cafarella l'avaient codé dans le moteur Nutch ; il devient le projet <b>Hadoop</b>, que <b>Yahoo</b>, qui embauche Cutting, industrialise</small></div>
+  <div class="step"><b>2008</b><small>Projet Apache de premier niveau ; Facebook crée Hive, puis HBase s'ajoute</small></div>
+  <div class="step"><b>2012</b><small>Hadoop 2 et <b>YARN</b> : d'autres moteurs (Spark) partagent le cluster</small></div>
+  <div class="step"><b>Aujourd'hui</b><small>Spark remplace MapReduce, S3 concurrence HDFS ; les concepts restent partout</small></div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Qui l'utilise</span><p>Les géants du web l'ont industrialisé (Yahoo, Facebook, LinkedIn), puis banques, opérateurs, administrations, souvent via des distributions comme <b>Cloudera</b> ou des services cloud (Amazon <b>EMR</b>, Google <b>Dataproc</b>, Azure <b>HDInsight</b>). Beaucoup de clusters on-premise tournent encore en production.</p><p><b>Alternatives modernes :</b> Spark sur Kubernetes, stockage objet S3 + formats Iceberg/Delta (lakehouse), entrepôts cloud.</p></div>
+  <div class="sch free"><span class="cap">La place de Hadoop dans le pipeline</span>
+  <svg class="dg" viewBox="0 0 460 190" role="img" aria-label="Ingestion NiFi, stockage HDFS, calcul MapReduce Hive Spark, service HBase">
+    <rect class="b f3" x="10" y="70" width="95" height="50" rx="8"/><text class="t tc" x="57" y="92" style="font-size:13px">Ingestion</text><text class="a" x="57" y="110" text-anchor="middle">NiFi</text>
+    <rect class="b f1" x="125" y="70" width="95" height="50" rx="8"/><text class="t tc" x="172" y="92" style="font-size:13px">Stockage</text><text class="a" x="172" y="110" text-anchor="middle">HDFS</text>
+    <rect class="b f2" x="240" y="70" width="105" height="50" rx="8"/><text class="t tc" x="292" y="92" style="font-size:13px">Calcul</text><text class="a" x="292" y="110" text-anchor="middle">MR · Hive</text>
+    <rect class="b f4" x="365" y="70" width="85" height="50" rx="8"/><text class="t tc" x="407" y="92" style="font-size:13px">Service</text><text class="a" x="407" y="110" text-anchor="middle">HBase</text>
+    <path class="e" d="M105 95 H121"/><path class="e" d="M220 95 H236"/><path class="e" d="M345 95 H361"/>
+    <rect class="z" x="120" y="20" width="235" height="140" rx="12"/><text class="a" x="128" y="38">YARN alloue les ressources</text>
+    <text class="s" x="10" y="182">Spark, Kafka, Airflow : les cours suivants</text>
+  
+  <use class="il" href="#il-exchange" x="43.0" y="39" width="28" height="28"/><use class="il" href="#il-server" x="158.0" y="39" width="28" height="28"/><use class="il" href="#il-gear" x="278.0" y="39" width="28" height="28"/><use class="il" href="#il-database" x="393.0" y="39" width="28" height="28"/>
+</svg></div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 3 / 3</div>
+<h2>Premier contact : déposer un fichier, le voir réparti</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>bash · dans le cluster du cours</span><button class="cpy" type="button">Copier</button></div><pre><code>hdfs dfs -mkdir -p /data                <span class="c"># un dossier dans HDFS</span>
+hdfs dfs -put ventes.csv /data/          <span class="c"># le fichier part sur le cluster</span>
+hdfs dfs -ls /data                       <span class="c"># on le voit comme un fichier normal…</span>
+<span class="c"># -rw-r--r--  3 root supergroup  300 M  /data/ventes.csv</span>
+<span class="c">#             ↑ réplication : 3 copies</span>
+hdfs fsck /data/ventes.csv -blocks       <span class="c"># …mais il est découpé :</span>
+<span class="c"># Total blocks: 3 (128 Mo + 128 Mo + 44 Mo)</span>
+<span class="c"># chaque bloc stocké sur 3 machines différentes</span></code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card"><span class="lab">Ce qu'il faut remarquer</span><p>Pour l'utilisateur, c'est un fichier comme un autre. Derrière, Hadoop l'a <b>découpé en blocs</b> et <b>copié trois fois</b> sur des machines différentes : un calcul peut lire les trois blocs en parallèle, et une machine peut tomber sans perte.</p></div>
+    <div class="card"><span class="lab">Ce que le jury attend</span><ul><li>Analyser un besoin Big Data (volume, vélocité, variété) et choisir une stratégie.</li><li>Ingérer, transformer, charger (NiFi, MapReduce, Hive).</li><li>Choisir le bon stockage (HDFS, Hive, HBase).</li><li><b>C7–C9</b> — justifier une architecture distribuée.</li></ul></div>
+  </div>
+</div>
+<div class="flow">
+  <div class="step"><b>01 · 02</b><small>pourquoi distribuer · le cluster du cours</small></div>
+  <div class="step"><b>03</b><small>HDFS · stocker</small></div>
+  <div class="step"><b>04 · 05</b><small>MapReduce, YARN · calculer</small></div>
+  <div class="step"><b>06 · 07</b><small>Hive, HBase · interroger, servir</small></div>
+  <div class="step"><b>08 · 09</b><small>NiFi · ingérer · synthèse</small></div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/hadoop.svg" alt="Logo Apache Hadoop"></div>
+<div class="kicker">Immersion · Essentiel</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Présenter Hadoop en une minute</h2>
+<div class="card hl"><p class="q">« Hadoop est un framework open source de la fondation Apache, conçu pour <b>stocker et traiter de très gros volumes</b> sur un cluster de machines ordinaires. Il est né en 2006, issu du moteur de recherche Nutch et inspiré des articles de Google sur GFS et MapReduce, puis industrialisé par Yahoo.</p><p class="q">Son principe : au lieu d'acheter une machine toujours plus grosse, on <b>ajoute des machines</b> (scale-out). <b>HDFS</b> découpe les fichiers en blocs répliqués, <b>YARN</b> alloue les ressources, et le calcul est envoyé là où sont les données. Autour gravitent Hive pour le SQL, HBase pour l'accès temps réel et NiFi pour l'ingestion.</p><p class="q">Aujourd'hui, Spark a remplacé MapReduce et le stockage objet concurrence HDFS, mais ces briques restent en production et leurs concepts — distribution, réplication, shuffle, séparation stockage-calcul — sont la base de tout le Big Data moderne. »</p></div>
+<div class="grid g3">
+  <div class="card"><span class="lab">Les 3 mots à placer</span><p><b>Distribué · tolérant aux pannes · localité des données</b></p></div>
+  <div class="card"><span class="lab">Le choix à justifier</span><p><b>Distribuer</b> (Hadoop, Spark) seulement quand une machine ne tient plus le volume ; en dessous, une base unique est plus simple et moins chère.</p></div>
+  <div class="card"><span class="lab">Le lien</span><p>Spark tourne sur YARN et lit HDFS ; Hive inspire le lakehouse</p></div>
+</div>
+</section>
+<section class="slide" data-ch="00" data-sec="Le fil" data-title="Le fil du cours : 5 idées">
+<div class="kicker">Le fil du cours · Hadoop</div>
+<h2>5 idées font tout le cours</h2>
+<p class="lead fil-q">Tout Hadoop répond à : <b>comment stocker et traiter plus de données qu'une machine ne peut en contenir, avec des machines qui tombent en panne ?</b> HDFS, MapReduce, YARN, Hive, HBase et NiFi appliquent les mêmes cinq idées.</p>
+<div class="grid g3 ideas"><div class="card idea"><span class="lab">Idée 1 · Découper et répliquer</span><p>HDFS coupe chaque fichier en <b>blocs</b> de 128 Mo, répartis sur les machines de stockage (<b>DataNodes</b>), et garde chaque bloc en <b>trois exemplaires</b> sur des machines différentes. La panne d'une machine devient un événement <b>normal</b> : on lit une autre copie.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on réduit la réplication à un seul exemplaire pour gagner de la place, la panne d'un seul disque fait perdre des données définitivement.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Garder la réplication à 3 pour les données de production ; HDFS recrée tout seul une copie quand une machine tombe.</p><p class="chs">ch. 01 · ch. 03 · ch. 07 · ch. 09</p></div><div class="card idea"><span class="lab">Idée 2 · Déplacer le calcul, pas les données</span><p>Il coûte moins cher d'envoyer quelques kilo-octets de code vers les machines qui ont les données que de rapatrier des téraoctets. MapReduce et YARN lancent donc les tâches <b>là où sont les blocs</b> : c'est la <b>localité des données</b>.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on rapatrie toutes les données sur une machine pour les traiter, le réseau sature et la machine manque de mémoire.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Envoyer le traitement sur le cluster (un job MapReduce ou Spark) : chaque machine traite ses propres blocs.</p><p class="chs">ch. 01 · ch. 04 · ch. 05</p></div><div class="card idea"><span class="lab">Idée 3 · Un maître qui sait, des ouvriers qui font</span><p>Partout dans Hadoop, le même schéma : un <b>coordinateur</b> qui sait où est tout (NameNode pour HDFS, ResourceManager pour YARN, HMaster pour HBase) et des <b>travailleurs</b> qui exécutent (DataNodes, NodeManagers, RegionServers). Les travailleurs envoient régulièrement un signal de vie (<b>heartbeat</b>) pour qu'on repère les absents. Le coordinateur est le point fragile.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on croit que le Secondary NameNode prend le relais en cas de panne, on n'a en réalité aucun secours : il ne fait que des sauvegardes de l'état, et le cluster s'arrête.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Configurer la haute disponibilité : deux NameNodes, un actif et un en attente, qui prend le relais automatiquement.</p><p class="chs">ch. 01 · ch. 02 · ch. 03 · ch. 05 · ch. 07</p></div><div class="card idea"><span class="lab">Idée 4 · Map, shuffle, reduce : le shuffle coûte</span><p>Tout traitement MapReduce suit trois temps : <b>map</b> transforme chaque morceau là où il est ; <b>shuffle</b> regroupe toutes les valeurs d'une même clé en les faisant passer par le réseau ; <b>reduce</b> agrège chaque groupe. Le shuffle est l'étape coûteuse. Un <b>combiner</b> pré-agrège sur chaque machine pour l'alléger, mais seulement si l'opération donne le même résultat en plusieurs fois (une somme, un maximum).</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on calcule une moyenne dans le combiner, le reducer fait ensuite la moyenne de moyennes partielles, ce qui donne un résultat faux.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Pour une moyenne, faire calculer au combiner une somme et un nombre d'éléments, puis diviser seulement dans le reducer.</p><p class="chs">ch. 04 · ch. 06 · ch. 09</p></div><div class="card idea"><span class="lab">Idée 5 · Le bon outil selon l'accès</span><p>Chaque outil sert un type d'accès. <b>Hive</b> : du SQL pour parcourir de gros volumes en lots (batch), avec des partitions et un schéma appliqué à la lecture. <b>HBase</b> : lire ou écrire une ligne par sa clé en quelques millisecondes. <b>NiFi</b> : amener les données jusqu'au cluster en gardant la trace de leur parcours.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on interroge HBase comme une base SQL, ou si l'on attend de Hive une réponse instantanée, on demande à l'outil un usage qu'il ne sait pas servir : requêtes impossibles ou réponses en minutes.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Se demander d'abord comment on lira la donnée : gros calcul en lot → Hive ; une fiche par sa clé, tout de suite → HBase.</p><p class="chs">ch. 06 · ch. 07 · ch. 08 · ch. 09</p></div></div>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · Hadoop</div>
+<h2>Le modèle mental : suivre une donnée dans le système</h2>
+<div class="flow"><div class="step"><b>1</b><small>Où sont physiquement les blocs, et en combien d'exemplaires ?</small></div><div class="step"><b>2</b><small>Qui coordonne, et que se passe-t-il s'il tombe ?</small></div><div class="step"><b>3</b><small>Où le traitement fait-il transiter les données sur le réseau (shuffle) ?</small></div><div class="step"><b>4</b><small>L'accès est-il un scan massif ou une lecture par clé ?</small></div></div>
+<table class="cmp md"><thead><tr><th>Situation</th><th>Ce qui se passe</th><th>Bon réflexe</th></tr></thead><tbody><tr><td>Un DataNode tombe</td><td>le NameNode ne reçoit plus ses heartbeats et fait recopier ses blocs à partir des autres exemplaires</td><td>garder une <b>réplication à 3</b></td></tr><tr><td>Des milliers de petits fichiers</td><td>chaque fichier occupe de la mémoire sur le NameNode</td><td>regrouper en gros fichiers (<b>ORC</b>, Parquet)</td></tr><tr><td>Job MapReduce lent</td><td>le shuffle déplace trop de données</td><td><b>combiner</b>, filtrer tôt</td></tr><tr><td>Requête Hive qui lit tout</td><td>aucune partition n'est écartée</td><td><b>partitionner</b> par date, filtrer sur la partition</td></tr><tr><td>Profil client à lire en temps réel</td><td>HDFS et Hive sont faits pour le batch</td><td><b>HBase</b>, avec une rowkey bien choisie</td></tr></tbody></table>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · Hadoop</div>
+<h2>Chaque chapitre applique les mêmes idées</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Chapitre</th><th><b>1</b></th><th><b>2</b></th><th><b>3</b></th><th><b>4</b></th><th><b>5</b></th></tr></thead><tbody><tr><td><b>01</b> Pourquoi</td><td>●</td><td>●</td><td>●</td><td></td><td></td></tr><tr><td><b>02</b> Cluster</td><td></td><td></td><td>●</td><td></td><td></td></tr><tr><td><b>03</b> HDFS</td><td>●</td><td></td><td>●</td><td></td><td></td></tr><tr><td><b>04</b> MapReduce</td><td></td><td>●</td><td></td><td>●</td><td></td></tr><tr><td><b>05</b> YARN</td><td></td><td>●</td><td>●</td><td></td><td></td></tr><tr><td><b>06</b> Hive</td><td></td><td></td><td></td><td>●</td><td>●</td></tr><tr><td><b>07</b> HBase</td><td>●</td><td></td><td>●</td><td></td><td>●</td></tr><tr><td><b>08</b> NiFi</td><td></td><td></td><td></td><td></td><td>●</td></tr><tr><td><b>09</b> Synthèse</td><td>●</td><td></td><td></td><td>●</td><td>●</td></tr></tbody></table><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Ce qui revient dans <b>plusieurs chapitres</b> est une idée à comprendre ; ce qui n'apparaît qu'une fois est un <b>exemple</b> d'une de ces idées.</p></div></div></div><table class="cmp md"><thead><tr><th>Panne ou erreur classique</th><th>Idée oubliée</th><th>Ce qui casse</th></tr></thead><tbody><tr><td>Moyenne calculée dans un combiner</td><td><b>4</b> · Map, shuffle, reduce : le shuffle coûte</td><td>le résultat final est faux</td></tr><tr><td>Secondary NameNode pris pour un secours</td><td><b>3</b> · Un maître qui sait, des ouvriers qui font</td><td>à la panne du NameNode, le cluster s'arrête</td></tr><tr><td>Données rapatriées sur une seule machine</td><td><b>2</b> · Déplacer le calcul, pas les données</td><td>réseau saturé, mémoire dépassée</td></tr><tr><td>Réplication réduite à 1</td><td><b>1</b> · Découper et répliquer</td><td>une panne disque perd définitivement des blocs</td></tr><tr><td>Rowkey HBase croissante (un horodatage)</td><td><b>5</b> · Le bon outil selon l'accès</td><td>toutes les écritures vont sur la même région</td></tr></tbody></table></div>
+</section>
+
+
+<!-- ================= 01 · POURQUOI HADOOP ================= -->
+<section class="slide" data-ch="01" data-sec="01 Pourquoi" data-title="Pourquoi Hadoop ?" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/hadoop.svg" alt="Logo Apache Hadoop"></div>
+<div class="kicker">Chapitre 01 · Pourquoi Hadoop ?</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi — le problème</span></div>
+<h2>Quand une seule machine ne suffit plus</h2>
+<div class="grid g12">
+  <div class="stack" style="display:grid;gap:1.4vh">
+    <p class="lead">Historiquement : <b>un serveur central puissant + un SGBDR</b>. Quand les données grossissent, on achète un serveur plus gros : c'est le <span class="kw">scale-up</span> (upsizing).</p>
+    <div class="card bad"><h3>Les limites du scale-up</h3><ul>
+      <li>Le prix explose : un serveur 2× plus puissant coûte bien plus que 2× plus cher.</li>
+      <li>Il existe un <b>plafond physique</b> (CPU, RAM, disques par machine).</li>
+      <li>Une seule machine = un <b>point unique de panne</b>.</li>
+      <li>Lire 1 To sur un disque à ~200 Mo/s prend ~1 h 30 : le <b>débit disque</b> devient le goulot.</li>
+    </ul></div>
+    <div class="card hl"><h3>L'idée de Google (articles GFS 2003, MapReduce 2004)</h3><p>Des <b>centaines de machines ordinaires</b> (commodity hardware) : on <b>répartit le stockage</b> et on <b>parallélise le calcul</b>. Ajouter de la capacité = ajouter des nœuds : c'est le <span class="kw">scale-out</span>. Doug Cutting et Mike Cafarella en tirent l'implémentation open source <b>Hadoop</b> (Yahoo, puis Apache, ~2006).</p></div>
+  </div>
+  <div class="sch free"><span class="cap">Scale-up vs scale-out</span>
+  <svg class="dg" viewBox="0 0 420 330" role="img" aria-label="Scale-up : un serveur grossit. Scale-out : on ajoute des machines">
+    <text class="a" x="20" y="28">SCALE-UP (vertical)</text>
+    <rect class="b" x="30" y="95" width="60" height="70" rx="6"/><text class="s tc" x="60" y="185">serveur</text>
+    <path class="e" d="M100 130 H140"/>
+    <rect class="b bad" x="150" y="45" width="110" height="120" rx="8"/><text class="t tc" x="205" y="140">gros</text><text class="s tc" x="205" y="185">plafond + coût ↑</text>
+    <text class="a" x="20" y="225">SCALE-OUT (horizontal)</text>
+    <g><rect class="b f1" x="30" y="245" width="50" height="55" rx="6"/><rect class="b f1" x="95" y="245" width="50" height="55" rx="6"/><rect class="b f1" x="160" y="245" width="50" height="55" rx="6"/><rect class="b f1" x="225" y="245" width="50" height="55" rx="6"/><rect class="b ok" x="290" y="245" width="50" height="55" rx="6"/><text class="g" x="352" y="278">+ nœud</text></g>
+    <text class="s" x="30" y="322">capacité ≈ linéaire · panne d'un nœud tolérée</text>
+  
+  <use class="il" href="#il-server" x="38" y="103" width="44" height="54"/><use class="il" href="#il-server" x="164" y="54" width="54" height="62"/><use class="il" href="#il-warning" x="224" y="52" width="30" height="28"/><use class="il" href="#il-server" x="39" y="252" width="32" height="40"/><use class="il" href="#il-server" x="104" y="252" width="32" height="40"/><use class="il" href="#il-server" x="169" y="252" width="32" height="40"/><use class="il" href="#il-server" x="234" y="252" width="32" height="40"/><use class="il" href="#il-server" x="299" y="252" width="32" height="40"/>
+</svg></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Pourquoi Hadoop ?</div>
+<div class="pqrow"><span class="pq">② Quoi — l'idée clé</span></div>
+<h2>Hadoop en une phrase</h2>
+<p class="punch">Hadoop est un <b>framework open source</b> (Java, Apache) pour le <b>stockage distribué</b> et le <b>traitement parallèle</b> de très gros volumes sur un <b>cluster</b> de machines standards.</p>
+<div class="grid g3">
+  <div class="card"><span class="lab">Stocker</span><h3>HDFS</h3><p>Système de fichiers distribué : les fichiers sont découpés en <b>blocs</b> répliqués sur plusieurs nœuds.</p></div>
+  <div class="card"><span class="lab">Allouer</span><h3>YARN</h3><p>Gestionnaire de ressources : décide <b>quelle tâche tourne où</b>, avec combien de mémoire et de CPU.</p></div>
+  <div class="card"><span class="lab">Calculer</span><h3>MapReduce</h3><p>Modèle de programmation : <b>map</b> en parallèle sur chaque morceau, puis <b>reduce</b> pour agréger.</p></div>
+</div>
+<div class="note tip"><i><svg class="ico" aria-hidden="true"><use href="#ti-target"/></svg></i><div><p><b>Le principe fondateur : la localité des données.</b> On n'envoie pas 1 To de données vers le programme ; on envoie le <b>programme</b> (quelques Ko) <b>vers les nœuds qui détiennent les données</b>. Le réseau ne transporte que des résultats partiels.</p></div></div>
+<div class="analogy"><b>Analogie — le dépouillement d'une élection.</b> Chaque bureau de vote compte ses bulletins <i>sur place</i> (map, en parallèle) ; seuls les totaux remontent à la préfecture, qui additionne par candidat (reduce). Personne ne transporte les urnes.</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Les 3 V du Big Data</span><p><b>Volume</b> (To → Po), <b>Vélocité</b> (débit d'arrivée, temps réel), <b>Variété</b> (CSV, JSON, logs, images). On ajoute souvent <b>Véracité</b> et <b>Valeur</b>. Hadoop répond d'abord au <b>volume</b> et à la <b>variété</b> ; la vélocité relève plutôt de Kafka / Spark Streaming.</p></div>
+  <div class="card"><span class="lab">Pourquoi Python dans ce cours ?</span><p><img class="lg" src="assets/logos/python.svg" alt="Logo Python">Hadoop est écrit en Java, mais <b>Hadoop Streaming</b> permet d'écrire mappers et reducers dans n'importe quel langage. Python apporte en plus pandas, matplotlib, happybase.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Pourquoi Hadoop ?</div>
+<div class="pqrow"><span class="pq how">③ Comment — l'architecture maître / esclaves</span></div>
+<h2>Un chef d'orchestre, des ouvriers</h2>
+<div class="sch free"><span class="cap">Architecture d'un cluster Hadoop</span>
+<svg class="dg" viewBox="0 0 960 300" role="img" aria-label="Le nœud maître héberge NameNode et ResourceManager ; chaque esclave héberge DataNode et NodeManager">
+  <rect class="b f3" x="330" y="10" width="300" height="100" rx="14"/><text class="t tc" x="480" y="38">MasterNode</text>
+  <rect class="b" x="350" y="52" width="125" height="44" rx="8"/><text class="t tc" x="412" y="72" style="font-size:13px">NameNode</text><text class="s tc" x="412" y="88">métadonnées HDFS</text>
+  <rect class="b" x="485" y="52" width="130" height="44" rx="8"/><text class="t tc" x="550" y="72" style="font-size:13px">ResourceManager</text><text class="s tc" x="550" y="88">ressources YARN</text>
+  <g>
+    <rect class="b f1" x="40" y="180" width="250" height="100" rx="14"/><text class="t tc" x="165" y="206">SlaveNode 1</text>
+    <rect class="b" x="55" y="220" width="105" height="46" rx="8"/><text class="t tc" x="107" y="241" style="font-size:13px">DataNode</text><text class="s tc" x="107" y="257">blocs</text>
+    <rect class="b" x="170" y="220" width="105" height="46" rx="8"/><text class="t tc" x="222" y="241" style="font-size:13px">NodeManager</text><text class="s tc" x="222" y="257">tâches</text>
+  </g>
+  <g>
+    <rect class="b f1" x="355" y="180" width="250" height="100" rx="14"/><text class="t tc" x="480" y="206">SlaveNode 2</text>
+    <rect class="b" x="370" y="220" width="105" height="46" rx="8"/><text class="t tc" x="422" y="241" style="font-size:13px">DataNode</text><text class="s tc" x="422" y="257">blocs</text>
+    <rect class="b" x="485" y="220" width="105" height="46" rx="8"/><text class="t tc" x="537" y="241" style="font-size:13px">NodeManager</text><text class="s tc" x="537" y="257">tâches</text>
+  </g>
+  <g>
+    <rect class="b f1" x="670" y="180" width="250" height="100" rx="14"/><text class="t tc" x="795" y="206">SlaveNode N</text>
+    <rect class="b" x="685" y="220" width="105" height="46" rx="8"/><text class="t tc" x="737" y="241" style="font-size:13px">DataNode</text><text class="s tc" x="737" y="257">blocs</text>
+    <rect class="b" x="800" y="220" width="105" height="46" rx="8"/><text class="t tc" x="852" y="241" style="font-size:13px">NodeManager</text><text class="s tc" x="852" y="257">tâches</text>
+  </g>
+  <path class="e bi" d="M420 112 L180 176"/><path class="e bi" d="M480 112 V176"/><path class="e bi" d="M540 112 L780 176"/>
+  <text class="a" x="640" y="140">heartbeats + rapports de blocs</text>
+
+  <use class="il" href="#il-server" x="340" y="16" width="26" height="30"/><use class="il" href="#il-server" x="50" y="186" width="22" height="26"/><use class="il" href="#il-server" x="365" y="186" width="22" height="26"/><use class="il" href="#il-server" x="680" y="186" width="22" height="26"/>
+</svg></div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Hadoop 1.x (2006–2012)</span><p>HDFS + MapReduce seulement. Un <b>JobTracker</b> unique gérait à la fois les ressources et les jobs : goulot d'étranglement, et seul MapReduce pouvait tourner. Le <b>NameNode était un point unique de défaillance</b> (SPOF) : s'il tombait, tout le cluster s'arrêtait.</p></div>
+  <div class="card hl"><span class="lab">Hadoop 2.x / 3.x</span><p><b>YARN</b> sépare la gestion des ressources du calcul : Spark, Hive/Tez, MapReduce partagent le même cluster. La <b>haute disponibilité</b> du NameNode arrive : un NameNode <i>actif</i> + un <i>standby</i>, bascule automatique (<b>failover</b>) pilotée par <b>ZooKeeper</b>. Hadoop 3 ajoute notamment l'<b>erasure coding</b> (moins de stockage qu'une réplication ×3).</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Pourquoi Hadoop ?</div>
+<div class="pqrow"><span class="pq ex">④ L'écosystème — et son statut en 2026</span></div>
+<h2>Les briques, celles qui vivent, celles qui sont parties</h2>
+<table class="cmp md">
+<thead><tr><th>Brique</th><th>Rôle</th><th>Statut 2026</th></tr></thead>
+<tbody>
+<tr><td><img class="lg" src="assets/logos/hadoop.svg" alt="Logo Apache Hadoop"><b>HDFS</b></td><td>Système de fichiers distribué (gros fichiers)</td><td>Actif ; concurrencé par le stockage objet (S3, MinIO) dans le cloud</td></tr>
+<tr><td><img class="lg" src="assets/logos/hadoop.svg" alt="Logo Apache Hadoop"><b>YARN</b></td><td>Gestion des ressources et ordonnancement</td><td>Actif ; Spark tourne souvent sur YARN, ou sur Kubernetes</td></tr>
+<tr><td><img class="lg" src="assets/logos/hadoop.svg" alt="Logo Apache Hadoop"><b>MapReduce</b></td><td>Calcul batch distribué</td><td>Base conceptuelle ; remplacé par Spark pour les nouveaux projets</td></tr>
+<tr><td><img class="lg" src="assets/logos/hive.png" alt="Logo Apache Hive"><b>Hive</b></td><td>Entrepôt SQL au-dessus de HDFS</td><td>Actif (v4, intégration Apache Iceberg / lakehouse)</td></tr>
+<tr><td><img class="lg" src="assets/logos/hbase.png" alt="Logo Apache HBase"><b>HBase</b></td><td>Base NoSQL orientée colonnes, accès temps réel</td><td>Actif en production</td></tr>
+<tr><td><img class="lg" src="assets/logos/zookeeper.png" alt="Logo Apache ZooKeeper"><b>ZooKeeper</b></td><td>Coordination distribuée (élection, configuration)</td><td>Actif (HBase, HA du NameNode)</td></tr>
+<tr><td><img class="lg" src="assets/logos/nifi.png" alt="Logo Apache NiFi"><b>NiFi</b></td><td>Ingestion et routage visuels de flux</td><td>Actif (branche 2.x)</td></tr>
+<tr><td>Sqoop</td><td>Transfert HDFS ↔ bases relationnelles</td><td class="muted">Retiré (Apache Attic, 2021) → <b>Spark JDBC</b>, <b>Kafka Connect</b></td></tr>
+<tr><td>Oozie</td><td>Ordonnanceur de workflows</td><td class="muted">Déprécié → <b>Apache Airflow</b>, Dagster, Prefect</td></tr>
+<tr><td>Pig</td><td>Langage de flux « SQL-like »</td><td class="muted">Legacy → <b>Spark</b>, Hive</td></tr>
+</tbody></table>
+<div class="grid g2">
+  <div class="card"><span class="lab">Distributions</span><p>Hadoop = des dizaines de projets à faire cohabiter. D'où les distributions pré-packagées : <b>Cloudera (CDH)</b>, <b>Hortonworks (HDP, 100 % open source)</b>, <b>MapR</b>. Cloudera et Hortonworks ont fusionné en 2019 (offre actuelle : <b>Cloudera CDP</b>). Côté cloud : Amazon <b>EMR</b>, Google <b>Dataproc</b>, Azure <b>HDInsight</b>.</p></div>
+  <div class="card hl"><span class="lab">Pourquoi l'apprendre encore ?</span><p>Spark s'exécute sur YARN et lit HDFS ; le <b>shuffle</b> de MapReduce se retrouve dans Spark et dans le SQL de Hive ; le modèle <b>Metastore + fichiers</b> de Hive est celui du lakehouse. <i>Comprendre Hadoop, c'est comprendre le pourquoi de tout ce qui l'a remplacé.</i></p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Pourquoi Hadoop ?</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Ce qu'il ne faut pas confondre</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>« Hadoop est une base de données. »</b> Non : c'est un <b>framework</b> (stockage + calcul). La base NoSQL de l'écosystème, c'est HBase.</div>
+    <div><b>« Hadoop sert au temps réel. »</b> HDFS + MapReduce = <b>batch</b> (secondes à minutes par job). Le temps réel par clé, c'est HBase ; le streaming, Kafka / Spark.</div>
+    <div><b>« Scale-out = machines plus puissantes. »</b> C'est l'inverse : <b>plus de machines</b> ordinaires. Plus puissant = scale-up.</div>
+    <div><b>« Le Secondary NameNode est un NameNode de secours. »</b> Faux (détail au ch. 03) : la redondance active passe par la <b>HA</b> (standby + ZooKeeper).</div>
+  </div>
+  <ol class="sum-list">
+    <li>Le scale-up atteint un plafond de coût et de physique ; Hadoop fait du <b>scale-out</b> sur du matériel standard.</li>
+    <li>Principe clé : <b>déplacer le calcul vers les données</b> (localité).</li>
+    <li>Trois piliers : <b>HDFS</b> stocke, <b>YARN</b> alloue, <b>MapReduce</b> calcule.</li>
+    <li>Maître (NameNode, ResourceManager) / esclaves (DataNode, NodeManager).</li>
+    <li>Sqoop, Oozie, Pig sont partis ; <b>Hive, HBase, NiFi, ZooKeeper</b> restent actifs.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/hadoop.svg" alt="Logo Apache Hadoop"></div>
+<div class="kicker">Chapitre 01 · Pourquoi Hadoop ?</div>
+<h2>Fiche — Pourquoi Hadoop</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Définition</span><p>Framework open source Apache (Java) de <b>stockage distribué</b> (HDFS) et de <b>calcul parallèle</b> (MapReduce, sous <b>YARN</b>) sur un cluster de machines standards.</p></div>
+  <div class="card"><span class="lab">Le problème résolu</span><p><b>Scale-up</b> (gros serveur) : plafond physique, coût non linéaire, SPOF. <b>Scale-out</b> : on ajoute des nœuds bon marché ; capacité ≈ linéaire, panne tolérée.</p></div>
+  <div class="card"><span class="lab">Principe à citer</span><p><b>Localité des données</b> : le code va aux données, pas l'inverse. Seuls les résultats partiels traversent le réseau.</p></div>
+  <div class="card"><span class="lab">Architecture</span><dl class="def"><dt>Maître</dt><dd>NameNode (métadonnées) · ResourceManager (ressources)</dd><dt>Esclaves</dt><dd>DataNode (blocs) · NodeManager (tâches)</dd><dt>HA</dt><dd>NameNode actif + standby, failover via ZooKeeper</dd></dl></div>
+  <div class="card wide"><span class="lab">L'écosystème aujourd'hui</span><p><b>Actifs :</b> HDFS, YARN, Hive (v4, Iceberg), HBase, ZooKeeper, NiFi. <b>Retirés :</b> Sqoop → Spark JDBC / Kafka Connect · Oozie → Airflow · Pig → Spark. MapReduce reste la base conceptuelle (shuffle) mais Spark l'a remplacé.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Pourquoi Hadoop ?</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 01</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Pourquoi ne pas simplement acheter un serveur plus puissant ?</button><div class="ab"><p>Parce que le <b>scale-up</b> a un plafond physique (CPU, RAM, disques par machine), un coût qui croît plus vite que la puissance, et reste un <b>point unique de panne</b>. Le <b>scale-out</b> ajoute des nœuds standards : capacité quasi linéaire et tolérance aux pannes par réplication. Le goulot réel du Big Data est souvent le <b>débit disque</b> : lire 1 To sur 100 disques en parallèle va 100 fois plus vite.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'entend-on par « localité des données » ?</button><div class="ab"><p>Le framework planifie les tâches <b>sur les nœuds qui détiennent déjà les blocs</b> à traiter. On déplace un programme de quelques Ko au lieu de téraoctets de données ; le réseau ne transporte que les résultats intermédiaires (shuffle).</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Hadoop est-il encore pertinent face à Spark et au cloud ?</button><div class="ab"><p>Comme <b>plateforme complète</b>, il recule (Spark remplace MapReduce, S3 concurrence HDFS). Mais ses <b>concepts</b> sont partout : Spark tourne sur YARN et lit HDFS, le shuffle vient de MapReduce, le couple <b>Metastore + fichiers</b> de Hive fonde le lakehouse (Iceberg). Et beaucoup de clusters on-premise (Cloudera CDP) sont en production. Savoir le dire montre une <b>veille</b> à jour.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce qui a changé entre Hadoop 1 et Hadoop 2 ?</button><div class="ab"><p><b>YARN</b> : la gestion des ressources est séparée du modèle de calcul (fin du JobTracker monolithique), donc d'autres moteurs (Spark, Tez) partagent le cluster. Et la <b>haute disponibilité du NameNode</b> (actif/standby + ZooKeeper) supprime le point unique de défaillance.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Citez les 3 V et dites lesquels Hadoop traite.</button><div class="ab"><p><b>Volume, Vélocité, Variété</b> (+ Véracité, Valeur). HDFS absorbe le <b>volume</b> et la <b>variété</b> (n'importe quel format de fichier). La <b>vélocité</b> (flux temps réel) relève plutôt de Kafka, Spark Streaming ou NiFi ; HBase couvre la lecture/écriture rapide par clé.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Pourquoi Hadoop ?</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<p class="lead">Réponds sans relire. L'explication s'affiche après ta réponse.</p>
+<div data-quiz="01"></div>
+</section>
+
+<!-- ================= 02 · LE CLUSTER ET SA CONFIGURATION ================= -->
+<section class="slide" data-ch="02" data-sec="02 Cluster" data-title="Le cluster du cours et sa configuration" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/docker.png" alt="Logo Docker"><img class="chlogo" src="assets/logos/hadoop.svg" alt="Logo Apache Hadoop"></div>
+<div class="kicker">Chapitre 02 · Le cluster et sa configuration</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi — un vrai cluster sur un portable</span></div>
+<h2>Le cluster Docker du cours</h2>
+<div class="grid g21">
+  <div class="sch free"><span class="cap">4 conteneurs sur le réseau hadoop-net</span>
+  <svg class="dg" viewBox="0 0 620 330" role="img" aria-label="Machine hôte avec Docker Compose : hadoop-master, hadoop-slave1, hadoop-slave2 et un conteneur NiFi">
+    <rect class="z" x="5" y="5" width="610" height="320" rx="16"/><text class="a" x="20" y="28">Machine hôte · docker compose</text>
+    <rect class="b f3" x="25" y="45" width="190" height="150" rx="12"/><text class="t tc" x="132" y="70">hadoop-master</text>
+    <text class="s" x="40" y="96">NameNode</text><text class="s" x="40" y="114">ResourceManager</text><text class="s" x="40" y="132">HBase Master · ZooKeeper</text><text class="s" x="40" y="150">HiveServer2 · Thrift</text><text class="s" x="40" y="168">REST · JobHistory</text><text class="a" x="40" y="188">scripts : /home</text>
+    <rect class="b f1" x="235" y="45" width="170" height="110" rx="12"/><text class="t tc" x="334" y="70">hadoop-slave1</text><text class="s" x="250" y="96">DataNode</text><text class="s" x="250" y="116">NodeManager</text><text class="s" x="250" y="136">RegionServer</text>
+    <rect class="b f1" x="425" y="45" width="170" height="110" rx="12"/><text class="t tc" x="524" y="70">hadoop-slave2</text><text class="s" x="440" y="96">DataNode</text><text class="s" x="440" y="116">NodeManager</text><text class="s" x="440" y="136">RegionServer</text>
+    <rect class="b f4" x="235" y="190" width="360" height="70" rx="12"/><text class="t tc" x="415" y="218">conteneur NiFi (apache/nifi 2.x)</text><text class="s tc" x="415" y="240">UI https://localhost:8443/nifi · Java 21</text>
+    <text class="s" x="25" y="290">Volumes Docker : les données HDFS survivent aux redémarrages</text>
+    <text class="s" x="25" y="310">Ports redirigés vers l'hôte pour les interfaces web</text>
+  
+  <use class="il" href="#il-server" x="33" y="52" width="22" height="26"/><use class="il" href="#il-server" x="243" y="52" width="22" height="26"/><use class="il" href="#il-server" x="433" y="52" width="22" height="26"/><use class="il" href="#il-container" x="245" y="198" width="30" height="26"/>
+</svg></div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">Pourquoi Docker ?</span><p>Des conteneurs <b>légers</b> qui partagent le noyau de l'hôte (≠ machines virtuelles) : on reproduit un vrai cluster (mêmes logiciels, même configuration) à l'échelle d'un portable. <i>Fidélité des outils, échelle du laboratoire.</i></p></div>
+    <table class="cmp md small"><thead><tr><th>Composant</th><th>Version</th></tr></thead><tbody>
+      <tr><td>Hadoop (HDFS, YARN, MR)</td><td>3.3.6</td></tr><tr><td>Hive</td><td>4.1.0</td></tr><tr><td>HBase</td><td>2.5.15</td></tr><tr><td>ZooKeeper</td><td>3.8.6</td></tr><tr><td>Java / Python</td><td>OpenJDK 17 / 3.11</td></tr><tr><td>NiFi</td><td>2.x (conteneur dédié)</td></tr>
+    </tbody></table>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · Le cluster et sa configuration</div>
+<div class="pqrow"><span class="pq how">③ Comment — démarrer, vérifier, accéder</span></div>
+<h2>Les conteneurs démarrent « froids »</h2>
+<p class="lead">SSH tourne, mais <b>aucun service Hadoop</b> n'est lancé : on les démarre à la main depuis le master, <b>dans un ordre précis</b>.</p>
+<div class="flow">
+  <div class="step"><b>1 · ZooKeeper</b><small>coordination — avant HBase</small></div>
+  <div class="step"><b>2 · HDFS</b><small>NameNode + DataNodes</small></div>
+  <div class="step"><b>3 · YARN</b><small>RM + NodeManagers</small></div>
+  <div class="step"><b>4 · History</b><small>historique des jobs</small></div>
+  <div class="step"><b>5 · HBase</b><small>Master + RegionServers</small></div>
+  <div class="step"><b>6 · Thrift / REST</b><small>accès Python / HTTP</small></div>
+  <div class="step"><b>7 · Hive</b><small>HiveServer2</small></div>
+</div>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>bash · hôte puis master</span><button class="cpy" type="button">Copier</button></div><pre><code>docker compose up -d          <span class="c"># démarre les 4 conteneurs</span>
+./bash_hadoop_master.sh       <span class="c"># terminal dans le master</span>
+cd /home
+./start-all.sh                <span class="c"># tout, dans l'ordre (ou un par un) :</span>
+./start-zookeeper.sh ; ./start-dfs.sh ; ./start-yarn.sh
+./start-hbase.sh ; ./start-thrift.sh ; ./start-hive.sh
+jps                           <span class="c"># liste les processus Java actifs</span>
+pkill -f 'NameNode'           <span class="c"># arrêter un service</span>
+docker compose down           <span class="c"># fin de séance (volumes conservés)</span></code></pre></div>
+  <table class="cmp md small"><thead><tr><th>Port</th><th>Service</th></tr></thead><tbody>
+    <tr><td><b>9870</b></td><td>UI du NameNode (HDFS) — <i>50070 en Hadoop 2</i></td></tr>
+    <tr><td><b>9000</b></td><td>RPC du NameNode (<code>fs.defaultFS</code>)</td></tr>
+    <tr><td><b>8088</b></td><td>UI du ResourceManager (YARN)</td></tr>
+    <tr><td><b>8041 / 8042</b></td><td>NodeManagers (slave1 / slave2)</td></tr>
+    <tr><td><b>10000</b></td><td>HiveServer2 (JDBC, Beeline)</td></tr>
+    <tr><td><b>9090 / 9091</b></td><td>HBase Thrift (HappyBase) / REST</td></tr>
+    <tr><td><b>8443</b></td><td>NiFi (HTTPS obligatoire en 2.x)</td></tr>
+  </tbody></table>
+</div>
+<div class="note warn"><i><svg class="ico" aria-hidden="true"><use href="#ti-alert-triangle"/></svg></i><div><p><b>Piège du PATH :</b> <code>/home</code> n'est pas dans le PATH. Sans <code>./</code>, <code>start-hbase.sh</code> lance le script <i>d'HBase</i> (<code>/opt/hbase/bin</code>), qui n'a pas le même effet, et <code>start-thrift.sh</code> donne « command not found ». Les scripts du cours se lancent <b>toujours avec <code>./</code></b>.</p></div></div>
+</section>
+
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · Le cluster et sa configuration</div>
+<div class="pqrow"><span class="pq">② Quoi — les 5 fichiers de configuration</span></div>
+<h2>Faire communiquer les composants</h2>
+<p class="lead">Tous dans <code>$HADOOP_HOME/etc/hadoop</code> (sur le cluster du cours : <code>/opt/hadoop/etc/hadoop</code>). Format XML <code>&lt;property&gt;&lt;name&gt;…&lt;value&gt;</code>, sauf le premier (script shell).</p>
+<table class="cmp md">
+<thead><tr><th>Fichier</th><th>Rôle</th><th>Propriété à connaître</th></tr></thead>
+<tbody>
+<tr><td><b>hadoop-env.sh</b></td><td>Variables d'environnement des démons</td><td><code>JAVA_HOME</code> (Hadoop est écrit en Java)</td></tr>
+<tr><td><b>core-site.xml</b></td><td>Réglages communs, adresse du système de fichiers</td><td><code>fs.defaultFS = hdfs://hadoop-master:9000</code></td></tr>
+<tr><td><b>hdfs-site.xml</b></td><td>NameNode, DataNodes, réplication, taille de bloc</td><td><code>dfs.replication</code> (3 par défaut, <b>1</b> au cours) · <code>dfs.namenode.name.dir</code> · <code>dfs.datanode.data.dir</code> · <code>dfs.blocksize</code></td></tr>
+<tr><td><b>mapred-site.xml</b></td><td>Quel framework exécute MapReduce</td><td><code>mapreduce.framework.name = yarn</code></td></tr>
+<tr><td><b>yarn-site.xml</b></td><td>YARN : shuffle, ordonnanceur, mémoire</td><td><code>yarn.nodemanager.aux-services = mapreduce_shuffle</code> · <code>yarn.resourcemanager.hostname</code> · <code>yarn.resourcemanager.scheduler.class</code></td></tr>
+</tbody></table>
+<div class="code"><div class="codeh"><span>core-site.xml</span><button class="cpy" type="button">Copier</button></div><pre><code>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;fs.defaultFS&lt;/name&gt;            <span class="c">&lt;!-- ancien nom : fs.default.name --&gt;</span>
+    &lt;value&gt;hdfs://hadoop-master:9000&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;</code></pre></div>
+<div class="analogy"><b>Moyen mnémotechnique.</b> <i>core</i> = « où est le disque partagé » · <i>hdfs</i> = « comment on range » · <i>mapred</i> = « qui calcule » · <i>yarn</i> = « qui distribue le travail ».</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · Le cluster et sa configuration</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>À retenir sur l'environnement</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Formater HDFS (<code>hdfs namenode -format</code>)</b> efface les métadonnées : sur le cluster du cours c'est déjà fait au premier démarrage, <b>ne jamais le relancer</b>.</div>
+    <div><b>Démarrer HBase avant ZooKeeper</b> : HBase échoue. ZooKeeper d'abord, toujours (<code>jps</code> doit montrer <code>QuorumPeerMain</code>).</div>
+    <div><b>Ports Hadoop 2 vs 3</b> : l'UI du NameNode est sur <b>9870</b> en 3.x (50070 en 2.x).</div>
+    <div><b>Réplication 1 au cours</b> : économie de place, mais aucune redondance. En production, 3.</div>
+  </div>
+  <ol class="sum-list">
+    <li>Cluster = 1 master + 2 slaves + 1 conteneur NiFi, Docker Compose, réseau <code>hadoop-net</code>.</li>
+    <li>Ordre de démarrage : ZooKeeper → HDFS → YARN → History → HBase → Thrift/REST → Hive.</li>
+    <li><code>jps</code> vérifie ce qui tourne ; les scripts du cours se lancent avec <code>./</code>.</li>
+    <li>5 fichiers : hadoop-env, core-site (<code>fs.defaultFS</code>), hdfs-site (réplication), mapred-site (yarn), yarn-site (shuffle).</li>
+    <li>Ports clés : 9870 HDFS, 8088 YARN, 10000 Hive, 9090 Thrift, 8443 NiFi.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/docker.png" alt="Logo Docker"><img class="chlogo" src="assets/logos/hadoop.svg" alt="Logo Apache Hadoop"></div>
+<div class="kicker">Chapitre 02 · Le cluster et sa configuration</div>
+<h2>Fiche — Cluster et configuration</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Un maître, des ouvriers</span><p>Le <b>maître</b> coordonne (NameNode sait où sont les blocs, ResourceManager distribue le calcul). Les <b>ouvriers</b> stockent et calculent (DataNode, NodeManager). Ajouter de la capacité = ajouter des ouvriers.</p></div>
+  <div class="card"><span class="lab">Pourquoi un ordre de démarrage</span><p>Chaque couche dépend de la précédente : <b>ZooKeeper</b> (coordination) → <b>HDFS</b> (stockage) → <b>YARN</b> (calcul, qui lit HDFS) → <b>HBase</b> et <b>Hive</b> (qui s'appuient sur les deux).</p></div>
+  <div class="card"><span class="lab">Les deux réglages à savoir expliquer</span><p><b>fs.defaultFS</b> : l'adresse du NameNode, que tout le cluster doit connaître. <b>dfs.replication</b> : le nombre de copies de chaque bloc (3 par défaut), le compromis entre sécurité et place disque.</p></div>
+  <div class="card"><span class="lab">Vérifier que le cluster va bien</span><p><code>jps</code> liste les processus Java lancés sur une machine ; les <b>interfaces web</b> de HDFS et de YARN montrent les nœuds vivants, l'espace libre et les tâches en cours.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · Le cluster et sa configuration</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 02</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Pourquoi avoir conteneurisé le cluster plutôt qu'utiliser des VM ?</button><div class="ab"><p>Les conteneurs partagent le noyau de l'hôte : démarrage en secondes, empreinte mémoire faible, configuration versionnée (<code>docker-compose.yml</code>, Dockerfile) et reproductible. On garde les <b>mêmes logiciels et la même configuration</b> qu'un vrai cluster ; seule l'échelle change. Limite : tout tourne sur une machine, donc pas de vraie tolérance aux pannes matérielles.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quel fichier modifier pour changer le facteur de réplication ? et pour pointer vers le NameNode ?</button><div class="ab"><p>Réplication : <code>dfs.replication</code> dans <b>hdfs-site.xml</b> (et <code>hdfs dfs -setrep</code> pour un fichier existant). Adresse du NameNode : <code>fs.defaultFS</code> dans <b>core-site.xml</b>.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment vérifier rapidement qu'un service tourne ?</button><div class="ab"><p><code>jps</code> liste les processus Java (NameNode, DataNode, ResourceManager, NodeManager, HMaster, HRegionServer, QuorumPeerMain, ThriftServer, HiveServer2…). Puis les interfaces web : 9870 pour HDFS, 8088 pour YARN.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi ZooKeeper doit-il démarrer avant HBase ?</button><div class="ab"><p>HBase s'appuie sur ZooKeeper pour élire le Master actif, suivre les RegionServers (heartbeats) et permettre aux clients de localiser les régions. Sans quorum ZooKeeper disponible, le Master HBase ne peut pas s'initialiser.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · Le cluster et sa configuration</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="02"></div>
+</section>
+
+<!-- ================= 03 · HDFS ================= -->
+<section class="slide" data-ch="03" data-sec="03 HDFS" data-title="HDFS, le système de fichiers distribué" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/hadoop.svg" alt="Logo Apache Hadoop"></div>
+<div class="kicker">Chapitre 03 · HDFS</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Un disque géant fait de petits disques</h2>
+<div class="grid g12">
+  <div style="display:grid;gap:1.2vh">
+    <p class="lead"><b>Le besoin :</b> stocker des fichiers de plusieurs To sur du matériel ordinaire qui <b>tombe en panne régulièrement</b>, et les relire vite en parallèle.</p>
+    <div class="card"><span class="lab">Les 3 idées de HDFS</span><ul>
+      <li><b>Blocs</b> : chaque fichier est découpé en blocs de <b>128 Mio</b> par défaut (64 Mio en Hadoop 1).</li>
+      <li><b>Réplication</b> : chaque bloc est copié sur plusieurs DataNodes (<b>3 par défaut</b>, 1 sur le cluster du cours).</li>
+      <li><b>Maître / esclaves</b> : le <b>NameNode</b> sait <i>où</i> sont les blocs, les <b>DataNodes</b> les stockent.</li>
+    </ul></div>
+    <div class="card"><span class="lab">Modèle d'accès</span><p><b>Write once, read many</b> : on écrit un fichier une fois, on le lit souvent, en entier et séquentiellement. Pas de modification au milieu d'un fichier (ajout en fin possible). Optimisé pour le <b>débit</b>, pas pour la latence.</p></div>
+  </div>
+  <div class="sch free"><span class="cap">Un fichier de 300 Mio, réplication 3</span>
+  <svg class="dg" viewBox="0 0 440 340" role="img" aria-label="Fichier découpé en trois blocs A B C répliqués trois fois sur quatre DataNodes ; le NameNode garde la carte">
+    <rect class="b f3" x="20" y="6" width="400" height="66" rx="10"/><text class="t" x="35" y="27">NameNode</text><text class="s" x="35" y="46">/data/ventes.csv → blocs A, B, C</text><text class="s" x="35" y="63">A : DN1 DN2 DN4 · B : DN1 DN3 DN4 · C : DN2 DN3 DN4</text>
+    <g><rect class="b f1" x="20" y="92" width="120" height="30" rx="6"/><text class="t tc" x="80" y="112" style="font-size:13px">A · 128 Mio</text>
+    <rect class="b f2" x="150" y="92" width="120" height="30" rx="6"/><text class="t tc" x="210" y="112" style="font-size:13px">B · 128 Mio</text>
+    <rect class="b f4" x="280" y="92" width="80" height="30" rx="6"/><text class="t tc" x="320" y="112" style="font-size:13px">C · 44 Mio</text></g>
+    <text class="s" x="20" y="142">le dernier bloc n'occupe que 44 Mio sur disque</text>
+    <g>
+      <rect class="b" x="20" y="160" width="90" height="165" rx="10"/><text class="t tc" x="65" y="182" style="font-size:13px">DN1</text>
+      <rect class="b f1" x="32" y="195" width="66" height="26" rx="5"/><text class="s tc" x="65" y="213">A</text><rect class="b f2" x="32" y="228" width="66" height="26" rx="5"/><text class="s tc" x="65" y="246">B</text>
+      <rect class="b" x="125" y="160" width="90" height="165" rx="10"/><text class="t tc" x="170" y="182" style="font-size:13px">DN2</text>
+      <rect class="b f1" x="137" y="195" width="66" height="26" rx="5"/><text class="s tc" x="170" y="213">A</text><rect class="b f4" x="137" y="228" width="66" height="26" rx="5"/><text class="s tc" x="170" y="246">C</text>
+      <rect class="b" x="230" y="160" width="90" height="165" rx="10"/><text class="t tc" x="275" y="182" style="font-size:13px">DN3</text>
+      <rect class="b f2" x="242" y="195" width="66" height="26" rx="5"/><text class="s tc" x="275" y="213">B</text><rect class="b f4" x="242" y="228" width="66" height="26" rx="5"/><text class="s tc" x="275" y="246">C</text>
+      <rect class="b" x="335" y="160" width="90" height="165" rx="10"/><text class="t tc" x="380" y="182" style="font-size:13px">DN4</text>
+      <rect class="b f1" x="347" y="195" width="66" height="26" rx="5"/><text class="s tc" x="380" y="213">A</text><rect class="b f2" x="347" y="228" width="66" height="26" rx="5"/><text class="s tc" x="380" y="246">B</text><rect class="b f4" x="347" y="261" width="66" height="26" rx="5"/><text class="s tc" x="380" y="279">C</text>
+    </g>
+    <text class="g" x="20" y="337">si DN1 meurt, A et B existent encore ailleurs → re-réplication</text>
+  
+  <use class="il" href="#il-book" x="368" y="16" width="44" height="34"/><use class="il" href="#il-server" x="50" y="292" width="30" height="30"/><use class="il" href="#il-server" x="155" y="292" width="30" height="30"/><use class="il" href="#il-server" x="260" y="292" width="30" height="30"/><use class="il" href="#il-server" x="365" y="292" width="30" height="30"/>
+</svg></div>
+</div>
+<div class="analogy"><b>Analogie — une encyclopédie en 300 volumes.</b> Chaque volume (bloc) est photocopié en 3 exemplaires rangés dans des bibliothèques différentes (DataNodes). Le catalogue central (NameNode) dit quel volume est dans quelle bibliothèque ; il ne contient aucune page.</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · HDFS</div>
+<div class="pqrow"><span class="pq how">③ Comment — le NameNode et les DataNodes</span></div>
+<h2>Qui sait quoi, et comment ils se parlent</h2>
+<div class="grid g2">
+  <div class="card hl"><span class="lab">NameNode (maître, 1 par cluster)</span><ul>
+    <li>Garde l'<b>espace de noms</b> : arborescence, noms, permissions, et la liste des blocs de chaque fichier. Les <b>dossiers n'existent que dans cet index</b>.</li>
+    <li>Sait <b>quel bloc est sur quel DataNode</b> (carte reconstruite à chaque démarrage).</li>
+    <li>Tout est <b>en mémoire</b> : ~<b>150 octets par objet</b> (fichier, dossier ou bloc). D'où le <b>problème des petits fichiers</b> : 10 millions de fichiers de 1 Ko saturent la RAM du NameNode bien avant les disques.</li>
+    <li>Persiste ses métadonnées dans 2 fichiers : <b>FsImage</b> (photo complète) + <b>EditLog</b> (journal des modifications).</li>
+    <li>Ne voit <b>jamais passer les données</b> : le client lit et écrit directement sur les DataNodes.</li>
+  </ul></div>
+  <div class="card"><span class="lab">DataNodes (esclaves, les « workers »)</span><ul>
+    <li>Stockent les blocs sur leurs disques locaux (éviter le RAID : HDFS réplique déjà).</li>
+    <li>Envoient un <b>heartbeat</b> toutes les ~3 s : « je suis vivant ». Sans heartbeat (~10 min par défaut), le nœud est déclaré mort et ses blocs sont <b>re-répliqués</b> ailleurs.</li>
+    <li>Envoient périodiquement un <b>block report</b> : la liste de leurs blocs.</li>
+    <li>En lecture, transmettent les blocs au client ; en écriture, se passent le bloc <b>en pipeline</b> (DN1 → DN2 → DN3).</li>
+  </ul></div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Safe mode</span><p>Au démarrage, le NameNode charge FsImage, rejoue l'EditLog, puis <b>attend les block reports</b>. Pendant ce temps : <b>lecture seule</b>, aucune écriture. Il en sort quand assez de blocs sont confirmés. Commandes : <code>hdfs dfsadmin -safemode get | leave</code>.</p></div>
+  <div class="card"><span class="lab">Lecture d'un fichier, pas à pas</span><ol class="steps sm"><li>Le client demande au NameNode la liste des blocs et leurs DataNodes.</li><li>Il lit chaque bloc <b>directement</b> sur le DataNode le plus proche.</li><li>Si un DataNode ne répond pas, il passe à une autre réplique.</li></ol></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · HDFS</div>
+<div class="pqrow"><span class="pq how">③ Comment — Secondary NameNode et haute disponibilité</span></div>
+<h2>Le Secondary NameNode n'est PAS un secours</h2>
+<div class="grid g12">
+  <div class="sch free"><span class="cap">Checkpoint : fusion EditLog → FsImage</span>
+  <svg class="dg" viewBox="0 0 470 260" role="img" aria-label="Le Secondary NameNode récupère FsImage et EditLog, les fusionne et renvoie une nouvelle FsImage">
+    <rect class="b f3" x="15" y="20" width="180" height="130" rx="12"/><text class="t tc" x="105" y="45">NameNode</text>
+    <rect class="b" x="30" y="60" width="150" height="32" rx="6"/><text class="s tc" x="105" y="81">fsimage_N (photo)</text>
+    <rect class="b bad" x="30" y="100" width="150" height="32" rx="6"/><text class="s tc" x="105" y="121">edits_xxx (grossit)</text>
+    <rect class="b f2" x="275" y="20" width="180" height="130" rx="12"/><text class="t tc" x="365" y="45">Secondary NN</text>
+    <text class="s tc" x="365" y="80">1 · copie les deux</text><text class="s tc" x="365" y="102">2 · rejoue edits</text><text class="s tc" x="365" y="124">3 · produit fsimage_N+1</text>
+    <path class="e" d="M197 70 H271"/><text class="a" x="205" y="64">récupère</text>
+    <path class="e" d="M271 120 H197"/><text class="g" x="205" y="140">renvoie</text>
+    <text class="s" x="15" y="182">Effet : EditLog court → redémarrage rapide.</text>
+    <text class="r" x="15" y="207">NameNode en panne : le Secondary ne le remplace PAS.</text>
+    <text class="g" x="15" y="232">Secours réel = HA : standby + ZooKeeper.</text>
+  
+  <use class="il" href="#il-book" x="24" y="30" width="26" height="20"/><use class="il" href="#il-gear" x="284" y="28" width="24" height="24"/>
+</svg></div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">Rôle réel</span><p>Le Secondary NameNode fait des <b>checkpoints</b> : il fusionne périodiquement l'EditLog dans une nouvelle FsImage, pour alléger le journal. Son nom est trompeur : c'est un « aide-comptable », pas un remplaçant.</p></div>
+    <div class="card hl"><span class="lab">Haute disponibilité (Hadoop 2+)</span><p>Deux NameNodes : un <b>actif</b>, un <b>standby</b> synchronisé via un journal partagé (JournalNodes). <b>ZooKeeper</b> (ZKFC) détecte la panne de l'actif et déclenche le <b>failover</b> automatique. Dans une configuration HA, le standby fait aussi les checkpoints : plus besoin de Secondary NameNode.</p></div>
+    <div class="card"><span class="lab">Sur notre petit cluster</span><p>Pas de HA : si le NameNode tombe, HDFS est indisponible jusqu'à son redémarrage.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · HDFS</div>
+<div class="pqrow"><span class="pq how">③ Comment — réplication, blocs, compression, droits</span></div>
+<h2>Les réglages qui changent tout</h2>
+<div class="grid g2">
+  <div class="card"><span class="lab">Réplication</span><ul>
+    <li>Elle porte sur les <b>blocs</b>, pas sur les fichiers (les dossiers ne sont pas répliqués : ils n'existent que dans l'index).</li>
+    <li>Défaut <b>3</b>, réglable par fichier ou dossier : <code>hdfs dfs -setrep -w 2 /chemin</code>. Plus haut pour une donnée critique ou très lue, plus bas pour une donnée volumineuse et peu critique.</li>
+    <li><b>Sous-réplication</b> (trop peu de copies, ex. DataNode mort) : HDFS recopie au plus vite. <b>Sur-réplication</b> : il supprime les copies en trop.</li>
+    <li><b>Rack awareness</b> (placement par défaut) : 1<sup>re</sup> copie sur le nœud de l'écrivain, 2<sup>e</sup> sur un <b>autre rack</b>, 3<sup>e</sup> sur ce même autre rack mais un autre nœud → survit à la perte d'un rack entier.</li>
+  </ul></div>
+  <div class="card"><span class="lab">Taille de bloc</span><ul>
+    <li>128 Mio par défaut (<code>dfs.blocksize</code>), <b>dérogeable fichier par fichier</b> : <code>hdfs dfs -D dfs.blocksize=67108864 -put …</code>.</li>
+    <li><b>Gros blocs</b> : adaptés aux gros fichiers peu nombreux (moins de métadonnées, moins de mappers).</li>
+    <li><b>Petits blocs</b> : plus de parallélisme mais plus de métadonnées dans le NameNode.</li>
+    <li>Un fichier plus petit qu'un bloc n'occupe <b>que sa taille réelle</b> sur disque (pas de bloc partiel gaspillé), mais coûte quand même une entrée en mémoire du NameNode.</li>
+  </ul></div>
+</div>
+<div class="grid g2">
+  <table class="cmp md small"><thead><tr><th>Codec</th><th>Compression</th><th>Vitesse</th><th>Découpable (splittable) ?</th></tr></thead><tbody>
+    <tr><td><b>Gzip</b></td><td>bonne</td><td>moyenne</td><td>non</td></tr>
+    <tr><td><b>Bzip2</b></td><td>très bonne</td><td>lente</td><td><b>oui</b></td></tr>
+    <tr><td><b>Snappy</b></td><td>faible</td><td>très rapide</td><td>non (sauf dans un conteneur : Parquet, ORC, Avro)</td></tr>
+    <tr><td><b>LZO</b></td><td>faible</td><td>rapide</td><td>oui, avec un index</td></tr>
+  </tbody></table>
+  <div class="card"><span class="lab">Compression : le compromis</span><p>Moins d'espace et moins de transfert, mais <b>plus de CPU</b>. Surtout : un fichier compressé <b>non découpable</b> ne peut être lu que par <b>un seul mapper</b>, ce qui tue le parallélisme. <span class="lab" style="margin-top:.6em">Permissions</span>Modèle proche de POSIX (propriétaire, groupe, autres ; r/w/x), sticky bit, ACL (<code>getfacl</code>). Authentification <b>simple</b> ou <b>Kerberos</b> en production ; super-utilisateur : <code>hdfs</code>.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · HDFS</div>
+<div class="pqrow"><span class="pq ex">④ Exemple — les commandes</span></div>
+<h2>Manipuler HDFS en ligne de commande</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>bash · dans le master</span><button class="cpy" type="button">Copier</button></div><pre><code>hdfs dfs -mkdir -p /user/root/input      <span class="c"># créer (avec parents)</span>
+hdfs dfs -put ventes.csv input           <span class="c"># local → HDFS</span>
+hdfs dfs -put -f ventes.csv input        <span class="c"># écraser si existe</span>
+hdfs dfs -ls input                       <span class="c"># lister (col. 2 = réplication)</span>
+hdfs dfs -cat input/ventes.csv | head -5 <span class="c"># 5 premières lignes</span>
+hdfs dfs -tail input/ventes.csv          <span class="c"># dernier Ko seulement</span>
+hdfs dfs -get output/part-00000 .        <span class="c"># HDFS → local</span>
+hdfs dfs -moveFromLocal f.tsv staging/   <span class="c"># déplace (supprime le local)</span>
+hdfs dfs -du -h input                    <span class="c"># taille</span>
+hdfs dfs -setrep -w 2 input/ventes.csv   <span class="c"># changer la réplication</span>
+hdfs dfs -rm -r -f output/job1           <span class="c"># supprimer un dossier</span></code></pre></div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="code"><div class="codeh"><span>bash · administration</span><button class="cpy" type="button">Copier</button></div><pre><code>hdfs dfsadmin -report                  <span class="c"># capacité, DataNodes vivants</span>
+hdfs fsck /user/root -files -blocks -locations
+                                       <span class="c"># santé, blocs, emplacements</span>
+hdfs dfsadmin -safemode get            <span class="c"># état du safe mode</span>
+hdfs namenode -format                  <span class="c"># <svg class="ico" aria-hidden="true"><use href="#ti-alert-triangle"/></svg> installation vierge seulement</span></code></pre></div>
+    <div class="card"><span class="lab">Chemins et URI</span><p>Un chemin relatif (<code>input</code>) part du répertoire personnel <code>/user/&lt;utilisateur&gt;</code>. Le préfixe indique le système : <code>hdfs://hadoop-master:9000/…</code>, <code>file:///…</code>, <code>s3a://…</code>. La couche d'abstraction <b>Hadoop FileSystem</b> offre la même API quel que soit le stockage (HDFS, local, S3, Azure…) : n'imposez pas le protocole dans votre code, laissez la configuration le choisir.</p></div>
+    <div class="card"><span class="lab">Accès à HDFS</span><p>Ligne de commande, API Java (et Python par-dessus), WebHDFS (HTTP REST), FUSE (montage), mais <b>pas de langage de requête direct</b> : pour du SQL, il faut Hive (ch. 06).</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · HDFS</div>
+<div class="pqrow"><span class="pq ex">④ Exercice corrigé</span></div>
+<h2>Calculer blocs, répliques et espace</h2>
+<div class="card"><p class="q">Un cluster a un bloc de 128 Mio et une réplication de 3. On y dépose (a) un fichier de 1 Gio, (b) un fichier de 300 Mio, (c) 1 000 fichiers de 1 Mio. Pour chaque cas : nombre de blocs, nombre de répliques, espace disque brut consommé, et un commentaire.</p></div>
+<div class="accg">
+  <div class="acc cor"><button class="ah" type="button">Voir le corrigé (après avoir essayé !)</button><div class="ab">
+    <table class="cmp md"><thead><tr><th>Cas</th><th>Blocs</th><th>Répliques</th><th>Disque brut</th><th>Commentaire</th></tr></thead><tbody>
+      <tr><td>(a) 1 Gio</td><td>1024 / 128 = <b>8</b></td><td>8 × 3 = <b>24</b></td><td><b>3 Gio</b></td><td>Cas idéal : 8 mappers possibles en parallèle.</td></tr>
+      <tr><td>(b) 300 Mio</td><td>128 + 128 + 44 = <b>3</b></td><td><b>9</b></td><td><b>900 Mio</b></td><td>Le dernier bloc occupe 44 Mio, pas 128 : aucun espace gaspillé.</td></tr>
+      <tr><td>(c) 1 000 × 1 Mio</td><td><b>1 000</b></td><td><b>3 000</b></td><td><b>~3 Gio</b></td><td>Même volume que (a) mais 1 000 fichiers + 1 000 blocs en mémoire du NameNode et jusqu'à 1 000 mappers minuscules : c'est le <b>problème des petits fichiers</b>. Solution : les regrouper (fichiers plus gros, formats conteneurs comme Parquet ou SequenceFile, archives HAR).</td></tr>
+    </tbody></table>
+    <p><b>À retenir :</b> l'espace brut = taille × réplication ; le nombre de blocs ne gaspille pas de disque mais consomme de la <b>mémoire du NameNode</b>.</p>
+  </div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · HDFS</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>À retenir sur HDFS</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Secondary NameNode ≠ secours.</b> Il fait des checkpoints. Le secours, c'est le <b>standby en HA</b> (avec ZooKeeper).</div>
+    <div><b>« Les données passent par le NameNode. »</b> Non : il ne gère que des métadonnées ; les blocs vont directement entre client et DataNodes.</div>
+    <div><b>Réplication 3 = 3 copies du fichier.</b> Ce sont <b>3 copies de chaque bloc</b>, sur des nœuds différents.</div>
+    <div><b>« Le bloc par défaut s'impose à tous les fichiers. »</b> Il est dérogeable à la création du fichier (<code>-D dfs.blocksize</code>).</div>
+    <div><b>Gzip sur un gros fichier</b> : non découpable → un seul mapper.</div>
+  </div>
+  <ol class="sum-list">
+    <li>Fichiers découpés en <b>blocs de 128 Mio</b>, chaque bloc <b>répliqué</b> (3 par défaut) sur des DataNodes différents.</li>
+    <li><b>NameNode</b> = métadonnées en RAM (FsImage + EditLog) ; <b>DataNodes</b> = blocs, heartbeats, block reports.</li>
+    <li><b>Safe mode</b> au démarrage : lecture seule tant que les blocs ne sont pas confirmés.</li>
+    <li>Secondary NameNode = <b>checkpoint</b> ; HA = actif + standby + ZooKeeper.</li>
+    <li>Write once, read many ; optimisé pour le débit ; ennemi : les <b>petits fichiers</b>.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/hadoop.svg" alt="Logo Apache Hadoop"></div>
+<div class="kicker">Chapitre 03 · HDFS</div>
+<h2>Fiche — HDFS</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Principe</span><p>Système de fichiers distribué. Fichier → <b>blocs de 128 Mio</b> → chaque bloc <b>répliqué 3 fois</b> (1 au cours) sur des DataNodes différents. Write once, read many ; débit plutôt que latence.</p></div>
+  <div class="card"><span class="lab">Rôles</span><dl class="def"><dt>NameNode</dt><dd>espace de noms + carte des blocs, en RAM (~150 o/objet) ; FsImage + EditLog ; jamais de données</dd><dt>DataNode</dt><dd>stocke les blocs ; heartbeat ~3 s ; block report</dd><dt>Secondary NN</dt><dd>checkpoint (fusion EditLog → FsImage), PAS un secours</dd><dt>HA</dt><dd>NN actif + standby, failover par ZooKeeper</dd></dl></div>
+  <div class="card"><span class="lab">Commandes clés</span><div class="cmdlist"><div><code>hdfs dfs -put / -get</code><span>local ↔ HDFS</span></div><div><code>hdfs dfs -ls / -cat / -tail</code><span>lister, lire</span></div><div><code>hdfs dfs -mkdir -p / -rm -r</code><span>créer, supprimer</span></div><div><code>hdfs dfs -setrep -w N</code><span>changer la réplication</span></div><div><code>hdfs fsck / dfsadmin -report</code><span>santé, capacité</span></div><div><code>dfsadmin -safemode get</code><span>safe mode</span></div></div></div>
+  <div class="card"><span class="lab">Pièges</span><ul><li>Petits fichiers → saturent la RAM du NameNode.</li><li>Gzip non découpable → 1 seul mapper.</li><li>Safe mode = lecture seule au démarrage.</li><li>Rack awareness : 2<sup>e</sup> et 3<sup>e</sup> copies sur un autre rack.</li><li>Calcul : espace brut = taille × réplication.</li></ul></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · HDFS</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 03</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Que se passe-t-il quand un DataNode tombe en panne ?</button><div class="ab"><p>Le NameNode ne reçoit plus ses <b>heartbeats</b> ; après le délai d'expiration (~10 min par défaut), il le déclare mort. Les blocs qu'il hébergeait deviennent <b>sous-répliqués</b> : le NameNode ordonne leur recopie depuis les répliques survivantes vers d'autres DataNodes. Les lectures en cours basculent sur une autre réplique : <b>aucune perte</b> tant qu'au moins une copie existe.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Et si c'est le NameNode qui tombe ?</button><div class="ab"><p>Sans HA, HDFS devient <b>indisponible</b> (les données restent sur les DataNodes, mais plus personne ne sait où). Le Secondary NameNode ne prend pas le relais. Avec la <b>haute disponibilité</b>, un NameNode standby synchronisé devient actif automatiquement grâce à <b>ZooKeeper</b>.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi HDFS est-il mauvais avec beaucoup de petits fichiers ?</button><div class="ab"><p>Chaque fichier et chaque bloc occupent ~150 octets dans la <b>RAM du NameNode</b> : des millions de petits fichiers la saturent, alors que les disques sont vides. Et un traitement MapReduce lance un mapper par petit fichier, avec un coût de démarrage énorme. Solution : agréger (gros fichiers, Parquet, SequenceFile, archives HAR) en amont, par exemple dans le flux d'ingestion.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi des blocs de 128 Mio et pas de 4 Ko comme un disque classique ?</button><div class="ab"><p>Pour minimiser le <b>temps de recherche</b> par rapport au temps de transfert (lecture séquentielle longue), limiter le nombre d'objets en mémoire du NameNode, et donner à chaque mapper une quantité de travail significative.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment choisir le facteur de réplication ?</button><div class="ab"><p>Compromis <b>disponibilité / coût de stockage</b>. 3 par défaut (survit à 2 pannes et à la perte d'un rack). Plus pour une donnée critique ou très lue (plus de nœuds peuvent la servir en local), moins pour des données temporaires ou reconstructibles. Hadoop 3 propose aussi l'<b>erasure coding</b> : ~1,5× l'espace au lieu de 3× pour des données froides.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · HDFS</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="03"></div>
+</section>
+
+<!-- ================= 04 · MAPREDUCE ================= -->
+<section class="slide" data-ch="04" data-sec="04 MapReduce" data-title="MapReduce et Hadoop Streaming" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/hadoop.svg" alt="Logo Apache Hadoop"></div>
+<div class="kicker">Chapitre 04 · MapReduce</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Calculer là où sont les données</h2>
+<p class="lead"><b>Le besoin :</b> compter, sommer, agréger des milliards de lignes réparties sur des dizaines de nœuds, sans tout rapatrier sur une machine. <b>La réponse :</b> un modèle en deux fonctions que <i>vous</i> écrivez, et tout le reste (découpage, distribution, tri, reprise sur panne) géré par le framework.</p>
+<div class="sch free"><span class="cap">Le pipeline complet — exemple : compter les mots</span>
+<svg class="dg" viewBox="0 0 980 290" role="img" aria-label="Blocs, splits, mappers, partition, shuffle et tri, reducers, fichiers part">
+  <text class="a" x="28" y="20">HDFS</text><text class="a" x="158" y="20">MAP (parallèle)</text><text class="a" x="438" y="20">SHUFFLE &amp; SORT</text><text class="a" x="708" y="20">REDUCE</text><text class="a" x="888" y="20">SORTIE</text>
+  <rect class="b f1" x="10" y="40" width="110" height="60" rx="8"/><text class="s" x="18" y="62">split 1</text><text class="s" x="18" y="84">« ours chat ours »</text>
+  <rect class="b f1" x="10" y="130" width="110" height="60" rx="8"/><text class="s" x="18" y="152">split 2</text><text class="s" x="18" y="174">« chat loup »</text>
+  <rect class="b f2" x="140" y="40" width="200" height="60" rx="8"/><text class="t" x="150" y="62" style="font-size:13px">mapper 1</text><text class="s" x="150" y="84">ours→1 · chat→1 · ours→1</text>
+  <rect class="b f2" x="140" y="130" width="200" height="60" rx="8"/><text class="t" x="150" y="152" style="font-size:13px">mapper 2</text><text class="s" x="150" y="174">chat→1 · loup→1</text>
+  <path class="e" d="M120 70 H136"/><path class="e" d="M120 160 H136"/>
+  <rect class="z" x="370" y="35" width="290" height="170" rx="12"/>
+  <text class="s" x="385" y="62">partition : hash(clé) mod nb_reducers</text>
+  <text class="s" x="385" y="90">→ même clé = même reducer</text>
+  <text class="s" x="385" y="122">tri par clé (ordre des chaînes)</text>
+  <text class="s" x="385" y="152">chat→[1,1] · loup→[1]</text>
+  <text class="s" x="385" y="176">ours→[1,1]</text>
+  <path class="e" d="M340 70 L366 90"/><path class="e" d="M340 160 L366 140"/>
+  <rect class="b f4" x="690" y="55" width="150" height="110" rx="8"/><text class="t" x="700" y="78" style="font-size:13px">reducer</text><text class="s" x="700" y="102">chat → 2</text><text class="s" x="700" y="124">loup → 1</text><text class="s" x="700" y="146">ours → 2</text>
+  <path class="e" d="M660 110 H686"/>
+  <rect class="b f3" x="865" y="55" width="105" height="50" rx="8"/><text class="s" x="875" y="84">part-00000</text>
+  <rect class="b" x="865" y="115" width="105" height="40" rx="8"/><text class="s" x="875" y="140">_SUCCESS</text>
+  <path class="e" d="M840 85 H861"/>
+  <text class="s" x="10" y="230">1 split = 1 tâche map = 1 processus · le framework fait partition + shuffle + tri · 1 reducer = 1 fichier part-0000N</text>
+  <text class="g" x="10" y="258">Vous écrivez : map(ligne) → (clé, valeur)  et  reduce(clé, [valeurs]) → résultat.</text>
+  <text class="r" x="10" y="282">Le shuffle (transfert réseau des paires vers les reducers) est l'étape la plus coûteuse.</text>
+
+  <g class="nb n1"><circle cx="16" cy="15" r="11"/><text x="16" y="15">1</text></g><g class="nb n2"><circle cx="146" cy="15" r="11"/><text x="146" y="15">2</text></g><g class="nb n3"><circle cx="426" cy="15" r="11"/><text x="426" y="15">3</text></g><g class="nb n4"><circle cx="696" cy="15" r="11"/><text x="696" y="15">4</text></g><g class="nb n5"><circle cx="876" cy="15" r="11"/><text x="876" y="15">5</text></g><use class="il" href="#il-file" x="96" y="44" width="20" height="24"/><use class="il" href="#il-file" x="96" y="134" width="20" height="24"/><use class="il" href="#il-gear" x="314" y="44" width="20" height="20"/><use class="il" href="#il-gear" x="314" y="134" width="20" height="20"/><use class="il" href="#il-gear" x="812" y="60" width="22" height="22"/>
+</svg></div>
+<div class="analogy"><b>Analogie — le tri du courrier.</b> Chaque facteur (mapper) trie sa sacoche par code postal ; les sacs d'un même code postal sont regroupés au centre de tri (shuffle) ; chaque bureau de distribution (reducer) traite ses codes postaux.</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · MapReduce</div>
+<div class="pqrow"><span class="pq how">③ Comment — chaque étape</span></div>
+<h2>Du bloc au fichier de résultat</h2>
+<div class="steps two">
+  <li><b>Bloc</b> — le fichier HDFS est stocké en blocs de 128 Mio (notre CSV Spotify de 156 547 octets tient dans <b>1 bloc</b>).</li>
+  <li><b>Split</b> — à chaque job, Hadoop découpe l'entrée en <b>splits</b> (tranches de lecture). <b>1 split = 1 mapper.</b></li>
+  <li><b>Map</b> — le mapper lit les lignes de son split sur <code>stdin</code> et émet des paires <code>clé\tvaleur</code>.</li>
+  <li><b>Partition</b> — chaque paire est routée vers un reducer selon le <b>hash de la clé</b> : toutes les valeurs d'une clé vont au même reducer.</li>
+  <li><b>Shuffle</b> — les paires voyagent des mappers vers les reducers (réseau). La phase reduce ne peut se terminer avant la fin de tous les mappers.</li>
+  <li><b>Sort</b> — chaque reducer reçoit ses paires <b>triées par clé</b> : il n'a qu'à agréger les lignes consécutives de même clé.</li>
+  <li><b>Reduce</b> — agrège les valeurs de chaque clé et écrit le résultat final.</li>
+  <li><b>Sortie</b> — un dossier HDFS avec <b>un <code>part-0000N</code> par reducer</b> et un fichier vide <code>_SUCCESS</code> si tout a réussi.</li>
+</div>
+<div class="note warn"><i><svg class="ico" aria-hidden="true"><use href="#ti-ruler"/></svg></i><div><p><b>Le nombre de mappers se lit, il ne se devine pas.</b> La règle « splits = taille / taille de bloc » est une approximation. Mesuré sur le cluster du cours (fichier d'un seul bloc) : 2 splits par défaut (<code>mapreduce.job.maps=2</code>), 1 avec <code>-D mapreduce.job.maps=1</code>, 4 avec <code>=4</code>. Plusieurs mappers peuvent lire le <b>même bloc</b>. La vérité est dans le log : ligne <code>number of splits:N</code>.</p></div></div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · MapReduce</div>
+<div class="pqrow"><span class="pq how">③ Comment — le contrat d'exécution</span></div>
+<h2>Ce que le modèle suppose (et qu'on oublie)</h2>
+<div class="grid g2">
+  <div class="card hl"><span class="lab">1 · Un processus par tâche</span><p>Chaque map et chaque reduce est un <b>processus isolé lancé de zéro</b>. Il ne connaît que son <code>stdin</code>. Pas de variable partagée, pas de fichier commun fiable (chaque tâche écrit sur son propre nœud). Le seul état toléré : des variables locales, comme la « clé précédente » du reducer. Un graphique doit être produit <b>après</b> la boucle de lecture (sinon : PDF vide).</p></div>
+  <div class="card"><span class="lab">2 · L'en-tête n'est que dans le premier split</span><p>Seul le mapper qui lit le début du fichier voit la ligne d'en-tête. On l'écarte <b>par sa valeur</b> (<code>if row[0] == 'track_name': continue</code>), jamais avec <code>next(reader)</code> : sinon chaque mapper saute sa première ligne de données. Mesuré : le job réussit, mais il manque une paire (1480 au lieu de 1481), et <b>aucun compteur ne le signale</b>.</p></div>
+  <div class="card"><span class="lab">3 · Le tri est lexicographique</span><p>Les clés sont des <b>chaînes</b> : <code>"10"</code> passe avant <code>"2"</code>, <code>"2023"</code> avant <code>"897"</code>. Les années à 4 chiffres trient correctement par chance. Pour trier des nombres : les <b>aligner avec des zéros</b> (<code>00897</code>). Même règle dans HBase (ch. 07).</p></div>
+  <div class="card"><span class="lab">4 · Un seul reducer par défaut</span><p>→ un seul fichier <code>part-00000</code>, <b>globalement trié</b>. <code>-D mapreduce.job.reduces=N</code> donne N fichiers (plus de parallélisme d'écriture), mais chaque fichier n'est trié que <b>localement</b>. <code>reduces=0</code> = job « map only » (filtrage, conversion).</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · MapReduce</div>
+<div class="pqrow"><span class="pq how">③ Comment — le combiner</span></div>
+<h2>Le combiner ne sait pas faire de moyenne</h2>
+<div class="grid g2">
+  <div class="card"><span class="lab">Qu'est-ce que c'est ?</span><p>Un <b>mini-reducer exécuté sur le nœud du mapper</b>, avant le shuffle, pour agréger localement et <b>réduire le trafic réseau</b>. Souvent le même code que le reducer. Hadoop peut l'appeler 0, 1 ou plusieurs fois : le résultat ne doit pas en dépendre.</p><p><b>Condition :</b> l'opération doit être <b>associative et commutative</b> (somme, compte, min, max). La moyenne ne l'est pas.</p></div>
+  <div class="card bad"><span class="lab">Le bug classique</span><p>moyenne(10, 20, 30) = <b>20</b></p><p>avec un combiner qui moyenne : groupe 1 → moyenne(10, 20) = 15 ; groupe 2 → moyenne(30) = 30 ; puis moyenne(15, 30) = <b>22,5 ≠ 20</b> ✗</p><p>La « moyenne des moyennes » est fausse dès que les groupes n'ont pas la même taille.</p></div>
+</div>
+<div class="note tip"><i><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg></i><div><p><b>La bonne méthode :</b> faire remonter <b>(somme, compte)</b> et ne diviser qu'à la fin, dans le reducer. Exemple : (30, 2) et (30, 1) → (60, 3) → 60 / 3 = 20 ✓. C'est exactement ce que demande l'exercice « moyenne des streams par année ».</p></div></div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · MapReduce</div>
+<div class="pqrow"><span class="pq ex">④ Exemple — Hadoop Streaming en Python</span></div>
+<h2>Un mapper, un reducer, deux pipes</h2>
+<p class="lead">MapReduce est en Java, mais le jar <b>hadoop-streaming</b> exécute n'importe quel programme qui lit <code>stdin</code> et écrit <code>stdout</code>. Contrat : <b>une paire <code>clé\tvaleur</code> par ligne</b>.</p>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>mapper.py · total des streams par artiste</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">import</span> sys, csv
+<span class="kw">for</span> row <span class="kw">in</span> csv.reader(sys.stdin):          <span class="c"># csv.reader : virgules dans les noms</span>
+    <span class="kw">if</span> len(row) &lt; 9 <span class="kw">or</span> row[0] == <span class="s">'track_name'</span>:
+        <span class="kw">continue</span>                           <span class="c"># en-tête écarté PAR SA VALEUR</span>
+    <span class="kw">try</span>:
+        streams = int(float(row[8]))
+    <span class="kw">except</span> ValueError:
+        <span class="kw">continue</span>                           <span class="c"># ligne 576 corrompue : on l'ignore</span>
+    print(<span class="s">"%s\t%s"</span> % (row[1], streams))     <span class="c"># clé \t valeur</span></code></pre></div>
+  <div class="code"><div class="codeh"><span>reducer.py · somme par clé</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">import</span> sys
+current, total = <span class="kw">None</span>, 0
+<span class="kw">for</span> line <span class="kw">in</span> sys.stdin:                  <span class="c"># lignes TRIÉES par clé</span>
+    key, _, val = line.rstrip(<span class="s">'\n'</span>).partition(<span class="s">'\t'</span>)
+    <span class="kw">try</span>:
+        val = int(val)
+    <span class="kw">except</span> ValueError:
+        <span class="kw">continue</span>
+    <span class="kw">if</span> key == current:
+        total += val                         <span class="c"># même clé : on accumule</span>
+    <span class="kw">else</span>:
+        <span class="kw">if</span> current <span class="kw">is not None</span>:
+            print(<span class="s">"%s\t%d"</span> % (current, total))  <span class="c"># nouvelle clé : on émet</span>
+        current, total = key, val
+<span class="kw">if</span> current <span class="kw">is not None</span>:
+    print(<span class="s">"%s\t%d"</span> % (current, total))      <span class="c"># NE PAS oublier la dernière</span></code></pre></div>
+</div>
+<div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-key"/></svg></i><div><p>Le pattern <b>« clé courante »</b> ne marche que parce que l'entrée du reducer est <b>triée</b>. Trois oublis classiques : ne pas émettre la <b>dernière clé</b> après la boucle, appeler <code>int()</code> sans protection, découper le CSV avec <code>split(',')</code> alors que des champs contiennent des virgules (<code>"Latto, Jung Kook"</code>).</p></div></div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · MapReduce</div>
+<div class="pqrow"><span class="pq ex">④ Exemple — tester, lancer, lire</span></div>
+<h2>Toujours tester en local avant le cluster</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>bash · simulation locale</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="c"># mapper seul : voir les paires émises</span>
+cat ventes.csv | python3 mapper.py | head
+
+<span class="c"># SANS sort : le reducer reçoit des clés non groupées → faux</span>
+cat ventes.csv | python3 mapper.py | python3 reducer.py
+
+<span class="c"># AVEC sort : simulation fidèle du shuffle/sort</span>
+cat ventes.csv | python3 mapper.py | sort | python3 reducer.py</code></pre></div>
+  <div class="code"><div class="codeh"><span>bash · soumettre le job</span><button class="cpy" type="button">Copier</button></div><pre><code>hdfs dfs -rm -r -f output/artistes     <span class="c"># la sortie NE DOIT PAS exister</span>
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-*.jar \
+  -D mapreduce.job.reduces=1 \
+  -file mapper.py  -mapper  <span class="s">"python3 mapper.py"</span> \
+  -file reducer.py -reducer <span class="s">"python3 reducer.py"</span> \
+  -input  input/spotify.csv \
+  -output output/artistes
+hdfs dfs -ls  output/artistes          <span class="c"># part-00000 + _SUCCESS</span>
+hdfs dfs -cat output/artistes/part-00000 | sort -t$'\t' -k2 -nr | head</code></pre></div>
+</div>
+<div class="grid g3">
+  <div class="card"><span class="lab">-file</span><p>Envoie le script sur les nœuds. Le nom doit être <b>identique</b> dans <code>-file</code> et dans <code>-mapper</code>/<code>-reducer</code>.</p></div>
+  <div class="card"><span class="lab">-output</span><p>Le dossier ne doit <b>pas exister</b> (sinon échec immédiat) : on le supprime avant chaque relance.</p></div>
+  <div class="card"><span class="lab">Coût d'un job</span><p>Même minuscule : <b>35 à 69 s</b> mesurés (allocation des conteneurs, JVM, écriture HDFS). Chaque essai raté sur le cluster coûte 1 à 2 min : d'où le test local.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · MapReduce</div>
+<div class="pqrow"><span class="pq how">③ Comment — diagnostiquer un job</span></div>
+<h2>Échec visible, échec silencieux</h2>
+<div class="grid g2">
+  <div class="card bad"><span class="lab">Échec visible</span><p><code>int(row[8])</code> sans protection sur la ligne corrompue : <code>PipeMapRed.waitOutputThreads(): subprocess failed with code 1</code>. Le job échoue après plusieurs tentatives. Les compteurs affichent <code>Map input records=473</code> au lieu de 954 : ce sont ceux de la tâche survivante. <b>Ne jamais lire les compteurs d'un job en échec comme ceux d'un job réussi.</b></p></div>
+  <div class="card bad"><span class="lab">Échec silencieux</span><p><code>next(reader)</code> pour sauter l'en-tête : le job est <b>vert</b>, les compteurs sont identiques, mais il manque une paire. Seule une <b>valeur de contrôle</b> écrite avant le job (total calculé en Python, <code>COUNT(*)</code> dans Hive) permet de le voir : c'est la <b>validation croisée</b>.</p></div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Où regarder</span><ul><li><b>UI YARN 8088</b> : état (RUNNING, SUCCEEDED, FAILED), progression, liens vers les logs. Réflexe n°1.</li><li><b>8041 / 8042</b> : les NodeManagers (conteneurs, mémoire, tâches).</li><li><b>yarn logs</b> : le <code>stderr</code> du mapper qui a planté (exception Python, ligne en cause).</li></ul></div>
+  <div class="code"><div class="codeh"><span>bash</span><button class="cpy" type="button">Copier</button></div><pre><code>yarn application -list -appStates ALL | tail
+yarn logs -applicationId application_1690000000000_0001 \
+  2&gt;&amp;1 | grep -n "PipeMapRed\|stderr\|Exception" | head
+<span class="c"># nombre réel de mappers d'un job :</span>
+hadoop jar … 2&gt;&amp;1 | grep "number of splits"</code></pre></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · MapReduce</div>
+<div class="pqrow"><span class="pq ex">④ Exercice corrigé</span></div>
+<h2>Moyenne des streams par année de sortie</h2>
+<div class="card"><p class="q">Avec le CSV Spotify (année en colonne 3, streams en colonne 8), écrivez le mapper et le reducer qui donnent la <b>moyenne</b> des streams par année. Ordre de grandeur attendu : quelques centaines de millions par année. Quelle erreur de conception donnerait un résultat faux sans faire échouer le job ?</p></div>
+<div class="accg">
+  <div class="acc cor"><button class="ah" type="button">Voir le corrigé (après avoir essayé !)</button><div class="ab">
+    <p><b>Mapper :</b> identique à celui des artistes, avec la clé <code>row[3]</code> (année) au lieu de <code>row[1]</code> ; on garde le filtre <code>released_year.isdigit()</code>.</p>
+    <div class="code"><div class="codeh"><span>reducer.py · moyenne = somme / compte, calculée à la fin du groupe</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">import</span> sys
+year, total, count = <span class="kw">None</span>, 0, 0
+<span class="kw">for</span> line <span class="kw">in</span> sys.stdin:
+    k, _, v = line.rstrip(<span class="s">'\n'</span>).partition(<span class="s">'\t'</span>)
+    <span class="kw">try</span>: v = int(v)
+    <span class="kw">except</span> ValueError: <span class="kw">continue</span>
+    <span class="kw">if</span> k == year:
+        total += v; count += 1
+    <span class="kw">else</span>:
+        <span class="kw">if</span> year <span class="kw">is not None</span>:
+            print(<span class="s">"%s\t%.1f"</span> % (year, total / count))
+        year, total, count = k, v, 1
+<span class="kw">if</span> year <span class="kw">is not None</span>:
+    print(<span class="s">"%s\t%.1f"</span> % (year, total / count))</code></pre></div>
+    <p><b>L'erreur silencieuse :</b> utiliser ce reducer comme <b>combiner</b>, ou calculer une moyenne « au fil de l'eau » à partir de moyennes partielles : on obtient une moyenne des moyennes, fausse dès que les groupes ont des tailles différentes. Si les valeurs ressemblent à des milliards (l'ordre de grandeur d'une somme), la moyenne est mal calculée.</p>
+    <p><b>Validation croisée :</b> <code>SELECT released_year, AVG(streams) FROM spotify GROUP BY released_year</code> dans Hive doit donner les mêmes valeurs, ligne à ligne.</p>
+  </div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · MapReduce</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>À retenir sur MapReduce</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Moyenne dans un combiner</b> → moyenne des moyennes, fausse. Remonter (somme, compte).</div>
+    <div><b>Sauter l'en-tête avec <code>next()</code></b> → chaque mapper perd une ligne, en silence.</div>
+    <div><b>Oublier le <code>sort</code></b> dans le test local → le reducer reçoit des clés non groupées.</div>
+    <div><b>Clés numériques non alignées</b> → tri lexicographique : « 10 » avant « 2 ».</div>
+    <div><b>Dossier de sortie existant</b> → le job échoue immédiatement.</div>
+    <div><b>« 1 mapper = 1 bloc »</b> → non : 1 mapper = 1 split, et le nombre de splits se lit dans le log.</div>
+  </div>
+  <ol class="sum-list">
+    <li>Pipeline : bloc → split → <b>map</b> → partition → <b>shuffle/sort</b> → <b>reduce</b> → part-0000N + _SUCCESS.</li>
+    <li>On écrit map et reduce ; le framework gère distribution, tri et reprise sur panne.</li>
+    <li>Chaque tâche est un processus isolé ; l'entrée du reducer est triée par clé (ordre des chaînes).</li>
+    <li>1 reducer par défaut = 1 fichier trié ; combiner seulement pour des opérations associatives et commutatives.</li>
+    <li>Tester en local (<code>| sort |</code>), lancer avec Hadoop Streaming, diagnostiquer avec 8088 et <code>yarn logs</code>, valider avec une valeur de contrôle.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/hadoop.svg" alt="Logo Apache Hadoop"></div>
+<div class="kicker">Chapitre 04 · MapReduce</div>
+<h2>Fiche — MapReduce</h2>
+<div class="fiche">
+  <div class="card wide"><span class="lab">Pipeline</span><p><b>bloc → split → map → partition → shuffle / sort → reduce → part-0000N + _SUCCESS.</b> 1 split = 1 mapper = 1 processus. Partition = hash(clé) : même clé, même reducer. Shuffle = transfert réseau, l'étape la plus coûteuse.</p></div>
+  <div class="card"><span class="lab">Contrat d'exécution</span><ul><li>Processus isolés, aucun état partagé.</li><li>En-tête seulement dans le 1<sup>er</sup> split : filtrer par valeur.</li><li>Tri <b>lexicographique</b> des clés.</li><li>1 reducer par défaut → 1 fichier trié ; <code>reduces=0</code> = map only.</li></ul></div>
+  <div class="card"><span class="lab">Combiner</span><p>Mini-reduce local avant le shuffle (moins de réseau). Uniquement pour une opération <b>associative et commutative</b> (somme, compte, min, max). <b>Moyenne :</b> remonter (somme, compte), diviser à la fin.</p></div>
+  <div class="card"><span class="lab">Hadoop Streaming</span><div class="cmdlist"><div><code>-file / -mapper / -reducer</code><span>scripts (même nom partout)</span></div><div><code>-input / -output</code><span>HDFS ; sortie inexistante</span></div><div><code>-D mapreduce.job.reduces=N</code><span>N fichiers part</span></div><div><code>cat | map | sort | reduce</code><span>test local</span></div></div></div>
+  <div class="card"><span class="lab">Diagnostic</span><ul><li>UI <b>8088</b> → application → logs.</li><li><code>yarn logs -applicationId …</code> → stderr du mapper.</li><li>Compteurs d'un job en échec : trompeurs.</li><li>Échec silencieux → <b>valeur de contrôle</b> (validation croisée Hive / Python).</li></ul></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · MapReduce</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 04</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Expliquez MapReduce en 30 secondes.</button><div class="ab"><p>Un modèle de calcul distribué en deux fonctions. <b>Map</b> transforme chaque enregistrement en paires clé/valeur, en parallèle, là où sont les données. Le framework <b>regroupe et trie</b> les paires par clé (shuffle/sort). <b>Reduce</b> agrège les valeurs de chaque clé. Le développeur n'écrit que map et reduce ; Hadoop gère la distribution, le tri et la reprise sur panne.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce que le shuffle et pourquoi coûte-t-il cher ?</button><div class="ab"><p>Le transfert des sorties des mappers vers les reducers, avec partition par clé, écriture sur disque, transfert réseau et tri. C'est souvent l'étape la plus lente du job. On le réduit avec un <b>combiner</b> (pré-agrégation locale), des clés bien choisies, et la compression des données intermédiaires.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quand peut-on utiliser un combiner ?</button><div class="ab"><p>Quand l'opération est <b>associative et commutative</b> et que le résultat ne dépend pas du nombre de fois où le combiner est appliqué : somme, compte, min, max. Pas pour une moyenne directe : on fait remonter somme et compte, et on divise dans le reducer.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi MapReduce a-t-il été remplacé par Spark ?</button><div class="ab"><p>MapReduce écrit sur <b>disque</b> entre chaque étape et chaque job : les traitements itératifs (machine learning, graphes) ou multi-étapes sont lents. Spark garde les données <b>en mémoire</b> (RDD/DataFrame), optimise un plan d'exécution complet (DAG) et offre des API haut niveau (SQL, Python). Mais Spark reprend les mêmes concepts : partitions, shuffle, map/reduce.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment être sûr qu'un job « vert » a donné un résultat juste ?</button><div class="ab"><p>Un job réussi peut être faux (en-tête mal filtré, ligne corrompue, mauvaise convention de clé). Il faut une <b>valeur de contrôle</b> préparée avant : total calculé en Python, <code>COUNT(*)</code>/<code>SUM()</code> dans Hive. C'est la <b>validation croisée</b> entre deux moteurs, à documenter dans le rapport.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · MapReduce</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="04"></div>
+</section>
+
+<!-- ================= 05 · YARN ================= -->
+<section class="slide" data-ch="05" data-sec="05 YARN" data-title="YARN, le gestionnaire de ressources" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/hadoop.svg" alt="Logo Apache Hadoop"></div>
+<div class="kicker">Chapitre 05 · YARN</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Qui décide quelle tâche tourne où ?</h2>
+<div class="grid g2">
+  <div class="card bad"><span class="lab">Hadoop 1 : le JobTracker</span><p>Un seul démon gérait <b>à la fois</b> les ressources du cluster et le suivi de chaque job MapReduce (avec des TaskTrackers à « slots » fixes map/reduce). Résultat : goulot au-delà de ~4 000 nœuds, ressources gaspillées, et <b>impossible de faire tourner autre chose que MapReduce</b>.</p></div>
+  <div class="card hl"><span class="lab">Hadoop 2 : YARN</span><p><b>Y</b>et <b>A</b>nother <b>R</b>esource <b>N</b>egotiator (2012-2013) <b>sépare</b> la gestion des ressources de l'exécution des applications. Le cluster devient un « système d'exploitation » partagé : MapReduce, <b>Spark</b>, <b>Hive sur Tez</b>… cohabitent sur les mêmes nœuds.</p></div>
+</div>
+<div class="sch free"><span class="cap">Les 4 acteurs de YARN — lancement d'une application</span>
+<svg class="dg" viewBox="0 0 960 330" role="img" aria-label="Client, ResourceManager, NodeManagers, ApplicationMaster et conteneurs, étapes numérotées">
+  <rect class="b" x="10" y="25" width="140" height="60" rx="10"/><text class="t tc" x="100" y="52">Client</text><text class="s tc" x="100" y="72">hadoop jar …</text>
+  <rect class="b f3" x="330" y="10" width="300" height="90" rx="12"/><text class="t tc" x="480" y="40">ResourceManager</text><text class="s tc" x="480" y="62">Scheduler + ApplicationsManager</text><text class="s tc" x="480" y="82">1 par cluster · UI 8088</text>
+  <path class="e" d="M150 55 H326"/><circle class="dot" cx="238" cy="55" r="11"/><text class="t tc" x="238" y="60" style="font-size:12px;fill:var(--on-accent)">1</text>
+  <rect class="b f1" x="20" y="150" width="440" height="125" rx="12"/><text class="t" x="54" y="172">NodeManager · slave1</text>
+  <rect class="b f2" x="40" y="186" width="190" height="72" rx="8"/><text class="t tc" x="135" y="212" style="font-size:13px">ApplicationMaster</text><text class="s tc" x="135" y="232">1 par application</text><text class="s tc" x="135" y="248">négocie, orchestre</text>
+  <rect class="b f4" x="250" y="186" width="190" height="72" rx="8"/><text class="t tc" x="345" y="216" style="font-size:13px">Conteneur</text><text class="s tc" x="345" y="238">tâche map / reduce</text>
+  <rect class="b f1" x="500" y="150" width="440" height="125" rx="12"/><text class="t" x="534" y="172">NodeManager · slave2</text>
+  <rect class="b f4" x="520" y="186" width="190" height="72" rx="8"/><text class="t tc" x="615" y="216" style="font-size:13px">Conteneur</text><text class="s tc" x="615" y="238">tâche map</text>
+  <rect class="b f4" x="730" y="186" width="190" height="72" rx="8"/><text class="t tc" x="825" y="216" style="font-size:13px">Conteneur</text><text class="s tc" x="825" y="238">tâche reduce</text>
+  <path class="e" d="M360 102 L150 182"/><circle class="dot" cx="255" cy="142" r="11"/><text class="t tc" x="255" y="147" style="font-size:12px;fill:var(--on-accent)">2</text>
+  <path class="e bi" d="M230 190 L450 102"/><circle class="dot" cx="340" cy="146" r="11"/><text class="t tc" x="340" y="151" style="font-size:12px;fill:var(--on-accent)">3</text>
+  <path class="e" d="M232 222 H246"/>
+  <path class="e" d="M135 260 Q135 318 400 312 Q600 306 615 262"/><circle class="dot" cx="400" cy="312" r="11"/><text class="t tc" x="400" y="317" style="font-size:12px;fill:var(--on-accent)">4</text>
+  <path class="e dash" d="M720 146 L620 104"/><text class="s" x="700" y="128">heartbeats NM → RM</text>
+
+  <use class="il" href="#il-laptop" x="16" y="33" width="40" height="32"/><use class="il" href="#il-gear" x="340" y="30" width="40" height="40"/><use class="il" href="#il-server" x="30" y="155" width="18" height="22"/><use class="il" href="#il-server" x="510" y="155" width="18" height="22"/><use class="il" href="#il-gear" x="48" y="194" width="22" height="22"/><use class="il" href="#il-container" x="258" y="192" width="26" height="24"/><use class="il" href="#il-container" x="528" y="192" width="26" height="24"/><use class="il" href="#il-container" x="738" y="192" width="26" height="24"/>
+</svg></div>
+<ol class="steps two sm">
+  <li><b>Soumission</b> : le client envoie l'application au ResourceManager.</li>
+  <li><b>Démarrage de l'AM</b> : le RM alloue un premier conteneur et y lance l'ApplicationMaster.</li>
+  <li><b>Négociation</b> : l'AM demande au RM des conteneurs (en privilégiant les nœuds qui ont les données).</li>
+  <li><b>Exécution</b> : les NodeManagers lancent les tâches dans ces conteneurs ; l'AM suit, relance les échecs, puis se désinscrit.</li>
+</ol>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · YARN</div>
+<div class="pqrow"><span class="pq how">③ Comment — rôles, ordonnanceurs, mémoire</span></div>
+<h2>Qui fait quoi dans YARN</h2>
+<table class="cmp md">
+<thead><tr><th>Acteur</th><th>Où</th><th>Rôle</th></tr></thead>
+<tbody>
+<tr><td><b>ResourceManager (RM)</b></td><td>master, 1 par cluster</td><td>Autorité globale : connaît les ressources libres, <b>alloue</b> les conteneurs (Scheduler), accepte les applications et lance leur AM (ApplicationsManager). UI : <b>8088</b>.</td></tr>
+<tr><td><b>NodeManager (NM)</b></td><td>chaque nœud de calcul</td><td>Lance et <b>surveille</b> les conteneurs de son nœud, remonte son état et ses ressources au RM (heartbeats).</td></tr>
+<tr><td><b>ApplicationMaster (AM)</b></td><td>un conteneur, 1 par application</td><td><b>Négocie</b> les conteneurs auprès du RM, orchestre les tâches de son application, relance celles qui échouent. Pour déboguer un job, c'est l'AM (et ses logs) qu'on regarde.</td></tr>
+<tr><td><b>Conteneur</b></td><td>sur un NM</td><td>Une part de ressources (mémoire, vCPU) dans laquelle s'exécute une tâche.</td></tr>
+</tbody></table>
+<div class="grid g3">
+  <div class="card"><span class="lab">FIFO Scheduler</span><p>Premier arrivé, premier servi. Simple, mais un gros job bloque tous les autres.</p></div>
+  <div class="card"><span class="lab">Fair Scheduler</span><p>Les applications se <b>partagent équitablement</b> la capacité au fil du temps.</p></div>
+  <div class="card hl"><span class="lab">Capacity Scheduler (défaut)</span><p><b>Files d'attente</b> avec quotas garantis (ex. 60 % data, 40 % BI), la capacité inutilisée d'une file pouvant être prêtée.</p></div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Choisir l'ordonnanceur</span><p><code>yarn.resourcemanager.scheduler.class</code> dans <b>yarn-site.xml</b>. Et <code>mapreduce.framework.name=yarn</code> dans mapred-site.xml pour que MapReduce passe par YARN.</p></div>
+  <div class="card"><span class="lab">Mémoire sur le cluster du cours</span><p><code>yarn.nodemanager.resource.memory-mb=256</code> (mémoire que YARN gère par nœud) et <code>mapreduce.map.memory.mb=192</code> (mémoire demandée par tâche map). Petit à dessein : un mapper Python tient, mais le parallélisme est modeste. Pour plus de débit, on multiplie les tâches plutôt que leur taille.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · YARN</div>
+<div class="pqrow"><span class="pq ex">④ Exemple — suivre une application</span> <span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Le chemin d'un log de tâche</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="flow col">
+      <div class="step"><b>Tâche (conteneur)</b><small>écrit stdout / stderr sur son nœud, au fil de l'eau</small></div>
+      <div class="step"><b>NodeManager</b><small>visible sur 8041 / 8042 pendant l'exécution</small></div>
+      <div class="step"><b>Log aggregation</b><small>en fin de job, les logs sont regroupés dans HDFS</small></div>
+      <div class="step"><b>UI 8088 ou <code>yarn logs</code></b><small>le plus rapide : l'UI · le plus précis : la ligne de commande</small></div>
+    </div>
+    <div class="code"><div class="codeh"><span>bash</span><button class="cpy" type="button">Copier</button></div><pre><code>yarn application -list                    <span class="c"># applications en cours</span>
+yarn application -status application_…    <span class="c"># état d'une application</span>
+yarn application -kill   application_…    <span class="c"># l'arrêter</span>
+yarn logs -applicationId application_…    <span class="c"># tous ses logs</span>
+yarn node -list                           <span class="c"># NodeManagers vivants</span></code></pre></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="trap-list">
+      <div><b>« YARN exécute le calcul. »</b> Non : YARN <b>alloue</b> les ressources ; ce sont MapReduce, Spark ou Tez qui calculent dans les conteneurs.</div>
+      <div><b>Confondre RM et AM.</b> Le RM est unique et global ; il y a un AM <b>par application</b>.</div>
+      <div><b>Une tâche échoue ≠ le job échoue.</b> L'AM relance la tâche (plusieurs tentatives) ; le job n'échoue qu'après épuisement des essais.</div>
+    </div>
+    <ol class="sum-list">
+      <li>YARN sépare <b>gestion des ressources</b> et <b>exécution</b> (fin du JobTracker de Hadoop 1).</li>
+      <li>RM (global, 8088) · NM (par nœud) · AM (par application) · conteneurs (ressources).</li>
+      <li>Ordonnanceurs FIFO, Fair, <b>Capacity</b> (défaut) — réglés dans yarn-site.xml.</li>
+      <li>Plusieurs moteurs (MapReduce, Spark, Tez) partagent le cluster grâce à YARN.</li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/hadoop.svg" alt="Logo Apache Hadoop"></div>
+<div class="kicker">Chapitre 05 · YARN</div>
+<h2>Fiche — YARN</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Définition</span><p><b>Yet Another Resource Negotiator</b> : gestionnaire de ressources de Hadoop 2+. Sépare l'<b>allocation</b> (CPU, mémoire) de l'<b>exécution</b> → plusieurs moteurs sur un même cluster.</p></div>
+  <div class="card"><span class="lab">Acteurs</span><dl class="def"><dt>RM</dt><dd>1 par cluster, alloue, UI 8088</dd><dt>NM</dt><dd>1 par nœud, lance/surveille les conteneurs</dd><dt>AM</dt><dd>1 par application, négocie et orchestre</dd><dt>Conteneur</dt><dd>part de mémoire + vCPU pour une tâche</dd></dl></div>
+  <div class="card"><span class="lab">Ordonnanceurs</span><p><b>FIFO</b> (ordre d'arrivée) · <b>Fair</b> (partage équitable) · <b>Capacity</b> (files à quotas, <b>défaut</b>). Propriété : <code>yarn.resourcemanager.scheduler.class</code>.</p></div>
+  <div class="card"><span class="lab">Cycle d'une application</span><p>Client soumet → RM lance l'<b>AM</b> dans un conteneur → l'AM demande des conteneurs → les NM lancent les tâches → l'AM suit, relance les échecs → fin, agrégation des logs.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · YARN</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 05</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Quel problème YARN a-t-il résolu ?</button><div class="ab"><p>Dans Hadoop 1, le JobTracker gérait à la fois les ressources et chaque job : limite de passage à l'échelle et cluster réservé à MapReduce. YARN sépare ces responsabilités (RM global + un AM par application), ce qui permet le <b>multi-tenant</b> et le <b>multi-moteurs</b> (Spark, Tez, MapReduce).</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Décrivez le lancement d'un job sur YARN.</button><div class="ab"><p>Le client soumet l'application au ResourceManager, qui alloue un conteneur et y démarre l'<b>ApplicationMaster</b>. L'AM demande au RM les conteneurs nécessaires (en privilégiant la localité des données), puis les NodeManagers y lancent les tâches. L'AM suit leur progression, relance celles qui échouent, et se désinscrit à la fin.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Deux équipes se disputent le cluster : que proposez-vous ?</button><div class="ab"><p>Le <b>Capacity Scheduler</b> avec une file par équipe et des quotas garantis (avec prêt de la capacité inutilisée), ou le <b>Fair Scheduler</b> si l'on veut un partage équitable dynamique. Le FIFO est à éviter : un gros job bloquerait tout le monde.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · YARN</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="05"></div>
+</section>
+
+<!-- ================= 06 · HIVE ================= -->
+<section class="slide" data-ch="06" data-sec="06 Hive" data-title="Hive, l'entrepôt SQL sur Hadoop" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/hive.png" alt="Logo Apache Hive"></div>
+<div class="kicker">Chapitre 06 · Hive</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Interroger sans programmer</h2>
+<div class="grid g2">
+  <div class="card bad"><span class="lab">Le problème</span><p>« Quels sont nos 10 titres les plus écoutés ? » → un mapper, un reducer, des tests, un job. Une heure plus tard : « Et la moyenne par année ? » → tout recommencer. Et les analystes connaissent SQL, pas Java ni Python. MapReduce répond au <b>comment</b> calculer ; l'exploration a besoin du <b>quoi</b> : un langage <b>déclaratif</b>.</p></div>
+  <div class="card hl"><span class="lab">La réponse : Hive</span><p>Né chez <b>Facebook (2008)</b>, Apache en 2009. Un <b>entrepôt de données</b> (data warehouse) au-dessus de Hadoop : on écrit du <b>HiveQL</b> (SQL), Hive le <b>compile en jobs</b> (MapReduce ou Tez) exécutés sur YARN, sur des fichiers HDFS. <i>Le SQL des analystes, la puissance du cluster.</i></p></div>
+</div>
+<div class="code"><div class="codeh"><span>HiveQL · 6 lignes = un job MapReduce complet</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">SELECT</span> artist_name, <span class="kw">SUM</span>(streams) <span class="kw">AS</span> total
+<span class="kw">FROM</span>   spotify
+<span class="kw">GROUP BY</span> artist_name
+<span class="kw">ORDER BY</span> total <span class="kw">DESC</span>
+<span class="kw">LIMIT</span> 10;</code></pre></div>
+<div class="grid g3">
+  <div class="card"><span class="lab">Entrepôt, pas base de données</span><p>Hive <b>ne stocke pas</b> les données : elles restent des fichiers dans HDFS. Il est fait pour l'<b>analyse batch</b> de gros volumes (<b>OLAP</b>), pas pour des transactions ligne à ligne (<b>OLTP</b>).</p></div>
+  <div class="card"><span class="lab">Schema-on-read</span><p>Le schéma est appliqué <b>à la lecture</b>, pas à l'écriture (≠ SGBDR, schema-on-write). Hive ne vérifie pas les fichiers : une valeur qui ne correspond pas au type devient <b>NULL</b>, sans erreur.</p></div>
+  <div class="card"><span class="lab">Latence</span><p>De quelques secondes à plusieurs minutes par requête : chaque requête lance des jobs. Pour de l'interactif rapide : Spark SQL, Trino, Impala.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="06" data-v="c">
+<div class="kicker">Chapitre 06 · Hive</div>
+<div class="pqrow"><span class="pq how">③ Comment — l'architecture</span></div>
+<h2>HiveServer2, le driver et le Metastore</h2>
+<div class="grid g12">
+  <div class="sch free"><span class="cap">Le SQL devient du calcul distribué</span>
+  <svg class="dg" viewBox="0 0 460 380" role="img" aria-label="Beeline vers HiveServer2 et son driver ; Metastore dans une base relationnelle ; exécution sur YARN, données sur HDFS">
+    <rect class="b" x="150" y="5" width="160" height="44" rx="10"/><text class="t tc" x="230" y="25">Analyste</text><text class="s tc" x="230" y="41">Beeline (JDBC, port 10000)</text>
+    <path class="e" d="M230 49 V71"/>
+    <rect class="b f3" x="60" y="75" width="340" height="105" rx="12"/><text class="t tc" x="230" y="98">HiveServer2</text>
+    <rect class="b" x="80" y="110" width="300" height="56" rx="8"/><text class="t tc" x="230" y="132" style="font-size:13px">Driver</text><text class="s tc" x="230" y="152">parse → compile → optimise → exécute</text>
+    <rect class="b f2" x="10" y="225" width="200" height="70" rx="10"/><text class="t tc" x="110" y="250">Metastore</text><text class="s tc" x="110" y="270">tables, colonnes, types,</text><text class="s tc" x="110" y="286">emplacements, partitions</text>
+    <rect class="b" x="10" y="320" width="200" height="50" rx="10"/><text class="s tc" x="110" y="342">base relationnelle</text><text class="s tc" x="110" y="360">Derby (cours) · MySQL (prod)</text>
+    <path class="e bi" d="M110 295 V316"/>
+    <path class="e bi" d="M150 182 L120 221"/><text class="a" x="0" y="212">« où ? quel format ? »</text>
+    <rect class="b f1" x="250" y="225" width="200" height="60" rx="10"/><text class="t tc" x="350" y="250">YARN</text><text class="s tc" x="350" y="270">jobs MapReduce / Tez</text>
+    <rect class="b f4" x="250" y="310" width="200" height="60" rx="10"/><text class="t tc" x="350" y="335">HDFS</text><text class="s tc" x="350" y="355">les fichiers = les données</text>
+    <path class="e" d="M310 182 L340 221"/><path class="e bi" d="M350 285 V306"/>
+  
+  <use class="il" href="#il-user" x="112" y="6" width="34" height="38"/><use class="il" href="#il-database" x="214" y="320" width="28" height="40"/><use class="il" href="#il-server" x="258" y="316" width="28" height="36"/><use class="il" href="#il-gear" x="258" y="234" width="28" height="28"/><use class="il" href="#il-book" x="20" y="232" width="28" height="22"/>
+</svg></div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card"><span class="lab">HiveServer2</span><p>Le service qui reçoit les requêtes (JDBC/ODBC). On s'y connecte avec <b>Beeline</b>, le client officiel (l'ancienne CLI <code>hive</code> a disparu de Hive 4).</p></div>
+    <div class="card"><span class="lab">Le driver</span><p>Le <b>compilateur</b> : analyse la requête, produit un plan d'exécution (des étapes map/reduce), l'optimise, puis le lance sur YARN.</p></div>
+    <div class="card hl"><span class="lab">Le Metastore — le catalogue</span><p>Il mémorise « la table <code>spotify</code> = ces fichiers HDFS, ces colonnes, ce format ». <b>Il ne contient aucune donnée</b>, que des métadonnées, dans une base relationnelle. Le Derby embarqué n'accepte <b>qu'une session à la fois</b> (verrou si on se connecte deux fois) ; en production : MySQL ou PostgreSQL.</p></div>
+    <div class="note tip"><i><svg class="ico" aria-hidden="true"><use href="#ti-repeat"/></svg></i><div><p><b>Séparation calcul / stockage :</b> Spark SQL ou Trino peuvent lire <b>les mêmes fichiers</b> via <b>le même Metastore</b>, sans copie. C'est le principe du lakehouse.</p></div></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="06" data-v="c">
+<div class="kicker">Chapitre 06 · Hive</div>
+<div class="pqrow"><span class="pq how">③ Comment — le modèle de données</span></div>
+<h2>Tables externes, managées, partitions</h2>
+<table class="cmp md">
+<thead><tr><th></th><th>Table <b>MANAGED</b> (interne)</th><th>Table <b>EXTERNAL</b></th></tr></thead>
+<tbody>
+<tr><td>Création</td><td><code>CREATE TABLE …</code></td><td><code>CREATE EXTERNAL TABLE … LOCATION '…'</code></td></tr>
+<tr><td>Qui écrit les fichiers</td><td>Hive (dans son entrepôt)</td><td>N'importe qui : <code>hdfs dfs -put</code>, un job, NiFi…</td></tr>
+<tr><td>Cycle de vie</td><td>lié à Hive</td><td>lié à HDFS</td></tr>
+<tr><td><code>DROP TABLE</code></td><td>supprime les métadonnées <b>ET les fichiers</b> <svg class="ico" aria-hidden="true"><use href="#ti-alert-triangle"/></svg></td><td>supprime <b>seulement les métadonnées</b>, les fichiers restent</td></tr>
+<tr><td>Usage</td><td>tables intermédiaires possédées par Hive</td><td>données partagées avec d'autres outils (cas du cours)</td></tr>
+</tbody></table>
+<div class="grid g2">
+  <div class="card"><span class="lab">Hiérarchie</span><dl class="def"><dt>Database</dt><dd>espace de noms (<code>CREATE DATABASE spotify_db</code>)</dd><dt>Table</dt><dd>schéma + emplacement des fichiers</dd><dt>Partition</dt><dd><b>sous-dossier par valeur</b> d'une colonne : <code>released_year=2022/</code></dd><dt>Bucket</dt><dd>répartition en N fichiers par <b>hash</b> d'une colonne (jointures, échantillonnage)</dd></dl></div>
+  <div class="card hl"><span class="lab">Partition pruning</span><p>Avec <code>PARTITIONED BY (released_year INT)</code>, une requête <code>WHERE released_year = 2022</code> ne lit <b>que le dossier concerné</b> : c'est l'élagage de partitions, la première optimisation de Hive. Attention : partitionner sur une colonne à trop de valeurs crée une explosion de petits fichiers.</p></div>
+</div>
+<div class="note legal"><i><svg class="ico" aria-hidden="true"><use href="#ti-hand-stop"/></svg></i><div><p><b>Réflexe de survie :</b> avant tout <code>DROP TABLE</code>, vérifier si la table est EXTERNAL ou MANAGED (<code>DESCRIBE FORMATTED t</code> → <i>Table Type</i>). Sur une table managée, DROP détruit les données.</p></div></div>
+</section>
+
+<section class="slide" data-ch="06" data-v="c">
+<div class="kicker">Chapitre 06 · Hive</div>
+<div class="pqrow"><span class="pq ex">④ Exemple — sur le cluster du cours</span></div>
+<h2>Créer, interroger, expliquer</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>bash + HiveQL</span><button class="cpy" type="button">Copier</button></div><pre><code>./start-hive.sh                      <span class="c"># HiveServer2, port 10000</span>
+beeline -u jdbc:hive2://localhost:10000
+
+<span class="kw">CREATE DATABASE</span> spotify_db;  <span class="kw">USE</span> spotify_db;
+<span class="kw">CREATE EXTERNAL TABLE</span> spotify (
+  track_name    STRING,
+  artist_name   STRING,
+  artist_count  INT,
+  released_year INT,
+  <span class="c">-- … les 25 colonnes, DANS L'ORDRE DU FICHIER</span>
+  streams       BIGINT,             <span class="c">-- dépasse INT !</span>
+  <span class="c">-- …</span>
+  <span class="s">`key`</span>         STRING             <span class="c">-- mot réservé : backticks</span>
+)
+<span class="kw">ROW FORMAT DELIMITED FIELDS TERMINATED BY</span> <span class="s">'\t'</span>
+<span class="kw">LOCATION</span> <span class="s">'/user/root/spotify/clean'</span>
+<span class="kw">TBLPROPERTIES</span> (<span class="s">'skip.header.line.count'</span>=<span class="s">'1'</span>);
+!quit</code></pre></div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="code"><div class="codeh"><span>HiveQL</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">SELECT COUNT</span>(*), <span class="kw">COUNT</span>(streams) <span class="kw">FROM</span> spotify;
+<span class="c">-- 953 et 952 : COUNT(col) ignore les NULL</span>
+<span class="kw">EXPLAIN</span>
+<span class="kw">SELECT</span> released_year, <span class="kw">SUM</span>(streams)
+<span class="kw">FROM</span> spotify <span class="kw">GROUP BY</span> released_year;
+<span class="c">-- Stage-1 : Map Operator → Reduce Operator</span>
+<span class="c">-- Stage-0 : Fetch</span></code></pre></div>
+    <div class="card"><span class="lab">Lire l'EXPLAIN</span><p>Le <b>Map Operator</b> lit les lignes et émet (année, streams) : votre mapper. Le <b>Reduce Operator</b> regroupe par clé et somme : votre reducer. Entre les deux, le shuffle. Hive n'est pas un nouveau moteur, c'est un <b>compilateur qui génère du MapReduce</b> pour vous.</p></div>
+  </div>
+</div>
+<div class="grid g3">
+  <div class="card"><span class="lab">954 ou 953 ?</span><p>Sans <code>skip.header.line.count</code>, l'en-tête est lu comme une donnée : <code>COUNT(*)</code> = 954 et <code>released_year</code> vaut NULL sur cette ligne. Hive ne lève <b>aucune erreur</b>.</p></div>
+  <div class="card"><span class="lab">952 ?</span><p>La ligne corrompue a un <code>streams</code> non numérique → <b>NULL</b>. <code>COUNT(streams)</code> l'exclut, <code>COUNT(*)</code> la compte.</p></div>
+  <div class="card"><span class="lab">Lecture positionnelle</span><p>En texte délimité, la 1<sup>re</sup> colonne déclarée lit le 1<sup>er</sup> champ, etc. Oublier une colonne <b>décale tout</b>, sans erreur. En production : <b>ORC</b> ou <b>Parquet</b>, formats <b>colonnes</b> compressés et auto-décrits.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="06" data-v="c">
+<div class="kicker">Chapitre 06 · Hive</div>
+<div class="pqrow"><span class="pq ex">④ Exercice corrigé</span></div>
+<h2>Hive ou MapReduce à la main ?</h2>
+<div class="card"><p class="q">Pour chaque besoin, choisissez Hive ou MapReduce (ou Spark) et justifiez : (a) explorer chaque semaine un nouveau jeu de données ; (b) un rapport nocturne fondé sur une requête SQL validée de 20 lignes ; (c) décoder un format binaire propriétaire avec une logique de 300 lignes ; (d) donner le top 5 des artistes par nombre de titres.</p></div>
+<div class="accg">
+  <div class="acc cor"><button class="ah" type="button">Voir le corrigé (après avoir essayé !)</button><div class="ab">
+    <p><b>(a) Hive</b> : exploration ad hoc = question → requête → itération immédiate, sans code à maintenir.</p>
+    <p><b>(b) Hive</b> : un SQL validé se relance chaque nuit (<code>beeline -f rapport.sql</code>, orchestré par Airflow) ; maintenance triviale.</p>
+    <p><b>(c) MapReduce ou Spark</b> : logique procédurale fine au niveau de l'enregistrement, format exotique : SQL inadapté.</p>
+    <div class="code"><div class="codeh"><span>(d) HiveQL</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">SELECT</span> artist_name, <span class="kw">COUNT</span>(*) <span class="kw">AS</span> nb_titres
+<span class="kw">FROM</span> spotify <span class="kw">GROUP BY</span> artist_name
+<span class="kw">ORDER BY</span> nb_titres <span class="kw">DESC LIMIT</span> 5;</code></pre></div>
+    <p><b>Piège :</b> un champ <code>"Latto, Jung Kook"</code> compte comme un seul « artiste ». Pour créditer chaque membre, il faut éclater le champ (<code>LATERAL VIEW explode(split(artist_name, ', '))</code>). La convention choisie doit être écrite dans le rapport, sinon la validation croisée avec MapReduce ne correspond pas.</p>
+    <p><b>Synthèse :</b> Hive gagne dès que la question est <b>déclarative</b> (filtrer, agréger, joindre) ; le code gagne dès que la transformation est <b>procédurale</b>.</p>
+  </div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="06" data-v="c">
+<div class="kicker">Chapitre 06 · Hive</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>À retenir sur Hive</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>DROP sur une table MANAGED</b> → les fichiers HDFS sont supprimés.</div>
+    <div><b>« Le Metastore contient les données. »</b> Non : uniquement les métadonnées (schéma, emplacement, format).</div>
+    <div><b>En-tête lu comme une donnée</b> sans <code>skip.header.line.count</code> → COUNT gonflé, NULL silencieux.</div>
+    <div><b>Type trop petit</b> (<code>INT</code> pour des streams) → valeurs NULL ou débordement : <code>BIGINT</code>.</div>
+    <div><b>Hive pour du transactionnel</b> → mauvais choix : c'est de l'OLAP batch.</div>
+  </div>
+  <ol class="sum-list">
+    <li>Hive = entrepôt SQL sur HDFS : HiveQL compilé en jobs MapReduce/Tez sur YARN.</li>
+    <li>HiveServer2 + Beeline (JDBC 10000) · driver (compilateur) · <b>Metastore</b> (catalogue, aucune donnée).</li>
+    <li><b>Schema-on-read</b> : pas de contrôle à l'écriture, valeur invalide = NULL.</li>
+    <li>EXTERNAL (DROP garde les fichiers) vs MANAGED (DROP efface tout).</li>
+    <li>Partitions = sous-dossiers → <b>partition pruning</b> ; formats colonnes ORC/Parquet en production.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="06" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/hive.png" alt="Logo Apache Hive"></div>
+<div class="kicker">Chapitre 06 · Hive</div>
+<h2>Fiche — Hive</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Définition</span><p><b>Data warehouse</b> SQL au-dessus de Hadoop (Facebook 2008). HiveQL → <b>compilé</b> en jobs MapReduce/Tez sur YARN, sur des fichiers HDFS. OLAP batch, pas OLTP. <b>Schema-on-read.</b></p></div>
+  <div class="card"><span class="lab">Architecture</span><dl class="def"><dt>Beeline</dt><dd>client JDBC (port 10000)</dd><dt>HiveServer2</dt><dd>reçoit les requêtes, héberge le driver</dd><dt>Driver</dt><dd>parse → compile → optimise → exécute</dd><dt>Metastore</dt><dd>catalogue (Derby/MySQL), aucune donnée</dd></dl></div>
+  <div class="card"><span class="lab">Tables</span><p><b>EXTERNAL</b> : <code>LOCATION</code>, DROP = métadonnées seulement. <b>MANAGED</b> : DROP = métadonnées + fichiers. <b>Partition</b> = sous-dossier (pruning). <b>Bucket</b> = fichiers par hash.</p></div>
+  <div class="card"><span class="lab">Pièges de requête</span><ul><li><code>skip.header.line.count</code> sinon l'en-tête est compté.</li><li><code>COUNT(*)</code> ≠ <code>COUNT(col)</code> (NULL exclus).</li><li><code>BIGINT</code> pour les grands entiers ; <code>`key`</code> mot réservé.</li><li><code>EXPLAIN</code> montre Map → Reduce → Fetch.</li></ul></div>
+</div>
+</section>
+
+<section class="slide" data-ch="06">
+<div class="kicker">Chapitre 06 · Hive</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 06</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Quelle différence entre une table externe et une table managée ?</button><div class="ab"><p>Pour une table <b>externe</b>, Hive ne fait que déclarer un schéma sur des fichiers dont il n'est pas propriétaire : <code>DROP TABLE</code> supprime les métadonnées, les fichiers restent. Pour une table <b>managée</b>, Hive possède les fichiers : DROP les efface. On choisit l'externe dès que les données sont produites ou partagées par d'autres outils (NiFi, Spark, jobs).</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">À quoi sert le Metastore ?</button><div class="ab"><p>C'est le <b>catalogue</b> : nom des tables, colonnes, types, format, emplacement HDFS, partitions. Il est stocké dans une base relationnelle (Derby en test, MySQL/PostgreSQL en production) et ne contient aucune donnée. Il est partagé par d'autres moteurs (Spark SQL, Trino), ce qui permet d'interroger les mêmes fichiers sans copie.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Hive est-il une base de données ?</button><div class="ab"><p>Non, c'est un <b>entrepôt de données</b> / moteur SQL : il ne stocke rien lui-même (fichiers HDFS), applique le schéma à la lecture, et vise l'analyse batch (OLAP), pas les transactions ligne à ligne. Hive 4 avec Iceberg apporte toutefois des tables ACID (mises à jour, time travel).</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment accélérer une requête Hive ?</button><div class="ab"><p><b>Partitionner</b> sur la colonne de filtre (pruning), utiliser des formats <b>colonnes</b> compressés (ORC, Parquet), le moteur <b>Tez</b> plutôt que MapReduce, le bucketing pour les jointures, et ne sélectionner que les colonnes utiles. Pour de l'interactif : Spark SQL ou Trino sur le même Metastore.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="06">
+<div class="kicker">Chapitre 06 · Hive</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="06"></div>
+</section>
+
+<!-- ================= 07 · HBASE & ZOOKEEPER ================= -->
+<section class="slide" data-ch="07" data-sec="07 HBase" data-title="HBase, ZooKeeper et HappyBase" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/hbase.png" alt="Logo Apache HBase"><img class="chlogo" src="assets/logos/zookeeper.png" alt="Logo Apache ZooKeeper"></div>
+<div class="kicker">Chapitre 07 · HBase</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span></div>
+<h2>Lire une ligne en millisecondes</h2>
+<div class="grid g2">
+  <div class="card bad"><span class="lab">Ce que Hadoop ne sait pas faire</span><table class="cmp md small"><thead><tr><th>Besoin</th><th>Pourquoi HDFS + MapReduce ne suit pas</th></tr></thead><tbody>
+    <tr><td>Lecture aléatoire rapide</td><td>pas d'index : on lit des fichiers entiers</td></tr>
+    <tr><td>Écriture / mise à jour d'une ligne</td><td>write once : pas de modification en place</td></tr>
+    <tr><td>Réponse en millisecondes</td><td>un job coûte des dizaines de secondes</td></tr>
+  </tbody></table></div>
+  <div class="card hl"><span class="lab">HBase</span><p>Base <b>NoSQL distribuée, orientée colonnes</b> (inspirée de Google <b>Bigtable</b>, 2006), qui stocke ses fichiers <b>sur HDFS</b>. Accès en lecture et écriture <b>aléatoires, quasi temps réel</b>, par <b>clé de ligne</b>, sur des milliards de lignes et des millions de colonnes. Haute disponibilité via ZooKeeper.</p></div>
+</div>
+<table class="cmp md">
+<thead><tr><th>Famille NoSQL</th><th>Exemples</th><th>Modèle</th><th>Cas d'usage typique</th></tr></thead>
+<tbody>
+<tr><td><b>Clé-valeur</b></td><td>Redis, Memcached, Riak</td><td>clé → valeur opaque</td><td>cache, sessions</td></tr>
+<tr><td><b>Colonnes</b></td><td>HBase, Cassandra</td><td>tables larges et clairsemées, familles de colonnes</td><td>séries temporelles, historiques, très gros volumes</td></tr>
+<tr><td><b>Documents</b></td><td>MongoDB, CouchDB</td><td>documents JSON/BSON flexibles</td><td>catalogues, contenus</td></tr>
+<tr><td><b>Graphe</b></td><td>Neo4j</td><td>nœuds et relations</td><td>réseaux sociaux, recommandations</td></tr>
+</tbody></table>
+<p class="punch">NoSQL = <b>Not Only SQL</b> : scalabilité horizontale, schéma souple, haute disponibilité. Le NoSQL <b>complète</b> les bases relationnelles, il ne les remplace pas.</p>
+</section>
+
+<section class="slide" data-ch="07" data-v="c">
+<div class="kicker">Chapitre 07 · HBase</div>
+<div class="pqrow"><span class="pq">② Quoi — le modèle de données</span></div>
+<h2>Une cellule = (rowkey, famille:colonne, version) → valeur</h2>
+<div class="sch free"><span class="cap">Table « store » : 2 familles de colonnes</span>
+<svg class="dg" viewBox="0 0 960 250" role="img" aria-label="Table HBase avec rowkey, famille customer (name, city) et famille sales (product, amount), cellules versionnées">
+  <rect class="b f3" x="10" y="10" width="130" height="40" rx="6"/><text class="t tc" x="75" y="35" style="font-size:13px">rowkey</text>
+  <rect class="b f1" x="150" y="10" width="380" height="40" rx="6"/><text class="t tc" x="340" y="35" style="font-size:13px">famille « customer »</text>
+  <rect class="b f2" x="540" y="10" width="410" height="40" rx="6"/><text class="t tc" x="745" y="35" style="font-size:13px">famille « sales »</text>
+  <text class="s" x="160" y="72">customer:name</text><text class="s" x="350" y="72">customer:city</text><text class="s" x="550" y="72">sales:product</text><text class="s" x="760" y="72">sales:amount</text>
+  <rect class="b" x="10" y="85" width="130" height="44" rx="6"/><text class="t tc" x="75" y="112" style="font-size:13px">1001</text>
+  <rect class="b" x="150" y="85" width="185" height="44" rx="6"/><text class="s" x="160" y="112">John White</text>
+  <rect class="b" x="345" y="85" width="185" height="44" rx="6"/><text class="s" x="355" y="105">Los Angeles</text><text class="a" x="355" y="122">t2 (t1 : Boston)</text>
+  <rect class="b" x="540" y="85" width="200" height="44" rx="6"/><text class="s" x="550" y="112">Chairs</text>
+  <rect class="b" x="750" y="85" width="200" height="44" rx="6"/><text class="s" x="760" y="112">$400.00</text>
+  <rect class="b" x="10" y="138" width="130" height="44" rx="6"/><text class="t tc" x="75" y="165" style="font-size:13px">1002</text>
+  <rect class="b" x="150" y="138" width="185" height="44" rx="6"/><text class="s" x="160" y="165">Jane Brown</text>
+  <rect class="b dash" x="345" y="138" width="185" height="44" rx="6" style="stroke-dasharray:5 4;fill:none"/><text class="r" x="355" y="165">absente = non stockée</text>
+  <rect class="b" x="540" y="138" width="200" height="44" rx="6"/><text class="s" x="550" y="165">Lamps</text>
+  <rect class="b" x="750" y="138" width="200" height="44" rx="6"/><text class="s" x="760" y="165">$150.00</text>
+  <text class="s" x="10" y="212">Les lignes sont rangées triées par rowkey (ordre des octets). Seules les FAMILLES sont déclarées à la création ;</text>
+  <text class="s" x="10" y="232">les colonnes (qualifiers) naissent à l'insertion. Tout est stocké en byte[]. Modifier = ajouter une version horodatée.</text>
+</svg></div>
+<div class="grid g3">
+  <div class="card"><span class="lab">Rowkey</span><p>Identifiant unique de la ligne, et <b>seul index</b>. Les lignes sont <b>triées</b> par rowkey, en ordre lexicographique des octets.</p></div>
+  <div class="card"><span class="lab">Famille de colonnes</span><p>Déclarée au <code>create</code>. Elle détermine le <b>stockage physique</b> (un Store, des fichiers à part). Peu de familles (1 à 3), beaucoup de colonnes possibles.</p></div>
+  <div class="card"><span class="lab">Versions et absence</span><p>Chaque valeur porte un <b>horodatage</b> ; un <code>put</code> sur une cellule existante <b>ajoute une version</b> (la lecture renvoie la plus récente). Pas de NULL : une valeur absente n'occupe <b>rien</b> (tables clairsemées).</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="07" data-v="c">
+<div class="kicker">Chapitre 07 · HBase</div>
+<div class="pqrow"><span class="pq how">③ Comment — architecture et ZooKeeper</span></div>
+<h2>HMaster, RegionServers, régions</h2>
+<div class="grid g12">
+  <div class="sch free"><span class="cap">Architecture d'un cluster HBase</span>
+  <svg class="dg" viewBox="0 0 470 400" role="img" aria-label="Client, ZooKeeper, HMaster, RegionServers contenant régions, stores, MemStore, HFiles sur HDFS et WAL">
+    <rect class="b" x="10" y="10" width="110" height="50" rx="8"/><text class="t tc" x="82" y="40">Client</text>
+    <rect class="b f3" x="175" y="10" width="130" height="50" rx="8"/><text class="t tc" x="240" y="32">ZooKeeper</text><text class="s tc" x="240" y="50">quorum</text>
+    <rect class="b f3" x="330" y="10" width="130" height="50" rx="8"/><text class="t tc" x="395" y="32">HMaster</text><text class="s tc" x="395" y="50">1 actif + veille</text>
+    <path class="e" d="M120 35 H171"/><text class="a" x="118" y="76">① où est ma région ?</text>
+    <path class="e bi" d="M305 35 H326"/>
+    <rect class="b f1" x="10" y="100" width="450" height="235" rx="12"/><text class="t" x="25" y="124">RegionServer</text>
+    <rect class="b" x="25" y="135" width="420" height="120" rx="8"/><text class="t" x="38" y="156" style="font-size:13px">Région [rowkey 0000 → 4999]</text>
+    <rect class="b f2" x="40" y="166" width="190" height="78" rx="6"/><text class="s" x="50" y="184">Store « customer »</text><text class="s" x="50" y="204">MemStore (RAM)</text><text class="s" x="50" y="224">→ HFiles</text>
+    <rect class="b f2" x="240" y="166" width="190" height="78" rx="6"/><text class="s" x="250" y="184">Store « sales »</text><text class="s" x="250" y="204">MemStore (RAM)</text><text class="s" x="250" y="224">→ HFiles</text>
+    <rect class="b bad" x="25" y="265" width="420" height="34" rx="6"/><text class="s" x="38" y="287">WAL (Write-Ahead Log) : 1 par RegionServer</text>
+    <text class="s" x="25" y="322">+ d'autres régions…</text>
+    <path class="e" d="M65 62 Q40 85 60 131"/><text class="a" x="72" y="96">② direct au RS</text>
+    <rect class="b f4" x="10" y="350" width="450" height="44" rx="10"/><text class="t tc" x="235" y="377">HDFS : HFiles et WAL répliqués</text>
+    <path class="e" d="M235 335 V346"/>
+  
+  <use class="il" href="#il-laptop" x="14" y="20" width="32" height="26"/><use class="il" href="#il-server" x="422" y="103" width="24" height="29"/><use class="il" href="#il-log" x="412" y="270" width="26" height="22"/><use class="il" href="#il-server" x="22" y="354" width="28" height="36"/>
+</svg></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card"><span class="lab">HMaster</span><p>Administration : création/suppression de tables, schéma, <b>assignation des régions</b> aux RegionServers, <b>équilibrage</b>. Un seul actif, les autres en veille. Il ne sert <b>pas</b> les lectures et écritures.</p></div>
+    <div class="card"><span class="lab">RegionServers</span><p>Hébergent les <b>régions</b> et exécutent lectures/écritures ; le client leur parle <b>directement</b>. Une région = une <b>tranche horizontale</b> de table (rowkey de début → de fin), découpée automatiquement quand elle dépasse sa taille max (<b>1 Go</b> sur le cluster : <code>hbase.hregion.max.filesize</code>, à ne pas confondre avec le bloc HDFS de 128 Mio).</p></div>
+    <div class="card hl"><span class="lab">ZooKeeper</span><ul><li>Élection et <b>unicité du Master actif</b>.</li><li><b>Heartbeats</b> des RegionServers : un RS mort → ses régions sont réassignées.</li><li>Aide le client à <b>localiser</b> les régions (table <code>hbase:meta</code>).</li><li>Doit démarrer <b>avant</b> HBase (<code>QuorumPeerMain</code> dans <code>jps</code>).</li></ul></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="07" data-v="c">
+<div class="kicker">Chapitre 07 · HBase</div>
+<div class="pqrow"><span class="pq how">③ Comment — écrire et lire</span></div>
+<h2>WAL → MemStore → HFile</h2>
+<div class="flow">
+  <div class="step"><b>1 · WAL</b><small>l'écriture est d'abord journalisée sur HDFS (durabilité si le serveur tombe)</small></div>
+  <div class="step"><b>2 · MemStore</b><small>puis placée en mémoire, triée par rowkey ; le client reçoit l'accusé</small></div>
+  <div class="step"><b>3 · Flush</b><small>MemStore plein → écrit sur HDFS en un nouveau <b>HFile</b> immuable et trié</small></div>
+  <div class="step"><b>4 · Compaction</b><small>mineure : fusionne des HFiles ; majeure : réécrit tout, purge suppressions et vieilles versions</small></div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Lecture</span><p>Le client trouve le RegionServer (ZooKeeper → <code>hbase:meta</code>, puis cache), qui fusionne <b>MemStore + cache de blocs + HFiles</b> pour renvoyer la version la plus récente. Lecture par clé : <b>get</b> ; par plage triée : <b>scan</b> avec début/fin.</p></div>
+  <div class="card"><span class="lab">Pourquoi c'est rapide</span><p>Les écritures sont <b>séquentielles</b> (journal + mémoire), jamais des modifications en place sur disque ; les données sont <b>triées par rowkey</b>, donc un get ou un scan de plage sait exactement où chercher.</p></div>
+</div>
+<div class="note legal"><i><svg class="ico" aria-hidden="true"><use href="#ti-flame"/></svg></i><div><p><b>Concevoir la rowkey, c'est concevoir la performance.</b> Clés <b>monotones</b> (horodatage, compteur) → toutes les écritures récentes tombent dans la <b>même région</b> : <b>hotspotting</b>, un seul serveur travaille. Remèdes : préfixe de <b>sel</b> ou de hash, clé inversée, clé composite (<code>client#date</code>). Et le tri est lexicographique : <code>"10"</code> &lt; <code>"9"</code> → aligner avec des zéros (<code>"0009"</code>).</p></div></div>
+</section>
+
+<section class="slide" data-ch="07" data-v="c">
+<div class="kicker">Chapitre 07 · HBase</div>
+<div class="pqrow"><span class="pq ex">④ Exemple — le shell HBase</span></div>
+<h2>Créer, écrire, lire, supprimer</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>hbase shell</span><button class="cpy" type="button">Copier</button></div><pre><code>create <span class="s">'store'</span>, <span class="s">'customer'</span>, <span class="s">'sales'</span>   <span class="c"># table + 2 familles</span>
+list ; describe <span class="s">'store'</span> ; exists <span class="s">'store'</span>
+put <span class="s">'store'</span>, <span class="s">'1001'</span>, <span class="s">'customer:name'</span>, <span class="s">'John White'</span>
+put <span class="s">'store'</span>, <span class="s">'1001'</span>, <span class="s">'sales:amount'</span>, <span class="s">'$400.00'</span>
+<span class="c"># → "0 row(s)" : HBase ne confirme RIEN</span>
+get  <span class="s">'store'</span>, <span class="s">'1001'</span>                   <span class="c"># une ligne, par clé</span>
+scan <span class="s">'store'</span>                           <span class="c"># tout, trié par rowkey</span>
+scan <span class="s">'store'</span>, {STARTROW =&gt; <span class="s">'1001'</span>, STOPROW =&gt; <span class="s">'1003'</span>}
+count <span class="s">'store'</span>
+delete <span class="s">'store'</span>, <span class="s">'1001'</span>, <span class="s">'sales:amount'</span>  <span class="c"># une cellule</span>
+deleteall <span class="s">'store'</span>, <span class="s">'1001'</span>                <span class="c"># toute la ligne</span>
+disable <span class="s">'store'</span> ; drop <span class="s">'store'</span>          <span class="c"># disable AVANT drop</span></code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card"><span class="lab">Namespaces</span><p>Regroupement logique de tables (≈ une base). Prédéfinis : <code>hbase</code> (tables système, dont <code>meta</code>) et <code>default</code>. <code>create_namespace 'ns'</code> · <code>create 'ns:table', 'cf'</code> · <code>list_namespace_tables 'ns'</code> · un namespace doit être <b>vide</b> pour être supprimé.</p></div>
+    <div class="card"><span class="lab">Le tri gagne toujours (TD03)</span><p><code>put</code> dans l'ordre 2023, 1975, 2021 → <code>scan</code> renvoie <b>1975, 2021, 2023</b>. Ce n'est pas la valeur numérique qui décide mais les <b>octets</b> : '1' (0x31) &lt; '2' (0x32). Même règle que le tri du shuffle MapReduce.</p></div>
+    <div class="card"><span class="lab">« 0 row(s) » ne prouve rien</span><p>Le shell ne confirme ni <code>put</code> ni <code>create</code>. La seule preuve d'une écriture est une <b>lecture</b> : <code>get</code> ou <code>scan</code>.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="07" data-v="c">
+<div class="kicker">Chapitre 07 · HBase</div>
+<div class="pqrow"><span class="pq ex">④ Exemple — HappyBase (Python)</span></div>
+<h2>Python → Thrift → HBase</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.1vh">
+    <div class="card"><span class="lab">Pourquoi Thrift ?</span><p>Seul Java parle nativement à HBase. Le <b>serveur Thrift</b> (port <b>9090</b>) expose une API réseau que d'autres langages appellent. <b>HappyBase</b> est la bibliothèque Python qui l'utilise. Sans Thrift démarré, la connexion échoue.</p></div>
+    <div class="code"><div class="codeh"><span>bash · ordre de démarrage</span><button class="cpy" type="button">Copier</button></div><pre><code>cd /home
+./start-zookeeper.sh    <span class="c"># 1 · toujours en premier</span>
+./start-hbase.sh        <span class="c"># 2</span>
+./start-thrift.sh       <span class="c"># 3 · port 9090</span>
+jps | grep Thrift       <span class="c"># → ThriftServer</span></code></pre></div>
+    <div class="card"><span class="lab">Usage typique du cours</span><p>Un <b>reducer</b> MapReduce écrit ses totaux dans HBase (rowkey = ville ou année), puis un script séparé les relit avec HappyBase pour tracer un graphique matplotlib en PDF.</p></div>
+  </div>
+  <div class="code"><div class="codeh"><span>python · happybase</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">import</span> happybase
+conn = happybase.Connection(<span class="s">'127.0.0.1'</span>, 9090)
+conn.open()
+print(conn.tables())                     <span class="c"># [b'store', …]</span>
+
+<span class="kw">if</span> b<span class="s">'villes'</span> <span class="kw">not in</span> conn.tables():
+    conn.create_table(<span class="s">'villes'</span>, {<span class="s">'stats'</span>: dict(max_versions=1)})
+t = conn.table(<span class="s">'villes'</span>)
+
+t.put(<span class="s">'LE MANS'</span>, {b<span class="s">'stats:total'</span>: b<span class="s">'1234'</span>})   <span class="c"># bytes !</span>
+row = t.row(<span class="s">'LE MANS'</span>)                   <span class="c"># {b'stats:total': b'1234'}</span>
+print(int(row[b<span class="s">'stats:total'</span>]))
+
+<span class="kw">for</span> key, data <span class="kw">in</span> t.scan(row_start=<span class="s">'A'</span>, row_stop=<span class="s">'M'</span>):
+    print(key, data)                     <span class="c"># triés par rowkey</span>
+
+<span class="kw">with</span> t.batch() <span class="kw">as</span> b:                    <span class="c"># écritures groupées</span>
+    b.put(<span class="s">'NANTES'</span>, {b<span class="s">'stats:total'</span>: b<span class="s">'987'</span>})
+conn.close()</code></pre></div>
+</div>
+</section>
+
+<section class="slide" data-ch="07" data-v="c">
+<div class="kicker">Chapitre 07 · HBase</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>À retenir sur HBase</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Région 1 Go ≠ bloc HDFS 128 Mio</b> : deux réglages indépendants ; une région est stockée en plusieurs blocs.</div>
+    <div><b>Le client passe par le Master.</b> Non : ZooKeeper / <code>hbase:meta</code> pour localiser, puis <b>directement</b> le RegionServer.</div>
+    <div><b><code>drop</code> sans <code>disable</code></b> : refusé. Désactiver d'abord.</div>
+    <div><b>Clés numériques non alignées ou monotones</b> : mauvais tri, hotspotting.</div>
+    <div><b>Démarrer HBase sans ZooKeeper</b>, ou HappyBase sans Thrift : échec.</div>
+    <div><b>HBase pour des jointures ou du SQL ad hoc</b> : inadapté (pas de jointure, pas d'index secondaire natif) → Hive.</div>
+  </div>
+  <ol class="sum-list">
+    <li>HBase = NoSQL <b>orienté colonnes</b> sur HDFS (modèle Bigtable) : lecture/écriture aléatoires en ms par <b>rowkey</b>.</li>
+    <li>Cellule = (rowkey, famille:colonne, timestamp) → valeur ; familles déclarées, colonnes dynamiques, pas de NULL.</li>
+    <li>Lignes <b>triées par rowkey</b> (octets) ; la conception de la rowkey fait la performance.</li>
+    <li>HMaster (admin) · RegionServers (régions, MemStore, HFiles, WAL) · <b>ZooKeeper</b> (élection, heartbeats, localisation).</li>
+    <li>Python : HappyBase via <b>Thrift 9090</b> ; ordre ZooKeeper → HBase → Thrift.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="07" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/hbase.png" alt="Logo Apache HBase"><img class="chlogo" src="assets/logos/zookeeper.png" alt="Logo Apache ZooKeeper"></div>
+<div class="kicker">Chapitre 07 · HBase</div>
+<h2>Fiche — HBase et ZooKeeper</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Définition</span><p>Base <b>NoSQL orientée colonnes</b>, distribuée, sur <b>HDFS</b> (modèle Google Bigtable). Accès <b>aléatoire temps réel par rowkey</b>. Complète HDFS (batch) et Hive (SQL).</p></div>
+  <div class="card"><span class="lab">Modèle</span><dl class="def"><dt>Cellule</dt><dd>(rowkey, cf:qualifier, timestamp) → valeur (byte[])</dd><dt>Schéma</dt><dd>seules les familles sont déclarées</dd><dt>Tri</dt><dd>par rowkey, ordre lexicographique des octets</dd><dt>Versions</dt><dd>un put ajoute une version ; pas de NULL stocké</dd></dl></div>
+  <div class="card"><span class="lab">Architecture</span><dl class="def"><dt>HMaster</dt><dd>admin, assignation et équilibrage des régions</dd><dt>RegionServer</dt><dd>sert les régions ; Store = MemStore + HFiles ; 1 WAL</dd><dt>Région</dt><dd>plage de rowkeys, split à 1 Go (cluster)</dd><dt>ZooKeeper</dt><dd>Master unique, heartbeats, localisation</dd></dl></div>
+  <div class="card"><span class="lab">Commandes et pièges</span><div class="cmdlist"><div><code>create 't','cf'</code><span>table + familles</span></div><div><code>put / get / scan / count</code><span>écrire, lire</span></div><div><code>disable puis drop</code><span>supprimer</span></div></div><ul><li>« 0 row(s) » : ne confirme rien → vérifier par get/scan.</li><li>Écriture : WAL → MemStore → flush HFile → compaction.</li><li>Rowkey monotone → hotspotting (saler, hasher).</li><li>HappyBase = Thrift 9090 ; ordre ZK → HBase → Thrift.</li></ul></div>
+</div>
+</section>
+
+<section class="slide" data-ch="07">
+<div class="kicker">Chapitre 07 · HBase</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 07</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Pourquoi HBase alors qu'on a déjà HDFS et Hive ?</button><div class="ab"><p>HDFS et Hive sont faits pour le <b>batch</b> : lire de gros volumes en entier, en secondes ou minutes. HBase répond à l'accès <b>aléatoire</b> : lire ou écrire <b>une ligne</b> par clé en millisecondes, mettre à jour des données, servir une application. Les trois cohabitent sur le même cluster.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Que veut dire « orienté colonnes » pour HBase ?</button><div class="ab"><p>Les données sont regroupées physiquement par <b>famille de colonnes</b> : chaque famille a ses propres fichiers. On lit seulement les familles utiles, les colonnes peuvent varier d'une ligne à l'autre, et les valeurs absentes ne coûtent rien. C'est différent d'un format colonne analytique comme Parquet, mais l'idée de regrouper par colonnes est la même.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment concevez-vous une rowkey ?</button><div class="ab"><p>À partir des <b>requêtes</b> : la rowkey est le seul index, et les lignes sont triées par ordre des octets. On y place ce qu'on filtre le plus (ex. <code>client#date</code> pour lire l'historique d'un client par scan de plage). On évite les clés <b>monotones</b> qui concentrent les écritures sur une région (hotspotting) : sel, hash ou inversion. On aligne les nombres avec des zéros pour un tri correct.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quel est le rôle de ZooKeeper ?</button><div class="ab"><p>Service de <b>coordination distribuée</b> : il garantit qu'un seul HMaster est actif (élection), surveille les RegionServers par heartbeats pour réassigner leurs régions en cas de panne, et aide les clients à localiser les régions. Il sert aussi au failover du NameNode HDFS en haute disponibilité.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment HBase garantit-il qu'une écriture n'est pas perdue ?</button><div class="ab"><p>Toute écriture est d'abord ajoutée au <b>WAL</b> (journal sur HDFS, donc répliqué) avant d'aller en MemStore. Si le RegionServer tombe, le journal est rejoué sur le serveur qui reprend la région.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="07">
+<div class="kicker">Chapitre 07 · HBase</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="07"></div>
+</section>
+
+<!-- ================= 08 · NIFI ================= -->
+<section class="slide" data-ch="08" data-sec="08 NiFi" data-title="NiFi, l'usine à flux de données" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/nifi.png" alt="Logo Apache NiFi"></div>
+<div class="kicker">Chapitre 08 · NiFi</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Amener les données jusqu'au cluster</h2>
+<div class="grid g2">
+  <div class="card bad"><span class="lab">Le problème de l'ingestion</span><ul>
+    <li>Le CSV arrive par mail le lundi, un autre le jeudi : quelqu'un doit faire <code>hdfs dfs -put</code> à la main.</li>
+    <li>Une ingestion qui échoue à 3 h du matin n'est ni détectée, ni rejouée.</li>
+    <li>Aucune trace de qui a déposé quoi, quand, d'où : pas d'audit.</li>
+    <li>Chaque nouvelle source = un nouveau petit script maison fragile.</li>
+  </ul></div>
+  <div class="card hl"><span class="lab">Apache NiFi</span><p>Plateforme <b>visuelle</b> de routage et de transformation de flux : on assemble des blocs à la souris dans une interface web, et NiFi <b>garantit la livraison</b>. Né à la <b>NSA</b> (« Niagara Files »), open source en 2014, Apache en 2015.</p>
+  <ul><li><b>Guaranteed delivery</b> : une donnée en échec part sur la relation <code>failure</code>, elle n'est pas perdue.</li><li><b>Back pressure</b> : si un maillon ralentit, le flux amont ralentit ou s'arrête proprement au lieu de déborder.</li><li><b>Data Provenance</b> : historique complet et interrogeable de chaque donnée.</li></ul></div>
+</div>
+<div class="grid g3">
+  <div class="card"><span class="lab">FlowFile — la donnée qui circule</span><p><b>Contenu</b> (le fichier, l'enregistrement) + <b>attributs</b> clé/valeur (<code>filename</code>, <code>path</code>, <code>source</code>, <code>ingestion_date</code>…). <i>Une enveloppe et sa fiche de suivi qui se complète en chemin.</i></p></div>
+  <div class="card"><span class="lab">Processeur — une brique de traitement</span><p>300+ disponibles. Il émet son résultat sur des <b>relationships</b> : <code>success</code>, <code>failure</code>… Une relation non connectée (et non auto-terminée) = <b>erreur de conception</b> : la donnée peut disparaître.</p></div>
+  <div class="card"><span class="lab">Connection — la file d'attente</span><p>Une vraie <b>queue</b> entre deux processeurs, avec des seuils (nombre d'objets, volume) : c'est elle qui applique le back pressure. Le <b>funnel</b> fusionne plusieurs connexions (ex. récolter tous les <code>failure</code>).</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="08" data-v="c">
+<div class="kicker">Chapitre 08 · NiFi</div>
+<div class="pqrow"><span class="pq how">③ Comment — le flux du cours</span></div>
+<h2>CSV → TSV → HDFS, là où Hive lit</h2>
+<div class="sch free"><span class="cap">Flux d'ingestion du TP</span>
+<svg class="dg" viewBox="0 0 960 250" role="img" aria-label="GetFile, ConvertRecord, PutFile puis hdfs dfs -moveFromLocal vers le dossier de la table externe Hive ; failure vers un funnel">
+  <rect class="b f3" x="10" y="40" width="170" height="74" rx="10"/><text class="t tc" x="95" y="68">GetFile</text><text class="s tc" x="95" y="90">scrute /opt/nifi/input</text><text class="s tc" x="95" y="106">famille : source</text>
+  <rect class="b f2" x="235" y="40" width="200" height="74" rx="10"/><text class="t tc" x="335" y="68">ConvertRecord</text><text class="s tc" x="335" y="90">CSV (virgule) → TSV</text><text class="s tc" x="335" y="106">famille : transformation</text>
+  <rect class="b f1" x="490" y="40" width="170" height="74" rx="10"/><text class="t tc" x="575" y="68">PutFile</text><text class="s tc" x="575" y="90">écrit nifi/output</text><text class="s tc" x="575" y="106">famille : destination</text>
+  <rect class="b f4" x="715" y="40" width="235" height="74" rx="10" style="stroke-dasharray:6 4"/><text class="t tc" x="832" y="68">hdfs dfs -moveFromLocal</text><text class="s tc" x="832" y="90">depuis le master (/home/staging)</text><text class="s tc" x="832" y="106">pas un processeur !</text>
+  <path class="e" d="M180 77 H231"/><text class="a" x="186" y="70">success</text>
+  <path class="e" d="M435 77 H486"/><text class="a" x="441" y="70">success</text>
+  <path class="e dash" d="M660 77 H711"/>
+  <rect class="b bad" x="300" y="170" width="200" height="56" rx="28"/><text class="t tc" x="400" y="196">funnel « erreurs »</text><text class="s tc" x="400" y="214">→ PutFile _errors/</text>
+  <path class="e rd" d="M335 114 L380 166"/><text class="r" x="250" y="150">failure</text>
+  <path class="e rd" d="M575 114 L470 166"/><text class="r" x="540" y="150">failure</text>
+  <text class="g" x="715" y="160">→ dossier LOCATION de la table</text><text class="g" x="715" y="180">externe Hive : COUNT(*) augmente</text>
+
+  <use class="il" href="#il-folder" x="18" y="48" width="28" height="22"/><use class="il" href="#il-gear" x="243" y="46" width="24" height="24"/><use class="il" href="#il-folder" x="498" y="48" width="28" height="22"/><use class="il" href="#il-funnel" x="308" y="180" width="24" height="24"/>
+</svg></div>
+<div class="grid g2">
+  <div class="note warn"><i><svg class="ico" aria-hidden="true"><use href="#ti-help"/></svg></i><div><p><b>Pourquoi le dernier maillon n'est pas un processeur ?</b> L'image officielle <code>apache/nifi:2.x</code> n'embarque <b>aucun NAR Hadoop</b> : <code>PutHDFS</code> n'est pas dans la palette (profil Maven optionnel désactivé). On fait donc le geste HDFS soi-même, ce qui rend visible la <b>frontière entre l'orchestrateur de flux et le système de fichiers</b>. En production, on réintroduirait un connecteur HDFS.</p></div></div>
+  <div class="card"><span class="lab">Le cycle de vie d'un flux</span><ol class="steps sm"><li><b>Concevoir</b> : déposer les processeurs, câbler <code>success</code> <b>et</b> <code>failure</code>.</li><li><b>Configurer</b> : Properties, Settings, Scheduling.</li><li><b>Démarrer</b> : tout sélectionner → ▶ Start.</li><li><b>Superviser</b> : compteurs des connexions, badges rouges ; file jaune = back pressure proche, rouge = atteint.</li><li><b>Itérer</b> : stop, modifier, restart.</li></ol></div>
+</div>
+</section>
+
+<section class="slide" data-ch="08" data-v="c">
+<div class="kicker">Chapitre 08 · NiFi</div>
+<div class="pqrow"><span class="pq ex">④ Exemple — provenance, environnement, paysage</span></div>
+<h2>Tracer, accéder, situer</h2>
+<div class="grid g2">
+  <div class="card hl"><span class="lab">Data Provenance</span><p>Clic sur un événement → <b>View Data Provenance</b> : heure d'entrée, processeurs traversés, attributs à chaque étape, <b>contenu avant/après</b> chaque transformation, durées. Question « il manque les données du 12 mars » : on cherche l'événement, on voit où il s'est arrêté, on le <b>rejoue</b> (replay). C'est ce qui justifie NiFi face à un <code>cron + hdfs dfs -put</code> : <b>traçabilité et reprise sur erreur</b>, clés pour l'audit et le RGPD.</p></div>
+  <div class="card"><span class="lab">NiFi dans le cluster du cours</span><ul>
+    <li>Conteneur dédié, image <code>apache/nifi</code> 2.x (Java 21, client Hadoop 3, cohérent avec Hadoop 3.3.6).</li>
+    <li>UI : <code>https://localhost:8443/nifi</code> : <b>HTTPS imposé</b>, certificat auto-signé à accepter.</li>
+    <li>Authentification <b>single-user</b> : identifiants lus dans <code>nifi/credentials.env</code>. Mot de passe de <b>moins de 12 caractères</b> → rejeté en silence, NiFi génère un couple aléatoire (visible dans <code>docker logs</code>).</li>
+    <li><code>nifi/input</code> monté dans le conteneur ; <code>nifi/output</code> monté dans le master (<code>/home/staging</code>).</li>
+  </ul></div>
+</div>
+<table class="cmp md small">
+<thead><tr><th>Outil d'ingestion (2026)</th><th>Quand le choisir</th></tr></thead>
+<tbody>
+<tr><td><b>NiFi 2.x</b> (MiNiFi en périphérie)</td><td>routage et transformation <b>visuels</b>, multi-sources, fichiers, IoT, besoin de provenance</td></tr>
+<tr><td><b>Kafka Connect</b></td><td>la source ou la cible est un <b>flux Kafka</b> (streaming)</td></tr>
+<tr><td><b>Airbyte</b></td><td>synchronisation d'API et de SaaS vers un entrepôt</td></tr>
+<tr><td><b>Spark JDBC</b></td><td>import/export avec des bases relationnelles (remplace Sqoop)</td></tr>
+<tr><td><b>Airflow</b></td><td>ce n'est pas un outil d'ingestion : il <b>orchestre</b> (planifie et enchaîne) des tâches, dont des ingestions</td></tr>
+</tbody></table>
+</section>
+
+<section class="slide" data-ch="08" data-v="c">
+<div class="kicker">Chapitre 08 · NiFi</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>À retenir sur NiFi</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Relation <code>failure</code> non câblée</b> : la donnée en échec n'a nulle part où aller. Toujours la router (funnel, dossier <code>_errors/</code>) ou l'auto-terminer en connaissance de cause.</div>
+    <div><b>NiFi = ordonnanceur comme Airflow.</b> Non : NiFi fait circuler et transforme des données en continu ; Airflow planifie et enchaîne des tâches.</div>
+    <div><b>Le funnel est un processeur.</b> Non : c'est un point de fusion de connexions, sans configuration.</div>
+    <div><b>Chercher PutHDFS dans l'image officielle</b> : absent (pas de NAR Hadoop).</div>
+  </div>
+  <ol class="sum-list">
+    <li>NiFi automatise l'<b>ingestion</b> : la porte d'entrée de la plateforme.</li>
+    <li>Garanties : <b>livraison</b>, <b>back pressure</b>, <b>provenance</b> (traçabilité + replay).</li>
+    <li>FlowFile = contenu + attributs ; processeurs (source, transformation, routage, destination) ; connexions = files.</li>
+    <li>Flux du cours : GetFile → ConvertRecord → PutFile → <code>hdfs dfs -moveFromLocal</code> vers la table externe Hive.</li>
+    <li>NiFi 2.x : HTTPS, Java 21, single-user (mot de passe ≥ 12 caractères).</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="08" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/nifi.png" alt="Logo Apache NiFi"></div>
+<div class="kicker">Chapitre 08 · NiFi</div>
+<h2>Fiche — NiFi</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Définition</span><p>Plateforme <b>visuelle</b> d'ingestion, de routage et de transformation de flux (origine NSA). Remplace les scripts <code>put</code> manuels par des flux supervisés.</p></div>
+  <div class="card"><span class="lab">3 garanties</span><dl class="def"><dt>Delivery</dt><dd>failure ≠ perte : la donnée est routée</dd><dt>Back pressure</dt><dd>seuils sur les files : le flux ralentit au lieu de déborder</dd><dt>Provenance</dt><dd>historique de chaque FlowFile, contenu avant/après, replay</dd></dl></div>
+  <div class="card"><span class="lab">Vocabulaire</span><dl class="def"><dt>FlowFile</dt><dd>contenu + attributs</dd><dt>Processeur</dt><dd>GetFile, ConvertRecord, UpdateRecord, RouteOnAttribute, PutFile…</dd><dt>Relationship</dt><dd>success / failure</dd><dt>Connection</dt><dd>file d'attente entre processeurs</dd><dt>Funnel</dt><dd>fusion de connexions</dd></dl></div>
+  <div class="card"><span class="lab">Dans le cours</span><p>GetFile → ConvertRecord (CSV → TSV) → PutFile → <code>hdfs dfs -moveFromLocal</code> (pas de PutHDFS dans l'image). UI <code>https://localhost:8443/nifi</code>. Alternatives : Kafka Connect, Airbyte, Spark JDBC.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="08">
+<div class="kicker">Chapitre 08 · NiFi</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 08</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Pourquoi NiFi plutôt qu'un script cron qui fait hdfs dfs -put ?</button><div class="ab"><p>Pour la <b>fiabilité</b> et la <b>traçabilité</b> : livraison garantie (les échecs sont routés, pas perdus), back pressure, supervision visuelle, et surtout la <b>Data Provenance</b> qui permet de savoir ce qu'est devenue chaque donnée et de la rejouer. Un script ne sait ni signaler ni rejouer un échec, et ne laisse aucune trace d'audit.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quelle différence entre NiFi et Airflow ?</button><div class="ab"><p>NiFi fait <b>circuler les données</b> elles-mêmes, en continu, et les transforme en route (dataflow). Airflow <b>orchestre des tâches</b> planifiées (DAG) : il déclenche un job Spark, une requête, une ingestion, et gère les dépendances et les reprises, mais les données ne transitent pas par lui. Les deux sont complémentaires.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce que le back pressure ?</button><div class="ab"><p>Chaque connexion a des seuils (nombre d'objets, volume). Quand un processeur aval consomme trop lentement et que la file atteint le seuil, NiFi <b>cesse de planifier le processeur amont</b> : le flux ralentit proprement au lieu de saturer la mémoire ou le disque.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment traitez-vous les erreurs dans un flux ?</button><div class="ab"><p>Chaque relation <code>failure</code> est routée vers un funnel puis un dossier ou une file d'erreurs (avec des attributs explicatifs), éventuellement une alerte ; on surveille les badges et la provenance, et on rejoue les données corrigées. Une relation laissée non gérée est une faute de conception.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="08">
+<div class="kicker">Chapitre 08 · NiFi</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="08"></div>
+</section>
+
+<!-- ================= 09 · SYNTHÈSE ================= -->
+<section class="slide" data-ch="09" data-sec="09 Synthèse" data-title="Synthèse : la chaîne complète">
+<div class="kicker">Chapitre 09 · Synthèse</div>
+<h2>La chaîne complète, de bout en bout</h2>
+<div class="sch free"><span class="cap">Le TP final : analyse des ventes par ville</span>
+<svg class="dg" viewBox="0 0 980 260" role="img" aria-label="Qui ingère : NiFi. Qui stocke : HDFS. Qui calcule : MapReduce et Hive. Qui sert : HBase. Qui montre : matplotlib">
+  <text class="a" x="20" y="22">qui ingère ?</text><text class="a" x="215" y="22">qui stocke ?</text><text class="a" x="410" y="22">qui calcule ?</text><text class="a" x="640" y="22">qui sert ?</text><text class="a" x="830" y="22">qui montre ?</text>
+  <rect class="b f3" x="10" y="40" width="160" height="80" rx="12"/><text class="t tc" x="100" y="72">NiFi</text><text class="s tc" x="90" y="94">CSV → TSV</text>
+  <rect class="b f1" x="205" y="40" width="160" height="80" rx="12"/><text class="t tc" x="295" y="72">HDFS</text><text class="s tc" x="285" y="94">blocs répliqués</text>
+  <rect class="b f2" x="400" y="30" width="200" height="50" rx="10"/><text class="t tc" x="514" y="60">MapReduce (Q1, Q2)</text>
+  <rect class="b f2" x="400" y="95" width="200" height="50" rx="10"/><text class="t tc" x="514" y="125">Hive (Q4, contrôle)</text>
+  <rect class="b f4" x="635" y="40" width="160" height="80" rx="12"/><text class="t tc" x="725" y="72">HBase</text><text class="s tc" x="715" y="94">rowkey = ville</text>
+  <rect class="b" x="825" y="40" width="145" height="80" rx="12"/><text class="t tc" x="908" y="72">HappyBase</text><text class="s tc" x="897" y="94">matplotlib → PDF</text>
+  <path class="e" d="M170 80 H201"/><path class="e" d="M365 70 L396 56"/><path class="e" d="M365 90 L396 118"/><path class="e" d="M600 56 L631 72"/><path class="e" d="M795 80 H821"/>
+  <path class="e dash bi" d="M500 82 V93"/><text class="g" x="610" y="140">validation croisée : MR ≡ Hive</text>
+  <rect class="z" x="390" y="160" width="220" height="40" rx="10"/><text class="a" x="402" y="185">YARN alloue tous les calculs</text>
+  <text class="s" x="10" y="232">Chaque outil répond à UNE question. Le rapport documente pour chaque étape : contexte, commande, retour (capture), conclusion.</text>
+  <text class="s" x="10" y="252">La cohérence entre outils (mêmes totaux dans part-00000, Hive et HBase) est la preuve que le pipeline est juste.</text>
+
+  <use class="il" href="#il-exchange" x="18" y="48" width="28" height="24"/><use class="il" href="#il-server" x="213" y="48" width="24" height="28"/><use class="il" href="#il-gear" x="408" y="38" width="24" height="24"/><use class="il" href="#il-gear" x="408" y="103" width="24" height="24"/><use class="il" href="#il-database" x="643" y="48" width="24" height="28"/><use class="il" href="#il-chart" x="833" y="48" width="28" height="26"/>
+</svg></div>
+<table class="cmp md">
+<thead><tr><th></th><th>HDFS</th><th>Hive</th><th>HBase</th></tr></thead>
+<tbody>
+<tr><td>Nature</td><td>système de fichiers distribué</td><td>entrepôt SQL au-dessus de HDFS</td><td>base NoSQL orientée colonnes sur HDFS</td></tr>
+<tr><td>Accès</td><td>commandes shell, API, jobs</td><td>SQL (HiveQL), Beeline/JDBC</td><td>par rowkey : get, scan (shell, API, Thrift)</td></tr>
+<tr><td>Latence</td><td>batch (minutes)</td><td>secondes à minutes</td><td><b>millisecondes</b></td></tr>
+<tr><td>Modèle</td><td>fichiers, blocs</td><td>bases, tables, partitions</td><td>tables larges clairsemées, familles</td></tr>
+<tr><td>Usage type</td><td>stocker de gros fichiers, archives, data lake</td><td>analyser, agréger, explorer</td><td>servir des lectures/écritures à la ligne</td></tr>
+</tbody></table>
+</section>
+
+<section class="slide" data-ch="09">
+<div class="kicker">Chapitre 09 · Synthèse</div>
+<h2>Hadoop dans le reste de ta formation</h2>
+<div class="grid g3">
+  <div class="card"><span class="lab">→ Spark</span><p><img class="lg" src="assets/logos/spark.svg" alt="Logo Apache Spark">Remplace MapReduce : calcul <b>en mémoire</b>, DataFrames, Spark SQL. S'exécute sur <b>YARN</b>, lit HDFS et le Metastore Hive. Mêmes notions : partitions, <b>shuffle</b>, actions.</p></div>
+  <div class="card"><span class="lab">→ Kafka</span><p><img class="lg" src="assets/logos/kafka.svg" alt="Logo Apache Kafka">La <b>vélocité</b> : flux temps réel en topics partitionnés. Kafka Connect remplace une partie de l'ingestion (et Sqoop).</p></div>
+  <div class="card"><span class="lab">→ Airflow + S3 (MinIO)</span><p><img class="lg" src="assets/logos/airflow.png" alt="Logo Apache Airflow">Airflow <b>orchestre</b> (remplace Oozie) ; le stockage <b>objet</b> S3 concurrence HDFS dans le cloud (accès <code>s3a://</code> par la même API FileSystem).</p></div>
+  <div class="card"><span class="lab">→ Docker</span><p><img class="lg" src="assets/logos/docker.png" alt="Logo Docker">Le cluster du cours est une pile Docker Compose : images, volumes persistants, réseau dédié, ports exposés.</p></div>
+  <div class="card"><span class="lab">→ MongoDB, NoSQL</span><p>HBase (colonnes) vs MongoDB (documents) : deux familles NoSQL, deux modèles d'accès.</p></div>
+  <div class="card"><span class="lab">→ SQL, Power BI</span><p>HiveQL = SQL ; Hive et HBase s'exposent à la BI par JDBC/ODBC ou par l'API REST d'HBase.</p></div>
+</div>
+<div class="note tip"><i><svg class="ico" aria-hidden="true"><use href="#ti-building-bank"/></svg></i><div><p><b>L'idée durable à citer au jury : la séparation stockage / calcul.</b> Des fichiers ouverts (HDFS puis S3, formats Parquet/ORC, tables Iceberg) décrits par un catalogue (Metastore), et plusieurs moteurs (Hive, Spark, Trino) à la demande : c'est l'architecture <b>lakehouse</b>, héritière directe de Hadoop.</p></div></div>
+</section>
+
+<section class="slide" data-ch="09">
+<div class="kicker">Chapitre 09 · Synthèse</div>
+<h2>Glossaire</h2>
+<div class="gl">
+  <div><b>Bloc</b> — unité de stockage HDFS (128 Mio par défaut), répliquée.</div>
+  <div><b>Réplication</b> — nombre de copies de chaque bloc (3 par défaut).</div>
+  <div><b>NameNode</b> — maître HDFS : espace de noms et carte des blocs, en mémoire.</div>
+  <div><b>DataNode</b> — esclave HDFS : stocke les blocs, envoie heartbeats et block reports.</div>
+  <div><b>FsImage / EditLog</b> — photo des métadonnées / journal des modifications.</div>
+  <div><b>Secondary NameNode</b> — fait les checkpoints (fusion), pas un secours.</div>
+  <div><b>Safe mode</b> — lecture seule du NameNode au démarrage.</div>
+  <div><b>HA</b> — haute disponibilité : NameNode actif + standby, failover via ZooKeeper.</div>
+  <div><b>Rack awareness</b> — placement des répliques sur au moins deux racks.</div>
+  <div><b>Split</b> — tranche de lecture attribuée à un mapper.</div>
+  <div><b>Mapper / Reducer</b> — fonctions map (émet clé/valeur) et reduce (agrège par clé).</div>
+  <div><b>Partition</b> — routage d'une clé vers un reducer (hash).</div>
+  <div><b>Shuffle / sort</b> — transfert et tri des paires vers les reducers.</div>
+  <div><b>Combiner</b> — pré-agrégation locale, opérations associatives et commutatives.</div>
+  <div><b>Hadoop Streaming</b> — mappers/reducers dans tout langage via stdin/stdout.</div>
+  <div><b>part-0000N / _SUCCESS</b> — un fichier par reducer / marqueur de réussite.</div>
+  <div><b>YARN</b> — gestionnaire de ressources (RM, NM, AM, conteneurs).</div>
+  <div><b>ApplicationMaster</b> — un par application, négocie et orchestre ses tâches.</div>
+  <div><b>Capacity Scheduler</b> — ordonnanceur par défaut, files à quotas.</div>
+  <div><b>HiveQL</b> — dialecte SQL de Hive, compilé en jobs.</div>
+  <div><b>Metastore</b> — catalogue des tables Hive (métadonnées seulement).</div>
+  <div><b>Table externe / managée</b> — DROP garde / supprime les fichiers.</div>
+  <div><b>Partition pruning</b> — ne lire que les dossiers de partition utiles.</div>
+  <div><b>Schema-on-read</b> — schéma appliqué à la lecture, pas à l'écriture.</div>
+  <div><b>Rowkey</b> — clé de ligne HBase, seul index, triée en octets.</div>
+  <div><b>Famille de colonnes</b> — groupe de colonnes HBase stocké ensemble.</div>
+  <div><b>Région / RegionServer</b> — tranche de table / serveur qui la sert.</div>
+  <div><b>WAL / MemStore / HFile</b> — journal / tampon mémoire / fichier trié sur HDFS.</div>
+  <div><b>Hotspotting</b> — écritures concentrées sur une région (clé monotone).</div>
+  <div><b>ZooKeeper</b> — coordination distribuée : élection, heartbeats, configuration.</div>
+  <div><b>Thrift / HappyBase</b> — passerelle réseau HBase / client Python.</div>
+  <div><b>FlowFile</b> — donnée NiFi : contenu + attributs.</div>
+  <div><b>Back pressure</b> — ralentissement du flux amont quand une file est pleine.</div>
+  <div><b>Data Provenance</b> — historique et replay de chaque donnée NiFi.</div>
+</div>
+</section>
+
+<section class="slide" data-ch="09">
+<div class="kicker">Chapitre 09 · Synthèse</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions transversales</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Un client veut analyser 50 To de logs par jour et afficher le profil d'un utilisateur en moins de 100 ms. Quelle architecture ?</button><div class="ab"><p><b>Ingestion</b> par NiFi ou Kafka (vélocité) → <b>stockage</b> brut dans HDFS ou S3 (volume, variété), en Parquet partitionné par date → <b>traitement</b> batch avec Spark ou Hive (agrégats quotidiens), orchestré par Airflow → <b>service</b> des profils dans HBase (rowkey = identifiant utilisateur, lecture en ms) → <b>BI</b> sur les agrégats. Justifier chaque choix par le besoin.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment prouvez-vous que les résultats de votre pipeline sont justes ?</button><div class="ab"><p>Par la <b>validation croisée</b> : le même indicateur calculé par deux moteurs (MapReduce et Hive, ou Python) doit donner les mêmes valeurs ; des <b>valeurs de contrôle</b> écrites avant (nombre de lignes, total) ; et la traçabilité (provenance NiFi, logs YARN). Les écarts s'expliquent (en-tête, lignes corrompues, convention de clé) et sont documentés.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quand ne faut-il PAS utiliser Hadoop ?</button><div class="ab"><p>Pour des volumes qui tiennent sur une machine (quelques Go : pandas, PostgreSQL suffisent), pour du transactionnel (OLTP : SGBDR), pour de l'interactif à faible latence sur des données analytiques (Trino, entrepôt cloud), ou quand l'équipe n'a pas les compétences d'exploitation (un service managé ou un entrepôt cloud sera plus économique). L'<b>éco-conception</b> invite aussi à ne pas sur-dimensionner.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quelles garanties de sécurité et de conformité dans un cluster Hadoop ?</button><div class="ab"><p>Authentification <b>Kerberos</b>, permissions et ACL HDFS, autorisations fines avec <b>Apache Ranger</b>, chiffrement au repos et en transit, audit et traçabilité (provenance NiFi). Pour le RGPD : minimisation, pseudonymisation des données personnelles, durée de conservation, droit à l'effacement (plus simple avec Iceberg/Hive ACID qu'avec des fichiers bruts).</p></div></div>
+</div>
+</section>
+
+<!-- ================= QUIZ FINAL ================= -->
+<section class="slide" data-ch="quiz" data-sec="Quiz final" data-title="Quiz final — 45 questions">
+<div class="kicker">Quiz final · Hadoop</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-target"/></svg> 45 questions pour affronter le jury</h2>
+<p class="lead">Questions difficiles, tous chapitres mélangés. L'ordre des questions <b>et</b> des réponses change à chaque tentative. Certaines questions ont <b>plusieurs bonnes réponses</b> : il faut toutes les cocher. Après chaque réponse : la correction et son explication.</p>
+<div data-quiz="final"></div>
+</section>
+
+</main>
+<button class="arrow" id="prev" type="button" aria-label="Diapositive précédente">‹</button>
+<button class="arrow" id="next" type="button" aria-label="Diapositive suivante">›</button>
+<nav id="tl" aria-label="Chapitres"></nav>
+<div id="hint">← → naviguer · ↑ ↓ défiler · H ampoule <svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg> · E Complète/Essentiel · M maîtrisé · S sommaire · T thème</div>
+<button id="bulbhint" type="button"><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></button>
+<div id="ctip" role="tooltip"></div>
+<div id="toc" role="dialog" aria-label="Sommaire">
+  <button class="btn xx" id="tocx" type="button">Fermer ✕</button>
+  <div class="kicker">Sommaire · Hadoop</div>
+  <h2>Hadoop</h2>
+  <div class="tg"></div>
+</div>
+
+<div id="fab">
+  <button id="helpbtn" type="button" aria-label="Ampoule : concepts expliqués au survol" aria-pressed="false" title="Ampoule : soulignez les concepts, survolez-les pour une explication (H)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></button>
+<button id="tocbtn" type="button" aria-label="Sommaire" title="Sommaire (S)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+  <div id="themebtn">
+    <div id="menu" role="menu"><h4>Thème</h4></div>
+    <button id="tbtn" type="button" aria-label="Changer de thème" aria-haspopup="true" title="Changer de thème (T)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.4-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16a5 5 0 0 0 5-5c0-4-4-7-9-7z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="7.5" r="1"/></svg>
+    </button>
+  </div>
+</div>
+
+</div>
+<script src="assets/icons.js?v=1795252877"></script>
+<script src="data/hadoop-quiz.js?v=1795252878"></script>
+<script src="data/hadoop-glossary.js?v=1795252878"></script>
+<script src="assets/engine.js?v=1795252877"></script>
+</body>
+</html>

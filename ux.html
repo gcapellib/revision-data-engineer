@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UX Design &amp; maquettage · Révision Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/base.css?v=1795252877">
+<link rel="stylesheet" href="assets/photos.css?v=1795252877">
+<link rel="stylesheet" href="assets/revision.css?v=1795252877">
+</head>
+<body data-page="course" data-course="ux" data-title="UX Design &amp; maquettage">
+<div id="app" data-theme="papier">
+
+<div id="bg" aria-hidden="true">
+  <div class="bgl bg-neon">
+    <svg viewBox="0 0 800 800"><path d="M40 760 L400 280 L760 760" stroke-width="3"/><path d="M110 760 L400 380 L690 760" stroke-width="2.4" opacity=".85"/><path d="M180 760 L400 470 L620 760" stroke-width="2" opacity=".7"/><path d="M250 760 L400 560 L550 760" stroke-width="1.6" opacity=".55"/><path d="M320 760 L400 650 L480 760" stroke-width="1.2" opacity=".4"/></svg>
+  </div>
+  <div class="bgl bg-sauge"><div class="panel"></div><div id="bignum"></div></div>
+  <div class="bgl bg-nuit"><i></i><i></i><i></i></div>
+  <div class="bgl bg-verre"><div class="blob a"></div><div class="blob b"></div><div class="blob c"></div></div>
+  <div class="bgl bg-papier"><i></i><i></i><i></i></div>
+  <div class="bgl bg-rubans"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f8fe0"/><stop offset="1" stop-color="#2fd0bd"/></linearGradient>
+      <linearGradient id="rg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fdcc4"/><stop offset=".55" stop-color="#26b2d2"/><stop offset="1" stop-color="#2f8fe0"/></linearGradient>
+      <linearGradient id="rg3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2fd0bd"/><stop offset="1" stop-color="#2f90e2"/></linearGradient>
+      <filter id="rsh" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="12"/></filter>
+    </defs>
+    <g class="rb" id="rb-a" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g class="rb b" id="rb-b" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+  </svg></div>
+  <div class="bgl bg-facettes"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="fcw" id="fc-top"></g><g class="fcw" id="fc-bot"></g></svg></div>
+  <div class="bgl photo bg-bulles"><i></i></div>
+  <div class="bgl photo bg-hexa"><i></i></div>
+  <div class="bgl photo bg-points"><i></i></div>
+</div>
+
+<svg id="defs" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+  <marker id="arrk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3a4458"/></marker>
+  <marker id="arrbad" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+</defs></svg>
+
+<div id="brand"><a href="index.html" title="Retour à l'accueil">← Accueil</a> · UX Design &amp; maquettage</div>
+<div id="topbar">
+  <div id="vseg" role="group" aria-label="Version du cours"><button type="button" data-v="c" title="Tout le cours (E pour basculer)"><svg class="ico" aria-hidden="true"><use href="#ti-book"/></svg> Complète</button><button type="button" data-v="e" title="Ce qu'il faut maîtriser pour le jury (E)"><svg class="ico" aria-hidden="true"><use href="#ti-bolt"/></svg> Essentiel</button></div>
+  <button id="mast" type="button" title="Marquer ce chapitre comme maîtrisé (M)"></button>
+  <span id="prog"></span>
+</div>
+<div id="hud"><span id="count">1 / 1</span></div>
+<main id="deck">
+<section class="slide" data-ch="00" data-sec="Immersion" data-title="Immersion : découvrir UX Design &amp; maquettage">
+<div class="chlogos"><img class="chlogo big" src="assets/logos/figma.png" alt="Logo UX Design &amp; maquettage"></div>
+<div class="kicker">Activité 3 · Concevoir et développer une application</div>
+<h1>UX Design &amp; maquettage</h1>
+<p class="lead">Avant de coder, il faut <b>comprendre les utilisateurs</b> et <b>formaliser</b> ce qu'on construit. Ce cours suit la démarche du <b>Design Thinking</b> : lire un <b>dossier de spécifications</b>, en extraire les <b>besoins fonctionnels et les exigences de sécurité</b>, les traduire en <b>user stories</b> avec <b>critères d'acceptation</b>, puis produire des <b>maquettes</b> validées par le commanditaire. Fil conducteur : l'application RH <b>SecureConnect</b> de ManuTech.</p>
+<div class="chips"><span class="pill solid">immersion + 4 chapitres</span><span class="pill">mini-quiz par chapitre</span><span class="pill">quiz final · 45 questions</span><span class="pill">dossier SecureConnect RH</span></div>
+</section>
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 1 / 3</div>
+<h2>Comment éviter de livrer, après six mois de développement, une application que personne n'utilise comme prévu ?</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card bad"><span class="lab">Coder d'après une liste de fonctionnalités</span><p>On découvre trop tard que le parcours ne correspond pas au travail réel, ou qu'une exigence de sécurité a été oubliée : tout est à refaire.</p></div><div class="card hl"><span class="lab">Comprendre, formaliser, prototyper, tester</span><p>On observe les utilisateurs, on <b>reformule le vrai problème</b>, on <b>maquette</b> vite, on <b>teste</b> avant d'investir dans le code : l'erreur coûte une feuille de papier, pas un sprint.</p></div></div><div style="display:grid;gap:1.2vh"><p class="punch">Le <b>Design Thinking</b> est une démarche <b>centrée sur l'humain</b> en cinq phases itératives : <b>Empathie, Définition, Idéation, Prototypage, Test</b>. Il produit des <b>besoins</b> clairs, des <b>user stories</b> et des <b>maquettes</b> qui servent de contrat entre l'équipe, le métier et le commanditaire. Le <b>UX design</b> (expérience utilisateur) vise une application <b>utile, utilisable et sûre</b>.</p><div class="analogy"><b>Analogie —</b> un architecte qui fait des plans et une maquette avant de couler le béton : modifier un plan est gratuit, modifier un mur coûte cher.</div></div></div>
+</section>
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 2 / 3</div>
+<h2>Stanford, IDEO et l'agile : d'où vient la démarche</h2>
+<div class="flow"><div class="step"><b>1960s · 1970s</b><small><b>Herbert Simon</b>, recherche sur la conception ; <b>Stanford</b> structure l'approche</small></div><div class="step"><b>1991 · 2005</b><small><b>IDEO</b> (David Kelley) la popularise ; <b>d.school</b> de Stanford (2005)</small></div><div class="step"><b>2001</b><small><b>Manifeste agile</b> : livrer de la valeur, accueillir le changement</small></div><div class="step"><b>2010 →</b><small><b>UX</b>, <b>Lean UX</b>, prototypage rapide (<b>Figma</b>, 2016), design systems</small></div><div class="step"><b>Aujourd'hui</b><small>Design Thinking + DevOps : itérer, mesurer, apprendre</small></div></div><div class="grid g2"><div class="card"><span class="lab">Qui l'utilise, pour quoi</span><ul><li>Product owners, designers, analystes : formaliser le besoin.</li><li><b>Data Engineers</b> : comprendre qui consomme un tableau de bord ou une API avant de construire le pipeline.</li><li>Équipes DevOps : boucle de feedback entre la production et la conception (<a href="devops.html">DevOps</a>).</li></ul></div><div class="sch free"><span class="cap">Les 5 phases, en boucle</span><svg class="dg" viewBox="0 -36 460 156" role="img" aria-label="Cinq phases enchaînées avec retour en arrière possible : empathie, définition, idéation, prototypage, test"><rect class="b f3" x="10" y="20" width="80" height="44" rx="8"/><text class="t tc" x="50.0" y="47.0">Empathie</text><path class="e" d="M92 42 L106 42"/><rect class="b f3" x="108" y="20" width="80" height="44" rx="8"/><text class="t tc" x="148.0" y="47.0">Définition</text><path class="e" d="M190 42 L204 42"/><rect class="b f1" x="206" y="20" width="80" height="44" rx="8"/><text class="t tc" x="246.0" y="47.0">Idéation</text><path class="e" d="M288 42 L302 42"/><rect class="b ok" x="304" y="20" width="80" height="44" rx="8"/><text class="t tc" x="344.0" y="47.0">Prototype</text><path class="e" d="M386 42 L400 42"/><rect class="b ok" x="402" y="20" width="50" height="44" rx="8"/><text class="t tc" x="427.0" y="47.0">Test</text><text class="s" x="10" y="100">itératif : on revient en arrière à chaque apprentissage</text>
+  <use class="il" href="#il-user" x="35.0" y="-13" width="30" height="30"/><use class="il" href="#il-file" x="133.0" y="-13" width="30" height="30"/><use class="il" href="#il-brain" x="231.0" y="-13" width="30" height="30"/><use class="il" href="#il-laptop" x="329.0" y="-13" width="30" height="30"/><use class="il" href="#il-check" x="412.0" y="-13" width="30" height="30"/>
+</svg></div></div>
+</section>
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 3 / 3</div>
+<h2>Premier contact : de l'énoncé à la user story</h2>
+<div class="grid g2"><div class="code"><div class="codeh"><span>gherkin · critère d&#x27;acceptation</span><button class="cpy" type="button">Copier</button></div><pre><code>US : En tant qu'employé,
+     je veux consulter mes bulletins de salaire,
+     afin de les retrouver sans demander au service RH.
+
+Scénario : accès limité à ses propres bulletins          <span class="c"># critère de sécurité (C)</span>
+  GIVEN  je suis connecté en tant qu'employé
+  WHEN   j'ouvre « Mes bulletins »
+  THEN   je ne vois que mes bulletins des 3 dernières années
+  AND    toute consultation est tracée                   <span class="c"># traçabilité (T)</span></code></pre></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Ce qu'il faut remarquer</span><p>Une <b>user story</b> décrit <b>qui</b>, <b>quoi</b>, <b>pourquoi</b>. Les <b>critères d'acceptation</b> (Gherkin : GIVEN / WHEN / THEN) la rendent <b>testable</b>. Chaque story porte <b>au moins un critère de sécurité</b>, rattaché à un pilier <a href="secu-fondamentaux.html">DICT</a>.</p></div><div class="card"><span class="lab">Ce que le jury attend</span><ul><li>Analyser un besoin et le formaliser.</li><li>Produire des maquettes et user stories validées.</li></ul></div></div></div><div class="flow"><div class="step"><b>01</b><small>Design Thinking, dossier</small></div><div class="step"><b>02</b><small>besoins, sécurité</small></div><div class="step"><b>03</b><small>user stories, Gherkin</small></div><div class="step"><b>04</b><small>maquettes, validation</small></div></div>
+</section>
+<section class="slide" data-ch="00" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/figma.png" alt="Logo UX Design &amp; maquettage"></div>
+<div class="kicker">Immersion · Essentiel</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Présenter la démarche UX en une minute</h2>
+<div class="card hl"><p class="q">« Je pars du <b>Design Thinking</b> : <b>empathie</b> (qui sont les utilisateurs, quelles frustrations), <b>définition</b> (le vrai problème), <b>idéation</b>, <b>prototypage</b> et <b>test</b>, en boucle. À partir du <b>dossier de spécifications</b>, j'extrais les <b>besoins fonctionnels</b>, les <b>besoins non fonctionnels</b> et les <b>exigences de sécurité</b> (pilier DICT : disponibilité, intégrité, confidentialité, traçabilité).</p><p class="q">Je les traduis en <b>user stories</b> (*En tant que / Je veux / Afin de*) avec des <b>critères d'acceptation Gherkin</b>, dont au moins un de <b>sécurité</b>. Puis je <b>maquette</b> (Lo-Fi, Mid-Fi, Hi-Fi), j'<b>annote</b> la sécurité et je <b>valide</b> avec le commanditaire.</p><p class="q">Je fais ainsi baisser le coût de l'erreur : elle est découverte sur un prototype, avant le code. »</p></div><div class="grid g3"><div class="card"><span class="lab">Les 3 mots à placer</span><p><b>Empathie · user story · prototype</b></p></div><div class="card"><span class="lab">Le choix à justifier</span><p><b>Des croquis testés avec les utilisateurs</b> avant la maquette finale : on change un parcours sans regret.</p></div><div class="card"><span class="lab">Le lien</span><p><a href="devops.html">DevOps</a> · <a href="secu-fondamentaux.html">Sécurité</a> · <a href="jira.html">Jira</a> (backlog)</p></div></div>
+</section>
+<section class="slide" data-ch="00" data-sec="Le fil" data-title="Le fil du cours : 5 idées">
+<div class="kicker">Le fil du cours · UX Design &amp; maquettage</div>
+<h2>5 idées font tout le cours</h2>
+<p class="lead fil-q">Tout le cours répond à : <b>comment éviter de livrer une application que personne n'utilise comme prévu ?</b> Cinq idées relient Design Thinking, besoins, user stories et maquettes.</p>
+<div class="grid g3 ideas"><div class="card idea"><span class="lab">Idée 1 · Comprendre l'utilisateur avant de dessiner</span><p>Le <b>Design Thinking</b> commence par comprendre l'utilisateur (<b>empathie</b>) et par <b>définir</b> son problème, avant de chercher des solutions. On lit le dossier de spécifications pour savoir qui sont les utilisateurs et ce qu'ils doivent accomplir.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on dessine les écrans avant d'avoir compris le problème des utilisateurs, on produit des écrans qui ne servent à personne.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Interroger ou observer quelques utilisateurs, écrire leur problème en une phrase, puis seulement dessiner.</p><p class="chs">ch. 01 · ch. 02</p></div><div class="card idea"><span class="lab">Idée 2 · Un besoin se classe, puis se mesure</span><p>On classe chaque besoin : <b>fonctionnel</b> (ce que fait le système), <b>non fonctionnel</b> (performance, accessibilité, ergonomie), <b>sécurité</b> (<b>DICT</b> : disponibilité, intégrité, confidentialité, traçabilité). Puis on le rend <b>vérifiable</b> : « moins de 2 secondes », pas « rapide ».</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si une exigence dit seulement « l'application doit être rapide », personne ne peut vérifier à la recette si elle est respectée.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Écrire « la page de résultats s'affiche en moins de 2 secondes pour 95 % des requêtes ».</p><p class="chs">ch. 02 · ch. 03</p></div><div class="card idea"><span class="lab">Idée 3 · Écrire le besoin du point de vue de l'utilisateur</span><p>On écrit le besoin du point de vue de l'utilisateur : la <b>user story</b> « En tant que…, je veux…, afin de… », petite et indépendante, avec des <b>critères d'acceptation</b> au format Given / When / Then (étant donné, quand, alors). Ce sont eux qui seront testés.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si une story n'a pas de critère d'acceptation, le développeur et le métier ne sont pas d'accord sur le moment où elle est terminée.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Ajouter à chaque story deux ou trois critères Given / When / Then, validés par le métier avant le développement.</p><p class="chs">ch. 03</p></div><div class="card idea"><span class="lab">Idée 4 · Maquetter pour tester, pas pour briller</span><p>On maquette pour tester, pas pour faire joli. <b>Lo-Fi</b> (croquis) pour explorer vite, <b>Mid-Fi</b> (gris, sans style) pour la navigation, <b>Hi-Fi</b> (proche du final) pour valider. On itère avec les utilisateurs et le commanditaire, chaque écran étant relié à une story.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on passe directement à une maquette très finie (Hi-Fi), on s'attache aux couleurs et aux détails, et l'on hésite à remettre en cause le parcours.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Commencer par des croquis rapides, tester le parcours avec des utilisateurs, et ne soigner l'aspect qu'ensuite.</p><p class="chs">ch. 01 · ch. 04</p></div><div class="card idea"><span class="lab">Idée 5 · Sécurité et accessibilité se voient dès la maquette</span><p>La sécurité et l'accessibilité se décident dès la maquette. On annote le verrouillage, les rôles, le masquage des données et la confirmation des actions sensibles. On vérifie le <b>contraste</b>, l'usage au <b>clavier</b>, et l'on ne fait jamais passer une information <b>par la couleur seule</b> (référentiels <b>RGAA</b> et <b>WCAG</b>).</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si une erreur n'est signalée que par une couleur rouge, une personne daltonienne ne la voit pas.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Accompagner la couleur d'une icône et d'un texte (« <svg class="ico" aria-hidden="true"><use href="#ti-alert-triangle"/></svg> Email invalide ») placé près du champ.</p><p class="chs">ch. 02 · ch. 04</p></div></div>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · UX Design &amp; maquettage</div>
+<h2>Le cycle : à chaque étape, une décision</h2>
+<div class="flow"><div class="step"><b>1</b><small>Qui est l'utilisateur, et que doit-il accomplir ?</small></div><div class="step"><b>2</b><small>Ce besoin est-il mesurable ?</small></div><div class="step"><b>3</b><small>Quel critère d'acceptation prouvera qu'il est satisfait ?</small></div><div class="step"><b>4</b><small>La maquette montre-t-elle sécurité et accessibilité ?</small></div></div>
+<table class="cmp md"><thead><tr><th>Étape</th><th>Décision</th><th>Livrable</th><th>Piège</th></tr></thead><tbody><tr><td>Empathie et définition</td><td>quel problème, pour qui</td><td>personas, <b>problème reformulé</b></td><td>partir d'une solution déjà choisie</td></tr><tr><td>Besoins</td><td>ce qui est exigé, et comment le mesurer</td><td>besoins <b>classés</b>, exigences DICT</td><td>« rapide », « simple » sans chiffre</td></tr><tr><td>User stories</td><td>quoi livrer, dans quel ordre</td><td><b>stories</b> + critères Gherkin</td><td>story technique sans utilisateur</td></tr><tr><td>Maquette</td><td>quel parcours, quels écrans</td><td><b>Lo-Fi</b> puis Mid-Fi, annotations</td><td>Hi-Fi dès le départ</td></tr><tr><td>Validation</td><td>le commanditaire approuve-t-il</td><td>compte rendu <b>daté et versionné</b></td><td>accord oral sans trace</td></tr></tbody></table>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · UX Design &amp; maquettage</div>
+<h2>Chaque chapitre applique les mêmes idées</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Chapitre</th><th><b>1</b></th><th><b>2</b></th><th><b>3</b></th><th><b>4</b></th><th><b>5</b></th></tr></thead><tbody><tr><td><b>01</b> Design Thinking</td><td>●</td><td></td><td></td><td>●</td><td></td></tr><tr><td><b>02</b> Besoins</td><td>●</td><td>●</td><td></td><td></td><td>●</td></tr><tr><td><b>03</b> User stories</td><td></td><td>●</td><td>●</td><td></td><td></td></tr><tr><td><b>04</b> Maquettage</td><td></td><td></td><td></td><td>●</td><td>●</td></tr></tbody></table><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Ce qui revient dans <b>plusieurs chapitres</b> est une idée à comprendre ; ce qui n'apparaît qu'une fois est un <b>exemple</b> d'une de ces idées.</p></div></div></div><table class="cmp md"><thead><tr><th>Erreur de démarche</th><th>Idée oubliée</th><th>Ce qui casse</th></tr></thead><tbody><tr><td>Solution dessinée avant le besoin</td><td><b>1</b> · Comprendre l'utilisateur avant de dessiner</td><td>des écrans que personne n'utilise</td></tr><tr><td>Exigence « rapide » sans chiffre</td><td><b>2</b> · Un besoin se classe, puis se mesure</td><td>invérifiable à la recette</td></tr><tr><td>Story sans critère d'acceptation</td><td><b>3</b> · Écrire le besoin du point de vue de l'utilisateur</td><td>désaccord sur « fini »</td></tr><tr><td>Hi-Fi dès le départ</td><td><b>4</b> · Maquetter pour tester, pas pour briller</td><td>on corrige moins, on défend le visuel</td></tr><tr><td>Erreur signalée seulement en rouge</td><td><b>5</b> · Sécurité et accessibilité se voient dès la maquette</td><td>inaccessible à une partie des utilisateurs</td></tr><tr><td>Message « ce compte n'existe pas »</td><td><b>5</b> · Sécurité et accessibilité se voient dès la maquette</td><td>l'attaquant apprend quels comptes existent</td></tr></tbody></table></div>
+</section>
+
+<section class="slide" data-ch="01" data-sec="01 Design Thinking" data-title="Design Thinking et lecture du dossier de spécifications" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/figma.png" alt="Logo UX Design &amp; maquettage"></div>
+<div class="kicker">Chapitre 01 · Design Thinking et lecture du dossier de spécifications</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Cinq phases, une démarche itérative</h2>
+<div class="grid g2"><table class="cmp md"><thead><tr><th>Phase</th><th>Question</th><th>Livrable</th></tr></thead><tbody><tr><td><b>Empathie</b></td><td>Qui sont les utilisateurs ? Quelles frustrations ?</td><td>personas, parcours, entretiens</td></tr><tr><td><b>Définition</b></td><td>Quel est le <b>vrai</b> problème ?</td><td>énoncé du problème, besoins</td></tr><tr><td><b>Idéation</b></td><td>Quelles solutions possibles ?</td><td>idées, user stories</td></tr><tr><td><b>Prototypage</b></td><td>Comment le matérialiser vite ?</td><td>maquettes, prototype</td></tr><tr><td><b>Test</b></td><td>Cela fonctionne-t-il pour eux ?</td><td>retours, corrections</td></tr></tbody></table><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Principe fondateur</span><p>Avant de concevoir une solution, <b>comprendre profondément</b> les personnes qui l'utiliseront. L'approche est <b>itérative</b> : on revient en arrière dès qu'on apprend quelque chose.</p></div><div class="card"><span class="lab">Design Thinking et DevOps : valeurs communes</span><ul><li><b>Itération</b> : prototypage fréquent / CI/CD continu.</li><li><b>Collaboration</b> : équipes pluridisciplinaires / Dev + Ops + métier.</li><li><b>Feedback</b> : tests utilisateurs / monitoring.</li><li><b>Apprentissage</b> : un prototype est une donnée / post-mortem sans blâme.</li></ul></div></div></div>
+</section>
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Design Thinking et lecture du dossier de spécifications</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Lire un dossier de spécifications</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Que contient un dossier ?</span><ul><li><b>Contexte et objectif</b> (ici : remplacer des Excel partagés par une application RH).</li><li><b>Acteurs</b> : employés, managers, RH, administrateur système.</li><li><b>Fonctionnalités</b> : connexion, tableau de bord par rôle, demande de congés, workflow, bulletins PDF, export CSV, notifications.</li><li><b>Contraintes</b> : réseau interne seul, hébergement en entreprise, navigateurs, données <b>en France</b>.</li><li><b>Informations de contexte</b> : données de santé, audits annuels, <b>tentatives d'intrusion</b> passées.</li></ul></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Les « informations complémentaires » sont souvent <b>les plus importantes</b> pour la sécurité : données de santé = données sensibles (<a href="data-qualite.html">RGPD</a>) ; intrusions passées = exigence renforcée.</p></div></div></div><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Méthode de lecture</span><ul><li>1. <b>Qui</b> : lister les acteurs et leurs <b>parcours</b>.</li><li>2. <b>Quoi</b> : extraire les fonctionnalités, par acteur.</li><li>3. <b>Dans quelles limites</b> : contraintes techniques et réglementaires.</li><li>4. <b>Quels risques</b> : données sensibles, antécédents, exposition.</li></ul></div><div class="analogy"><b>Analogie —</b> lire un dossier comme un enquêteur : on distingue les faits, les contraintes et ce qui est implicite mais crucial.</div></div></div>
+</section>
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Design Thinking et lecture du dossier de spécifications</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et résumé</h2>
+<div class="grid g2"><div class="trap-list"><div><b>Sauter l'empathie</b> : on conçoit pour soi, pas pour les utilisateurs.</div><div><b>Traiter la sécurité à la fin</b> : elle se conçoit dès la lecture du dossier.</div><div><b>Résoudre le problème exprimé et pas le problème réel</b> : reformuler avant de concevoir.</div><div><b>Un seul interlocuteur</b> : le commanditaire n'est pas l'utilisateur final.</div><div><b>Phases en cascade</b> : le Design Thinking boucle ; on revient en arrière sans honte.</div></div><ol class="sum-list"><li>Empathie, Définition, Idéation, Prototypage, Test : en boucle.</li><li>Lire un dossier : acteurs, fonctionnalités, contraintes, risques.</li><li>Les informations de contexte (données sensibles, incidents) pèsent sur la sécurité.</li><li>Même esprit que DevOps : itération, collaboration, feedback.</li></ol></div>
+</section>
+<section class="slide" data-ch="01" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/figma.png" alt="Logo UX Design &amp; maquettage"></div>
+<div class="kicker">Chapitre 01 · Design Thinking et lecture du dossier de spécifications</div>
+<h2>Fiche — Design Thinking</h2>
+<div class="fiche"><div class="card"><span class="lab">5 phases</span><p>Empathie · Définition · Idéation · Prototypage · Test.</p></div><div class="card"><span class="lab">Principe</span><p>Comprendre les personnes avant de concevoir ; itératif.</p></div><div class="card"><span class="lab">Dossier</span><p>Contexte, acteurs, fonctionnalités, contraintes, informations de contexte.</p></div><div class="card"><span class="lab">Lien DevOps</span><p>Itération, collaboration, feedback, apprentissage.</p></div><div class="card"><span class="lab">Piège</span><p>Sécurité traitée tard ; problème mal reformulé.</p></div><div class="card"><span class="lab">Sensibles</span><p>Données de santé : exigences renforcées.</p></div></div>
+</section>
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Design Thinking et lecture du dossier de spécifications</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 01</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Quelles sont les phases du Design Thinking ?</button><div class="ab"><p>Empathie (comprendre les utilisateurs), définition (reformuler le vrai problème), idéation (générer des solutions), prototypage (matérialiser vite) et test (confronter au réel). Le processus est itératif : on revient en arrière dès qu'on apprend.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi commencer par l'empathie ?</button><div class="ab"><p>Parce que sans compréhension des besoins réels, on construit une solution à un problème imaginé. L'empathie évite de concevoir pour soi et réduit le risque de rejet par les utilisateurs.</p></div></div><div class="acc jq"><button class="ah" type="button">Quel lien faites-vous entre Design Thinking et DevOps ?</button><div class="ab"><p>Les deux reposent sur l'itération, la collaboration pluridisciplinaire, le feedback rapide et l'apprentissage : prototypage et tests utilisateurs d'un côté, CI/CD et monitoring de l'autre.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment lisez-vous un dossier de spécifications ?</button><div class="ab"><p>En relevant les acteurs et leurs parcours, les fonctionnalités par acteur, les contraintes techniques et réglementaires, puis les informations de contexte qui révèlent des risques, comme des données sensibles ou des intrusions passées.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi les données de santé changent-elles les exigences ?</button><div class="ab"><p>Ce sont des données sensibles au sens du RGPD : elles imposent un contrôle d'accès strict, une traçabilité, un chiffrement et une minimisation, donc des exigences de sécurité renforcées dès la conception.</p></div></div></div>
+</section>
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Design Thinking et lecture du dossier de spécifications</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="01"></div>
+</section>
+<section class="slide" data-ch="02" data-sec="02 Besoins" data-title="Besoins fonctionnels, non fonctionnels et exigences de sécurité" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/figma.png" alt="Logo UX Design &amp; maquettage"></div>
+<div class="kicker">Chapitre 02 · Besoins fonctionnels, non fonctionnels et exigences de sécurité</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Trois familles de besoins</h2>
+<div class="grid g2"><table class="cmp md"><thead><tr><th>Famille</th><th>Question</th><th>Exemple SecureConnect</th></tr></thead><tbody><tr><td><b>Fonctionnel</b></td><td><b>Que fait</b> le système ?</td><td>poser un congé, valider, télécharger un bulletin</td></tr><tr><td><b>Non fonctionnel</b></td><td><b>Comment</b> : performance, ergonomie, disponibilité</td><td>pages en moins de 2 s ; compatible Chrome et Edge</td></tr><tr><td><b>Sécurité</b></td><td>Comment est-il <b>protégé</b> ?</td><td>chiffrer les bulletins ; tracer les accès RH</td></tr></tbody></table><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Fonctionnel : décrit par acteur</span><p>Un besoin fonctionnel s'écrit « <b>le système doit permettre à [acteur] de [action]</b> ». Il est <b>vérifiable</b> par une démonstration.</p></div><div class="card"><span class="lab">Non fonctionnel</span><p>Qualités attendues : <b>performance</b>, <b>disponibilité</b>, <b>ergonomie</b>, <b>accessibilité</b>, <b>compatibilité</b>, <b>maintenabilité</b>. Elles se <b>mesurent</b> (« 95 % des pages en moins de 2 s »).</p></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Un besoin <b>non mesurable</b> (« rapide », « facile ») n'est pas une exigence : il se reformule avec un seuil.</p></div></div></div></div>
+</section>
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · Besoins fonctionnels, non fonctionnels et exigences de sécurité</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Les exigences de sécurité et le DICT</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">DICT</span><p>Quatre piliers pour classer une exigence : <b>D</b>isponibilité, <b>I</b>ntégrité, <b>C</b>onfidentialité, <b>T</b>raçabilité. Définitions détaillées au cours <a href="secu-fondamentaux.html">Sécurité : fondamentaux</a> ; ici on <b>s'en sert pour étiqueter</b> chaque exigence.</p></div><table class="cmp md"><thead><tr><th>Pilier</th><th>Exigence type pour SecureConnect</th></tr></thead><tbody><tr><td><b>C</b>onfidentialité</td><td>un employé ne voit que <b>ses</b> bulletins ; chiffrement</td></tr><tr><td><b>I</b>ntégrité</td><td>un congé validé ne peut être modifié que par un acteur autorisé</td></tr><tr><td><b>D</b>isponibilité</td><td>service accessible aux heures de paie ; sauvegardes</td></tr><tr><td><b>T</b>raçabilité</td><td>journal horodaté de toute consultation de dossier RH</td></tr></tbody></table></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Comment les repérer dans un dossier</span><ul><li>Chaque <b>donnée sensible</b> (santé, salaire) → confidentialité et traçabilité.</li><li>Chaque <b>action d'écriture</b> ou de validation → intégrité.</li><li>Chaque <b>service critique</b> → disponibilité.</li><li>Chaque <b>rôle</b> → principe du <b>moindre privilège</b>.</li><li>Chaque <b>antécédent d'incident</b> → durcissement.</li></ul></div><div class="analogy"><b>Analogie —</b> un contrôle d'accès d'immeuble : qui entre (C), que rien ne soit modifié (I), que l'ascenseur marche (D), un registre des passages (T).</div></div></div>
+</section>
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · Besoins fonctionnels, non fonctionnels et exigences de sécurité</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et résumé</h2>
+<div class="grid g2"><div class="trap-list"><div><b>Confondre fonctionnel et non fonctionnel</b> : « se connecter » est fonctionnel ; « en moins de 2 s » ne l'est pas.</div><div><b>Exigences vagues</b> (« sécurisé ») : non testables ; relier à un pilier et à un critère mesurable.</div><div><b>Oublier l'administrateur</b> : le rôle le plus puissant est le plus risqué.</div><div><b>Une seule exigence par pilier</b> : vérifier chaque donnée et chaque action.</div><div><b>Mélanger solution et besoin</b> : « utiliser JWT » est une solution, pas un besoin.</div></div><ol class="sum-list"><li>Fonctionnel (quoi), non fonctionnel (comment), sécurité (protection).</li><li>Un besoin se mesure et se vérifie.</li><li>DICT : Disponibilité, Intégrité, Confidentialité, Traçabilité.</li><li>Données sensibles, écritures, rôles : sources d'exigences de sécurité.</li></ol></div>
+</section>
+<section class="slide" data-ch="02" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/figma.png" alt="Logo UX Design &amp; maquettage"></div>
+<div class="kicker">Chapitre 02 · Besoins fonctionnels, non fonctionnels et exigences de sécurité</div>
+<h2>Fiche — Besoins</h2>
+<div class="fiche"><div class="card"><span class="lab">Fonctionnel</span><p>Ce que fait le système, par acteur.</p></div><div class="card"><span class="lab">Non fonctionnel</span><p>Qualités mesurables : performance, disponibilité, ergonomie.</p></div><div class="card"><span class="lab">Sécurité</span><p>Protection : confidentialité, intégrité, disponibilité, traçabilité.</p></div><div class="card"><span class="lab">DICT</span><p>Disponibilité · Intégrité · Confidentialité · Traçabilité.</p></div><div class="card"><span class="lab">Mesurable</span><p>Un besoin sans seuil n'est pas une exigence.</p></div><div class="card"><span class="lab">Moindre privilège</span><p>Chaque rôle n'accède qu'au nécessaire.</p></div></div>
+</section>
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · Besoins fonctionnels, non fonctionnels et exigences de sécurité</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 02</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Quelle différence entre besoin fonctionnel et non fonctionnel ?</button><div class="ab"><p>Le besoin fonctionnel décrit ce que le système fait pour un acteur (poser un congé) ; le besoin non fonctionnel décrit une qualité mesurable de ce service : performance, disponibilité, ergonomie, compatibilité.</p></div></div><div class="acc jq"><button class="ah" type="button">Que signifie DICT ?</button><div class="ab"><p>Disponibilité, Intégrité, Confidentialité et Traçabilité : quatre piliers qui servent à classer les exigences de sécurité et à vérifier qu'aucune dimension n'est oubliée.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment formulez-vous une exigence de sécurité testable ?</button><div class="ab"><p>Je la rattache à un pilier, je la formule de façon vérifiable : « un employé ne peut consulter que ses propres bulletins ; toute tentative d'accès à ceux d'un autre est refusée et journalisée ». On peut la tester par scénario.</p></div></div><div class="acc jq"><button class="ah" type="button">Qu'est-ce que le moindre privilège ?</button><div class="ab"><p>Chaque rôle ne reçoit que les droits strictement nécessaires à sa mission. Un employé voit ses données, un manager celles de son équipe, les RH un périmètre défini, l'administrateur la gestion des comptes sans accès aux données de paie.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi une exigence « l'application doit être sécurisée » est-elle insuffisante ?</button><div class="ab"><p>Elle n'est ni mesurable ni testable : on ne peut pas dire si elle est satisfaite. Il faut la décliner par donnée et par action, avec le pilier concerné et un critère de vérification.</p></div></div></div>
+</section>
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · Besoins fonctionnels, non fonctionnels et exigences de sécurité</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="02"></div>
+</section>
+<section class="slide" data-ch="03" data-sec="03 User stories" data-title="User stories et critères d&#x27;acceptation" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/figma.png" alt="Logo UX Design &amp; maquettage"></div>
+<div class="kicker">Chapitre 03 · User stories et critères d'acceptation</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Écrire une user story</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Le format</span><p><b>En tant que</b> [rôle], <b>je veux</b> [action], <b>afin de</b> [bénéfice]. Elle décrit un besoin du point de vue de l'utilisateur, sans imposer la solution, et se discute à l'oral (<b>carte, conversation, confirmation</b>).</p></div><div class="card"><span class="lab">Qualité : INVEST</span><ul><li><b>I</b>ndépendante · <b>N</b>égociable · <b>V</b>aluable (apporte de la valeur) ·</li><li><b>E</b>stimable · <b>S</b>mall (assez petite pour un sprint) · <b>T</b>estable.</li></ul></div><div class="analogy"><b>Analogie —</b> un bon de commande en une phrase : qui, quoi, pourquoi. Les détails se négocient ensuite à table.</div></div><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>texte · exemples</span><button class="cpy" type="button">Copier</button></div><pre><code>En tant que manager,
+je veux valider ou refuser un congé de mon équipe,
+afin de planifier la présence des équipes.
+
+En tant qu'employé,
+je veux me connecter avec mon identifiant,
+afin d'accéder à mon tableau de bord personnalisé.
+
+<span class="c"># Trop grosse (épopée) : « gérer les congés »  -&gt; à découper</span>
+<span class="c"># Trop technique       : « ajouter une table conges » -&gt; pas une story</span></code></pre></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Une grosse histoire est une <b>épopée</b> (epic) : on la découpe en stories <b>petites et testables</b>.</p></div></div></div></div>
+</section>
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · User stories et critères d'acceptation</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Critères d'acceptation en Gherkin</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Gherkin : GIVEN / WHEN / THEN</span><ul><li><b>GIVEN</b> (étant donné) : le contexte de départ.</li><li><b>WHEN</b> (quand) : l'action.</li><li><b>THEN</b> (alors) : le résultat attendu, <b>observable</b>.</li><li><b>AND</b> / <b>BUT</b> : conditions supplémentaires.</li></ul></div><div class="card"><span class="lab">Règle de ce cours</span><ul><li><b>Au moins 3 critères</b> par user story.</li><li><b>Au moins 1 critère de sécurité</b>, rattaché à un pilier DICT.</li><li>Cas <b>nominal</b> + cas <b>d'erreur</b> + cas <b>limite</b>.</li></ul></div></div><div style="display:grid;gap:1.2vh"><div class="code"><div class="codeh"><span>gherkin</span><button class="cpy" type="button">Copier</button></div><pre><code>Scénario : refus d'accès aux bulletins d'un autre employé   <span class="c"># C</span>
+  GIVEN  je suis connecté en tant qu'employé A
+  WHEN   je demande le bulletin de l'employé B
+  THEN   l'accès est refusé (403)
+  AND    la tentative est journalisée avec mon identifiant   <span class="c"># T</span>
+
+Scénario : verrouillage après échecs de connexion              <span class="c"># I / D</span>
+  GIVEN  j'ai échoué 5 connexions de suite
+  WHEN   je réessaie
+  THEN   le compte est verrouillé 15 minutes</code></pre></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Les critères Gherkin servent de <b>tests d'acceptation</b> : ils se transforment en tests automatisés (Cucumber, Behave) et définissent la <b>Definition of Done</b>.</p></div></div></div></div>
+</section>
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · User stories et critères d'acceptation</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et résumé</h2>
+<div class="grid g2"><div class="trap-list"><div><b>Story qui décrit la solution</b> (« ajouter un bouton rouge ») au lieu du besoin.</div><div><b>Critère non testable</b> (« rapide », « intuitif »).</div><div><b>Oublier les cas d'erreur</b> : seul le chemin heureux est décrit.</div><div><b>Aucun critère de sécurité</b> : la sécurité devient une réflexion de dernière minute.</div><div><b>Story trop grosse</b> : impossible à estimer ou à finir en un sprint.</div></div><ol class="sum-list"><li>Format : En tant que / Je veux / Afin de ; INVEST.</li><li>Critères en Gherkin : GIVEN / WHEN / THEN, au moins 3, dont 1 de sécurité.</li><li>Nominal, erreur, limite : couvrir les trois.</li><li>Les critères deviennent des tests d'acceptation (<a href="jira.html">backlog Jira</a>).</li></ol></div>
+</section>
+<section class="slide" data-ch="03" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/figma.png" alt="Logo UX Design &amp; maquettage"></div>
+<div class="kicker">Chapitre 03 · User stories et critères d'acceptation</div>
+<h2>Fiche — User stories</h2>
+<div class="fiche"><div class="card"><span class="lab">User story</span><p>En tant que / Je veux / Afin de ; besoin vu par l'utilisateur.</p></div><div class="card"><span class="lab">INVEST</span><p>Indépendante · Négociable · Valuable · Estimable · Small · Testable.</p></div><div class="card"><span class="lab">Gherkin</span><p>GIVEN contexte · WHEN action · THEN résultat observable.</p></div><div class="card"><span class="lab">Critères</span><p>Au moins 3 par story, dont 1 de sécurité (pilier DICT).</p></div><div class="card"><span class="lab">Épopée</span><p>Grosse histoire à découper.</p></div><div class="card"><span class="lab">Usage</span><p>Les critères deviennent des tests d'acceptation.</p></div></div>
+</section>
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · User stories et critères d'acceptation</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 03</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Comment rédigez-vous une user story ?</button><div class="ab"><p>Au format « En tant que, je veux, afin de », du point de vue de l'utilisateur, sans dicter la solution. Je la vérifie avec INVEST : indépendante, négociable, apportant de la valeur, estimable, petite et testable.</p></div></div><div class="acc jq"><button class="ah" type="button">À quoi servent les critères d'acceptation ?</button><div class="ab"><p>À définir précisément quand une story est terminée, de façon testable. Écrits en Gherkin, ils servent de scénarios de test et de base à la Definition of Done.</p></div></div><div class="acc jq"><button class="ah" type="button">Donnez un critère de sécurité pour la connexion.</button><div class="ab"><p>Étant donné cinq échecs de connexion consécutifs, quand l'utilisateur réessaie, alors le compte est verrouillé quinze minutes et l'événement est journalisé. On l'associe aux piliers intégrité et traçabilité.</p></div></div><div class="acc jq"><button class="ah" type="button">Qu'est-ce qu'une épopée ?</button><div class="ab"><p>Une grande fonctionnalité trop volumineuse pour un sprint, comme « gérer les congés ». On la découpe en user stories plus petites, indépendantes et testables.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi intégrer la sécurité dans les user stories ?</button><div class="ab"><p>Pour qu'elle soit estimée, développée et testée comme le reste, plutôt que découverte en fin de projet. Chaque story porte au moins un critère de sécurité vérifiable.</p></div></div></div>
+</section>
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · User stories et critères d'acceptation</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="03"></div>
+</section>
+<section class="slide" data-ch="04" data-sec="04 Maquettage" data-title="Maquettage et validation avec le commanditaire" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/figma.png" alt="Logo UX Design &amp; maquettage"></div>
+<div class="kicker">Chapitre 04 · Maquettage et validation avec le commanditaire</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Lo-Fi, Mid-Fi, Hi-Fi</h2>
+<div class="grid g2"><table class="cmp md"><thead><tr><th>Niveau</th><th>Contenu</th><th>Outil</th><th>Quand</th></tr></thead><tbody><tr><td><b>Lo-Fi</b> (basse fidélité)</td><td>esquisses : structure et blocs, sans couleur</td><td>papier, Excalidraw</td><td>explorer vite, discuter</td></tr><tr><td><b>Mid-Fi</b></td><td>wireframe numérique : navigation, textes, champs</td><td>Balsamiq, Figma</td><td>valider le parcours</td></tr><tr><td><b>Hi-Fi</b> (haute fidélité)</td><td>visuel final, cliquable (<b>prototype</b>)</td><td>Figma</td><td>tester avec des utilisateurs</td></tr></tbody></table><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">« Build to think, not think to build »</span><p>On construit pour <b>penser</b> : une maquette sert à <b>tester et critiquer</b>, pas à être parfaite. On commence <b>bas de fidélité</b> : moins on y investit, plus on accepte de la jeter.</p></div><div class="card"><span class="lab">Du parcours aux écrans</span><ul><li>Partir des <b>user stories</b> et du <b>parcours</b> (connexion → tableau de bord → demande de congé).</li><li>Un écran = une <b>intention</b> claire ; navigation cohérente.</li><li>Respecter l'<b>ergonomie</b> : hiérarchie visuelle, retour d'état, messages d'erreur utiles, <b>accessibilité</b> (contrastes, clavier).</li></ul></div></div></div>
+</section>
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Maquettage et validation avec le commanditaire</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Annoter la sécurité et valider</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Annotations de sécurité sur la maquette</span><ul><li><b>Connexion</b> : verrouillage après N échecs, message d'erreur <b>non révélateur</b> (« identifiant ou mot de passe incorrect »), champ mot de passe masqué.</li><li><b>Tableau de bord</b> : éléments <b>selon le rôle</b> ; bouton de déconnexion visible ; expiration de session.</li><li><b>Données sensibles</b> : masquage partiel, confirmation avant export, indication de <b>traçabilité</b>.</li><li><b>Formulaires</b> : validation côté serveur, protection contre l'injection.</li></ul></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>La sécurité se <b>voit</b> dans la maquette : une annotation par écran rend l'exigence explicite pour les développeurs. Les protocoles d'authentification sont détaillés au cours <a href="securite.html">Authentification</a>.</p></div></div></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Présenter et valider avec le commanditaire</span><ul><li><b>Rappeler</b> le contexte et les utilisateurs.</li><li><b>Dérouler</b> un parcours avec la maquette, pas écran par écran.</li><li><b>Relier</b> chaque choix à une user story ou une exigence.</li><li><b>Recueillir</b> les retours et <b>décider</b> : accepté, à modifier, rejeté.</li><li><b>Tracer</b> la validation (compte rendu, version de la maquette).</li></ul></div></div></div><div class="flow"><div class="step"><b>Maquette</b><small>Lo/Mid-Fi</small></div><div class="step"><b>Revue</b><small>commanditaire</small></div><div class="step"><b>Retours</b><small>corrections</small></div><div class="step"><b>Validation</b><small>tracée</small></div><div class="step"><b>Développement</b><small>sprint</small></div></div>
+</section>
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Maquettage et validation avec le commanditaire</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Concevoir accessible : une exigence, pas une option</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><div class="card hl"><span class="lab">Pourquoi</span><ul><li>Environ <b>une personne sur six</b> vit avec un handicap (OMS) : visuel, auditif, moteur, cognitif ; on y ajoute les handicaps <b>temporaires</b> (bras cassé) et <b>situationnels</b> (plein soleil, bruit).</li><li>En France, la <b>loi de 2005</b> impose l'accessibilité numérique aux services publics ; depuis le <b>28 juin 2025</b>, l'<b>European Accessibility Act</b> l'étend à de nombreux services privés (commerce en ligne, banque, transport).</li><li>Le référentiel français est le <b>RGAA</b>, fondé sur les <b>WCAG</b> (niveau <b>AA</b> visé).</li></ul></div><table class="cmp md"><thead><tr><th>Principe WCAG</th><th>Question</th><th>Exemple</th></tr></thead><tbody><tr><td><b>Perceptible</b></td><td>peut-on percevoir le contenu ?</td><td>texte alternatif des images, sous-titres, contraste suffisant</td></tr><tr><td><b>Utilisable</b></td><td>peut-on s'en servir sans souris ?</td><td>navigation <b>au clavier</b>, focus visible, cibles assez grandes</td></tr><tr><td><b>Compréhensible</b></td><td>comprend-on ce qui se passe ?</td><td>libellés de champs, messages d'erreur explicites</td></tr><tr><td><b>Robuste</b></td><td>les aides techniques le lisent-elles ?</td><td>HTML sémantique, lecteur d'écran compatible</td></tr></tbody></table></div><div style="display:grid;gap:1.2vh"><div class="card"><span class="lab">Sur la maquette, dès le Lo-Fi</span><ul><li><b>Contraste</b> du texte d'au moins <b>4,5:1</b> (3:1 pour les grands textes).</li><li><b>Ne jamais coder une information par la couleur seule</b> : ajouter une icône ou un libellé (vrai aussi pour un graphique <a href="powerbi.html">Power BI</a>).</li><li>Chaque champ a un <b>libellé</b> visible ; l'erreur dit <b>quoi corriger</b>.</li><li>Ordre de <b>tabulation</b> logique et <b>focus</b> visible.</li></ul></div><div class="card"><span class="lab">Accessibilité et sécurité</span><p>Une MFA qui suppose « un smartphone à portée de main » exclut une personne malvoyante ou sans téléphone personnel. On prévoit un <b>facteur de repli</b> (clé matérielle, codes à usage unique imprimés, assistance avec vérification) pour que chacun se connecte <b>sans dépendre d'un tiers</b> : c'est une question de <b>dignité</b> (<a href="securite.html">Authentification</a>).</p></div><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Dans le dossier de certification, l'accessibilité est attendue <b>dans tous les blocs</b> : besoins non fonctionnels, maquettes, tests (audit <b>Lighthouse</b>, lecteur d'écran), organisation du projet (aménagements pour un membre de l'équipe).</p></div></div></div></div>
+</section>
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Maquettage et validation avec le commanditaire</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Pièges et résumé</h2>
+<div class="grid g2"><div class="trap-list"><div><b>Passer directement en Hi-Fi</b> : on s'attache au visuel et on évite les remises en cause.</div><div><b>Une maquette sans parcours</b> : jolis écrans isolés, navigation incohérente.</div><div><b>Sécurité absente de la maquette</b> : les développeurs improvisent.</div><div><b>Message d'erreur trop précis</b> à la connexion : révèle si l'identifiant existe.</div><div><b>Validation orale non tracée</b> : litiges ultérieurs.</div></div><ol class="sum-list"><li>Lo-Fi (esquisse) → Mid-Fi (wireframe) → Hi-Fi (prototype cliquable).</li><li>« Build to think » : maquetter pour tester, pas pour briller.</li><li>Annoter la sécurité sur chaque écran sensible.</li><li>Accessibilité : RGAA / WCAG AA, contraste, clavier, jamais la couleur seule.</li><li>Présenter par parcours, relier aux stories, tracer la validation.</li></ol></div>
+</section>
+<section class="slide" data-ch="04" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/figma.png" alt="Logo UX Design &amp; maquettage"></div>
+<div class="kicker">Chapitre 04 · Maquettage et validation avec le commanditaire</div>
+<h2>Fiche — Maquettage</h2>
+<div class="fiche"><div class="card"><span class="lab">Fidélité</span><p>Lo-Fi (esquisse) · Mid-Fi (wireframe) · Hi-Fi (prototype).</p></div><div class="card"><span class="lab">Principe</span><p>Build to think, not think to build.</p></div><div class="card"><span class="lab">Outils</span><p>Papier, Excalidraw, Balsamiq, Figma, draw.io.</p></div><div class="card"><span class="lab">Annoter</span><p>Sécurité visible dans la maquette : verrouillage, rôles, masquage.</p></div><div class="card"><span class="lab">Valider</span><p>Présenter par parcours, relier aux stories, tracer la décision.</p></div><div class="card"><span class="lab">Erreur de connexion</span><p>Message générique, non révélateur.</p></div></div>
+</section>
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Maquettage et validation avec le commanditaire</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 04</h2>
+<div class="accg"><div class="acc jq"><button class="ah" type="button">Quelle différence entre Lo-Fi, Mid-Fi et Hi-Fi ?</button><div class="ab"><p>Le Lo-Fi est une esquisse de structure, rapide et jetable ; le Mid-Fi est un wireframe numérique qui valide la navigation et les contenus ; le Hi-Fi est un visuel final cliquable, utilisé pour tester avec des utilisateurs.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi commencer par une maquette basse fidélité ?</button><div class="ab"><p>Elle coûte peu, invite à la critique et se jette sans regret. Un visuel soigné détourne la discussion vers les couleurs au lieu du parcours et rend les changements plus coûteux.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment montrez-vous la sécurité dans une maquette ?</button><div class="ab"><p>Par des annotations par écran : verrouillage après échecs, message d'erreur générique, champ de mot de passe masqué, contenus selon le rôle, expiration de session, confirmation avant export de données sensibles.</p></div></div><div class="acc jq"><button class="ah" type="button">Comment présentez-vous une maquette au commanditaire ?</button><div class="ab"><p>En rappelant le contexte et les utilisateurs, en déroulant un parcours complet, en reliant chaque choix à une user story ou une exigence, puis en recueillant et traçant les décisions.</p></div></div><div class="acc jq"><button class="ah" type="button">Pourquoi le message d'erreur de connexion doit-il être générique ?</button><div class="ab"><p>Un message précis (« ce compte n'existe pas ») permet d'énumérer les comptes valides. On répond de façon identique quel que soit l'élément faux.</p></div></div></div>
+</section>
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Maquettage et validation avec le commanditaire</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="04"></div>
+</section>
+<section class="slide" data-ch="quiz" data-sec="Quiz final" data-title="Quiz final — 45 questions">
+<div class="kicker">Quiz final · UX Design &amp; maquettage</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-target"/></svg> 45 questions pour affronter le jury</h2>
+<p class="lead">Tous chapitres mélangés ; l'ordre des questions et des réponses change à chaque tentative. Certaines questions ont <b>plusieurs bonnes réponses</b>.</p>
+<div data-quiz="final"></div>
+</section>
+
+</main>
+<button class="arrow" id="prev" type="button" aria-label="Diapositive précédente">‹</button>
+<button class="arrow" id="next" type="button" aria-label="Diapositive suivante">›</button>
+<nav id="tl" aria-label="Chapitres"></nav>
+<div id="hint">← → naviguer · ↑ ↓ défiler · H ampoule <svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg> · E Complète/Essentiel · M maîtrisé · S sommaire · T thème</div>
+<button id="bulbhint" type="button"><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></button>
+<div id="ctip" role="tooltip"></div>
+<div id="toc" role="dialog" aria-label="Sommaire">
+  <button class="btn xx" id="tocx" type="button">Fermer ✕</button>
+  <div class="kicker">Sommaire · UX Design &amp; maquettage</div>
+  <h2>UX Design &amp; maquettage</h2>
+  <div class="tg"></div>
+</div>
+
+<div id="fab">
+  <button id="helpbtn" type="button" aria-label="Ampoule : concepts expliqués au survol" aria-pressed="false" title="Ampoule : soulignez les concepts, survolez-les pour une explication (H)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></button>
+<button id="tocbtn" type="button" aria-label="Sommaire" title="Sommaire (S)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+  <div id="themebtn">
+    <div id="menu" role="menu"><h4>Thème</h4></div>
+    <button id="tbtn" type="button" aria-label="Changer de thème" aria-haspopup="true" title="Changer de thème (T)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.4-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16a5 5 0 0 0 5-5c0-4-4-7-9-7z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="7.5" r="1"/></svg>
+    </button>
+  </div>
+</div>
+
+</div>
+<script src="assets/icons.js?v=1795252877"></script>
+<script src="data/ux-quiz.js?v=1795252877"></script>
+<script src="data/ux-glossary.js?v=1795252877"></script>
+<script src="assets/engine.js?v=1795252877"></script>
+</body>
+</html>

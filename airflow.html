@@ -1,0 +1,850 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Airflow &amp; S3 (MinIO) · Révision Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/base.css?v=1795252877">
+<link rel="stylesheet" href="assets/photos.css?v=1795252877">
+<link rel="stylesheet" href="assets/revision.css?v=1795252877">
+</head>
+<body data-page="course" data-course="airflow" data-title="Airflow &amp; S3 (MinIO)">
+<div id="app" data-theme="papier">
+
+<div id="bg" aria-hidden="true">
+  <div class="bgl bg-neon">
+    <svg viewBox="0 0 800 800"><path d="M40 760 L400 280 L760 760" stroke-width="3"/><path d="M110 760 L400 380 L690 760" stroke-width="2.4" opacity=".85"/><path d="M180 760 L400 470 L620 760" stroke-width="2" opacity=".7"/><path d="M250 760 L400 560 L550 760" stroke-width="1.6" opacity=".55"/><path d="M320 760 L400 650 L480 760" stroke-width="1.2" opacity=".4"/></svg>
+  </div>
+  <div class="bgl bg-sauge"><div class="panel"></div><div id="bignum"></div></div>
+  <div class="bgl bg-nuit"><i></i><i></i><i></i></div>
+  <div class="bgl bg-verre"><div class="blob a"></div><div class="blob b"></div><div class="blob c"></div></div>
+  <div class="bgl bg-papier"><i></i><i></i><i></i></div>
+  <div class="bgl bg-rubans"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f8fe0"/><stop offset="1" stop-color="#2fd0bd"/></linearGradient>
+      <linearGradient id="rg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fdcc4"/><stop offset=".55" stop-color="#26b2d2"/><stop offset="1" stop-color="#2f8fe0"/></linearGradient>
+      <linearGradient id="rg3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2fd0bd"/><stop offset="1" stop-color="#2f90e2"/></linearGradient>
+      <filter id="rsh" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="12"/></filter>
+    </defs>
+    <g class="rb" id="rb-a" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g class="rb b" id="rb-b" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+  </svg></div>
+  <div class="bgl bg-facettes"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="fcw" id="fc-top"></g><g class="fcw" id="fc-bot"></g></svg></div>
+  <div class="bgl photo bg-bulles"><i></i></div>
+  <div class="bgl photo bg-hexa"><i></i></div>
+  <div class="bgl photo bg-points"><i></i></div>
+</div>
+
+<svg id="defs" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+  <marker id="arrk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3a4458"/></marker>
+  <marker id="arrbad" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+</defs></svg>
+
+<div id="brand"><a href="index.html" title="Retour à l'accueil">← Accueil</a> · Airflow &amp; S3 (MinIO)</div>
+<div id="topbar">
+  <div id="vseg" role="group" aria-label="Version du cours"><button type="button" data-v="c" title="Tout le cours (E pour basculer)"><svg class="ico" aria-hidden="true"><use href="#ti-book"/></svg> Complète</button><button type="button" data-v="e" title="Ce qu'il faut maîtriser pour le jury (E)"><svg class="ico" aria-hidden="true"><use href="#ti-bolt"/></svg> Essentiel</button></div>
+  <button id="mast" type="button" title="Marquer ce chapitre comme maîtrisé (M)"></button>
+  <span id="prog"></span>
+</div>
+<div id="hud"><span id="count">1 / 1</span></div>
+<main id="deck">
+<!-- ================= 00 · IMMERSION ================= -->
+<section class="slide" data-ch="00" data-sec="Immersion" data-title="Immersion : découvrir Airflow et S3">
+<div class="chlogos"><img class="chlogo big" src="assets/logos/airflow.png" alt="Logo Apache Airflow"></div>
+<div class="kicker">Bloc 4B · Big Data &amp; IA</div>
+<h1>Airflow &amp; S3 (MinIO)</h1>
+<p class="lead">Construire un <b>pipeline batch de production</b> : stocker dans un data lake objet (S3, ici MinIO), le sécuriser (IAM), y ingérer les données, puis <b>orchestrer</b> Bronze → Silver → Gold avec Airflow, avec des contrôles qualité et des tests. Le calcul distribué est dans <a href="spark.html">Spark</a>, le temps réel dans <a href="kafka.html">Kafka</a>.</p>
+<div class="chips"><span class="pill solid">immersion + 6 chapitres</span><span class="pill">mini-quiz par chapitre</span><span class="pill">quiz final · 45 questions</span><span class="pill">Airflow 2/3 · MinIO · boto3 · pytest</span></div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 1 / 3</div>
+<h2>Chaque matin à 6 h, cinq étapes doivent s'enchaîner, se relancer si l'une échoue, et prévenir quelqu'un si rien n'arrive. Qui s'en charge ?</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card bad"><span class="lab">La tentation : cinq lignes de cron</span><p>Ingestion à 6 h, validation à 7 h, transformation à 8 h… Si l'ingestion dure 90 minutes, la validation lit des données incomplètes. Si la transformation plante, personne ne la relance. Si le serveur était éteint le week-end, les jours manquants sont perdus.</p></div>
+    <div class="card hl"><span class="lab">La réponse : un orchestrateur + un data lake</span><p>Un <b>stockage objet</b> (S3) range les données en couches Raw / Cleansed / Curated ; un <b>orchestrateur</b> (Airflow) enchaîne les tâches selon leurs <b>dépendances</b>, les relance, garde l'historique, alerte et rejoue le passé.</p></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <p class="punch"><b>Apache Airflow</b> est une <b>plateforme open source d'orchestration de workflows</b> : on décrit en Python un <b>DAG</b> (graphe de tâches et de dépendances), et Airflow le planifie, l'exécute, le surveille et le rejoue. <b>Amazon S3</b> (et MinIO, compatible) est un <b>stockage objet</b> : des buckets contenant des objets identifiés par une clé, accessibles en HTTP.</p>
+    <div class="analogy"><b>Analogie — le chef d'orchestre et l'entrepôt.</b> Airflow ne joue d'aucun instrument : il donne le départ à chaque musicien au bon moment et recommence le passage raté. S3 est l'entrepôt à étagères étiquetées où l'on range les matières premières, les produits semi-finis et les produits finis.</div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 2 / 3</div>
+<h2>Deux briques devenues des standards</h2>
+<div class="flow">
+  <div class="step"><b>2006</b><small>Amazon lance <b>S3</b> : le stockage objet devient le socle du cloud</small></div>
+  <div class="step"><b>2014</b><small>Maxime Beauchemin crée <b>Airflow</b> chez <b>Airbnb</b></small></div>
+  <div class="step"><b>2015 · 2019</b><small>Open source · projet Apache de premier niveau · MinIO apparaît (2014–2015)</small></div>
+  <div class="step"><b>2020</b><small>Airflow 2 : scheduler haute disponibilité, API REST, TaskFlow</small></div>
+  <div class="step"><b>2025</b><small>Airflow 3 : nouvelle UI, versionnage des DAG, <i>assets</i></small></div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Qui l'utilise</span><p>Airflow est l'orchestrateur de données le plus répandu : services managés <b>MWAA</b> (AWS), <b>Cloud Composer</b> (GCP), Astronomer. S3 et ses équivalents (<b>ADLS Gen2</b>, <b>GCS</b>) stockent la quasi-totalité des data lakes ; MinIO l'apporte on-premise et en local.</p><p><b>Alternatives d'orchestration :</b> Dagster (centré sur les données produites), Prefect (Python natif), Azure Data Factory, AWS Step Functions ; NiFi pour les flux de données (voir <a href="hadoop.html">Hadoop</a>).</p></div>
+  <div class="sch free"><span class="cap">Le pipeline de ce cours</span>
+  <svg class="dg" viewBox="0 0 460 190" role="img" aria-label="Sources ingérées dans raw, transformées en cleansed puis curated dans MinIO, le tout orchestré par Airflow">
+    <rect class="b f3" x="10" y="80" width="70" height="44" rx="8"/><text class="s tc" x="45" y="106">sources</text>
+    <rect class="b f1" x="105" y="80" width="95" height="44" rx="8"/><text class="s tc" x="152" y="100">raw</text><text class="a" x="152" y="116" text-anchor="middle">Bronze</text>
+    <rect class="b f2" x="220" y="80" width="105" height="44" rx="8"/><text class="s tc" x="272" y="100">cleansed</text><text class="a" x="272" y="116" text-anchor="middle">Silver</text>
+    <rect class="b f4" x="345" y="80" width="105" height="44" rx="8"/><text class="s tc" x="397" y="100">curated</text><text class="a" x="397" y="116" text-anchor="middle">Gold</text>
+    <path class="e" d="M80 102 H101"/><path class="e" d="M200 102 H216"/><path class="e" d="M325 102 H341"/>
+    <rect class="z" x="97" y="66" width="360" height="72" rx="12"/><text class="a" x="122" y="156">bucket data-lake (MinIO / S3)</text>
+    <rect class="b ok" x="150" y="12" width="250" height="36" rx="8"/><text class="s tc" x="288" y="35">Airflow : DAG quotidien</text>
+    <path class="e dash" d="M275 48 V62"/>
+    <text class="s" x="10" y="184">Sécurité : IAM · Qualité : quarantaine</text>
+  
+  <use class="il" href="#il-bucket" x="101" y="141" width="16" height="18"/><use class="il" href="#il-database" x="34" y="52" width="22" height="26"/><use class="il" href="#il-gear" x="155" y="18.0" width="24" height="24"/>
+</svg></div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 3 / 3</div>
+<h2>Premier contact : un DAG de trois tâches</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · airflow/dags/orders_pipeline.py</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">from</span> airflow <span class="kw">import</span> DAG
+<span class="kw">from</span> airflow.operators.python <span class="kw">import</span> PythonOperator
+<span class="kw">from</span> datetime <span class="kw">import</span> datetime
+<span class="kw">from</span> src.pipeline <span class="kw">import</span> to_bronze, to_silver, to_gold  <span class="c"># le métier</span>
+
+<span class="kw">with</span> DAG(<span class="s">"orders_pipeline"</span>,
+         schedule=<span class="s">"0 6 * * *"</span>,          <span class="c"># chaque jour à 6 h</span>
+         start_date=datetime(2026, 3, 1),
+         catchup=<span class="kw">False</span>,
+         default_args={<span class="s">"retries"</span>: 2}) <span class="kw">as</span> dag:   <span class="c"># 2 relances</span>
+    b = PythonOperator(task_id=<span class="s">"bronze"</span>, python_callable=to_bronze)
+    s = PythonOperator(task_id=<span class="s">"silver"</span>, python_callable=to_silver)
+    g = PythonOperator(task_id=<span class="s">"gold"</span>,   python_callable=to_gold)
+    b &gt;&gt; s &gt;&gt; g                                 <span class="c"># « puis »</span>
+<span class="c"># UI http://localhost:8080 → Grid : bronze ✔  silver ✔  gold ✔</span></code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card"><span class="lab">Ce qu'il faut remarquer</span><p>Le DAG ne contient <b>aucune logique métier</b> : il dit <i>quoi</i> lancer, <i>quand</i> et <i>dans quel ordre</i>. Les fonctions vivent dans <code>src/</code>, testables avec pytest. <code>silver</code> n'attend pas une heure fixe : elle démarre <b>dès que</b> <code>bronze</code> a réussi.</p></div>
+    <div class="card"><span class="lab">Ce que le jury attend</span><ul><li>Automatiser et fiabiliser un pipeline ETL/ELT.</li><li>Organiser le stockage (data lake en couches, partitionnement).</li><li>Sécuriser l'accès aux données (IAM, secrets).</li><li>Choisir batch ou streaming.</li></ul></div>
+  </div>
+</div>
+<div class="flow">
+  <div class="step"><b>01</b><small>stockage objet, data lake</small></div>
+  <div class="step"><b>02</b><small>IAM, chiffrement</small></div>
+  <div class="step"><b>03</b><small>ingestion batch</small></div>
+  <div class="step"><b>04</b><small>orchestrer avec Airflow</small></div>
+  <div class="step"><b>05</b><small>qualité, DataOps</small></div>
+  <div class="step"><b>06</b><small>cloud, lakehouse, synthèse</small></div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/airflow.png" alt="Logo Apache Airflow"></div>
+<div class="kicker">Immersion · Essentiel</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Présenter Airflow et S3 en une minute</h2>
+<div class="card hl"><p class="q">« Apache Airflow est une <b>plateforme d'orchestration de workflows</b>, créée chez Airbnb en 2014. On décrit un pipeline en Python sous forme de <b>DAG</b>, un graphe orienté acyclique de tâches ; le <b>scheduler</b> le déclenche selon une planification, l'<b>executor</b> exécute les tâches, et l'interface web montre l'état, les logs et l'historique. Airflow gère les dépendances, les <b>retries</b>, les alertes et le <b>backfill</b>.</p><p class="q">Il n'exécute pas lui-même les traitements lourds : il <b>pilote</b> des scripts Python, Spark ou SQL. Les données vivent dans un <b>stockage objet</b> comme S3 — ou MinIO, compatible S3 — organisé en couches Bronze, Silver, Gold et partitionné par date.</p><p class="q">Les points que je soigne : des tâches <b>idempotentes</b> qui traitent leur <code>logical_date</code>, des credentials dans les <b>Connections</b> et non dans le code, des droits IAM au <b>moindre privilège</b>, et des contrôles qualité avec quarantaine. »</p></div>
+<div class="grid g3">
+  <div class="card"><span class="lab">Les 3 mots à placer</span><p><b>DAG · idempotence · moindre privilège</b></p></div>
+  <div class="card"><span class="lab">Le choix à justifier</span><p><b>Airflow plutôt que cron</b> : il gère l'ordre des tâches, les reprises, le rattrapage du passé et l'historique de chaque exécution.</p></div>
+  <div class="card"><span class="lab">Le lien</span><p>Orchestre Spark · lit ce que Kafka a déposé · nourrit la BI</p></div>
+</div>
+</section>
+<section class="slide" data-ch="00" data-sec="Le fil" data-title="Le fil du cours : 6 idées">
+<div class="kicker">Le fil du cours · Airflow &amp; S3 (MinIO)</div>
+<h2>6 idées font tout le cours</h2>
+<p class="lead fil-q">Tout le cours répond à : <b>comment faire tourner chaque jour un pipeline fiable, qui range les données au bon endroit avec les bons droits ?</b> Six idées couvrent le stockage objet, l'IAM, l'ingestion, Airflow et la qualité.</p>
+<div class="grid g3 ideas"><div class="card idea"><span class="lab">Idée 1 · Un lac, ce sont des clés bien nommées</span><p>Un stockage objet (S3, MinIO) n'a pas de vrais dossiers : chaque fichier a une <b>clé</b>, un nom complet comme bronze/ventes/date=2026-11-18/part.parquet. Ce nom dit la couche, la source et la date. Bien nommer, c'est pouvoir retrouver un fichier, ne lire que la bonne date, et appliquer des règles d'archivage par préfixe.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si les fichiers sont déposés sans partition (tous dans ventes/, par exemple), une requête qui ne veut qu'une journée doit quand même lire tout le lac.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Ranger chaque jour dans sa propre partition (bronze/ventes/date=2026-11-18/) : une requête sur une journée ne lit que ce dossier.</p><p class="chs">ch. 01 · ch. 03 · ch. 06</p></div><div class="card idea"><span class="lab">Idée 2 · Raffiner par couches</span><p>On range la donnée en trois couches : <b>bronze</b> (le brut tel qu'il est arrivé, jamais modifié), <b>silver</b> (nettoyé et typé), <b>gold</b> (prêt pour un tableau de bord). Chaque couche a ses règles, et l'on peut toujours repartir de la précédente.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on écrase la couche bronze en nettoyant les données, on ne peut plus jamais revenir à la donnée brute pour corriger une erreur de nettoyage.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Écrire le résultat du nettoyage dans silver et laisser bronze intact : une erreur de nettoyage se corrige en rejouant à partir du brut.</p><p class="chs">ch. 01 · ch. 03 · ch. 05 · ch. 06</p></div><div class="card idea"><span class="lab">Idée 3 · Relancer sans casser</span><p>Une tâche <b>idempotente</b> donne le même résultat qu'on la lance une fois ou dix fois. Pour cela, elle écrit dans la partition de la date traitée et la <b>remplace en entier</b>. Rejouer un jour recalcule ce jour, sans doublon.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si chaque exécution ajoute ses lignes à la suite de celles déjà écrites, relancer un jour en échec crée des doublons.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> À chaque exécution, remplacer entièrement la partition du jour traité : relancer un jour en échec redonne exactement le même résultat.</p><p class="chs">ch. 03 · ch. 04</p></div><div class="card idea"><span class="lab">Idée 4 · Le DAG décrit, l'ordonnanceur exécute</span><p>Le fichier DAG décrit seulement les tâches et leur ordre ; c'est l'<b>ordonnanceur</b> (scheduler) d'Airflow qui les lance. Chaque exécution traite une période précise, sa <b>logical_date</b>, et non l'heure à laquelle elle tourne : c'est ce qui permet de rejouer le passé (<b>catchup</b>, <b>backfill</b>). Aucun calcul lourd dans le fichier DAG lui-même, car Airflow le relit en permanence.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si une tâche utilise datetime.now() au lieu de la logical_date, un rattrapage (backfill) de dix jours traite dix fois la date d'aujourd'hui.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Lire la date à traiter dans le contexte d'Airflow (la logical_date, ou {{ ds }} dans un modèle) : un rattrapage de dix jours traite bien dix dates différentes.</p><p class="chs">ch. 04</p></div><div class="card idea"><span class="lab">Idée 5 · Moindre privilège et secrets hors du code</span><p>Chaque pipeline n'a que les droits dont il a besoin : un <b>rôle IAM</b> (un ensemble de permissions) qui ne l'autorise à lire et écrire que dans ses propres dossiers du stockage. Ses identifiants (clé d'accès, mot de passe) sont rangés dans une <b>connexion</b> Airflow ou dans un coffre à secrets, jamais écrits dans le code du DAG.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si une clé d'accès administrateur est écrite dans le code du DAG, tout le monde peut la lire dans Git et dans l'interface d'Airflow.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Créer une connexion Airflow (par exemple minio_ventes) qui contient la clé ; le DAG n'utilise que son nom, et la clé ne donne accès qu'au dossier du pipeline.</p><p class="chs">ch. 02 · ch. 04</p></div><div class="card idea"><span class="lab">Idée 6 · Un pipeline qui tourne n'est pas un pipeline juste</span><p>Une tâche verte dit seulement que le code n'a pas planté, pas que les données sont justes. On écrit un <b>contrat de données</b> (ce que la donnée doit respecter), on <b>contrôle</b> le volume, les valeurs vides, les doublons et la fraîcheur, on met les lignes rejetées en <b>quarantaine</b> et l'on alerte : la donnée fausse est arrêtée avant le tableau de bord.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on ne surveille que le statut des tâches, une tâche « verte » qui a écrit zéro ligne passe inaperçue, jusqu'à ce que le métier découvre un tableau de bord vide.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Ajouter une tâche de contrôle après le chargement : si le nombre de lignes est nul ou anormal, le DAG échoue et une alerte part.</p><p class="chs">ch. 05 · ch. 06</p></div></div>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · Airflow &amp; S3 (MinIO)</div>
+<h2>Le modèle mental : suivre un fichier du dépôt brut au tableau de bord</h2>
+<div class="flow"><div class="step"><b>1</b><small>Quelle clé d'objet, donc quelle couche et quelle partition ?</small></div><div class="step"><b>2</b><small>Si l'on relance ce jour, obtient-on exactement le même résultat ?</small></div><div class="step"><b>3</b><small>Quelle date traite-t-on : la logical_date ou maintenant ?</small></div><div class="step"><b>4</b><small>Qui a le droit d'écrire ici, et qui verra une donnée fausse ?</small></div></div>
+<table class="cmp md"><thead><tr><th>Situation</th><th>Bon réflexe</th><th>À éviter</th></tr></thead><tbody><tr><td>Ranger les ventes du jour</td><td>clé partitionnée <b>date=AAAA-MM-JJ</b>, format Parquet</td><td>un gros CSV écrasé chaque jour</td></tr><tr><td>Relancer un jour en échec</td><td><b>écraser la partition</b> du jour</td><td>ajouter les lignes à la suite</td></tr><tr><td>Dater les données traitées</td><td>la <b>logical_date</b> du run</td><td>datetime.now() dans la tâche</td></tr><tr><td>Accès au bucket</td><td>rôle IAM limité au <b>préfixe</b> du pipeline</td><td>clé administrateur partagée</td></tr><tr><td>Lignes invalides</td><td><b>quarantaine</b> + alerte</td><td>les supprimer sans trace, ou rejeter tout le lot pour une seule ligne</td></tr><tr><td>Traitement lourd</td><td>dans une <b>tâche</b> (ou un job Spark)</td><td>un calcul exécuté au chargement du fichier DAG</td></tr></tbody></table>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · Airflow &amp; S3 (MinIO)</div>
+<h2>Chaque chapitre applique les mêmes idées</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Chapitre</th><th><b>1</b></th><th><b>2</b></th><th><b>3</b></th><th><b>4</b></th><th><b>5</b></th><th><b>6</b></th></tr></thead><tbody><tr><td><b>01</b> Stockage objet</td><td>●</td><td>●</td><td></td><td></td><td></td><td></td></tr><tr><td><b>02</b> IAM</td><td></td><td></td><td></td><td></td><td>●</td><td></td></tr><tr><td><b>03</b> Ingestion</td><td>●</td><td>●</td><td>●</td><td></td><td></td><td></td></tr><tr><td><b>04</b> Airflow</td><td></td><td></td><td>●</td><td>●</td><td>●</td><td></td></tr><tr><td><b>05</b> Qualité</td><td></td><td>●</td><td></td><td></td><td></td><td>●</td></tr><tr><td><b>06</b> Synthèse</td><td>●</td><td>●</td><td></td><td></td><td></td><td>●</td></tr></tbody></table><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Ce qui revient dans <b>plusieurs chapitres</b> est une idée à comprendre ; ce qui n'apparaît qu'une fois est un <b>exemple</b> d'une de ces idées.</p></div></div></div><table class="cmp md"><thead><tr><th>Panne ou erreur classique</th><th>Idée oubliée</th><th>Ce qui casse</th></tr></thead><tbody><tr><td>datetime.now() dans une tâche</td><td><b>4</b> · Le DAG décrit, l'ordonnanceur exécute</td><td>un backfill recalcule tout avec la date du jour</td></tr><tr><td>Append à chaque exécution</td><td><b>3</b> · Relancer sans casser</td><td>doublons à chaque relance</td></tr><tr><td>Couche bronze écrasée</td><td><b>2</b> · Raffiner par couches</td><td>plus de retour possible au brut</td></tr><tr><td>Mot de passe dans le code du DAG</td><td><b>5</b> · Moindre privilège et secrets hors du code</td><td>secret exposé dans Git et dans l'interface</td></tr><tr><td>Tâche verte, données vides</td><td><b>6</b> · Un pipeline qui tourne n'est pas un pipeline juste</td><td>tableau de bord faux, découvert par le métier</td></tr><tr><td>Fichiers sans partition</td><td><b>1</b> · Un lac, ce sont des clés bien nommées</td><td>chaque requête lit tout le lac</td></tr></tbody></table></div>
+</section>
+
+
+<!-- ================= 01 · STOCKAGE OBJET ================= -->
+<section class="slide" data-ch="01" data-sec="01 Stockage objet" data-title="Stockage objet et data lake" data-v="c">
+<div class="kicker">Chapitre 01 · Stockage objet et data lake</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Bucket, objet, clé : pas un système de fichiers</h2>
+<div class="sch free"><span class="cap">Les « dossiers » ne sont que des préfixes de clé</span>
+<svg class="dg" viewBox="0 0 960 200" role="img" aria-label="Un bucket contient des objets à plat, chacun identifié par une clé complète ; les dossiers affichés sont des préfixes">
+  <rect class="b f1" x="10" y="20" width="200" height="160" rx="10"/><text class="t tc" x="110" y="48">bucket</text><text class="s tc" x="110" y="72">data-lake</text><text class="s tc" x="110" y="100">nom unique</text><text class="s tc" x="110" y="122">accès HTTP(S)</text><text class="s tc" x="110" y="144">pas de hiérarchie</text>
+  <rect class="b f2" x="250" y="20" width="700" height="44" rx="8"/><text class="s" x="265" y="47">raw/sales/year=2026/month=03/transactions_2026-03-01.csv</text>
+  <rect class="b f2" x="250" y="78" width="700" height="44" rx="8"/><text class="s" x="265" y="105">raw/orders/2026/03/orders_2026-03-07.json</text>
+  <rect class="b f4" x="250" y="136" width="700" height="44" rx="8"/><text class="s" x="265" y="163">curated/ca_by_status_2026-03.json</text>
+  <path class="e" d="M210 42 H246"/><path class="e" d="M210 100 H246"/><path class="e" d="M210 158 H246"/>
+
+  <use class="il" href="#il-bucket" x="96" y="148" width="26" height="28"/><use class="il" href="#il-file" x="922" y="31" width="18" height="22"/><use class="il" href="#il-file" x="922" y="89" width="18" height="22"/><use class="il" href="#il-file" x="922" y="147" width="18" height="22"/>
+</svg></div>
+<div class="grid g3">
+  <div class="card"><span class="lab">Bucket</span><p>Le conteneur, au nom <b>globalement unique</b> chez le fournisseur. Analogue à un volume.</p></div>
+  <div class="card"><span class="lab">Objet</span><p>Le contenu binaire + des <b>métadonnées</b> (taille, type, date, <b>ETag</b>/somme de contrôle). On ne le modifie pas : on le <b>remplace</b>.</p></div>
+  <div class="card"><span class="lab">Clé</span><p>L'identifiant complet de l'objet. <code>raw/</code> n'existe pas : seuls existent des objets dont la clé <b>commence</b> par <code>raw/</code>.</p></div>
+</div>
+<div class="analogy"><b>Analogie — le vestiaire à tickets.</b> On dépose un manteau, on reçoit un ticket (la clé) ; on ne range pas le manteau dans un placard d'un placard. Les « rayons » affichés ne sont qu'un tri des numéros de ticket.</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Stockage objet et data lake</div>
+<div class="pqrow"><span class="pq how">③ Comment</span></div>
+<h2>Organiser le lac : couches, partitions, formats, cycle de vie</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <div class="card"><span class="lab">Raw → Cleansed → Curated (Bronze / Silver / Gold)</span><ul><li><b>Raw</b> : données <b>telles que reçues</b>, jamais modifiées — la <b>source de vérité</b> pour tout rejouer.</li><li><b>Cleansed</b> : typées, dédoublonnées, filtrées, normalisées.</li><li><b>Curated</b> : agrégées pour un usage (BI, ML, API).</li></ul><p>Sans couches, le lac devient un <b>data swamp</b> (marécage). Vocabulaire « médaillon » popularisé par Databricks.</p></div>
+    <div class="card"><span class="lab">Partitionnement « Hive »</span><p><code>raw/sales/year=2026/month=03/…</code> : la forme <code>colonne=valeur</code> est reconnue par Spark, Hive, Athena. Lire mars = lister <b>un seul préfixe</b> au lieu de tout scanner. Partitionner par les colonnes <b>filtrées</b> (souvent la date), jamais par une colonne à <b>forte cardinalité</b> (id client → millions de minuscules fichiers).</p></div>
+  </div>
+  <div style="display:grid;gap:1vh">
+    <table class="cmp md"><tr><th>Format</th><th>Orientation</th><th>Schéma</th><th>Usage</th></tr>
+      <tr><td>CSV</td><td>ligne</td><td>non</td><td>échange, débogage</td></tr>
+      <tr><td>JSON</td><td>ligne</td><td>non</td><td>API, événements, logs</td></tr>
+      <tr><td>Avro</td><td>ligne</td><td>oui</td><td>streaming, Kafka, CDC</td></tr>
+      <tr><td><b>Parquet</b></td><td><b>colonne</b></td><td>oui</td><td><b>analytique</b> (défaut du lac)</td></tr></table>
+    <div class="card"><span class="lab">Pourquoi Parquet</span><p>Lecture des seules colonnes utiles, statistiques min/max par bloc (<b>predicate pushdown</b>), compression par colonne (Snappy par défaut, zstd pour le ratio) : 5 à 10× plus petit qu'un CSV. Détails dans <a href="spark.html">Spark</a>, ch. 04.</p></div>
+    <div class="card"><span class="lab">Lifecycle policies</span><p>Règles automatiques par préfixe et par âge : <b>transition</b> vers une classe moins chère (S3 Standard-IA, Glacier) puis <b>expiration</b>. MinIO ne gère que l'expiration.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Stockage objet et data lake</div>
+<div class="pqrow"><span class="pq ex">④ Exemple</span> <span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Lire, agréger, écrire avec boto3</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · boto3 contre MinIO</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">import</span> boto3, csv, io, json, os
+s3 = boto3.client(<span class="s">"s3"</span>,
+    endpoint_url=os.getenv(<span class="s">"S3_ENDPOINT"</span>),      <span class="c"># MinIO ; absent sur AWS</span>
+    aws_access_key_id=os.getenv(<span class="s">"S3_KEY"</span>),
+    aws_secret_access_key=os.getenv(<span class="s">"S3_SECRET"</span>))
+<span class="c"># ne lister QUE la partition utile</span>
+pages = s3.list_objects_v2(Bucket=<span class="s">"data-lake"</span>,
+            Prefix=<span class="s">"raw/sales/year=2026/month=03/"</span>)
+ca = {}
+<span class="kw">for</span> obj <span class="kw">in</span> pages.get(<span class="s">"Contents"</span>, []):
+    body = s3.get_object(Bucket=<span class="s">"data-lake"</span>, Key=obj[<span class="s">"Key"</span>])[<span class="s">"Body"</span>]
+    <span class="kw">for</span> row <span class="kw">in</span> csv.DictReader(io.StringIO(body.read().decode())):
+        ca[row[<span class="s">"region"</span>]] = ca.get(row[<span class="s">"region"</span>], 0) + float(row[<span class="s">"amount"</span>])
+s3.put_object(Bucket=<span class="s">"data-lake"</span>, Key=<span class="s">"curated/ca_region_2026-03.json"</span>,
+              Body=json.dumps(ca).encode())          <span class="c"># clé datée = rejouable</span></code></pre></div>
+  <div style="display:grid;gap:1vh">
+    <div class="trap-list">
+      <div><b>Oublier <code>endpoint_url</code>.</b> boto3 vise alors le vrai AWS : erreur d'authentification ou mauvais bucket.</div>
+      <div><b>« Renommer le dossier raw/ ».</b> Impossible atomiquement : il faut copier chaque objet puis supprimer l'ancien.</div>
+      <div><b>Des milliers de petits fichiers.</b> Chaque fichier coûte une requête HTTP (facturée) et une ouverture : viser des dizaines à centaines de Mo.</div>
+      <div><b>Modifier Raw « pour corriger ».</b> On perd la possibilité de rejouer : on corrige en Cleansed.</div>
+    </div>
+    <ol class="sum-list">
+      <li>Stockage objet = <b>bucket + objet + clé</b>, accès HTTP, pas de vrais dossiers.</li>
+      <li>Couches <b>Raw / Cleansed / Curated</b> ; Raw est immuable.</li>
+      <li>Partitionnement <code>col=valeur</code> sur les colonnes filtrées.</li>
+      <li><b>Parquet</b> pour l'analytique ; lifecycle pour le coût.</li>
+      <li>MinIO = API S3 : seul <code>endpoint_url</code> change.</li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="e">
+<div class="kicker">Chapitre 01 · Stockage objet et data lake</div>
+<h2>Fiche — Stockage objet et data lake</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Modèle</span><p>Bucket (nom unique) · objet (données + métadonnées, remplacé jamais modifié) · clé (identifiant complet). « Dossier » = <b>préfixe</b>. Accès HTTP, API S3.</p></div>
+  <div class="card"><span class="lab">Couches</span><p><b>Raw</b> brut immuable → <b>Cleansed</b> typé, dédoublonné → <b>Curated</b> agrégé. = Bronze / Silver / Gold (médaillon).</p></div>
+  <div class="card"><span class="lab">Partitionner</span><p><code>year=2026/month=03/</code> sur les colonnes filtrées ; jamais sur une forte cardinalité ; éviter les petits fichiers.</p></div>
+  <div class="card"><span class="lab">Formats</span><p>CSV/JSON (ligne, échange) · Avro (ligne, schéma, streaming) · <b>Parquet</b> (colonne, compression, pushdown : analytique).</p></div>
+  <div class="card"><span class="lab">Coût</span><p>Lifecycle : transition (Standard-IA, Glacier) puis expiration. MinIO : expiration seule.</p></div>
+  <div class="card"><span class="lab">Équivalences</span><p>S3 = bucket/objet/clé · Azure ADLS Gen2 = container/blob/path · GCS · MinIO (local, compatible S3).</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Stockage objet et data lake</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 01</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Pourquoi un stockage objet plutôt qu'un système de fichiers ou HDFS ?</button><div class="ab"><p>Il est <b>illimité</b>, très durable (réplication gérée par le fournisseur), facturé à l'usage et accessible en HTTP depuis n'importe quel moteur. Surtout, il <b>sépare stockage et calcul</b> : on allume un cluster Spark le temps du traitement, les données restent. HDFS lie les données aux machines du cluster. Contrepartie : pas de renommage atomique ni de modification en place.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi ne jamais modifier la couche Raw ?</button><div class="ab"><p>C'est la <b>source de vérité</b> : si une transformation aval est fausse, on corrige le code et on <b>rejoue</b> depuis Raw sans redemander les données à la source. La modifier détruirait cette capacité d'audit et de rollback.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment choisis-tu tes colonnes de partitionnement ?</button><div class="ab"><p>Celles qui apparaissent le plus dans les <b>filtres</b> (souvent la date, parfois la région), avec une cardinalité modérée. Une partition par identifiant client créerait des millions de petits fichiers : surcoût de requêtes et lectures lentes.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi Parquet est-il le format par défaut d'un lac ?</button><div class="ab"><p>Stockage <b>en colonnes</b> (on ne lit que les colonnes utiles), <b>compression</b> adaptée à chaque type, <b>schéma embarqué</b>, et statistiques par bloc permettant le <b>predicate pushdown</b>. Les requêtes analytiques lisent beaucoup moins d'octets, donc vont plus vite et coûtent moins.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Stockage objet et data lake</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="01"></div>
+</section>
+
+<!-- ================= 02 · IAM ================= -->
+<section class="slide" data-ch="02" data-sec="02 IAM" data-title="Sécuriser le lac : IAM et chiffrement" data-v="c">
+<div class="kicker">Chapitre 02 · Sécuriser le lac</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Qui peut faire quoi, sur quelles données ?</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <div class="card bad"><span class="lab">Le vrai risque : la mauvaise configuration</span><p>Les fuites cloud célèbres ne viennent presque jamais d'une faille du fournisseur, mais d'un <b>bucket rendu public</b>, d'une <b>clé d'accès poussée sur GitHub</b> (exploitée en quelques minutes par des robots) ou d'un rôle aux <b>droits trop larges</b>. Le Data Engineer touche les données les plus sensibles : RGPD (amende jusqu'à 4 % du CA mondial, notification CNIL sous 72 h).</p></div>
+    <div class="analogy"><b>Analogie — les badges d'un immeuble.</b> Chaque employé (User) a son badge nominatif ; le livreur (service) reçoit un badge temporaire (Rôle) ; les règles d'accès (Policies) disent quel badge ouvre quelle porte. On ne donne pas le passe-partout « pour simplifier ».</div>
+  </div>
+  <div style="display:grid;gap:1vh">
+    <div class="card"><span class="lab">Les 3 briques IAM (Identity and Access Management)</span><ul><li><b>User</b> : une identité <b>humaine</b> nominative (jamais partagée), avec MFA ; jamais le compte <b>root</b> au quotidien.</li><li><b>Rôle</b> : une identité pour un <b>service</b>, assumée temporairement, qui fournit des <b>credentials temporaires</b> renouvelés automatiquement — pas de clé statique à fuiter.</li><li><b>Policy</b> : un document JSON de permissions attaché à un user, un groupe ou un rôle.</li></ul></div>
+    <div class="card hl"><span class="lab">Principe du moindre privilège</span><p>Donner <b>uniquement</b> les droits nécessaires à la tâche : le job qui lit Raw et écrit Cleansed n'a ni écriture sur Raw, ni accès à Curated, ni droit de supprimer le bucket. L'anti-modèle : <code>s3:*</code> sur <code>*</code>.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · Sécuriser le lac</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Anatomie d'une policy de moindre privilège</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>json · policy du job « transform »</span><button class="cpy" type="button">Copier</button></div><pre><code>{ <span class="s">"Version"</span>: <span class="s">"2012-10-17"</span>,
+  <span class="s">"Statement"</span>: [
+    { <span class="s">"Sid"</span>: <span class="s">"LireRaw"</span>, <span class="s">"Effect"</span>: <span class="s">"Allow"</span>,
+      <span class="s">"Action"</span>: [<span class="s">"s3:GetObject"</span>, <span class="s">"s3:ListBucket"</span>],
+      <span class="s">"Resource"</span>: [<span class="s">"arn:aws:s3:::data-lake"</span>,        <span class="c">// List : le bucket</span>
+                   <span class="s">"arn:aws:s3:::data-lake/raw/*"</span>] }, <span class="c">// Get : les objets</span>
+    { <span class="s">"Sid"</span>: <span class="s">"EcrireCleansed"</span>, <span class="s">"Effect"</span>: <span class="s">"Allow"</span>,
+      <span class="s">"Action"</span>: [<span class="s">"s3:PutObject"</span>],
+      <span class="s">"Resource"</span>: [<span class="s">"arn:aws:s3:::data-lake/cleansed/*"</span>] },
+    { <span class="s">"Sid"</span>: <span class="s">"JamaisSupprimerBucket"</span>, <span class="s">"Effect"</span>: <span class="s">"Deny"</span>,
+      <span class="s">"Action"</span>: <span class="s">"s3:DeleteBucket"</span>,
+      <span class="s">"Resource"</span>: <span class="s">"arn:aws:s3:::data-lake"</span> } ] }</code></pre></div>
+  <div style="display:grid;gap:1vh">
+    <div class="card"><span class="lab">Les champs d'un Statement</span><p><b>Effect</b> (Allow / Deny) · <b>Action</b> (<code>s3:GetObject</code>…) · <b>Resource</b> (un <b>ARN</b>, <i>Amazon Resource Name</i>) · <b>Condition</b> facultative (IP, heure, tag).</p></div>
+    <div class="card hl"><span class="lab">Les 3 règles d'évaluation</span><ol><li>Par défaut, tout est <b>refusé implicitement</b>.</li><li>Un <b>Allow</b> ouvre l'action.</li><li>Un <b>Deny explicite l'emporte toujours</b>, même si une autre policy autorise.</li></ol></div>
+    <div class="code"><div class="codeh"><span>python · tester le refus attendu</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">try</span>:
+    s3.put_object(Bucket=<span class="s">"data-lake"</span>, Key=<span class="s">"raw/x.txt"</span>, Body=<span class="s">b"x"</span>)
+    print(<span class="s">"PROBLÈME : écriture Raw autorisée"</span>)
+<span class="kw">except</span> ClientError <span class="kw">as</span> e:
+    print(e.response[<span class="s">"Error"</span>][<span class="s">"Code"</span>])   <span class="c"># AccessDenied</span></code></pre></div>
+    <p class="punch" style="font-size:.95em">Sur MinIO, même syntaxe JSON ; administration avec <code>mc admin policy create / attach</code>.</p>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · Sécuriser le lac</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Chiffrer, protéger les secrets, vérifier</h2>
+<div class="grid g3">
+  <div class="card"><span class="lab">Chiffrement au repos (at-rest)</span><p>Les objets sont chiffrés sur disque : <b>SSE-S3</b> (clés gérées par le fournisseur, AES-256) ou <b>SSE-KMS</b> (clés que l'on contrôle, usage audité — exigé par certaines conformités : HDS, PCI-DSS). Vérifiable via <code>head_object</code> → <code>ServerSideEncryption</code>.</p></div>
+  <div class="card"><span class="lab">Chiffrement en transit (in-transit)</span><p>Toutes les communications en <b>TLS / HTTPS</b>. Le lab MinIO en <code>http://</code> est une simplification locale : jamais en production ni exposé sur Internet. Voir <a href="secu-crypto.html">Cryptographie</a>.</p></div>
+  <div class="card"><span class="lab">Secrets</span><p>Jamais dans le code ni dans Git : variables d'environnement / <code>.env</code> ignoré par Git en local, <b>gestionnaire de secrets</b> en production (AWS Secrets Manager, Vault, Azure Key Vault), <b>rotation</b> des clés, Connections Airflow (ch. 04).</p></div>
+</div>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b><code>s3:ListBucket</code> sur <code>bucket/raw/*</code>.</b> Le listing échoue : cette action porte sur le <b>bucket</b> lui-même (filtrer le préfixe par Condition).</div>
+    <div><b>Un User avec des clés statiques pour un job.</b> Préférer un <b>Rôle</b> : credentials temporaires, rien à faire fuiter.</div>
+    <div><b>« Ajouter un Deny pour tout ce qui est interdit ».</b> Inutile : l'absence d'Allow suffit ; le Deny sert aux garde-fous qui doivent primer.</div>
+    <div><b>Bucket public par inadvertance.</b> Activer le <b>Block Public Access</b> sur tous les buckets.</div>
+  </div>
+  <ol class="sum-list">
+    <li>IAM = <b>Users</b> (humains) + <b>Rôles</b> (services, credentials temporaires) + <b>Policies</b> (JSON).</li>
+    <li><b>Moindre privilège</b>, policy par service, jamais <code>s3:*</code>.</li>
+    <li>Refus implicite par défaut ; <b>Deny explicite &gt; Allow</b>.</li>
+    <li>Chiffrer <b>au repos</b> (SSE) et <b>en transit</b> (TLS).</li>
+    <li>Secrets hors du code ; journaux d'accès ; tester le refus.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="e">
+<div class="kicker">Chapitre 02 · Sécuriser le lac</div>
+<h2>Fiche — IAM et chiffrement</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Briques</span><p><b>User</b> humain nominatif + MFA · <b>Rôle</b> pour services (credentials temporaires) · <b>Policy</b> JSON (Effect, Action, Resource, Condition).</p></div>
+  <div class="card"><span class="lab">Évaluation</span><p>Refus implicite → Allow ouvre → <b>Deny explicite l'emporte</b>.</p></div>
+  <div class="card"><span class="lab">Moindre privilège</span><p>Lire Raw + écrire Cleansed, rien d'autre ; Deny sur DeleteBucket. <code>ListBucket</code> se donne sur le bucket.</p></div>
+  <div class="card"><span class="lab">Chiffrement</span><p>At-rest : SSE-S3 ou SSE-KMS (clés maîtrisées, audit). In-transit : TLS/HTTPS.</p></div>
+  <div class="card"><span class="lab">Secrets</span><p>Variables d'environnement, <code>.env</code> non versionné, Secrets Manager / Vault, rotation.</p></div>
+  <div class="card"><span class="lab">Checklist</span><p>Block Public Access · SSE · policy minimale · logs d'accès · test AccessDenied · pas de données personnelles dans les logs.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · Sécuriser le lac</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 02</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Comment avez-vous sécurisé l'accès à votre data lake ?</button><div class="ab"><p>Un compte ou rôle <b>par service</b> avec une policy de <b>moindre privilège</b> (le job d'ingestion n'écrit que dans Raw, la transformation lit Raw et écrit Cleansed), un Deny explicite sur la suppression du bucket, le blocage de l'accès public, le chiffrement SSE au repos et TLS en transit, des secrets hors du code, et un test qui vérifie qu'une action interdite renvoie <code>AccessDenied</code>.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi un rôle plutôt qu'un utilisateur pour un pipeline ?</button><div class="ab"><p>Un rôle fournit des <b>credentials temporaires</b>, renouvelés automatiquement : il n'y a aucune clé permanente à stocker, à faire tourner ou à faire fuiter. Un utilisateur est réservé aux humains, avec MFA, pour la traçabilité.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Que se passe-t-il si une policy autorise une action et qu'une autre la refuse ?</button><div class="ab"><p>Le <b>Deny explicite l'emporte</b> toujours. Ce mécanisme sert à poser des garde-fous qui priment sur toute autorisation accordée ailleurs.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Une clé d'accès a été poussée sur un dépôt public : que faites-vous ?</button><div class="ab"><p>La <b>révoquer immédiatement</b> (la supprimer du dépôt ne suffit pas : l'historique Git et les robots l'ont déjà), en créer une nouvelle stockée dans un gestionnaire de secrets, analyser les journaux d'accès (CloudTrail, logs S3) pour détecter un usage, et notifier si des données personnelles ont pu être exposées (RGPD).</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · Sécuriser le lac</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="02"></div>
+</section>
+
+<!-- ================= 03 · INGESTION BATCH ================= -->
+<section class="slide" data-ch="03" data-sec="03 Ingestion" data-title="Ingestion batch" data-v="c">
+<div class="kicker">Chapitre 03 · Ingestion batch</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Faire entrer la donnée : batch ou streaming ?</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <table class="cmp md"><tr><th>Critère</th><th>Batch</th><th>Streaming</th></tr>
+      <tr><td>Latence</td><td>minutes à heures</td><td>ms à secondes</td></tr>
+      <tr><td>Complexité</td><td>faible</td><td>élevée (état, ordre)</td></tr>
+      <tr><td>Coût</td><td>payé par exécution</td><td>infrastructure permanente</td></tr>
+      <tr><td>Débogage</td><td>facile, rejouable</td><td>difficile</td></tr>
+      <tr><td>Exemples</td><td>rapports, facturation, entraînement ML</td><td>fraude, alertes IoT</td></tr></table>
+    <div class="card hl"><span class="lab">La règle de décision</span><p>« Quel est le <b>coût métier</b> d'une heure de retard ? » Aucun (rapport du lendemain) → <b>batch</b>. Une fraude validée, une machine cassée → <b>streaming</b> (<a href="kafka.html">Kafka</a> + Spark Structured Streaming). Dans le doute : batch.</p></div>
+  </div>
+  <div style="display:grid;gap:1vh">
+    <div class="card"><span class="lab">Les sources et leurs méthodes</span><ul><li><b>Base relationnelle</b> : dump complet (simple, lourd) · <b>chargement incrémental</b> sur <code>updated_at</code> · <b>CDC</b> (lecture du journal de transactions, ex. Debezium).</li><li><b>API REST</b> : <b>pull</b> (polling) avec <b>pagination</b> et limites de débit · <b>push</b> par webhook.</li><li><b>Fichiers</b> déposés (SFTP, landing zone).</li><li><b>SaaS</b> : connecteurs managés (Fivetran, Airbyte).</li></ul></div>
+    <div class="analogy"><b>Analogie — le quai de réception.</b> Les camions déchargent sur le quai (landing zone = Raw) sans attendre l'atelier ; un contrôleur met de côté les colis abîmés (quarantaine) au lieu d'arrêter toute la réception.</div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Ingestion batch</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Valider, partitionner, déposer — de façon idempotente</h2>
+<div class="sch free"><span class="cap">Chaque fichier entrant est validé avant d'entrer dans Raw</span>
+<svg class="dg" viewBox="0 0 960 150" role="img" aria-label="Fichier entrant, validation, puis raw partitionné par date si valide, sinon quarantaine avec un fichier d'erreur">
+  <rect class="b f3" x="10" y="50" width="180" height="50" rx="8"/><text class="s tc" x="100" y="80">transactions_2026-03-15.csv</text>
+  <rect class="b f2" x="250" y="50" width="170" height="50" rx="8"/><text class="t tc" x="349" y="72" style="font-size:14px">validation</text><text class="s tc" x="349" y="90">colonnes, lignes</text>
+  <rect class="b ok" x="490" y="10" width="460" height="50" rx="8"/><text class="s" x="505" y="40">raw/sales/year=2026/month=03/transactions_2026-03-15.csv</text>
+  <rect class="b bad" x="490" y="90" width="460" height="50" rx="8"/><text class="s" x="505" y="120">quarantine/transactions_2026-03-15.csv + .error.json</text>
+  <path class="e" d="M190 75 H246"/><path class="e" d="M420 66 L486 38"/><path class="e" d="M420 84 L486 112"/>
+  <text class="g" x="440" y="36">OK</text><text class="r" x="440" y="128">KO</text>
+
+  <use class="il" href="#il-file" x="88" y="12" width="24" height="30"/><use class="il" href="#il-check" x="918" y="22" width="26" height="26"/><use class="il" href="#il-cross" x="918" y="102" width="26" height="26"/><use class="il" href="#il-gear" x="255" y="61.0" width="28" height="28"/>
+</svg></div>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · ingestion partitionnée</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">def</span> partition(nom: str) -&gt; str:
+    d = datetime.strptime(re.search(<span class="s">r"\d{4}-\d{2}-\d{2}"</span>, nom)[0], <span class="s">"%Y-%m-%d"</span>)
+    <span class="kw">return</span> <span class="s">f"year={d.year}/month={d.month:02d}"</span>
+
+<span class="kw">for</span> f <span class="kw">in</span> Path(<span class="s">"./landing"</span>).glob(<span class="s">"*.csv"</span>):
+    ok, raison = validate_csv(f, {<span class="s">"id"</span>, <span class="s">"date"</span>, <span class="s">"amount"</span>})
+    zone = <span class="s">f"raw/sales/{partition(f.name)}"</span> <span class="kw">if</span> ok <span class="kw">else</span> <span class="s">"quarantine"</span>
+    s3.upload_file(str(f), <span class="s">"data-lake"</span>, <span class="s">f"{zone}/{f.name}"</span>)  <span class="c"># même nom → même clé</span></code></pre></div>
+  <div class="card hl"><span class="lab">Idempotence : rejouer sans doublon</span><p>Une ingestion <b>idempotente</b> donne le même état final qu'on l'exécute une ou dix fois. Recette : construire la clé à partir <b>des données</b> (leur date), pas de l'heure d'exécution.</p><p><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> <code>raw/sales/upload_20260316093512.csv</code> → chaque relance crée un nouveau fichier.<br><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> <code>raw/sales/year=2026/month=03/transactions_2026-03-15.csv</code> → la relance <b>écrase</b> à l'identique.</p><p>Si la source envoie deux fois le même événement, on <b>dédoublonne en Silver</b> sur une clé métier (<code>event_id</code>), pas dans Raw.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Ingestion batch</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Les patterns à connaître</h2>
+<div class="grid g3">
+  <div class="card"><span class="lab">Landing zone</span><p>Zone tampon (Raw) où les données arrivent <b>avant</b> tout traitement : elle <b>découple</b> ingestion et transformation, permet de rejouer et de brancher plusieurs traitements.</p></div>
+  <div class="card"><span class="lab">Quarantaine / Dead Letter Queue</span><p>Les fichiers ou lignes invalides sont <b>isolés</b> avec la raison du rejet, sans bloquer le reste. En streaming, l'équivalent est la <b>DLQ</b>.</p></div>
+  <div class="card"><span class="lab">Pull vs push</span><p><b>Pull</b> : le pipeline va chercher (fréquence maîtrisée : API, bases). <b>Push</b> : la source envoie (webhook, IoT), latence plus faible, porte d'entrée du streaming.</p></div>
+</div>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Nommer par l'heure d'exécution.</b> Chaque relance duplique : nommer par la <b>date des données</b>.</div>
+    <div><b>Faire planter tout le lot pour un fichier invalide.</b> Le mettre en quarantaine et continuer.</div>
+    <div><b>Oublier la pagination d'une API.</b> On n'ingère que la première page sans erreur visible.</div>
+    <div><b>Choisir le streaming « parce que c'est moderne ».</b> Plus cher et plus complexe : il se justifie par une latence métier.</div>
+  </div>
+  <ol class="sum-list">
+    <li>Batch par défaut ; streaming si la <b>latence métier</b> l'exige.</li>
+    <li>Sources : dump, <b>incrémental</b>, <b>CDC</b>, API paginée, fichiers, SaaS.</li>
+    <li>Valider à l'entrée ; invalides en <b>quarantaine</b>.</li>
+    <li>Clé déduite des données → ingestion <b>idempotente</b>.</li>
+    <li>Raw en ajout seul ; dédoublonnage en Silver.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="e">
+<div class="kicker">Chapitre 03 · Ingestion batch</div>
+<h2>Fiche — Ingestion batch</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Batch vs streaming</span><p>Batch : latence minutes-heures, simple, payé à l'exécution. Streaming : ms, complexe, permanent. Question : coût métier d'1 h de retard ?</p></div>
+  <div class="card"><span class="lab">Sources</span><p>BDD : dump / incrémental (<code>updated_at</code>) / CDC. API : pull paginé, push webhook. Fichiers SFTP. SaaS (Airbyte, Fivetran).</p></div>
+  <div class="card"><span class="lab">Landing zone</span><p>Raw = tampon immuable qui découple ingestion et transformation et permet de rejouer.</p></div>
+  <div class="card"><span class="lab">Quarantaine</span><p>Invalides isolés avec la raison ; ne bloque pas le lot. ≈ Dead Letter Queue.</p></div>
+  <div class="card"><span class="lab">Idempotence</span><p>Clé déduite de la date des données → relance = écrasement à l'identique. Doublons d'événements traités en Silver.</p></div>
+  <div class="card"><span class="lab">Partition</span><p>Date extraite du nom (<code>re</code> + <code>strptime</code>) → <code>year=YYYY/month=MM/</code>.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Ingestion batch</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 03</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Pourquoi avoir choisi un traitement batch plutôt que du temps réel ?</button><div class="ab"><p>Parce que le besoin métier tolère la latence : le rapport est consulté le lendemain matin. Le batch est plus simple à développer, à déboguer et à rejouer, et ne consomme des ressources que pendant l'exécution. Le streaming ne se justifie que si une heure de retard a un coût métier (fraude, alerte).</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce qu'un pipeline idempotent et comment l'obtenez-vous ?</button><div class="ab"><p>Un pipeline dont la ré-exécution sur les mêmes entrées donne le <b>même état final</b>, sans doublon. Je construis les clés de sortie à partir de la date des données (relance = écrasement), je traite uniquement la période du run, et je dédoublonne sur une clé métier en Silver.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment ingérer seulement les changements d'une grande table ?</button><div class="ab"><p>Par <b>chargement incrémental</b> sur une colonne de modification (<code>updated_at</code> &gt; dernier filigrane mémorisé), ou par <b>CDC</b> qui lit le journal de transactions de la base et capture aussi les suppressions. Le dump complet n'est raisonnable que pour de petites tables.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Que faites-vous d'un fichier mal formé ?</button><div class="ab"><p>Il part en <b>quarantaine</b> avec un fichier expliquant la raison du rejet ; le reste du lot continue. On surveille le taux de rejet, on remonte le problème au producteur, et on rejoue après correction.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Ingestion batch</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="03"></div>
+</section>
+
+<!-- ================= 04 · ORCHESTRER AVEC AIRFLOW ================= -->
+<section class="slide" data-ch="04" data-sec="04 Airflow" data-title="Orchestrer avec Airflow" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/airflow.png" alt="Logo Apache Airflow"></div>
+<div class="kicker">Chapitre 04 · Orchestrer avec Airflow</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Du cron fragile au DAG piloté</h2>
+<div class="grid g2">
+  <div class="card bad"><span class="lab">Ce que cron ne sait pas faire</span><ul><li><b>Dépendances</b> : lancer B seulement quand A a réussi.</li><li><b>Retries</b> : relancer automatiquement une tâche en échec.</li><li><b>Visibilité</b> : savoir quel run a échoué, à quelle étape, avec quels logs.</li><li><b>Backfill</b> : rejouer proprement les jours manqués.</li><li><b>Alertes</b> : prévenir avant que le métier découvre un rapport vide.</li></ul></div>
+  <div class="card hl"><span class="lab">Les concepts d'Airflow</span><ul><li><b>DAG</b> (<i>Directed Acyclic Graph</i>) : le pipeline, un graphe orienté <b>sans cycle</b> de tâches.</li><li><b>Task</b> : une unité de travail ; son type est un <b>Operator</b> (PythonOperator, BashOperator…).</li><li><b>Scheduler</b> : décide quand chaque DAG et chaque tâche doivent tourner.</li><li><b>Executor</b> : exécute les tâches — Local (une machine), Celery (workers), Kubernetes (un pod par tâche).</li><li><b>Webserver / UI</b> : graphe, grille des runs, logs.</li><li><b>Base de métadonnées</b> (PostgreSQL) : état de tous les runs.</li><li><b>XCom</b> : échange de <b>petites</b> valeurs entre tâches — jamais un jeu de données.</li></ul></div>
+</div>
+<div class="sch free"><span class="cap">Architecture d'Airflow</span>
+<svg class="dg" viewBox="0 0 960 150" role="img" aria-label="Les fichiers DAG sont lus par le scheduler qui écrit dans la base de métadonnées et confie les tâches à l'executor ; l'interface web lit la base">
+  <rect class="b f3" x="10" y="50" width="150" height="50" rx="8"/><text class="s tc" x="99" y="80">dags/*.py</text>
+  <rect class="b ok" x="220" y="50" width="160" height="50" rx="8"/><text class="t tc" x="314" y="80" style="font-size:14px">Scheduler</text>
+  <rect class="b f2" x="440" y="10" width="200" height="50" rx="8"/><text class="s tc" x="554" y="40">Executor → workers</text>
+  <rect class="b f1" x="440" y="90" width="200" height="50" rx="8"/><text class="s tc" x="553" y="120">base de métadonnées</text>
+  <rect class="b f4" x="700" y="90" width="250" height="50" rx="8"/><text class="s tc" x="839" y="120">UI web : graphe, grille, logs</text>
+  <path class="e" d="M160 75 H216"/><path class="e" d="M380 66 L436 40"/><path class="e" d="M380 84 L436 110"/><path class="e" d="M640 115 H696"/>
+
+  <use class="il" href="#il-code" x="15" y="61.0" width="28" height="28"/><use class="il" href="#il-clock" x="225" y="60.0" width="30" height="30"/><use class="il" href="#il-gear" x="445" y="21.0" width="28" height="28"/><use class="il" href="#il-database" x="445" y="102.0" width="26" height="26"/><use class="il" href="#il-chart" x="705" y="101.0" width="28" height="28"/>
+</svg></div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Orchestrer avec Airflow</div>
+<div class="pqrow"><span class="pq how">③ Comment</span></div>
+<h2>Le temps dans Airflow : logical_date, catchup, backfill</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <div class="card hl"><span class="lab">logical_date ≠ heure d'exécution</span><p>Chaque run porte une <b>logical_date</b> (ex-<code>execution_date</code>) : la <b>période de données</b> qu'il traite, pas l'heure où il tourne. En <b>Airflow 2</b> (intervalles de données), un DAG quotidien démarré le 1er mars : le run qui s'exécute le <b>2 mars</b> a la logical_date du <b>1er mars</b> et traite les données du 1er (l'intervalle est clos). La tâche lit <code>context["ds"]</code> = <code>"2026-03-01"</code>. <b>Attention, Airflow 3</b> : pour un <code>schedule</code> cron, le comportement par défaut devient un déclenchement « à l'heure dite » (<code>CronTriggerTimetable</code>) : la logical_date est l'heure du déclenchement. Pour traiter la veille, on calcule la date dans la tâche ou l'on réactive les intervalles de données.</p></div>
+    <div class="card"><span class="lab">Pourquoi c'est essentiel</span><p>Une tâche qui filtre sur sa logical_date (et non sur <code>datetime.now()</code>) donne le même résultat aujourd'hui ou dans six mois : c'est ce qui rend le <b>backfill</b> et les relances <b>idempotents</b>.</p></div>
+    <div class="card"><span class="lab">catchup</span><p><code>catchup=True</code> : au démarrage, Airflow crée un run pour <b>chaque intervalle passé</b> depuis <code>start_date</code> (30 jours manqués = 30 runs). <code>catchup=False</code> : seulement le run courant ; on rejoue le passé à la demande (<code>airflow dags backfill</code>).</p></div>
+  </div>
+  <div style="display:grid;gap:1vh">
+    <div class="card"><span class="lab">Planifier : expressions cron</span><table class="cmp md"><tr><td><code>0 6 * * *</code></td><td>chaque jour à 6 h</td></tr><tr><td><code>0 */4 * * *</code></td><td>toutes les 4 heures</td></tr><tr><td><code>0 6 * * 1</code></td><td>chaque lundi à 6 h (0 = dimanche)</td></tr><tr><td><code>0 6 1 * *</code></td><td>le 1er du mois à 6 h</td></tr><tr><td><code>@daily</code></td><td>alias de <code>0 0 * * *</code></td></tr></table><p>Ordre des champs : minute, heure, jour du mois, mois, jour de la semaine.</p></div>
+    <div class="card"><span class="lab">start_date</span><p>Toujours une <b>date fixe</b> : <code>datetime(2026, 3, 1)</code>. <code>days_ago()</code> (déprécié) recalcule la date à chaque lecture du fichier : comportement imprévisible.</p></div>
+    <div class="card"><span class="lab">Déclencher à la main</span><p>Bouton ▶ de l'UI, ou <code>airflow dags trigger orders_pipeline</code>. Un nouveau DAG est souvent <b>en pause</b> : l'activer d'abord.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Orchestrer avec Airflow</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Un DAG de production : secrets, alertes, trigger rules</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · dags/orders_pipeline.py</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">from</span> airflow.hooks.base <span class="kw">import</span> BaseHook
+<span class="kw">from</span> airflow.models <span class="kw">import</span> Variable
+<span class="kw">from</span> airflow.utils.trigger_rule <span class="kw">import</span> TriggerRule
+<span class="kw">from</span> src <span class="kw">import</span> transform                  <span class="c"># logique métier testable</span>
+
+<span class="kw">def</span> silver(**ctx):
+    conn = BaseHook.get_connection(<span class="s">"minio_default"</span>)   <span class="c"># credentials</span>
+    bucket = Variable.get(<span class="s">"BUCKET"</span>, default_var=<span class="s">"data-lake"</span>)  <span class="c"># config</span>
+    transform.clean_orders(ctx[<span class="s">"ds"</span>], conn, bucket)  <span class="c"># sa journée seulement</span>
+
+<span class="kw">with</span> DAG(<span class="s">"orders_pipeline"</span>, schedule=<span class="s">"0 6 * * *"</span>,
+         start_date=datetime(2026, 3, 1), catchup=<span class="kw">False</span>,
+         default_args={<span class="s">"retries"</span>: 2, <span class="s">"retry_delay"</span>: timedelta(minutes=5),
+                       <span class="s">"execution_timeout"</span>: timedelta(hours=2)}) <span class="kw">as</span> dag:
+    b = PythonOperator(task_id=<span class="s">"bronze"</span>, python_callable=bronze)
+    s = PythonOperator(task_id=<span class="s">"silver"</span>, python_callable=silver)
+    g = PythonOperator(task_id=<span class="s">"gold"</span>,   python_callable=gold)
+    alerte = PythonOperator(task_id=<span class="s">"alerte"</span>, python_callable=notify,
+                 trigger_rule=TriggerRule.ONE_FAILED)  <span class="c"># si une étape échoue</span>
+    b &gt;&gt; s &gt;&gt; g
+    [b, s, g] &gt;&gt; alerte</code></pre></div>
+  <div style="display:grid;gap:1vh">
+    <div class="card"><span class="lab">Connections et Variables</span><p><b>Connection</b> (Admin → Connections, ou variable d'environnement <code>AIRFLOW_CONN_…</code>) : hôte, login, mot de passe d'un service — les <b>secrets</b>. <b>Variable</b> : un paramètre de <b>configuration</b> (nom de bucket, région). Le code du DAG ne contient ni l'un ni l'autre en dur.</p></div>
+    <div class="card"><span class="lab">Trigger rules</span><table class="cmp md"><tr><td><code>all_success</code></td><td>défaut : tous les parents ont réussi</td></tr><tr><td><code>one_failed</code></td><td>au moins un parent a échoué → alerte</td></tr><tr><td><code>all_done</code></td><td>tous terminés, quel que soit l'état → nettoyage</td></tr><tr><td><code>none_failed</code></td><td>aucun échec (succès ou skip)</td></tr></table></div>
+    <div class="card"><span class="lab">Providers et hooks</span><p>Les intégrations cloud sont des paquets séparés : <code>apache-airflow-providers-amazon</code> fournit <code>S3Hook</code>, qui lit une Connection au lieu d'un client boto3 configuré à la main. <b>TaskGroup</b> regroupe visuellement des tâches.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Orchestrer avec Airflow</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Les bonnes pratiques d'un DAG</h2>
+<div class="grid g3">
+  <div class="card"><span class="lab">Le DAG orchestre, il ne calcule pas</span><p>La logique métier vit dans <code>src/</code> (extract, transform, load) et se teste <b>sans Airflow</b>. Le DAG ne fait qu'appeler. Et le code de <b>premier niveau</b> du fichier (hors fonctions) doit rester léger : le scheduler relit le fichier en permanence.</p></div>
+  <div class="card"><span class="lab">Tâches atomiques et idempotentes</span><p>Une tâche = une responsabilité ; si elle échoue, on la relance seule. Elle traite <b>sa</b> logical_date et écrit sur une clé déterministe : la relancer ne crée aucun doublon.</p></div>
+  <div class="card"><span class="lab">Robustesse</span><p><code>retries</code> + <code>retry_delay</code> pour les pannes passagères, <code>execution_timeout</code> contre les tâches bloquées, alerte (e-mail, Slack) sur échec, <b>SLA</b> de fraîcheur.</p></div>
+</div>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Passer un DataFrame par XCom.</b> XCom est stocké dans la base de métadonnées : petites valeurs seulement (un chemin, un compteur). Les données passent par S3.</div>
+    <div><b>Utiliser <code>datetime.now()</code> dans une tâche.</b> Relancer le run d'hier traiterait aujourd'hui : utiliser <code>ds</code>.</div>
+    <div><b>Faire tourner Spark « dans » Airflow.</b> Airflow <b>soumet</b> le job (SparkSubmitOperator, EMR, Databricks) ; le calcul se fait ailleurs.</div>
+    <div><b>Oublier <code>catchup=False</code>.</b> Un <code>start_date</code> ancien déclenche des dizaines de runs au premier démarrage.</div>
+  </div>
+  <ol class="sum-list">
+    <li>DAG = graphe acyclique de tâches ; Operator = type de tâche.</li>
+    <li>Scheduler planifie, Executor exécute, UI montre, base mémorise.</li>
+    <li><b>logical_date</b> = période traitée → backfill et relances fiables.</li>
+    <li>Secrets en <b>Connections</b>, configuration en <b>Variables</b>.</li>
+    <li>Retries, timeout, trigger rule d'alerte, métier hors du DAG.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/airflow.png" alt="Logo Apache Airflow"></div>
+<div class="kicker">Chapitre 04 · Orchestrer avec Airflow</div>
+<h2>Fiche — Airflow</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Pourquoi</span><p>Dépendances, retries, visibilité, backfill, alertes : ce que cron n'offre pas.</p></div>
+  <div class="card"><span class="lab">Composants</span><p>DAG · Task/Operator · Scheduler · Executor (Local, Celery, Kubernetes) · UI · base de métadonnées · XCom (petites valeurs).</p></div>
+  <div class="card"><span class="lab">Temps</span><p><b>logical_date</b> (<code>ds</code>) = période traitée. <code>start_date</code> fixe. <code>catchup</code> rejoue les intervalles passés ; backfill à la demande.</p></div>
+  <div class="card"><span class="lab">Configuration</span><p>Connections = secrets · Variables = paramètres · providers/hooks (S3Hook).</p></div>
+  <div class="card"><span class="lab">Trigger rules</span><p><code>all_success</code> (défaut) · <code>one_failed</code> (alerte) · <code>all_done</code> (nettoyage) · <code>none_failed</code>.</p></div>
+  <div class="card"><span class="lab">Bonnes pratiques</span><p>Métier dans <code>src/</code> · tâches atomiques, idempotentes · retries + timeout · pas de données dans XCom · pas de <code>now()</code>.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Orchestrer avec Airflow</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 04</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Pourquoi un orchestrateur plutôt que des tâches cron ?</button><div class="ab"><p>Cron déclenche à heure fixe sans connaître l'état des étapes. Un orchestrateur enchaîne les tâches selon leurs <b>dépendances</b>, relance les échecs (<b>retries</b>), conserve l'historique et les logs de chaque run, alerte, et permet le <b>backfill</b> d'une période passée. C'est ce qui rend un pipeline exploitable en production.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce que la logical_date et pourquoi la tâche doit-elle l'utiliser ?</button><div class="ab"><p>C'est la période de données que le run traite, distincte de l'heure réelle d'exécution. En filtrant les données sur cette date plutôt que sur l'heure courante, une relance ou un backfill retraite exactement la même période : la tâche est <b>déterministe et idempotente</b>.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Airflow traite-t-il les données ?</button><div class="ab"><p>Non, il <b>orchestre</b> : il décide quand et dans quel ordre lancer des traitements, qui s'exécutent dans des scripts Python, des jobs Spark, des requêtes SQL ou des services cloud. Les données transitent par le stockage (S3), pas par Airflow ; XCom ne sert qu'à de petites métadonnées.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment gérez-vous un échec dans votre DAG ?</button><div class="ab"><p>Des <b>retries</b> avec délai pour les erreurs passagères, un <b>timeout</b> par tâche, une tâche d'alerte en <code>trigger_rule=one_failed</code> qui notifie l'équipe, puis l'analyse des logs dans l'UI. Comme les tâches sont idempotentes, on corrige et on relance seulement la tâche fautive (<i>clear</i>).</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quelles alternatives à Airflow connaissez-vous ?</button><div class="ab"><p><b>Dagster</b> (centré sur les données produites, les <i>assets</i>), <b>Prefect</b> (Python natif), <b>Azure Data Factory</b> (visuel, managé), <b>AWS Step Functions</b> (serverless, piloté par événements). Airflow reste le standard le plus répandu, avec des versions managées (MWAA, Cloud Composer).</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Orchestrer avec Airflow</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="04"></div>
+</section>
+
+<!-- ================= 05 · QUALITÉ ET DATAOPS ================= -->
+<section class="slide" data-ch="05" data-sec="05 Qualité" data-title="Qualité des données et DataOps" data-v="c">
+<div class="kicker">Chapitre 05 · Qualité des données et DataOps</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Un pipeline qui tourne n'est pas un pipeline juste</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <div class="card bad"><span class="lab">Garbage in, garbage out</span><p>Des doublons gonflent le chiffre d'affaires, un montant négatif fausse une moyenne, un chemin vide produit un rapport « à jour » sans nouvelle donnée. Plus l'anomalie est détectée <b>tard</b> (Silver, Gold, production), plus elle coûte : <b>fail fast</b>, valider dès l'entrée.</p></div>
+    <div class="card"><span class="lab">Schema on read vs schema on write</span><p><b>On write</b> (entrepôt) : le schéma est imposé à l'écriture, les données non conformes sont rejetées — fiable mais rigide. <b>On read</b> (lac brut) : tout est accepté, le schéma s'applique à la lecture — souple mais les problèmes surgissent tard. Le lakehouse combine : <b>Bronze on read</b>, <b>Silver et Gold on write</b>.</p></div>
+  </div>
+  <div style="display:grid;gap:1vh">
+    <div class="card hl"><span class="lab">Les 5 familles de contrôles</span><ul><li><b>Complétude</b> : champs obligatoires non nuls (<code>event_id</code>, <code>timestamp</code>).</li><li><b>Type</b> : <code>price</code> numérique, <code>quantity</code> entier.</li><li><b>Plage</b> : prix &gt; 0, quantité ≥ 1.</li><li><b>Unicité</b> : pas de doublon sur la clé métier.</li><li><b>Règles métier</b> : statut dans une liste autorisée, cohérence entre champs.</li></ul></div>
+    <div class="analogy"><b>Analogie — le contrôle qualité d'une usine.</b> On vérifie les pièces à la réception plutôt qu'au service après-vente ; les pièces défectueuses vont au bac de non-conformité (quarantaine) avec une fiche, pas à la poubelle.</div>
+  </div>
+</div>
+<p class="punch" style="font-size:.95em">Dimensions de qualité et gouvernance (RGPD, rôles) : voir le cours <a href="data-qualite.html">Qualité &amp; gouvernance</a>. Ici : la qualité <b>dans le pipeline</b>.</p>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Qualité des données et DataOps</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Contrat de données, quarantaine, tests</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <div class="card"><span class="lab">Data contract</span><p>Un accord <b>versionné dans Git</b> entre producteur et consommateurs : schéma (types, nullabilité, unicité), valeurs autorisées, <b>SLA de fraîcheur</b>, propriétaire. Le dataset devient une « API » : un changement incompatible se négocie, il ne se découvre pas en production.</p></div>
+    <div class="code"><div class="codeh"><span>python · règles appliquées avant Silver</span><button class="cpy" type="button">Copier</button></div><pre><code>RULES = [(<span class="s">"price_positive"</span>,  <span class="kw">lambda</span> e: float(e[<span class="s">"price"</span>]) &gt; 0),
+         (<span class="s">"quantity_valid"</span>,  <span class="kw">lambda</span> e: int(e[<span class="s">"quantity"</span>]) &gt;= 1),
+         (<span class="s">"status_known"</span>,    <span class="kw">lambda</span> e: e[<span class="s">"status"</span>] <span class="kw">in</span> STATUTS)]
+valides, rejets = [], []
+<span class="kw">for</span> e <span class="kw">in</span> events:
+    ko = [nom <span class="kw">for</span> nom, ok <span class="kw">in</span> RULES <span class="kw">if not</span> ok(e)]
+    (rejets <span class="kw">if</span> ko <span class="kw">else</span> valides).append({**e, <span class="s">"_reject"</span>: ko} <span class="kw">if</span> ko <span class="kw">else</span> e)
+put_json(<span class="s">f"quarantine/orders/{ds}.json"</span>, rejets)   <span class="c"># jamais supprimés</span>
+taux = len(rejets) / max(len(events), 1)
+<span class="kw">if</span> taux &gt; 0.01: <span class="kw">raise</span> ValueError(<span class="s">f"{taux:.1%} de rejets"</span>)  <span class="c"># fail fast</span></code></pre></div>
+  </div>
+  <div style="display:grid;gap:1vh">
+    <div class="code"><div class="codeh"><span>python · tests/test_transform.py (pytest)</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">def</span> test_dedup_garde_le_dernier():
+    ev = [{<span class="s">"event_id"</span>: <span class="s">"a1"</span>, <span class="s">"status"</span>: <span class="s">"pending"</span>},
+          {<span class="s">"event_id"</span>: <span class="s">"a1"</span>, <span class="s">"status"</span>: <span class="s">"completed"</span>}]
+    out = deduplicate(ev, key=<span class="s">"event_id"</span>)
+    <span class="kw">assert</span> len(out) == 1 <span class="kw">and</span> out[0][<span class="s">"status"</span>] == <span class="s">"completed"</span>
+
+<span class="kw">def</span> test_total():
+    <span class="kw">assert</span> compute_total({<span class="s">"quantity"</span>: 3, <span class="s">"price"</span>: 9.99}) == pytest.approx(29.97)</code></pre></div>
+    <div class="card hl"><span class="lab">DataOps = DevOps appliqué aux données</span><ul><li><b>Tout dans Git</b> : DAG, code métier, tests, contrats, configuration.</li><li><b>Tests automatisés</b> (pytest) sur des jeux contrôlés, hors Airflow.</li><li><b>CI/CD</b> : chaque pull request lance lint et tests ; un échec bloque la fusion.</li><li><b>Observabilité</b> : volumétrie par étape, taux de nulls, <b>fraîcheur</b>, taux de quarantaine, durée des runs — avec seuils d'alerte.</li></ul></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Qualité des données et DataOps</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Ce qu'il faut surveiller</h2>
+<div class="grid g2">
+  <table class="cmp md"><tr><th>Métrique</th><th>Alerte si…</th></tr>
+    <tr><td>Nombre de lignes par étape</td><td>chute brutale vs run précédent (ex. −20 %)</td></tr>
+    <tr><td>Taux de nulls sur colonnes clés</td><td>au-dessus du seuil du contrat</td></tr>
+    <tr><td><b>Fraîcheur</b> (âge de la donnée la plus récente)</td><td>au-delà du SLA</td></tr>
+    <tr><td>Taux de quarantaine</td><td>&gt; 1 % : problème à la source</td></tr>
+    <tr><td>Durée du run</td><td>&gt; 2 × la durée habituelle</td></tr></table>
+  <div class="trap-list">
+    <div><b>« Le DAG est vert, donc les données sont bonnes ».</b> Un run peut réussir sur un dossier vide : vérifier volumétrie et fraîcheur.</div>
+    <div><b>Supprimer les lignes invalides.</b> On perd la preuve et la possibilité de corriger puis rejouer : quarantaine.</div>
+    <div><b>Tester le DAG au lieu du métier.</b> On teste les fonctions de transformation, isolées, sur des données contrôlées.</div>
+    <div><b>Dédoublonner dans Raw.</b> Raw reste en ajout seul ; le dédoublonnage se fait en Silver.</div>
+  </div>
+</div>
+<ol class="sum-list">
+  <li><b>Fail fast</b> : valider à l'entrée de Silver (complétude, type, plage, unicité, métier).</li>
+  <li>Bronze <b>schema on read</b>, Silver/Gold <b>schema on write</b>.</li>
+  <li><b>Data contract</b> versionné : schéma, règles, SLA, propriétaire.</li>
+  <li>Invalides en <b>quarantaine</b> avec la raison ; seuil de rejet qui fait échouer.</li>
+  <li><b>DataOps</b> : Git, pytest, CI/CD, métriques de données et alertes.</li>
+</ol>
+</section>
+
+<section class="slide" data-ch="05" data-v="e">
+<div class="kicker">Chapitre 05 · Qualité des données et DataOps</div>
+<h2>Fiche — Qualité et DataOps</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Principe</span><p>Fail fast : plus tard on détecte, plus on retraite. Producteur responsable, Data Engineer valide, consommateur fait confiance à Silver/Gold.</p></div>
+  <div class="card"><span class="lab">Contrôles</span><p>Complétude · type · plage · unicité · règles métier.</p></div>
+  <div class="card"><span class="lab">Schéma</span><p>On read (lac, souple) vs on write (entrepôt, strict). Lakehouse : Bronze on read, Silver/Gold on write.</p></div>
+  <div class="card"><span class="lab">Data contract</span><p>YAML/JSON dans Git : schéma, contraintes, valeurs autorisées, SLA de fraîcheur, propriétaire, version.</p></div>
+  <div class="card"><span class="lab">Quarantaine</span><p>Invalides isolés + raison + date + fichier source ; analyser, remonter, corriger, rejouer.</p></div>
+  <div class="card"><span class="lab">DataOps</span><p>Git · pytest sur le métier · CI/CD · métriques : volumétrie, nulls, fraîcheur, rejets, durée.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · Qualité des données et DataOps</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 05</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Comment garantissez-vous la qualité des données de votre pipeline ?</button><div class="ab"><p>Par des contrôles <b>à l'entrée de Silver</b> (complétude, types, plages, unicité, règles métier) dérivés d'un contrat de données ; les lignes invalides vont en <b>quarantaine</b> avec la raison ; un seuil de rejet fait échouer le run et déclenche une alerte. Les fonctions de transformation sont couvertes par des tests pytest exécutés en CI, et je surveille volumétrie et fraîcheur.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi ne pas simplement supprimer les lignes invalides ?</button><div class="ab"><p>Parce qu'on perdrait l'information : impossible de mesurer l'ampleur du problème, d'expliquer un écart, de remonter la cause au producteur ou de rejouer après correction. La quarantaine conserve tout, à part, sans polluer Silver.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce qu'un data contract ?</button><div class="ab"><p>Un accord formel et versionné entre l'équipe qui produit un jeu de données et ceux qui le consomment : schéma, contraintes, valeurs autorisées, fraîcheur garantie, propriétaire. Il se valide automatiquement et toute évolution incompatible passe par une revue, comme pour une API.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Que testez-vous exactement avec pytest ?</button><div class="ab"><p>Les <b>fonctions métier</b> isolées : dédoublonnage (le dernier événement gagne), calculs (total = quantité × prix), filtres de statut, règles de validation, sur de petits jeux de données construits pour couvrir les cas limites. On ne teste pas Airflow lui-même ; c'est pour cela que le métier est séparé du DAG.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · Qualité des données et DataOps</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="05"></div>
+</section>
+
+<!-- ================= 06 · CLOUD, LAKEHOUSE, SYNTHÈSE ================= -->
+<section class="slide" data-ch="06" data-sec="06 Synthèse" data-title="Du lab au cloud : lakehouse et synthèse" data-v="c">
+<div class="kicker">Chapitre 06 · Du lab au cloud</div>
+<div class="pqrow"><span class="pq">② Quoi</span> <span class="pq how">③ Comment</span></div>
+<h2>Le même pipeline, en production cloud</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <table class="cmp md"><tr><th>Lab local</th><th>AWS</th><th>Azure</th><th>GCP</th></tr>
+      <tr><td>MinIO</td><td>S3</td><td>ADLS Gen2</td><td>GCS</td></tr>
+      <tr><td>Airflow (Docker)</td><td>MWAA</td><td>Data Factory</td><td>Cloud Composer</td></tr>
+      <tr><td>Policies MinIO</td><td>IAM</td><td>RBAC / Entra ID</td><td>IAM</td></tr>
+      <tr><td>boto3 + endpoint</td><td>boto3 sans endpoint</td><td>Azure SDK</td><td>google-cloud-storage</td></tr></table>
+    <div class="card"><span class="lab">Modèles de service</span><p><b>IaaS</b> (machines virtuelles : on gère l'OS) · <b>PaaS</b> (service managé : on gère son code — EMR, Databricks, MWAA) · <b>Serverless</b> (on ne fournit que la logique, facturation à l'usage — S3, Lambda, Athena). Règle : <b>pas de VM si un service managé existe</b>.</p></div>
+  </div>
+  <div style="display:grid;gap:1vh">
+    <div class="card"><span class="lab">Responsabilité partagée</span><p>Le fournisseur sécurise le matériel, le réseau physique et la virtualisation ; <b>nous</b> sécurisons les données, IAM, le chiffrement, le code et la configuration. Un bucket public est <b>notre</b> faute.</p></div>
+    <div class="card"><span class="lab">FinOps : le code a un coût</span><p>Passage du CapEx (achat) à l'OpEx (consommation). Pièges : <b>egress</b> (sortie de données entre régions), petits fichiers (requêtes facturées), ressources oubliées allumées, <code>SELECT *</code> non partitionné sur Athena (facturé au To scanné).</p></div>
+    <div class="card"><span class="lab">Pourquoi Docker pour le lab</span><p><code>docker compose up</code> démarre MinIO, Airflow et PostgreSQL à l'identique sur toute machine : images <b>immuables</b>, fin du « ça marche chez moi ». Voir <a href="docker.html">Docker</a>.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="06" data-v="c">
+<div class="kicker">Chapitre 06 · Du lab au cloud</div>
+<div class="pqrow"><span class="pq">② Quoi</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Lakehouse : le lac qui devient fiable</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <div class="card"><span class="lab">Le problème</span><p>Le <b>data lake</b> est souple et bon marché mais sans garanties (data swamp, pas de transaction) ; l'<b>entrepôt</b> est fiable et rapide mais rigide et cher. Sur du stockage objet, on ne modifie pas un fichier : deux écritures simultanées peuvent laisser un état incohérent, et on ne peut ni revenir en arrière ni lire l'état d'hier.</p></div>
+    <div class="card hl"><span class="lab">La réponse : formats de tables ouverts</span><p><b>Delta Lake</b> (Databricks) et <b>Apache Iceberg</b> (né chez Netflix, multi-moteurs : Spark, Trino, Flink, Athena) ajoutent sur des fichiers Parquet un <b>journal de transactions</b> : transactions <b>ACID</b>, <b>time travel</b>, application du schéma, <code>MERGE</code> (upsert). Le pipeline Bronze → Silver → Gold de ce cours est un lakehouse simplifié, sans ces garanties.</p></div>
+  </div>
+  <ol class="sum-list">
+    <li><b>Stocker</b> : stockage objet en couches Raw / Cleansed / Curated, partitionné, Parquet.</li>
+    <li><b>Sécuriser</b> : IAM au moindre privilège, chiffrement au repos et en transit, secrets hors du code.</li>
+    <li><b>Ingérer</b> : batch par défaut, validation, quarantaine, clés déterministes.</li>
+    <li><b>Orchestrer</b> : DAG Airflow, logical_date, retries, alertes, métier séparé.</li>
+    <li><b>Fiabiliser</b> : contrôles, data contract, pytest, CI/CD, métriques de fraîcheur.</li>
+    <li><b>Industrialiser</b> : services managés, FinOps, formats lakehouse (Delta, Iceberg).</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="06" data-v="e">
+<div class="kicker">Chapitre 06 · Du lab au cloud</div>
+<h2>Fiche — Cloud et lakehouse</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Équivalences</span><p>MinIO ↔ S3 ↔ ADLS Gen2 ↔ GCS · Airflow ↔ MWAA ↔ Cloud Composer (Azure : Data Factory) · IAM ↔ RBAC.</p></div>
+  <div class="card"><span class="lab">Modèles</span><p>IaaS (VM) · PaaS (managé) · Serverless (usage). Préférer le managé.</p></div>
+  <div class="card"><span class="lab">Responsabilité partagée</span><p>Fournisseur : physique, virtualisation. Nous : données, IAM, chiffrement, configuration.</p></div>
+  <div class="card"><span class="lab">FinOps</span><p>Egress, petits fichiers, ressources oubliées, scans non partitionnés.</p></div>
+  <div class="card"><span class="lab">Lakehouse</span><p>Lac + garanties d'entrepôt : Delta / Iceberg = journal de transactions sur Parquet → ACID, time travel, MERGE, schéma.</p></div>
+  <div class="card"><span class="lab">Médaillon</span><p>Bronze on read · Silver on write · Gold agrégé pour la BI et le ML.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="06">
+<div class="kicker">Chapitre 06 · Du lab au cloud</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — synthèse</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Décrivez votre pipeline de bout en bout.</button><div class="ab"><p>Les fichiers sources sont validés puis déposés dans la couche <b>Raw</b> d'un stockage S3, partitionnés par date. Un DAG Airflow quotidien enchaîne Bronze, Silver (typage, dédoublonnage, contrôles qualité, quarantaine) et Gold (agrégats pour la BI). Chaque tâche traite sa logical_date et écrit sur une clé déterministe, donc rejouable. Les accès passent par des comptes au moindre privilège, les secrets par les Connections, et le code métier est testé en CI.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment passeriez-vous ce lab en production cloud ?</button><div class="ab"><p>MinIO devient S3 (seul l'<code>endpoint_url</code> disparaît), Airflow devient MWAA ou Cloud Composer, les utilisateurs MinIO deviennent des <b>rôles IAM</b> attachés aux services, les secrets passent dans un gestionnaire de secrets, on active TLS, les logs d'accès et des alertes, on ajoute des lifecycle policies et un suivi des coûts. Pour l'ACID et le time travel, j'écrirais Silver et Gold en Delta ou Iceberg.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Data lake, data warehouse, lakehouse : quelles différences ?</button><div class="ab"><p>Le <b>lac</b> stocke tout format à bas coût, schéma à la lecture, sans garantie transactionnelle. L'<b>entrepôt</b> impose un schéma à l'écriture, optimise le SQL analytique, mais est plus rigide et coûteux. Le <b>lakehouse</b> garde le stockage ouvert du lac et y ajoute, via Delta ou Iceberg, transactions ACID, schéma et time travel.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quels risques de coût surveillez-vous dans le cloud ?</button><div class="ab"><p>Les clusters laissés allumés, les transferts sortants entre régions, la multiplication des petits fichiers (chaque requête est facturée) et les requêtes qui scannent tout faute de partitionnement ou de format colonnaire. Réponses : arrêt automatique, partitionnement et Parquet, compaction, lifecycle policies et budgets avec alertes.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="06">
+<div class="kicker">Chapitre 06 · Du lab au cloud</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="06"></div>
+</section>
+
+<!-- ================= QUIZ FINAL ================= -->
+<section class="slide" data-ch="quiz" data-sec="Quiz final" data-title="Quiz final — 45 questions">
+<div class="kicker">Quiz final · Airflow &amp; S3</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-target"/></svg> 45 questions pour affronter le jury</h2>
+<p class="lead">Tous chapitres mélangés ; l'ordre des questions et des réponses change à chaque tentative. Certaines questions ont <b>plusieurs bonnes réponses</b>.</p>
+<div data-quiz="final"></div>
+</section>
+
+</main>
+<button class="arrow" id="prev" type="button" aria-label="Diapositive précédente">‹</button>
+<button class="arrow" id="next" type="button" aria-label="Diapositive suivante">›</button>
+<nav id="tl" aria-label="Chapitres"></nav>
+<div id="hint">← → naviguer · ↑ ↓ défiler · H ampoule <svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg> · E Complète/Essentiel · M maîtrisé · S sommaire · T thème</div>
+<button id="bulbhint" type="button"><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></button>
+<div id="ctip" role="tooltip"></div>
+<div id="toc" role="dialog" aria-label="Sommaire">
+  <button class="btn xx" id="tocx" type="button">Fermer ✕</button>
+  <div class="kicker">Sommaire · Airflow &amp; S3 (MinIO)</div>
+  <h2>Airflow &amp; S3 (MinIO)</h2>
+  <div class="tg"></div>
+</div>
+
+<div id="fab">
+  <button id="helpbtn" type="button" aria-label="Ampoule : concepts expliqués au survol" aria-pressed="false" title="Ampoule : soulignez les concepts, survolez-les pour une explication (H)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></button>
+<button id="tocbtn" type="button" aria-label="Sommaire" title="Sommaire (S)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+  <div id="themebtn">
+    <div id="menu" role="menu"><h4>Thème</h4></div>
+    <button id="tbtn" type="button" aria-label="Changer de thème" aria-haspopup="true" title="Changer de thème (T)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.4-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16a5 5 0 0 0 5-5c0-4-4-7-9-7z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="7.5" r="1"/></svg>
+    </button>
+  </div>
+</div>
+
+</div>
+<script src="assets/icons.js?v=1795252877"></script>
+<script src="data/airflow-quiz.js?v=1795252878"></script>
+<script src="data/airflow-glossary.js?v=1795252878"></script>
+<script src="assets/engine.js?v=1795252877"></script>
+</body>
+</html>

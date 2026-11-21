@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SQL, des bases à l&#x27;IA · Révision Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/base.css?v=1795252877">
+<link rel="stylesheet" href="assets/photos.css?v=1795252877">
+<link rel="stylesheet" href="assets/revision.css?v=1795252877">
+</head>
+<body data-page="course" data-course="sql" data-title="SQL, des bases à l&#x27;IA">
+<div id="app" data-theme="papier">
+
+<div id="bg" aria-hidden="true">
+  <div class="bgl bg-neon">
+    <svg viewBox="0 0 800 800"><path d="M40 760 L400 280 L760 760" stroke-width="3"/><path d="M110 760 L400 380 L690 760" stroke-width="2.4" opacity=".85"/><path d="M180 760 L400 470 L620 760" stroke-width="2" opacity=".7"/><path d="M250 760 L400 560 L550 760" stroke-width="1.6" opacity=".55"/><path d="M320 760 L400 650 L480 760" stroke-width="1.2" opacity=".4"/></svg>
+  </div>
+  <div class="bgl bg-sauge"><div class="panel"></div><div id="bignum"></div></div>
+  <div class="bgl bg-nuit"><i></i><i></i><i></i></div>
+  <div class="bgl bg-verre"><div class="blob a"></div><div class="blob b"></div><div class="blob c"></div></div>
+  <div class="bgl bg-papier"><i></i><i></i><i></i></div>
+  <div class="bgl bg-rubans"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f8fe0"/><stop offset="1" stop-color="#2fd0bd"/></linearGradient>
+      <linearGradient id="rg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fdcc4"/><stop offset=".55" stop-color="#26b2d2"/><stop offset="1" stop-color="#2f8fe0"/></linearGradient>
+      <linearGradient id="rg3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2fd0bd"/><stop offset="1" stop-color="#2f90e2"/></linearGradient>
+      <filter id="rsh" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="12"/></filter>
+    </defs>
+    <g class="rb" id="rb-a" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g class="rb b" id="rb-b" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+  </svg></div>
+  <div class="bgl bg-facettes"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="fcw" id="fc-top"></g><g class="fcw" id="fc-bot"></g></svg></div>
+  <div class="bgl photo bg-bulles"><i></i></div>
+  <div class="bgl photo bg-hexa"><i></i></div>
+  <div class="bgl photo bg-points"><i></i></div>
+</div>
+
+<svg id="defs" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+  <marker id="arrk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3a4458"/></marker>
+  <marker id="arrbad" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+</defs></svg>
+
+<div id="brand"><a href="index.html" title="Retour à l'accueil">← Accueil</a> · SQL, des bases à l&#x27;IA</div>
+<div id="topbar">
+  <div id="vseg" role="group" aria-label="Version du cours"><button type="button" data-v="c" title="Tout le cours (E pour basculer)"><svg class="ico" aria-hidden="true"><use href="#ti-book"/></svg> Complète</button><button type="button" data-v="e" title="Ce qu'il faut maîtriser pour le jury (E)"><svg class="ico" aria-hidden="true"><use href="#ti-bolt"/></svg> Essentiel</button></div>
+  <button id="mast" type="button" title="Marquer ce chapitre comme maîtrisé (M)"></button>
+  <span id="prog"></span>
+</div>
+<div id="hud"><span id="count">1 / 1</span></div>
+<main id="deck">
+<!-- ================= 00 · IMMERSION ================= -->
+<section class="slide" data-ch="00" data-sec="Immersion" data-title="Immersion : découvrir SQL">
+<div class="kicker">Bloc 4B · Big Data &amp; IA</div>
+<h1>SQL pour le Data Engineer</h1>
+<p class="lead">Le langage commun de toute la chaîne data. Avant d'écrire la moindre requête : qu'est-ce que SQL, d'où vient-il, et pourquoi, cinquante ans plus tard, aucun Data Engineer ne peut s'en passer ?</p>
+<div class="chips"><span class="pill solid">immersion + 5 chapitres</span><span class="pill">mini-quiz par chapitre</span><span class="pill">quiz final · 45 questions</span><span class="pill">syntaxe PostgreSQL</span></div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 1 / 3</div>
+<h2>Comment retrouver en une seconde les 10 meilleurs clients parmi 50 millions de commandes ?</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card bad"><span class="lab">Sans SQL</span><p>Il faudrait écrire un programme : ouvrir les fichiers, parcourir chaque commande, additionner par client dans un dictionnaire, trier, gérer la mémoire, les fichiers corrompus, les accès simultanés… et le réécrire pour chaque nouvelle question.</p></div>
+    <div class="card hl"><span class="lab">Avec SQL</span><p>On <b>décrit le résultat</b> en quelques lignes ; le moteur de la base trouve seul le moyen le plus rapide de l'obtenir (index, ordre des opérations).</p></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <p class="punch"><b>SQL</b> (<i>Structured Query Language</i>) est le <b>langage standard</b> pour <b>interroger et manipuler des données organisées en tables</b> reliées entre elles (bases relationnelles).</p>
+    <div class="analogy"><b>Analogie — le bibliothécaire.</b> Tu ne parcours pas toi-même les rayons : tu lui dis <i>« les romans policiers parus après 2020, triés par auteur »</i>. Il connaît le classement et va droit au but. SQL est la langue dans laquelle on parle au bibliothécaire ; la base de données est la bibliothèque.</div>
+    <div class="card"><span class="lab">Déclaratif</span><p>On dit <b>quoi</b>, pas <b>comment</b>. C'est ce qui rend SQL accessible aux analystes et optimisable par la machine.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 2 / 3</div>
+<h2>Une invention de 1970 qui n'a jamais été remplacée</h2>
+<div class="flow">
+  <div class="step"><b>1970</b><small>Edgar F. Codd (IBM) publie le <b>modèle relationnel</b> : des données en tables, reliées par des valeurs</small></div>
+  <div class="step"><b>1974</b><small>Chamberlin et Boyce (IBM) créent SEQUEL, qui deviendra <b>SQL</b></small></div>
+  <div class="step"><b>1979</b><small>Oracle commercialise la première base relationnelle SQL</small></div>
+  <div class="step"><b>1986</b><small>SQL devient une <b>norme</b> ANSI puis ISO, enrichie depuis (fenêtres, JSON…)</small></div>
+  <div class="step"><b>Aujourd'hui</b><small>PostgreSQL, MySQL, SQL Server, Oracle, SQLite… et le Big Data l'a adopté</small></div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Pourquoi il est partout dans la data</span><ul><li>Les bases <b>transactionnelles</b> des applications (commandes, clients) parlent SQL.</li><li>Les outils Big Data ont tous ajouté une couche SQL : <b>Hive</b>, <b>Spark SQL</b>, <b>Trino</b> ; les entrepôts cloud aussi (Snowflake, BigQuery, Redshift).</li><li>La BI (Power BI) et les outils de transformation (dbt) génèrent ou exécutent du SQL.</li><li>Il figure dans quasiment toutes les offres d'emploi de Data Engineer et d'analyste.</li></ul></div>
+  <div class="sch free"><span class="cap">SQL tout au long du pipeline</span>
+  <svg class="dg" viewBox="0 -36 460 246" role="img" aria-label="Sources relationnelles, ingestion, data lake avec Hive et Spark SQL, entrepôt, BI : SQL intervient à chaque étape">
+    <rect class="b f3" x="10" y="20" width="130" height="50" rx="8"/><text class="t tc" x="75" y="42" style="font-size:13px">Base applicative</text><text class="a" x="75" y="60" text-anchor="middle">SQL</text>
+    <rect class="b f1" x="165" y="20" width="130" height="50" rx="8"/><text class="t tc" x="230" y="42" style="font-size:13px">Data lake</text><text class="a" x="230" y="60" text-anchor="middle">Hive · Spark SQL</text>
+    <rect class="b f2" x="320" y="20" width="130" height="50" rx="8"/><text class="t tc" x="385" y="42" style="font-size:13px">Entrepôt</text><text class="a" x="385" y="60" text-anchor="middle">SQL analytique</text>
+    <rect class="b f4" x="165" y="120" width="130" height="50" rx="8"/><text class="t tc" x="230" y="142" style="font-size:13px">BI · rapports</text><text class="a" x="230" y="160" text-anchor="middle">SQL généré</text>
+    <path class="e" d="M140 45 H161"/><path class="e" d="M295 45 H316"/><path class="e" d="M385 72 L290 120"/>
+    <text class="s" x="10" y="200">Merise conçoit · SQL interroge · Spark/Hive passent à l'échelle</text>
+  
+  <use class="il" href="#il-database" x="60.0" y="-13" width="30" height="30"/><use class="il" href="#il-cloud" x="215.0" y="-13" width="30" height="30"/><use class="il" href="#il-database" x="370.0" y="-13" width="30" height="30"/><use class="il" href="#il-chart" x="128" y="128" width="30" height="28"/>
+</svg></div>
+</div>
+<p class="punch">Les modes passent (NoSQL, Big Data, cloud) ; SQL reste, parce que <b>tout le monde finit par vouloir interroger ses données en tables</b>.</p>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 3 / 3</div>
+<h2>Premier contact : une requête, un résultat</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>SQL · les 3 meilleurs clients de la boulangerie</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">SELECT</span>   c.nom, <span class="kw">SUM</span>(l.qte * p.prix) <span class="kw">AS</span> total   <span class="c">-- ce que je veux voir</span>
+<span class="kw">FROM</span>     client c                                  <span class="c">-- d'où viennent les données</span>
+<span class="kw">JOIN</span>     commande o       <span class="kw">ON</span> o.client_id   = c.id   <span class="c">-- relier les tables</span>
+<span class="kw">JOIN</span>     ligne_commande l <span class="kw">ON</span> l.commande_id = o.id
+<span class="kw">JOIN</span>     produit p        <span class="kw">ON</span> p.id          = l.produit_id
+<span class="kw">GROUP BY</span> c.nom                                     <span class="c">-- un total par client</span>
+<span class="kw">ORDER BY</span> total <span class="kw">DESC</span>                                <span class="c">-- du plus gros au plus petit</span>
+<span class="kw">LIMIT</span>    3;</code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <table class="cmp md"><thead><tr><th>nom</th><th>total</th></tr></thead><tbody>
+      <tr><td>Café du Port</td><td>1 284,60</td></tr><tr><td>Hôtel Bellevue</td><td>962,40</td></tr><tr><td>Ada Lovelace</td><td>311,20</td></tr>
+    </tbody></table>
+    <div class="card"><span class="lab">Ce qu'il faut remarquer</span><p>Huit lignes lisibles presque comme une phrase ; aucune boucle, aucun fichier ouvert ; quatre tables reliées par leurs clés. Tout le cours consiste à maîtriser ces quelques mots-clés… et leurs pièges.</p></div>
+  </div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Ce que le jury attend</span><ul><li>Extraire, transformer, charger avec des requêtes fiables, idempotentes, incrémentales.</li><li>Concevoir une base adaptée à l'analytique (index, vues, modèle en étoile).</li><li>Protéger l'intégrité des données (transactions, contraintes).</li></ul></div>
+  <div class="card"><span class="lab">La carte du cours</span><p><b>01</b> Requêter · <b>02</b> Jointures et agrégations · <b>03</b> Sous-requêtes, CTE, fenêtres · <b>04</b> Écrire de façon fiable · <b>05</b> Performance et analytique. Tables d'exemple : <code>client</code>, <code>commande</code>, <code>ligne_commande</code>, <code>produit</code>. La conception des tables est dans <a href="merise.html">Merise</a>.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="e">
+<div class="kicker">Immersion · Essentiel</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Présenter SQL en une minute</h2>
+<div class="card hl"><p class="q">« SQL, <i>Structured Query Language</i>, est le langage standard pour interroger et manipuler des données relationnelles, c'est-à-dire organisées en tables reliées par des clés. Il est né chez IBM dans les années 1970, à partir du modèle relationnel d'Edgar Codd, et il est normalisé depuis 1986.</p><p class="q">C'est un langage <b>déclaratif</b> : on décrit le résultat voulu et l'optimiseur du moteur choisit comment l'obtenir. C'est ce qui le rend à la fois accessible et performant.</p><p class="q">Pour un Data Engineer, il est incontournable : les bases applicatives parlent SQL, et les outils Big Data et cloud l'ont tous adopté — Hive, Spark SQL, Snowflake, BigQuery. Je l'utilise pour extraire, contrôler, transformer et charger les données, et pour concevoir des modèles analytiques.</p><p class="q">Ses limites : les données très hétérogènes ou les accès massifs par clé, où une base NoSQL peut être plus adaptée. »</p></div>
+<div class="grid g3">
+  <div class="card"><span class="lab">Les 3 mots à placer</span><p><b>Relationnel · déclaratif · standard</b></p></div>
+  <div class="card"><span class="lab">Le choix à justifier</span><p><b>Une base relationnelle</b> quand les données sont structurées et doivent rester cohérentes (transactions, contraintes) : commandes, paiements, stocks.</p></div>
+  <div class="card"><span class="lab">Le lien Big Data</span><p>Hive, Spark SQL, Trino, entrepôts cloud</p></div>
+</div>
+</section>
+<section class="slide" data-ch="00" data-sec="Le fil" data-title="Le fil du cours : 5 idées">
+<div class="kicker">Le fil du cours · SQL, des bases à l&#x27;IA</div>
+<h2>5 idées font tout le cours</h2>
+<p class="lead fil-q">Tout le cours répond à : <b>comment obtenir de la base exactement la réponse voulue, vite, et écrire sans jamais l'abîmer ?</b> Cinq règles suffisent à expliquer les résultats inattendus.</p>
+<div class="grid g3 ideas"><div class="card idea"><span class="lab">Idée 1 · On décrit le résultat, pas le chemin</span><p>SQL est <b>déclaratif</b> : on décrit le résultat voulu, et l'optimiseur choisit comment l'obtenir. La requête s'exécute dans un <b>ordre logique</b> (FROM, WHERE, GROUP BY, HAVING, SELECT, ORDER BY) : c'est pourquoi un alias créé dans le SELECT n'existe pas encore dans le WHERE.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on utilise dans le WHERE un alias défini dans le SELECT, ou si l'on filtre un agrégat avec WHERE au lieu de HAVING, la requête échoue.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Répéter l'expression dans le WHERE (ou passer par une sous-requête), et filtrer les agrégats avec HAVING.</p><p class="chs">ch. 01 · ch. 03 · ch. 05</p></div><div class="card idea"><span class="lab">Idée 2 · NULL n'est pas une valeur</span><p>NULL veut dire <b>inconnu</b>, pas zéro ni vide. Toute comparaison avec NULL donne « inconnu », ni vrai ni faux. D'où <b>IS NULL</b> pour le tester, <b>COALESCE</b> pour le remplacer, COUNT(colonne) qui ignore les NULL, et le piège du <b>NOT IN</b>.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si la sous-requête d'un NOT IN contient un seul NULL, la requête ne renvoie aucune ligne, sans aucun message d'erreur.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Écrire NOT EXISTS (ou exclure les NULL dans la sous-requête) au lieu de NOT IN.</p><p class="chs">ch. 01 · ch. 02 · ch. 03</p></div><div class="card idea"><span class="lab">Idée 3 · Toujours savoir à quel grain on est</span><p>Le <b>grain</b>, c'est ce que représente une ligne (une commande, une ligne de commande, un client par mois). Une <b>jointure</b> peut multiplier les lignes, un <b>GROUP BY</b> les regroupe, une <b>fonction de fenêtre</b> calcule sans les regrouper. Vérifier le grain avant d'additionner évite de compter deux fois.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on joint commandes et lignes de commande puis qu'on additionne le montant de la commande, chaque commande est comptée autant de fois qu'elle a de lignes.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Additionner au bon grain : le montant des lignes dans la table des lignes, ou celui des commandes avant la jointure.</p><p class="chs">ch. 02 · ch. 03 · ch. 05</p></div><div class="card idea"><span class="lab">Idée 4 · Écrire en tout ou rien, et pouvoir rejouer</span><p>On écrit en tout ou rien et l'on peut rejouer. Les <b>transactions</b> ACID annulent tout si une étape échoue ; les <b>contraintes</b> (clé primaire, clé étrangère, UNIQUE, CHECK) refusent les incohérences ; l'<b>UPSERT</b> ou le « supprimer puis réinsérer » rendent un chargement <b>rejouable</b> sans doublon. Avant un UPDATE ou un DELETE, on teste le WHERE avec un SELECT.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on lance un UPDATE sans WHERE, toute la table est modifiée ; et si un chargement est rejoué sans précaution, les lignes sont en double.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Lancer d'abord un SELECT avec le même WHERE, puis l'UPDATE dans une transaction, et vérifier le nombre de lignes touchées avant le COMMIT.</p><p class="chs">ch. 04</p></div><div class="card idea"><span class="lab">Idée 5 · La performance se lit dans le plan</span><p>Un <b>index</b> évite de lire toute la table, à condition que le filtre soit <b>sargable</b> : pas de fonction appliquée à la colonne indexée. <b>EXPLAIN</b> montre le chemin choisi par la base. Pour l'analyse : modèle en étoile, vues matérialisées, chargement incrémental.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on écrit WHERE YEAR(date) = 2026, la base ne peut pas utiliser l'index sur la colonne date et lit toute la table.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Écrire WHERE date &gt;= '2026-01-01' AND date &lt; '2027-01-01' : la condition porte sur la colonne brute, l'index sert.</p><p class="chs">ch. 04 · ch. 05</p></div></div>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · SQL, des bases à l&#x27;IA</div>
+<h2>Les règles qui expliquent les surprises</h2>
+<div class="flow"><div class="step"><b>1</b><small>Que représente une ligne du résultat (le grain) ?</small></div><div class="step"><b>2</b><small>Que deviennent les NULL à chaque étape ?</small></div><div class="step"><b>3</b><small>Cette écriture est-elle atomique et rejouable ?</small></div><div class="step"><b>4</b><small>Quel chemin le plan choisit-il (EXPLAIN) ?</small></div></div>
+<table class="cmp md"><thead><tr><th>Situation</th><th>Règle</th><th>Piège</th></tr></thead><tbody><tr><td>Filtrer sur un agrégat</td><td><b>HAVING</b>, après le GROUP BY</td><td>WHERE COUNT(*) &gt; 5 : erreur</td></tr><tr><td>Clients sans commande</td><td><b>NOT EXISTS</b> ou LEFT JOIN … IS NULL</td><td>NOT IN avec un NULL : zéro ligne</td></tr><tr><td>Total des ventes après une jointure</td><td>vérifier le <b>grain</b>, agréger avant de joindre</td><td>montants comptés plusieurs fois</td></tr><tr><td>Rang ou cumul par client</td><td><b>fonction de fenêtre</b> (OVER, PARTITION BY)</td><td>GROUP BY qui fusionne les lignes</td></tr><tr><td>Chargement quotidien rejoué</td><td><b>UPSERT</b> sur une clé, ou delete-insert en transaction</td><td>INSERT simple : doublons</td></tr><tr><td>Requête lente sur une date</td><td>WHERE date &gt;= … (<b>sargable</b>) + index</td><td>fonction appliquée sur la colonne</td></tr></tbody></table>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · SQL, des bases à l&#x27;IA</div>
+<h2>Chaque chapitre applique les mêmes idées</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Chapitre</th><th><b>1</b></th><th><b>2</b></th><th><b>3</b></th><th><b>4</b></th><th><b>5</b></th></tr></thead><tbody><tr><td><b>01</b> Requêter</td><td>●</td><td>●</td><td></td><td></td><td></td></tr><tr><td><b>02</b> Jointures</td><td></td><td>●</td><td>●</td><td></td><td></td></tr><tr><td><b>03</b> Avancé</td><td>●</td><td>●</td><td>●</td><td></td><td></td></tr><tr><td><b>04</b> Écrire</td><td></td><td></td><td></td><td>●</td><td>●</td></tr><tr><td><b>05</b> Analytique</td><td>●</td><td></td><td>●</td><td></td><td>●</td></tr></tbody></table><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Ce qui revient dans <b>plusieurs chapitres</b> est une idée à comprendre ; ce qui n'apparaît qu'une fois est un <b>exemple</b> d'une de ces idées.</p></div></div></div><table class="cmp md"><thead><tr><th>Piège classique</th><th>Idée oubliée</th><th>Ce qui casse</th></tr></thead><tbody><tr><td>NOT IN avec un NULL dans la sous-requête</td><td><b>2</b> · NULL n'est pas une valeur</td><td>résultat vide, sans erreur</td></tr><tr><td>Jointure un-à-plusieurs, puis SUM</td><td><b>3</b> · Toujours savoir à quel grain on est</td><td>chiffre d'affaires gonflé</td></tr><tr><td>UPDATE sans WHERE</td><td><b>4</b> · Écrire en tout ou rien, et pouvoir rejouer</td><td>toute la table est modifiée</td></tr><tr><td>Fonction sur la colonne indexée</td><td><b>5</b> · La performance se lit dans le plan</td><td>lecture complète de la table</td></tr><tr><td>Alias du SELECT dans le WHERE</td><td><b>1</b> · On décrit le résultat, pas le chemin</td><td>erreur : la colonne n'existe pas encore</td></tr><tr><td>ON DELETE CASCADE sans contrôle</td><td><b>4</b> · Écrire en tout ou rien, et pouvoir rejouer</td><td>trois tables vidées par un seul DELETE</td></tr></tbody></table></div>
+</section>
+
+
+<!-- ================= 01 · REQUÊTER ================= -->
+<section class="slide" data-ch="01" data-sec="01 Requêter" data-title="Requêter : SELECT, filtres, NULL" data-v="c">
+<div class="kicker">Chapitre 01 · Requêter</div>
+<div class="pqrow"><span class="pq">② Quoi</span> <span class="pq how">③ Comment</span></div>
+<h2>L'ordre d'écriture n'est pas l'ordre d'exécution</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>SQL · anatomie d'un SELECT</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">SELECT</span>   p.categorie, <span class="kw">COUNT</span>(*) <span class="kw">AS</span> nb      <span class="c">-- 5 · projeter</span>
+<span class="kw">FROM</span>     produit p                          <span class="c">-- 1 · sources</span>
+<span class="kw">WHERE</span>    p.prix &gt; 2                         <span class="c">-- 2 · filtrer les LIGNES</span>
+<span class="kw">GROUP BY</span> p.categorie                        <span class="c">-- 3 · regrouper</span>
+<span class="kw">HAVING</span>   <span class="kw">COUNT</span>(*) &gt;= 3                     <span class="c">-- 4 · filtrer les GROUPES</span>
+<span class="kw">ORDER BY</span> nb <span class="kw">DESC</span>                            <span class="c">-- 6 · trier</span>
+<span class="kw">LIMIT</span>    5;                                 <span class="c">-- 7 · limiter</span></code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card hl"><span class="lab">Ordre logique</span><p><b>FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT.</b> Conséquence : un alias défini dans le SELECT (<code>nb</code>) est <b>inconnu dans le WHERE</b> (qui s'exécute avant) mais utilisable dans le ORDER BY (qui s'exécute après).</p></div>
+    <div class="card"><span class="lab">SQL est déclaratif</span><p>On décrit le <b>résultat</b> voulu ; l'optimiseur du moteur choisit le <b>plan</b> (ordre des jointures, index). C'est le même principe que Catalyst dans Spark ou le driver de Hive.</p></div>
+    <div class="analogy"><b>Analogie — la commande au restaurant.</b> On dit « une tarte aux pommes pour deux, sans cannelle » ; le chef décide dans quel ordre éplucher, cuire et dresser.</div>
+  </div>
+</div>
+<table class="cmp md small"><thead><tr><th>Famille</th><th>Rôle</th><th>Commandes</th></tr></thead><tbody>
+  <tr><td><b>DQL</b></td><td>interroger</td><td><code>SELECT</code></td></tr>
+  <tr><td><b>DML</b></td><td>manipuler les lignes</td><td><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>, <code>MERGE</code></td></tr>
+  <tr><td><b>DDL</b></td><td>définir la structure</td><td><code>CREATE</code>, <code>ALTER</code>, <code>DROP</code>, <code>TRUNCATE</code></td></tr>
+  <tr><td><b>DCL / TCL</b></td><td>droits / transactions</td><td><code>GRANT</code>, <code>REVOKE</code> / <code>BEGIN</code>, <code>COMMIT</code>, <code>ROLLBACK</code></td></tr>
+</tbody></table>
+</section>
+
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · Requêter</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Filtres, NULL et logique à trois valeurs</h2>
+<div class="grid g2">
+  <div class="card"><span class="lab">Opérateurs utiles</span><dl class="def"><dt>BETWEEN a AND b</dt><dd>bornes <b>incluses</b></dd><dt>IN (…)</dt><dd>appartenance à une liste</dd><dt>LIKE 'Pa%'</dt><dd>motif (<code>%</code> = n'importe quoi, <code>_</code> = 1 caractère) ; <code>ILIKE</code> insensible à la casse (PostgreSQL)</dd><dt>IS NULL</dt><dd>seul test valable pour NULL</dd><dt>COALESCE(a, b)</dt><dd>première valeur non NULL</dd><dt>DISTINCT</dt><dd>supprime les doublons du résultat</dd></dl></div>
+  <div class="card hl"><span class="lab">NULL = « valeur inconnue »</span><p>Toute comparaison avec NULL donne <b>UNKNOWN</b> (ni vrai ni faux), et WHERE ne garde que le vrai. Donc <code>WHERE ville = NULL</code> et <code>WHERE ville &lt;&gt; 'Paris'</code> excluent tous deux les villes inconnues, <b>sans erreur</b>.</p><p><code>NULL + 1</code> = NULL ; <code>COUNT(ville)</code> ignore les NULL ; <code>COUNT(*)</code> compte les lignes.</p></div>
+</div>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Alias du SELECT dans le WHERE</b> : erreur (« colonne inconnue »).</div>
+    <div><b><code>= NULL</code></b> : 0 ligne ; écrire <code>IS NULL</code>.</div>
+    <div><b><code>NOT IN</code> avec un NULL dans la liste</b> : 0 ligne (voir ch. 03).</div>
+    <div><b>DISTINCT pour « corriger » des doublons</b> : masque souvent une jointure mal écrite.</div>
+  </div>
+  <ol class="sum-list">
+    <li>Ordre logique : FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT.</li>
+    <li>DQL, DML, DDL, DCL, TCL.</li>
+    <li>NULL = inconnu : <code>IS NULL</code>, <code>COALESCE</code>, logique à trois valeurs.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="e">
+<div class="kicker">Chapitre 01 · Requêter</div>
+<h2>Fiche — Requêter</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Ordre logique</span><p><b>FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT.</b> Alias du SELECT : interdit dans WHERE, permis dans ORDER BY.</p></div>
+  <div class="card"><span class="lab">Familles</span><p>DQL (SELECT) · DML (INSERT, UPDATE, DELETE, MERGE) · DDL (CREATE, ALTER, DROP, TRUNCATE) · DCL (GRANT, REVOKE) · TCL (BEGIN, COMMIT, ROLLBACK).</p></div>
+  <div class="card"><span class="lab">NULL</span><p>Inconnu ; comparaison → UNKNOWN ; <code>IS NULL</code> ; <code>COALESCE</code> ; COUNT(col) ignore les NULL, COUNT(*) non.</p></div>
+  <div class="card"><span class="lab">Filtres</span><p>BETWEEN (bornes incluses), IN, LIKE / ILIKE, DISTINCT. SQL est <b>déclaratif</b> : l'optimiseur choisit le plan.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Requêter</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 01</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Dans quel ordre un SELECT est-il exécuté ?</button><div class="ab"><p>Logiquement : FROM (et jointures), WHERE, GROUP BY, HAVING, SELECT, DISTINCT, ORDER BY, LIMIT. C'est pour cela qu'un alias du SELECT n'existe pas encore dans le WHERE, et qu'on filtre les lignes avec WHERE mais les groupes avec HAVING. Physiquement, l'optimiseur peut réordonner, tant que le résultat est identique.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment SQL traite-t-il les valeurs NULL ?</button><div class="ab"><p>NULL signifie « inconnu ». Toute comparaison avec NULL renvoie UNKNOWN et le WHERE ne garde que les conditions vraies : on teste avec <code>IS NULL</code> / <code>IS NOT NULL</code>. Les agrégats ignorent les NULL (sauf <code>COUNT(*)</code>), les opérations arithmétiques propagent le NULL, et <code>COALESCE</code> fournit une valeur par défaut.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quelle différence entre DELETE, TRUNCATE et DROP ?</button><div class="ab"><p><code>DELETE</code> (DML) supprime des lignes, éventuellement filtrées, une par une, journalisées, annulables. <code>TRUNCATE</code> (DDL) vide toute la table d'un coup, très vite. <code>DROP</code> supprime la table elle-même (structure et données).</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · Requêter</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="01"></div>
+</section>
+
+<!-- ================= 02 · JOINTURES ET AGRÉGATIONS ================= -->
+<section class="slide" data-ch="02" data-sec="02 Jointures" data-title="Jointures et agrégations" data-v="c">
+<div class="kicker">Chapitre 02 · Jointures et agrégations</div>
+<div class="pqrow"><span class="pq">② Quoi</span> <span class="pq how">③ Comment</span></div>
+<h2>Relier les tables : les types de jointure</h2>
+<div class="sch free"><span class="cap">Clients (A) et commandes (B)</span>
+<svg class="dg" viewBox="0 0 960 170" role="img" aria-label="Quatre diagrammes : inner garde l'intersection, left garde tout A, right tout B, full tout">
+  <g><circle cx="80" cy="75" r="45" class="b"/><circle cx="130" cy="75" r="45" class="b"/><path d="M105 38 A45 45 0 0 1 105 112 A45 45 0 0 1 105 38" class="b f1"/><text class="t tc" x="105" y="150">INNER</text><text class="s tc" x="105" y="166">les deux côtés</text></g>
+  <g><circle cx="320" cy="75" r="45" class="b f2"/><circle cx="370" cy="75" r="45" class="b"/><path d="M345 38 A45 45 0 0 1 345 112 A45 45 0 0 1 345 38" class="b f2"/><text class="t tc" x="345" y="150">LEFT</text><text class="s tc" x="345" y="166">tout A, NULL si pas de B</text></g>
+  <g><circle cx="560" cy="75" r="45" class="b"/><circle cx="610" cy="75" r="45" class="b f4"/><path d="M585 38 A45 45 0 0 1 585 112 A45 45 0 0 1 585 38" class="b f4"/><text class="t tc" x="585" y="150">RIGHT</text><text class="s tc" x="585" y="166">tout B</text></g>
+  <g><circle cx="800" cy="75" r="45" class="b f3"/><circle cx="850" cy="75" r="45" class="b f3"/><text class="t tc" x="825" y="150">FULL</text><text class="s tc" x="825" y="166">tout, des deux côtés</text></g>
+</svg></div>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>SQL · chiffre d'affaires par client, y compris sans commande</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">SELECT</span>   c.nom,
+         <span class="kw">COALESCE</span>(<span class="kw">SUM</span>(l.qte * p.prix), 0) <span class="kw">AS</span> ca
+<span class="kw">FROM</span>     client c
+<span class="kw">LEFT JOIN</span> commande       o <span class="kw">ON</span> o.client_id   = c.id
+<span class="kw">LEFT JOIN</span> ligne_commande l <span class="kw">ON</span> l.commande_id = o.id
+<span class="kw">LEFT JOIN</span> produit        p <span class="kw">ON</span> p.id          = l.produit_id
+<span class="kw">GROUP BY</span> c.nom
+<span class="kw">ORDER BY</span> ca <span class="kw">DESC</span>;</code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card"><span class="lab">CROSS JOIN = produit cartésien</span><p>Toutes les combinaisons : 1 000 × 1 000 = 1 million de lignes. Utile pour générer un calendrier × produits ; catastrophique quand c'est un <b>ON oublié</b>.</p></div>
+    <div class="card bad"><span class="lab">Le piège du LEFT JOIN « annulé »</span><p>Un filtre sur la table de droite placé dans le <b>WHERE</b> (<code>WHERE o.statut = 'payée'</code>) élimine les lignes où <code>o</code> est NULL : le LEFT redevient un INNER. Le mettre dans le <b>ON</b> : <code>ON o.client_id = c.id AND o.statut = 'payée'</code>.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · Jointures et agrégations</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Agréger : GROUP BY, HAVING</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>SQL · catégories qui dépassent 1 000 € de CA en 2026</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">SELECT</span>   p.categorie,
+         <span class="kw">COUNT</span>(<span class="kw">DISTINCT</span> o.id)   <span class="kw">AS</span> nb_commandes,
+         <span class="kw">SUM</span>(l.qte * p.prix)     <span class="kw">AS</span> ca
+<span class="kw">FROM</span>     ligne_commande l
+<span class="kw">JOIN</span>     produit  p <span class="kw">ON</span> p.id = l.produit_id
+<span class="kw">JOIN</span>     commande o <span class="kw">ON</span> o.id = l.commande_id
+<span class="kw">WHERE</span>    o.date_cmd &gt;= <span class="s">'2026-01-01'</span>      <span class="c">-- lignes</span>
+<span class="kw">GROUP BY</span> p.categorie
+<span class="kw">HAVING</span>   <span class="kw">SUM</span>(l.qte * p.prix) &gt; 1000;     <span class="c">-- groupes</span></code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card"><span class="lab">Règle du GROUP BY</span><p>Chaque colonne du SELECT est soit <b>dans le GROUP BY</b>, soit <b>dans un agrégat</b> (COUNT, SUM, AVG, MIN, MAX). Sinon : erreur (ou résultat arbitraire dans les moteurs permissifs).</p></div>
+    <div class="card"><span class="lab">WHERE vs HAVING</span><p><b>WHERE</b> filtre les lignes <b>avant</b> le regroupement (et peut utiliser un index) ; <b>HAVING</b> filtre les groupes <b>après</b>, sur des agrégats. Filtrer le plus tôt possible : WHERE quand c'est possible.</p></div>
+  </div>
+</div>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Jointure 1-N avant agrégation</b> : les lignes du côté « 1 » sont dupliquées → <code>SUM</code> gonflé ; d'où <code>COUNT(DISTINCT o.id)</code> pour compter les commandes.</div>
+    <div><b>AVG d'une colonne avec NULL</b> : les NULL sont ignorés (moyenne des valeurs connues), pas comptés comme 0.</div>
+    <div><b>Vérifier les volumes</b> : nombre de lignes avant et après chaque jointure.</div>
+  </div>
+  <ol class="sum-list">
+    <li>INNER, LEFT, RIGHT, FULL, CROSS ; filtre de la table de droite d'un LEFT dans le ON.</li>
+    <li>GROUP BY : colonnes groupées ou agrégées ; WHERE (lignes) avant HAVING (groupes).</li>
+    <li>Contrôler les volumes : produit cartésien et duplication 1-N faussent les sommes.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="e">
+<div class="kicker">Chapitre 02 · Jointures et agrégations</div>
+<h2>Fiche — Jointures et agrégations</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Jointures</span><dl class="def"><dt>INNER</dt><dd>correspondances des deux côtés</dd><dt>LEFT / RIGHT</dt><dd>tout un côté, NULL sinon</dd><dt>FULL</dt><dd>tout</dd><dt>CROSS</dt><dd>produit cartésien</dd></dl></div>
+  <div class="card"><span class="lab">Pièges de jointure</span><ul><li>ON oublié → produit cartésien.</li><li>Filtre de la table de droite dans le WHERE → LEFT devenu INNER.</li><li>Jointure 1-N → lignes dupliquées, sommes gonflées.</li></ul></div>
+  <div class="card"><span class="lab">Agrégation</span><p>COUNT, SUM, AVG, MIN, MAX ; colonnes du SELECT groupées ou agrégées. <b>WHERE</b> filtre les lignes avant, <b>HAVING</b> les groupes après.</p></div>
+  <div class="card"><span class="lab">Réflexe</span><p>Compter les lignes avant et après chaque jointure ; <code>COUNT(DISTINCT id)</code> après une jointure 1-N ; AVG ignore les NULL.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · Jointures et agrégations</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 02</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Quelle différence entre INNER JOIN et LEFT JOIN ?</button><div class="ab"><p>INNER JOIN ne garde que les lignes qui ont une correspondance des deux côtés. LEFT JOIN garde toutes les lignes de la table de gauche et complète par NULL quand il n'y a pas de correspondance : c'est ce qu'il faut pour « tous les clients, même sans commande ». Attention : un filtre sur la table de droite dans le WHERE annule l'effet du LEFT.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">WHERE ou HAVING ?</button><div class="ab"><p>WHERE filtre les lignes avant le regroupement et ne peut pas utiliser d'agrégat ; HAVING filtre les groupes après agrégation. Pour la performance, on filtre au maximum dans le WHERE, qui réduit les données avant le GROUP BY et peut s'appuyer sur un index.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Votre somme est plus élevée que prévu après une jointure : pourquoi ?</button><div class="ab"><p>Probablement une jointure 1-N ou N-N qui duplique des lignes avant l'agrégation (par exemple joindre les commandes et les paiements multiples), ou une condition de jointure incomplète (produit cartésien partiel). Je compare les volumes avant et après la jointure, j'agrège chaque côté séparément puis je joins les agrégats, ou j'utilise <code>COUNT(DISTINCT …)</code>.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · Jointures et agrégations</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="02"></div>
+</section>
+
+<!-- ================= 03 · SOUS-REQUÊTES, CTE, FENÊTRES ================= -->
+<section class="slide" data-ch="03" data-sec="03 Avancé" data-title="Sous-requêtes, CTE et fenêtres" data-v="c">
+<div class="kicker">Chapitre 03 · Requêtes avancées</div>
+<div class="pqrow"><span class="pq">② Quoi</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Sous-requêtes : IN, EXISTS et le piège NOT IN</h2>
+<div class="grid g3">
+  <div class="card"><span class="lab">Scalaire</span><p>Renvoie <b>une seule valeur</b>, utilisable comme une constante : <code>WHERE prix &gt; (SELECT AVG(prix) FROM produit)</code>.</p></div>
+  <div class="card"><span class="lab">IN</span><p>Appartenance à un ensemble : <code>WHERE id IN (SELECT client_id FROM commande)</code>.</p></div>
+  <div class="card"><span class="lab">EXISTS (corrélée)</span><p>Teste la <b>présence</b> d'au moins une ligne, sans récupérer les valeurs ; s'arrête dès la première trouvée : <code>WHERE EXISTS (SELECT 1 FROM commande o WHERE o.client_id = c.id)</code>.</p></div>
+</div>
+<div class="note legal"><i><svg class="ico" aria-hidden="true"><use href="#ti-hand-stop"/></svg></i><div><p><b>NOT IN et NULL :</b> <code>WHERE id NOT IN (SELECT client_id FROM commande)</code> renvoie <b>0 ligne</b> dès qu'un <code>client_id</code> est NULL dans la sous-requête (comparer à NULL donne UNKNOWN). Pour « les clients sans commande », écrire <code>NOT EXISTS</code> ou un <code>LEFT JOIN … WHERE o.id IS NULL</code> (l'anti-jointure).</p></div></div>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>SQL · CTE : un pipeline lisible, étape par étape</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">WITH</span> ventes <span class="kw">AS</span> (
+    <span class="kw">SELECT</span> o.client_id, <span class="kw">SUM</span>(l.qte * p.prix) <span class="kw">AS</span> ca
+    <span class="kw">FROM</span> commande o
+    <span class="kw">JOIN</span> ligne_commande l <span class="kw">ON</span> l.commande_id = o.id
+    <span class="kw">JOIN</span> produit p        <span class="kw">ON</span> p.id = l.produit_id
+    <span class="kw">GROUP BY</span> o.client_id
+),
+moyenne <span class="kw">AS</span> (<span class="kw">SELECT AVG</span>(ca) <span class="kw">AS</span> ca_moy <span class="kw">FROM</span> ventes)
+<span class="kw">SELECT</span> v.client_id, v.ca
+<span class="kw">FROM</span>   ventes v, moyenne m
+<span class="kw">WHERE</span>  v.ca &gt; m.ca_moy;          <span class="c">-- meilleurs clients</span></code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card hl"><span class="lab">CTE (Common Table Expression)</span><p>Une requête nommée avec <code>WITH</code>, utilisable dans la suite. Elle découpe une transformation complexe en <b>étapes nommées</b>, exactement comme un pipeline : plus lisible, plus testable.</p></div>
+    <div class="card"><span class="lab">CTE récursive</span><p><code>WITH RECURSIVE</code> : un cas de départ + une partie qui se rappelle elle-même, pour parcourir une <b>hiérarchie</b> (catégories, organigramme, nomenclature d'une recette).</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Requêtes avancées</div>
+<div class="pqrow"><span class="pq">② Quoi</span> <span class="pq ex">④ Exemple — fonctions de fenêtrage</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Fenêtres : enrichir chaque ligne sans la fusionner</h2>
+<p class="lead">Même concept que dans Spark (voir <a href="spark.html">Spark ch. 03</a>) : <code>fonction() OVER (PARTITION BY … ORDER BY … [cadre])</code>. Le GROUP BY réduit les lignes, la fenêtre les <b>conserve</b>.</p>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>SQL · top 3 produits par catégorie, évolution mensuelle</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">SELECT</span> * <span class="kw">FROM</span> (
+  <span class="kw">SELECT</span> categorie, nom, prix,
+         <span class="kw">DENSE_RANK</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> categorie
+                            <span class="kw">ORDER BY</span> prix <span class="kw">DESC</span>) <span class="kw">AS</span> rg
+  <span class="kw">FROM</span> produit) t
+<span class="kw">WHERE</span> rg &lt;= 3;     <span class="c">-- on ne peut pas filtrer une fenêtre dans son propre WHERE</span>
+
+<span class="kw">SELECT</span> mois, ca,
+       ca - <span class="kw">LAG</span>(ca) <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> mois) <span class="kw">AS</span> variation,
+       <span class="kw">SUM</span>(ca) <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> mois
+                     <span class="kw">ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW</span>) <span class="kw">AS</span> cumul
+<span class="kw">FROM</span> ca_mensuel;</code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <table class="cmp md small"><thead><tr><th>Fonction</th><th>Rôle</th></tr></thead><tbody>
+      <tr><td><code>ROW_NUMBER()</code></td><td>numéro unique 1, 2, 3 (départage obligatoire)</td></tr>
+      <tr><td><code>RANK()</code></td><td>égalités au même rang, puis saut : 1, 1, 3</td></tr>
+      <tr><td><code>DENSE_RANK()</code></td><td>égalités au même rang, sans saut : 1, 1, 2</td></tr>
+      <tr><td><code>LAG()</code> / <code>LEAD()</code></td><td>valeur de la ligne précédente / suivante</td></tr>
+      <tr><td><code>SUM() OVER</code></td><td>cumul, total glissant, part du total</td></tr>
+    </tbody></table>
+    <div class="card"><span class="lab">Usage data engineering</span><p><b>Dédoublonner</b> en gardant la version la plus récente : <code>ROW_NUMBER() OVER (PARTITION BY id ORDER BY maj DESC) = 1</code>. C'est le motif le plus utilisé en production.</p></div>
+  </div>
+</div>
+<ol class="sum-list">
+  <li>Sous-requête scalaire, IN, EXISTS ; <b>NOT IN + NULL = 0 ligne</b> → NOT EXISTS.</li>
+  <li>CTE = étapes nommées d'un pipeline ; WITH RECURSIVE pour les hiérarchies.</li>
+  <li>Fenêtres : PARTITION BY + ORDER BY ; ROW_NUMBER pour dédoublonner, LAG pour comparer, SUM OVER pour cumuler.</li>
+</ol>
+</section>
+
+<section class="slide" data-ch="03" data-v="e">
+<div class="kicker">Chapitre 03 · Requêtes avancées</div>
+<h2>Fiche — Sous-requêtes, CTE, fenêtres</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Sous-requêtes</span><p>Scalaire (une valeur), IN (ensemble), EXISTS (présence, corrélée, s'arrête au premier). <b>NOT IN avec un NULL → 0 ligne</b> : préférer NOT EXISTS.</p></div>
+  <div class="card"><span class="lab">CTE</span><p><code>WITH a AS (…), b AS (…) SELECT …</code> : étapes nommées, lisibles. <code>WITH RECURSIVE</code> : hiérarchies.</p></div>
+  <div class="card"><span class="lab">Fenêtres</span><p><code>f() OVER (PARTITION BY … ORDER BY … ROWS BETWEEN …)</code> ; ROW_NUMBER 1,2,3 · RANK 1,1,3 · DENSE_RANK 1,1,2 · LAG/LEAD · SUM OVER.</p></div>
+  <div class="card"><span class="lab">Motif clé</span><p>Dédoublonner : <code>ROW_NUMBER() OVER (PARTITION BY id ORDER BY maj DESC) = 1</code> dans une sous-requête ou une CTE (une fenêtre ne se filtre pas dans son propre WHERE).</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Requêtes avancées</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 03</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Comment supprimer des doublons en gardant la version la plus récente ?</button><div class="ab"><p>Avec une fonction de fenêtre : <code>ROW_NUMBER() OVER (PARTITION BY id_metier ORDER BY date_maj DESC)</code>, puis on ne garde que les lignes de rang 1, dans une CTE ou une sous-requête. C'est déterministe si le tri départage les égalités.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi utiliser des CTE ?</button><div class="ab"><p>Pour découper une transformation complexe en étapes nommées et lisibles, comme les étapes d'un pipeline ; chaque étape se teste séparément. On peut réutiliser une CTE plusieurs fois dans la requête, et la forme récursive permet de parcourir une hiérarchie.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi NOT IN peut-il ne rien renvoyer ?</button><div class="ab"><p>Si la sous-requête contient un NULL, <code>x NOT IN (…, NULL)</code> équivaut à <code>x &lt;&gt; … AND x &lt;&gt; NULL</code>, et la comparaison avec NULL vaut UNKNOWN : aucune ligne ne passe. <code>NOT EXISTS</code> n'a pas ce problème.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Requêtes avancées</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="03"></div>
+</section>
+
+<!-- ================= 04 · ÉCRIRE DE FAÇON FIABLE ================= -->
+<section class="slide" data-ch="04" data-sec="04 Écrire" data-title="Écrire de façon fiable : UPSERT, ACID, idempotence" data-v="c">
+<div class="kicker">Chapitre 04 · Écrire de façon fiable</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq how">③ Comment</span></div>
+<h2>Un pipeline qu'on peut relancer sans casse</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>SQL · UPSERT (PostgreSQL)</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">INSERT INTO</span> produit (id, nom, categorie, prix)
+<span class="kw">VALUES</span> (42, <span class="s">'Baguette tradition'</span>, <span class="s">'pain'</span>, 1.30)
+<span class="kw">ON CONFLICT</span> (id) <span class="kw">DO UPDATE</span>
+   <span class="kw">SET</span> prix = <span class="kw">EXCLUDED</span>.prix,           <span class="c">-- valeur proposée</span>
+       nom  = <span class="kw">EXCLUDED</span>.nom;
+<span class="c">-- standard SQL / autres SGBD : MERGE INTO … WHEN MATCHED THEN UPDATE</span>
+<span class="c">--                                      WHEN NOT MATCHED THEN INSERT</span></code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card hl"><span class="lab">Idempotence — le principe central</span><p>Exécuter le traitement <b>une ou plusieurs fois</b> donne <b>le même résultat</b>. Un job relancé après un échec (ou deux fois par erreur) ne doit créer ni doublon ni erreur. Moyens : <b>UPSERT</b> sur une clé, ou <b>supprimer puis réinsérer la partition</b> du jour (« delete-insert ») dans une transaction.</p></div>
+    <div class="card"><span class="lab">Table de staging</span><p>On charge d'abord dans une table <b>intermédiaire</b>, on contrôle (comptages, clés, valeurs), puis on bascule dans la table finale en une transaction. La table finale n'est jamais à moitié remplie.</p></div>
+  </div>
+</div>
+<div class="analogy"><b>Analogie — l'interrupteur et le bouton « +1 ».</b> Appuyer deux fois sur « allumer » laisse la lumière allumée (idempotent) ; appuyer deux fois sur « ajouter une baguette au panier » en met deux (non idempotent). Un pipeline doit ressembler à l'interrupteur.</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Écrire de façon fiable</div>
+<div class="pqrow"><span class="pq how">③ Comment — transactions</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Transactions et propriétés ACID</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>SQL · tout ou rien</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">BEGIN</span>;
+<span class="kw">DELETE FROM</span> ventes_jour <span class="kw">WHERE</span> jour = <span class="s">'2026-11-17'</span>;
+<span class="kw">INSERT INTO</span> ventes_jour
+  <span class="kw">SELECT</span> * <span class="kw">FROM</span> staging_ventes <span class="kw">WHERE</span> jour = <span class="s">'2026-11-17'</span>;
+<span class="kw">COMMIT</span>;      <span class="c">-- ou ROLLBACK en cas d'erreur : rien n'a changé</span></code></pre></div>
+  <table class="cmp md small"><thead><tr><th>Propriété</th><th>Garantie</th></tr></thead><tbody>
+    <tr><td><b>A</b>tomicité</td><td>tout ou rien : jamais d'état à moitié appliqué</td></tr>
+    <tr><td><b>C</b>ohérence</td><td>la base passe d'un état valide à un autre (contraintes respectées)</td></tr>
+    <tr><td><b>I</b>solation</td><td>les transactions simultanées ne se voient pas à moitié (niveaux : read committed, repeatable read, serializable)</td></tr>
+    <tr><td><b>D</b>urabilité</td><td>une fois COMMIT, la donnée survit à une panne (journal sur disque)</td></tr>
+  </tbody></table>
+</div>
+<div class="grid g3">
+  <div class="card"><span class="lab">UPDATE / DELETE</span><p>Toujours avec un <b>WHERE</b> testé d'abord en SELECT : un UPDATE sans WHERE modifie toute la table.</p></div>
+  <div class="card"><span class="lab">Contraintes</span><p><code>PRIMARY KEY</code>, <code>FOREIGN KEY</code>, <code>UNIQUE</code>, <code>NOT NULL</code>, <code>CHECK</code> : la base refuse les données incohérentes (intégrité). Une clé unique rend l'UPSERT possible.</p></div>
+  <div class="card"><span class="lab">Et le Big Data ?</span><p>Les fichiers d'un data lake n'ont pas d'ACID natif : c'est ce qu'apportent les formats de tables <b>Delta</b> et <b>Iceberg</b> (transactions, MERGE).</p></div>
+</div>
+<ol class="sum-list">
+  <li>Idempotence : relancer = même résultat (UPSERT, delete-insert de partition).</li>
+  <li>Staging → contrôles → bascule en une transaction.</li>
+  <li>ACID : atomicité, cohérence, isolation, durabilité ; BEGIN / COMMIT / ROLLBACK.</li>
+</ol>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Écrire de façon fiable</div>
+<div class="pqrow"><span class="pq">② Quoi</span> <span class="pq how">③ Comment</span></div>
+<h2>Clés étrangères en cascade, transactions et SAVEPOINT</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.1vh">
+    <table class="cmp md small"><thead><tr><th>ON DELETE …</th><th>Effet quand on supprime le parent</th><th>Exemple</th></tr></thead><tbody>
+      <tr><td><code>RESTRICT</code> / <code>NO ACTION</code></td><td>refus : erreur de clé étrangère, rien n'est supprimé</td><td>protéger le catalogue produits</td></tr>
+      <tr><td><code>CASCADE</code></td><td>supprime aussi les <b>enfants</b>, sur plusieurs niveaux</td><td>les lignes d'une commande supprimée</td></tr>
+      <tr><td><code>SET NULL</code></td><td>la clé des enfants passe à NULL (colonne <b>nullable</b> obligatoire)</td><td>garder les commandes d'un client anonymisé</td></tr>
+      <tr><td><code>SET DEFAULT</code></td><td>la clé prend sa valeur par défaut (refusé par MySQL InnoDB)</td><td>réaffecter à un client générique</td></tr>
+    </tbody></table>
+    <div class="note legal"><i><svg class="ico" aria-hidden="true"><use href="#ti-hand-stop"/></svg></i><div><p><b>Une cascade est atomique mais silencieuse.</b> Un seul <code>DELETE FROM clients</code> peut vider trois tables (clients → commandes → lignes), sans dire combien de lignes filles ont disparu. Réflexe : <code>BEGIN</code>, supprimer, <b>compter</b> les tables filles, puis <code>COMMIT</code> si c'est conforme, <code>ROLLBACK</code> sinon. Sous <b>SQLite</b>, les clés étrangères sont ignorées sans <code>PRAGMA foreign_keys = ON;</code> à chaque connexion.</p></div></div>
+  </div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="code"><div class="codeh"><span>SQL · déclarer les actions</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">CREATE TABLE</span> lignes_commande (
+  commande_id <span class="kw">INT NOT NULL</span>,
+  produit_id  <span class="kw">INT NOT NULL</span>,
+  <span class="kw">FOREIGN KEY</span> (commande_id) <span class="kw">REFERENCES</span> commandes(id)
+      <span class="kw">ON DELETE CASCADE</span>,    <span class="c">-- une ligne sans commande n'existe pas</span>
+  <span class="kw">FOREIGN KEY</span> (produit_id) <span class="kw">REFERENCES</span> produits(id)
+      <span class="kw">ON DELETE RESTRICT</span>    <span class="c">-- on protège le catalogue</span>
+);</code></pre></div>
+    <div class="code"><div class="codeh"><span>SQL · SAVEPOINT : annuler une partie seulement</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">BEGIN</span>;
+<span class="kw">DELETE FROM</span> clients <span class="kw">WHERE</span> id = 3;          <span class="c">-- cascade OK</span>
+<span class="kw">SAVEPOINT</span> apres_client;
+<span class="kw">DELETE FROM</span> produits <span class="kw">WHERE</span> stock = 0;    <span class="c">-- échoue : RESTRICT</span>
+<span class="kw">ROLLBACK TO SAVEPOINT</span> apres_client;      <span class="c">-- annule SEULEMENT le 2e DELETE</span>
+<span class="kw">COMMIT</span>;                                  <span class="c">-- le 1er DELETE est validé</span></code></pre></div>
+    <div class="card"><span class="lab">À retenir</span><p><code>ROLLBACK</code> annule <b>toute</b> la transaction ; <code>ROLLBACK TO SAVEPOINT</code> revient à un <b>point intermédiaire</b>. Même syntaxe sous MySQL, PostgreSQL et SQLite.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Écrire de façon fiable</div>
+<div class="pqrow"><span class="pq">② Quoi</span> <span class="pq trap">⑤ Pièges</span></div>
+<h2>Procédures stockées : la logique dans la base</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.1vh">
+    <div class="code"><div class="codeh"><span>SQL · MySQL / MariaDB</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">DELIMITER</span> $$                  <span class="c">-- sinon le client coupe au premier ;</span>
+<span class="kw">CREATE PROCEDURE</span> restocker(<span class="kw">IN</span> p_id <span class="kw">INT</span>, <span class="kw">IN</span> p_qte <span class="kw">INT</span>)
+<span class="kw">BEGIN</span>
+  <span class="kw">UPDATE</span> produits <span class="kw">SET</span> stock = stock + p_qte <span class="kw">WHERE</span> id = p_id;
+<span class="kw">END</span> $$
+<span class="kw">DELIMITER</span> ;
+
+<span class="kw">CALL</span> restocker(1, 50);
+<span class="c">-- PostgreSQL : corps entre $$ … $$ (dollar-quoting), langage PL/pgSQL</span>
+<span class="c">-- SQLite : aucune procédure stockée, la logique reste en Python</span></code></pre></div>
+    <table class="cmp md small"><thead><tr><th></th><th>Procédure</th><th>Fonction</th></tr></thead><tbody>
+      <tr><td>Appel</td><td><code>CALL p(...)</code></td><td>dans une requête : <code>SELECT f(...)</code></td></tr>
+      <tr><td>Retour</td><td>rien, ou paramètres <code>OUT</code></td><td><b>une valeur</b> (ou une table)</td></tr>
+      <tr><td>Vocation</td><td><b>faire</b> : écrire, orchestrer une transaction</td><td><b>calculer</b> : renvoyer un résultat</td></tr>
+    </tbody></table>
+  </div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card hl"><span class="lab">Pourquoi</span><ul><li><b>Atomicité côté serveur</b> : « passer une commande » (créer la commande, les lignes, décrémenter le stock) ne peut plus oublier une étape ni le COMMIT.</li><li><b>Un seul aller-retour</b> réseau au lieu de cinq.</li><li><b>Sécurité</b> : on accorde <code>GRANT EXECUTE</code> sur la procédure sans donner <code>UPDATE</code> sur les tables.</li></ul></div>
+    <div class="card"><span class="lab">Paramètres</span><p><code>IN</code> (entrée, par défaut), <code>OUT</code> (sortie récupérée par l'appelant), <code>INOUT</code> (les deux). Structures : <code>IF … THEN … END IF</code>, <code>WHILE</code>, variables <code>DECLARE</code>.</p></div>
+    <div class="card bad"><span class="lab">Limites</span><ul><li>Logique métier éparpillée entre application et base : plus dure à <b>versionner</b>, <b>tester</b>, déboguer.</li><li>Dialecte <b>non portable</b> d'un SGBD à l'autre.</li><li>À réserver aux opérations <b>transactionnelles critiques</b>, proches des données.</li></ul></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="e">
+<div class="kicker">Chapitre 04 · Écrire de façon fiable</div>
+<h2>Fiche — Écrire de façon fiable</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">UPSERT</span><p><code>INSERT … ON CONFLICT (clé) DO UPDATE SET col = EXCLUDED.col</code> (PostgreSQL) ou <code>MERGE</code> (standard). Exige une clé unique.</p></div>
+  <div class="card"><span class="lab">Idempotence</span><p>Relancer un job = même résultat. UPSERT, ou delete-insert de la partition traitée dans une transaction. Table de <b>staging</b> + contrôles avant bascule.</p></div>
+  <div class="card"><span class="lab">ACID</span><dl class="def"><dt>A</dt><dd>atomicité : tout ou rien</dd><dt>C</dt><dd>cohérence : contraintes respectées</dd><dt>I</dt><dd>isolation : pas d'état intermédiaire visible</dd><dt>D</dt><dd>durabilité : survit à la panne</dd></dl></div>
+  <div class="card"><span class="lab">Réflexes</span><ul><li>UPDATE/DELETE : tester le WHERE en SELECT.</li><li>Contraintes PK, FK, UNIQUE, NOT NULL, CHECK.</li><li>Data lake : ACID via Delta / Iceberg.</li></ul></div>
+  <div class="card"><span class="lab">ON DELETE</span><p><code>RESTRICT</code> refuse · <code>CASCADE</code> supprime les enfants · <code>SET NULL</code> détache. Cascade dans une transaction : compter, puis COMMIT ou ROLLBACK. <code>SAVEPOINT</code> pour annuler une partie.</p></div>
+  <div class="card"><span class="lab">Procédure stockée</span><p><code>CALL</code>, paramètres IN / OUT ; elle <b>fait</b>, la fonction <b>calcule</b>. <code>DELIMITER $$</code> (MySQL), <code>$$ … $$</code> (PostgreSQL), absente de SQLite.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Écrire de façon fiable</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 04</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce qu'un pipeline idempotent et comment l'obtenir ?</button><div class="ab"><p>Un pipeline qu'on peut relancer autant de fois que nécessaire en obtenant le même état final : indispensable car les jobs échouent et sont rejoués. En SQL : UPSERT sur une clé métier unique, ou suppression puis réinsertion de la partition traitée (le jour, le lot) dans une même transaction, en passant par une table de staging contrôlée.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Expliquez ACID.</button><div class="ab"><p><b>Atomicité</b> : une transaction s'applique entièrement ou pas du tout. <b>Cohérence</b> : elle fait passer la base d'un état valide à un autre, contraintes respectées. <b>Isolation</b> : les transactions concurrentes ne voient pas les états intermédiaires des autres (selon le niveau d'isolation). <b>Durabilité</b> : ce qui est validé survit aux pannes, grâce au journal.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quel risque présente un ON DELETE CASCADE et comment le maîtriser ?</button><div class="ab"><p>Un seul DELETE peut supprimer des lignes sur plusieurs niveaux de tables sans le signaler. Je supprime dans une transaction, je compte les lignes restantes des tables filles, puis je valide si le résultat est conforme ou j'annule avec ROLLBACK. SAVEPOINT permet d'annuler seulement une partie.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quand utiliser une procédure stockée ?</button><div class="ab"><p>Pour une opération transactionnelle critique et proche des données, comme passer une commande : l'atomicité est garantie côté serveur, il n'y a qu'un aller-retour réseau et l'on peut accorder le droit EXECUTE sans donner l'accès en écriture aux tables. Je l'évite pour une logique métier qui change souvent, car elle est moins portable et plus difficile à tester.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi passer par une table de staging ?</button><div class="ab"><p>Pour ne jamais exposer une table finale à moitié chargée ou corrompue : on charge et on <b>contrôle</b> (volumes, unicité des clés, valeurs) dans une zone intermédiaire, puis on bascule en une transaction. En cas de problème, la table finale est intacte et l'on peut analyser la staging.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Écrire de façon fiable</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="04"></div>
+</section>
+
+<!-- ================= 05 · PERFORMANCE ET ANALYTIQUE ================= -->
+<section class="slide" data-ch="05" data-sec="05 Analytique" data-title="Performance et SQL analytique" data-v="c">
+<div class="kicker">Chapitre 05 · Performance et analytique</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq how">③ Comment</span></div>
+<h2>Index, EXPLAIN et sargabilité</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.1vh">
+    <div class="card"><span class="lab">Sans index : le scan complet</span><p>Pour trouver les commandes d'un client, le moteur lit <b>toute</b> la table (<i>Seq Scan</i>). Coût proportionnel à la taille de la table.</p></div>
+    <div class="card hl"><span class="lab">L'index (B-tree)</span><p>Structure triée qui pointe vers les lignes : la recherche devient logarithmique (<i>Index Scan</i>). <b>Accélère les lectures</b> (WHERE, JOIN, ORDER BY) mais <b>ralentit les écritures</b> (chaque INSERT/UPDATE met l'index à jour) et prend de la place. Indexer : clés étrangères, colonnes filtrées souvent et sélectives.</p></div>
+    <div class="analogy"><b>Analogie — l'index d'un livre.</b> Pour trouver « levain », on ne relit pas les 400 pages : on va à l'index, qui donne la page. Mais chaque nouvelle page écrite oblige à mettre l'index à jour.</div>
+  </div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="code"><div class="codeh"><span>SQL · voir le plan</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">CREATE INDEX</span> idx_cmd_client <span class="kw">ON</span> commande(client_id);
+<span class="kw">EXPLAIN ANALYZE</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> commande <span class="kw">WHERE</span> client_id = 42;
+<span class="c">-- Index Scan using idx_cmd_client … (actual time=0.02 ms)</span></code></pre></div>
+    <div class="card bad"><span class="lab">Sargabilité (Search ARGument ABLE)</span><p>Une fonction appliquée à la colonne indexée empêche d'utiliser l'index : <code>WHERE EXTRACT(YEAR FROM date_cmd) = 2026</code> → scan complet. Écrire plutôt la condition sur la colonne nue : <code>WHERE date_cmd &gt;= '2026-01-01' AND date_cmd &lt; '2027-01-01'</code>. Idem pour <code>UPPER(nom)</code> ou <code>LIKE '%pain'</code>.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Performance et analytique</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Vues, incrémental, historisation</h2>
+<div class="grid g3">
+  <div class="card"><span class="lab">VIEW</span><p>Requête <b>enregistrée</b>, recalculée à chaque appel : simplifie et sécurise l'accès (on expose une vue, pas les tables), sans gain de performance.</p></div>
+  <div class="card"><span class="lab">MATERIALIZED VIEW</span><p>Vue qui <b>stocke son résultat</b> : lecture rapide, mais données figées jusqu'au <code>REFRESH MATERIALIZED VIEW</code>. Idéale pour des agrégats coûteux lus souvent (tableaux de bord).</p></div>
+  <div class="card"><span class="lab">Traitement incrémental</span><p>Ne traiter que les <b>nouvelles</b> lignes : on mémorise la dernière date (ou id) chargée — le <i>high-water mark</i> — et on filtre <code>WHERE maj &gt; :dernier_chargement</code>. Moins de calcul, moins de coût (éco-conception).</p></div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">SCD — Slowly Changing Dimensions</span><p>Comment gérer un attribut qui change (le client déménage) :</p><ul><li><b>Type 1</b> : on <b>écrase</b> l'ancienne valeur — pas d'historique.</li><li><b>Type 2</b> : on <b>ajoute une nouvelle ligne</b> avec des dates de validité (<code>date_debut</code>, <code>date_fin</code>, <code>est_courant</code>) — historique complet ; une vente de 2024 reste rattachée à l'adresse de 2024.</li><li><b>Type 3</b> : une colonne « valeur précédente » (historique limité).</li></ul></div>
+  <div class="code"><div class="codeh"><span>SQL · agréger par période</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">SELECT</span> <span class="kw">DATE_TRUNC</span>(<span class="s">'month'</span>, date_cmd) <span class="kw">AS</span> mois,
+       <span class="kw">COUNT</span>(*) <span class="kw">AS</span> nb
+<span class="kw">FROM</span>   commande
+<span class="kw">WHERE</span>  date_cmd &gt;= <span class="kw">CURRENT_DATE</span> - <span class="kw">INTERVAL</span> <span class="s">'12 months'</span>
+<span class="kw">GROUP BY</span> 1 <span class="kw">ORDER BY</span> 1;
+
+<span class="c">-- sous-totaux à plusieurs niveaux en une requête</span>
+<span class="kw">SELECT</span> categorie, nom, <span class="kw">SUM</span>(prix)
+<span class="kw">FROM</span> produit <span class="kw">GROUP BY ROLLUP</span> (categorie, nom);</code></pre></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Performance et analytique</div>
+<div class="pqrow"><span class="pq">② Quoi — OLTP vs OLAP</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Du modèle normalisé au modèle en étoile</h2>
+<div class="grid g2">
+  <table class="cmp md small"><thead><tr><th></th><th>OLTP (transactionnel)</th><th>OLAP (analytique)</th></tr></thead><tbody>
+    <tr><td>Usage</td><td>l'application : passer une commande</td><td>l'analyse : CA par mois et région</td></tr>
+    <tr><td>Requêtes</td><td>petites, nombreuses, lecture/écriture d'une ligne</td><td>grosses, lecture de millions de lignes, agrégats</td></tr>
+    <tr><td>Modèle</td><td><b>normalisé</b> (Merise, 3FN) : pas de redondance</td><td><b>dénormalisé</b> en étoile : moins de jointures</td></tr>
+    <tr><td>Stockage</td><td>par ligne (PostgreSQL)</td><td>par colonne (entrepôt, Parquet)</td></tr>
+  </tbody></table>
+  <div class="sch free"><span class="cap">Modèle en étoile</span>
+  <svg class="dg" viewBox="0 0 420 230" role="img" aria-label="Une table de faits ventes au centre reliée aux dimensions date, produit, client et magasin">
+    <rect class="b f3" x="140" y="85" width="140" height="60" rx="10"/><text class="t tc" x="210" y="110">fait_ventes</text><text class="s tc" x="210" y="130">qte, montant, clés</text>
+    <rect class="b f1" x="10" y="10" width="120" height="44" rx="8"/><text class="s tc" x="70" y="37">dim_date</text>
+    <rect class="b f1" x="290" y="10" width="120" height="44" rx="8"/><text class="s tc" x="350" y="37">dim_produit</text>
+    <rect class="b f1" x="10" y="176" width="120" height="44" rx="8"/><text class="s tc" x="70" y="203">dim_client (SCD2)</text>
+    <rect class="b f1" x="290" y="176" width="120" height="44" rx="8"/><text class="s tc" x="350" y="203">dim_magasin</text>
+    <path class="e nm" d="M130 40 L160 85"/><path class="e nm" d="M290 40 L260 85"/><path class="e nm" d="M130 195 L160 145"/><path class="e nm" d="M290 195 L260 145"/>
+  </svg></div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Faits et dimensions</span><p>La <b>table de faits</b> contient les mesures (quantité, montant) et les clés vers les <b>dimensions</b>, qui décrivent le contexte (quand, quoi, qui, où). La dénormalisation est un <b>choix</b> pour l'analyse, pas une négligence. Variante normalisée : le modèle en <b>flocon</b>.</p></div>
+  <ol class="sum-list">
+    <li>Index B-tree : lectures rapides, écritures plus lentes ; EXPLAIN ANALYZE ; requêtes sargables.</li>
+    <li>Vue (recalculée) vs vue matérialisée (stockée, REFRESH).</li>
+    <li>Incrémental par high-water mark ; SCD 1 (écrase), 2 (historise), 3 (valeur précédente).</li>
+    <li>OLTP normalisé vs OLAP en étoile (faits + dimensions).</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Performance et analytique</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span></div>
+<h2>Les pièges de la performance et du SQL analytique</h2>
+<div class="trap-list"><div><b>Une fonction sur la colonne indexée</b> : <code>WHERE YEAR(date_vente) = 2025</code> empêche d'utiliser l'index : écrire l'intervalle <code>date_vente &gt;= '2025-01-01' AND date_vente &lt; '2026-01-01'</code> (requête sargable).</div><div><b>Indexer « au cas où »</b> : chaque index accélère certaines lectures mais ralentit tous les <code>INSERT</code>/<code>UPDATE</code> et occupe de la place : on indexe d'après les requêtes réellement lentes.</div><div><b>Croire le plan estimé</b> : <code>EXPLAIN</code> montre des <b>estimations</b> ; <code>EXPLAIN ANALYZE</code> (PostgreSQL) exécute la requête et donne les temps et volumes réels.</div><div><b>Confondre vue et vue matérialisée</b> : une vue relance sa requête à chaque lecture ; une vue matérialisée stocke le résultat et doit être <b>rafraîchie</b>, sinon elle sert des chiffres périmés.</div><div><b>Incrémental naïf</b> : charger « ce qui a changé depuis hier » d'après une date de mise à jour oublie les <b>suppressions</b> et les lignes arrivées en retard : prévoir une fenêtre de recouvrement et un traitement des suppressions.</div><div><b>Grain de la table de faits flou</b> : sans grain défini (une ligne = une vente ? une ligne de ticket ?), les jointures dupliquent les lignes et les sommes sont fausses.</div></div>
+</section>
+
+<section class="slide" data-ch="05" data-v="e">
+<div class="kicker">Chapitre 05 · Performance et analytique</div>
+<h2>Fiche — Performance et SQL analytique</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Index</span><p>B-tree : WHERE, JOIN, ORDER BY plus rapides ; INSERT/UPDATE plus lents. Indexer les FK et colonnes filtrées sélectives. <code>EXPLAIN ANALYZE</code> : Seq Scan vs Index Scan. <b>Sargable</b> : pas de fonction sur la colonne indexée.</p></div>
+  <div class="card"><span class="lab">Vues</span><p>VIEW = requête enregistrée, recalculée. MATERIALIZED VIEW = résultat stocké, <code>REFRESH</code>.</p></div>
+  <div class="card"><span class="lab">Pipelines</span><p>Incrémental : high-water mark. SCD1 écrase ; <b>SCD2</b> ajoute une ligne avec dates de validité ; SCD3 colonne précédente. <code>DATE_TRUNC</code>, <code>ROLLUP</code>, <code>CUBE</code>.</p></div>
+  <div class="card"><span class="lab">OLTP vs OLAP</span><p>OLTP : normalisé, petites transactions, stockage par ligne. OLAP : <b>étoile</b> (faits + dimensions), dénormalisé, gros agrégats, stockage par colonne.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · Performance et analytique</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 05</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Une requête est lente : comment l'analysez-vous ?</button><div class="ab"><p><code>EXPLAIN ANALYZE</code> pour voir le plan réel : scans complets sur de grosses tables, estimations de lignes très fausses (statistiques à mettre à jour avec <code>ANALYZE</code>), tris ou jointures coûteux. Puis : index sur les colonnes filtrées et jointes, réécriture sargable des conditions, filtrage plus tôt, agrégats pré-calculés en vue matérialisée si la requête est répétée.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi ne pas indexer toutes les colonnes ?</button><div class="ab"><p>Chaque index occupe de l'espace et doit être mis à jour à chaque INSERT, UPDATE ou DELETE : trop d'index ralentissent les écritures et les chargements. On indexe selon les requêtes réelles : clés étrangères, colonnes de filtre sélectives, colonnes de tri fréquentes.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce qu'une SCD de type 2 ?</button><div class="ab"><p>Une façon d'historiser une dimension : quand un attribut change, on ferme la ligne courante (date de fin) et on insère une nouvelle ligne avec une nouvelle clé technique et une date de début. Les faits passés restent rattachés à la version valable à leur date : on peut analyser « à l'époque ».</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi un modèle en étoile pour l'analytique ?</button><div class="ab"><p>Les requêtes analytiques agrègent des millions de faits selon quelques axes (date, produit, client, lieu). L'étoile limite les jointures à une par dimension, rend le modèle compréhensible par les métiers et les outils de BI, et se combine bien avec le stockage en colonnes. La redondance des dimensions est acceptée volontairement, contrairement au modèle OLTP normalisé.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · Performance et analytique</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="05"></div>
+</section>
+
+<!-- ================= QUIZ FINAL ================= -->
+<section class="slide" data-ch="quiz" data-sec="Quiz final" data-title="Quiz final — 45 questions">
+<div class="kicker">Quiz final · SQL</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-target"/></svg> 45 questions pour affronter le jury</h2>
+<p class="lead">Tous chapitres mélangés ; l'ordre change à chaque tentative. Certaines questions ont <b>plusieurs bonnes réponses</b>.</p>
+<div data-quiz="final"></div>
+</section>
+
+</main>
+<button class="arrow" id="prev" type="button" aria-label="Diapositive précédente">‹</button>
+<button class="arrow" id="next" type="button" aria-label="Diapositive suivante">›</button>
+<nav id="tl" aria-label="Chapitres"></nav>
+<div id="hint">← → naviguer · ↑ ↓ défiler · H ampoule <svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg> · E Complète/Essentiel · M maîtrisé · S sommaire · T thème</div>
+<button id="bulbhint" type="button"><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></button>
+<div id="ctip" role="tooltip"></div>
+<div id="toc" role="dialog" aria-label="Sommaire">
+  <button class="btn xx" id="tocx" type="button">Fermer ✕</button>
+  <div class="kicker">Sommaire · SQL, des bases à l&#x27;IA</div>
+  <h2>SQL, des bases à l&#x27;IA</h2>
+  <div class="tg"></div>
+</div>
+
+<div id="fab">
+  <button id="helpbtn" type="button" aria-label="Ampoule : concepts expliqués au survol" aria-pressed="false" title="Ampoule : soulignez les concepts, survolez-les pour une explication (H)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></button>
+<button id="tocbtn" type="button" aria-label="Sommaire" title="Sommaire (S)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+  <div id="themebtn">
+    <div id="menu" role="menu"><h4>Thème</h4></div>
+    <button id="tbtn" type="button" aria-label="Changer de thème" aria-haspopup="true" title="Changer de thème (T)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.4-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16a5 5 0 0 0 5-5c0-4-4-7-9-7z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="7.5" r="1"/></svg>
+    </button>
+  </div>
+</div>
+
+</div>
+<script src="assets/icons.js?v=1795252877"></script>
+<script src="data/sql-quiz.js?v=1795252877"></script>
+<script src="data/sql-glossary.js?v=1795252877"></script>
+<script src="assets/engine.js?v=1795252877"></script>
+</body>
+</html>

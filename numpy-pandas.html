@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NumPy &amp; Pandas · Révision Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/base.css?v=1795252877">
+<link rel="stylesheet" href="assets/photos.css?v=1795252877">
+<link rel="stylesheet" href="assets/revision.css?v=1795252877">
+</head>
+<body data-page="course" data-course="numpy-pandas" data-title="NumPy &amp; Pandas">
+<div id="app" data-theme="papier">
+
+<div id="bg" aria-hidden="true">
+  <div class="bgl bg-neon">
+    <svg viewBox="0 0 800 800"><path d="M40 760 L400 280 L760 760" stroke-width="3"/><path d="M110 760 L400 380 L690 760" stroke-width="2.4" opacity=".85"/><path d="M180 760 L400 470 L620 760" stroke-width="2" opacity=".7"/><path d="M250 760 L400 560 L550 760" stroke-width="1.6" opacity=".55"/><path d="M320 760 L400 650 L480 760" stroke-width="1.2" opacity=".4"/></svg>
+  </div>
+  <div class="bgl bg-sauge"><div class="panel"></div><div id="bignum"></div></div>
+  <div class="bgl bg-nuit"><i></i><i></i><i></i></div>
+  <div class="bgl bg-verre"><div class="blob a"></div><div class="blob b"></div><div class="blob c"></div></div>
+  <div class="bgl bg-papier"><i></i><i></i><i></i></div>
+  <div class="bgl bg-rubans"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f8fe0"/><stop offset="1" stop-color="#2fd0bd"/></linearGradient>
+      <linearGradient id="rg2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fdcc4"/><stop offset=".55" stop-color="#26b2d2"/><stop offset="1" stop-color="#2f8fe0"/></linearGradient>
+      <linearGradient id="rg3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2fd0bd"/><stop offset="1" stop-color="#2f90e2"/></linearGradient>
+      <filter id="rsh" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="12"/></filter>
+    </defs>
+    <g class="rb" id="rb-a" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g class="rb b" id="rb-b" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+  </svg></div>
+  <div class="bgl bg-facettes"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="fcw" id="fc-top"></g><g class="fcw" id="fc-bot"></g></svg></div>
+  <div class="bgl photo bg-bulles"><i></i></div>
+  <div class="bgl photo bg-hexa"><i></i></div>
+  <div class="bgl photo bg-points"><i></i></div>
+</div>
+
+<svg id="defs" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+  <marker id="arrk" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3a4458"/></marker>
+  <marker id="arrbad" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker>
+</defs></svg>
+
+<div id="brand"><a href="index.html" title="Retour à l'accueil">← Accueil</a> · NumPy &amp; Pandas</div>
+<div id="topbar">
+  <div id="vseg" role="group" aria-label="Version du cours"><button type="button" data-v="c" title="Tout le cours (E pour basculer)"><svg class="ico" aria-hidden="true"><use href="#ti-book"/></svg> Complète</button><button type="button" data-v="e" title="Ce qu'il faut maîtriser pour le jury (E)"><svg class="ico" aria-hidden="true"><use href="#ti-bolt"/></svg> Essentiel</button></div>
+  <button id="mast" type="button" title="Marquer ce chapitre comme maîtrisé (M)"></button>
+  <span id="prog"></span>
+</div>
+<div id="hud"><span id="count">1 / 1</span></div>
+<main id="deck">
+<!-- ================= 00 · IMMERSION ================= -->
+<section class="slide" data-ch="00" data-sec="Immersion" data-title="Immersion : découvrir NumPy et pandas">
+<div class="chlogos"><img class="chlogo big" src="assets/logos/pandas.svg" alt="Logo pandas"><img class="chlogo big" src="assets/logos/numpy.svg" alt="Logo NumPy"></div>
+<div class="kicker">Bloc 4B · Big Data &amp; IA</div>
+<h1>NumPy &amp; pandas</h1>
+<p class="lead">Les deux bibliothèques Python qui servent à <b>explorer, nettoyer et préparer</b> des données tenant en mémoire : NumPy pour le calcul numérique sur des tableaux, pandas pour les tables étiquetées. Elles sont la porte d'entrée du <a href="ml.html">Machine Learning</a> ; au-delà d'une machine, on passe à <a href="spark.html">Spark</a>.</p>
+<div class="chips"><span class="pill solid">immersion + 5 chapitres</span><span class="pill">mini-quiz par chapitre</span><span class="pill">quiz final · 45 questions</span><span class="pill">NumPy 2 · pandas 2 · Matplotlib</span></div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 1 / 3</div>
+<h2>Un fichier de 500 annonces immobilières arrive : prix « 245 000 € », surfaces en m² ou en sq ft, villes écrites de trois façons. En combien de lignes de code le rendre exploitable ?</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1.2vh">
+    <div class="card bad"><span class="lab">En Python « pur »</span><p>Des boucles <code>for</code> sur chaque ligne, des conversions à la main, des dictionnaires imbriqués pour grouper… Lent (l'interpréteur traite un élément à la fois) et fragile.</p></div>
+    <div class="card hl"><span class="lab">Avec pandas et NumPy</span><p>On décrit l'opération sur <b>toute une colonne</b> d'un coup : <code>df["prix"].str.replace("€", "")</code>, <code>pd.to_numeric(...)</code>, <code>groupby("ville").median()</code>. Le calcul s'exécute en code compilé, des dizaines à des centaines de fois plus vite.</p></div>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <p class="punch"><b>NumPy</b> fournit le <b>ndarray</b> : un tableau multidimensionnel de valeurs d'un <b>même type</b>, stocké de façon contiguë, sur lequel les opérations sont <b>vectorisées</b>. <b>pandas</b> s'appuie dessus pour offrir la <b>Series</b> et le <b>DataFrame</b> : des tables à colonnes typées, avec un <b>index</b> et des étiquettes, et tout l'outillage d'import, de nettoyage, d'agrégation et de jointure.</p>
+    <div class="analogy"><b>Analogie — le tableur programmable.</b> NumPy est la grille de cellules numériques ultra-rapide ; pandas, c'est Excel avec des en-têtes, des filtres et des tableaux croisés — mais écrit en code, donc <b>rejouable</b>, versionnable et testable.</div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 2 / 3</div>
+<h2>Deux briques fondatrices de la data en Python</h2>
+<div class="flow">
+  <div class="step"><b>2006</b><small>Travis Oliphant unifie Numeric et Numarray : naissance de <b>NumPy</b></small></div>
+  <div class="step"><b>2008</b><small>Wes McKinney crée <b>pandas</b> dans un fonds d'investissement (AQR)</small></div>
+  <div class="step"><b>2010s</b><small>Jupyter, scikit-learn, Matplotlib : l'écosystème data science Python s'impose</small></div>
+  <div class="step"><b>2023 – 2026</b><small><b>pandas 2</b> (moteur Arrow possible) · <b>NumPy 2</b> · <b>pandas 3</b> (Copy-on-Write par défaut)</small></div>
+  <div class="step"><b>Aujourd'hui</b><small>Polars et DuckDB accélèrent le traitement sur une machine</small></div>
+</div>
+<div class="grid g2">
+  <div class="card"><span class="lab">Qui l'utilise</span><p>Pratiquement toute personne qui manipule des données en Python : data analysts et data scientists (exploration, préparation des variables), Data Engineers (scripts de nettoyage, contrôles, petits ETL, tests), chercheurs. scikit-learn, Matplotlib, seaborn et TensorFlow consomment des tableaux NumPy.</p><p><b>Limite :</b> tout tient en <b>mémoire vive</b> sur <b>une</b> machine. Au-delà de quelques Go : Polars, DuckDB, ou Spark (dont l'API pandas on Spark).</p></div>
+  <div class="sch free"><span class="cap">La pile data science Python</span>
+  <svg class="dg" viewBox="0 0 460 190" role="img" aria-label="NumPy à la base, pandas au-dessus, puis Matplotlib, scikit-learn et les modèles">
+    <rect class="b f1" x="20" y="140" width="420" height="36" rx="8"/><text class="s tc" x="230" y="163">NumPy : ndarray, calcul vectorisé</text>
+    <rect class="b ok" x="20" y="92" width="420" height="36" rx="8"/><text class="s tc" x="230" y="115">pandas : Series, DataFrame</text>
+    <rect class="b f2" x="20" y="44" width="130" height="36" rx="8"/><text class="s tc" x="85" y="67">Matplotlib</text>
+    <rect class="b f3" x="165" y="44" width="130" height="36" rx="8"/><text class="s tc" x="230" y="67">scikit-learn</text>
+    <rect class="b f4" x="310" y="44" width="130" height="36" rx="8"/><text class="s tc" x="375" y="67">Jupyter</text>
+    <text class="s" x="20" y="28">Visualiser · modéliser · documenter</text>
+  </svg></div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="c">
+<div class="kicker">Immersion · 3 / 3</div>
+<h2>Premier contact : charger, nettoyer, résumer</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · annonces immobilières</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">import</span> pandas <span class="kw">as</span> pd
+df = pd.read_csv(<span class="s">"annonces.csv"</span>)                      <span class="c"># 534 lignes brutes</span>
+clean = df.copy()                                         <span class="c"># le brut reste intact</span>
+clean[<span class="s">"ville"</span>] = clean[<span class="s">"ville"</span>].str.strip().str.title()
+clean[<span class="s">"prix"</span>] = pd.to_numeric(clean[<span class="s">"prix"</span>]
+                  .str.replace(<span class="s">r"[€\s]"</span>, <span class="s">""</span>, regex=<span class="kw">True</span>),
+                  errors=<span class="s">"coerce"</span>)                     <span class="c"># invalide → NaN</span>
+clean = clean.drop_duplicates(<span class="s">"annonce_id"</span>)
+print(clean.groupby(<span class="s">"ville"</span>)[<span class="s">"prix"</span>].median())
+<span class="c"># ville</span>
+<span class="c"># Aix-En-Provence    312000.0</span>
+<span class="c"># Avignon            198500.0</span>
+<span class="c"># Marseille          245000.0</span></code></pre></div>
+  <div style="display:grid;gap:1.1vh">
+    <div class="card"><span class="lab">Ce qu'il faut remarquer</span><p>Aucune boucle : chaque instruction s'applique à une <b>colonne entière</b>. On travaille sur une <b>copie</b>, les valeurs impossibles deviennent <code>NaN</code> au lieu de faire planter le script, et l'on dédoublonne sur une <b>clé métier</b>. C'est exactement la logique Bronze → Silver, à l'échelle d'une machine.</p></div>
+    <div class="card"><span class="lab">Ce que le jury attend</span><ul><li>Nettoyer, transformer, contrôler un jeu de données.</li><li>Préparer les données pour l'analyse et les modèles.</li><li>Restituer (graphiques, indicateurs).</li></ul></div>
+  </div>
+</div>
+<div class="flow">
+  <div class="step"><b>01</b><small>NumPy : tableaux, vectorisation</small></div>
+  <div class="step"><b>02</b><small>pandas : structures, sélection</small></div>
+  <div class="step"><b>03</b><small>nettoyer un jeu de données</small></div>
+  <div class="step"><b>04</b><small>agréger, joindre, visualiser</small></div>
+  <div class="step"><b>05</b><small>régression linéaire, synthèse</small></div>
+</div>
+</section>
+
+<section class="slide" data-ch="00" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/pandas.svg" alt="Logo pandas"></div>
+<div class="kicker">Immersion · Essentiel</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Présenter NumPy et pandas en une minute</h2>
+<div class="card hl"><p class="q">« <b>NumPy</b> est la bibliothèque de calcul numérique de Python : son objet central, le <b>ndarray</b>, est un tableau homogène et contigu en mémoire sur lequel les opérations sont <b>vectorisées</b>, c'est-à-dire exécutées en code compilé sur tout le tableau, avec le <b>broadcasting</b> pour combiner des formes différentes.</p><p class="q"><b>pandas</b>, créé en 2008, construit dessus la <b>Series</b> et le <b>DataFrame</b> : des tables typées avec un index, et les outils pour lire des CSV, sélectionner avec <code>loc</code> et <code>iloc</code>, nettoyer les valeurs manquantes et les doublons, convertir les types, agréger avec <code>groupby</code> et joindre avec <code>merge</code>.</p><p class="q">Je les utilise pour explorer et préparer des données qui tiennent en mémoire, et pour les tests de mes pipelines. Quand le volume dépasse une machine, je passe à Spark, dont l'API DataFrame reprend les mêmes idées. »</p></div>
+<div class="grid g3">
+  <div class="card"><span class="lab">Les 3 mots à placer</span><p><b>Vectorisation · DataFrame · en mémoire</b></p></div>
+  <div class="card"><span class="lab">Le choix à justifier</span><p><b>pandas</b> tant que les données tiennent en mémoire sur une machine ; au-delà, un moteur distribué comme Spark.</p></div>
+  <div class="card"><span class="lab">Le lien</span><p>Alimente scikit-learn · ancêtre conceptuel du DataFrame Spark</p></div>
+</div>
+</section>
+<section class="slide" data-ch="00" data-sec="Le fil" data-title="Le fil du cours : 5 idées">
+<div class="kicker">Le fil du cours · NumPy &amp; Pandas</div>
+<h2>5 idées font tout le cours</h2>
+<p class="lead fil-q">Tout le cours répond à : <b>comment passer d'un fichier brut à des chiffres fiables, vite et sans se tromper ?</b> Cinq idées expliquent NumPy, pandas, le nettoyage et l'agrégation.</p>
+<div class="grid g3 ideas"><div class="card idea"><span class="lab">Idée 1 · Vectoriser au lieu de boucler</span><p>Un tableau NumPy (<b>ndarray</b>) ne contient qu'un seul type, rangé d'un bloc en mémoire. Une opération s'applique donc à tout le tableau d'un coup, en code compilé, des dizaines de fois plus vite qu'une boucle Python : c'est la <b>vectorisation</b>. Le <b>broadcasting</b> permet de combiner des tableaux de formes compatibles (un tableau et un nombre, par exemple).</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on parcourt un million de lignes avec une boucle Python, le calcul prend des secondes au lieu de quelques millisecondes.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Écrire le calcul sur la colonne entière (df['ttc'] = df['ht'] * 1.2) au lieu de boucler sur les lignes.</p><p class="chs">ch. 01 · ch. 02 · ch. 04</p></div><div class="card idea"><span class="lab">Idée 2 · L'index et le type font le sens</span><p>Dans pandas, chaque ligne a une étiquette (l'<b>index</b>) et chaque colonne un type (<b>dtype</b>). Les opérations entre deux séries s'<b>alignent</b> sur l'index, pas sur la position. Un mauvais type (un nombre lu comme du texte) fausse les calculs sans message d'erreur.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si un montant est lu comme du texte, la somme échoue ou colle les chaînes bout à bout au lieu de les additionner.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Vérifier df.dtypes après chaque lecture et convertir explicitement (pd.to_numeric, pd.to_datetime).</p><p class="chs">ch. 02 · ch. 03</p></div><div class="card idea"><span class="lab">Idée 3 · Savoir si l'on modifie l'original ou une copie</span><p>Certaines sélections renvoient une <b>vue</b> (on modifie l'original), d'autres une <b>copie</b> (l'original ne bouge pas). Pour modifier sans surprise, on écrit en une seule opération avec <b>.loc[lignes, colonne]</b>.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on écrit df[masque]['col'] = valeur, la modification s'applique à une copie temporaire : le DataFrame d'origine ne change pas.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Écrire df.loc[masque, 'col'] = valeur : la modification porte sur le DataFrame d'origine.</p><p class="chs">ch. 01 · ch. 02</p></div><div class="card idea"><span class="lab">Idée 4 · Nettoyer, c'est décider, et le tracer</span><p>Manquants, doublons, valeurs aberrantes, formats : chaque correction (supprimer, imputer, convertir) <b>change les résultats</b>. On la fait étape par étape, on la justifie, on <b>compte</b> ce que l'on perd.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si l'on supprime par réflexe les lignes incomplètes (dropna()) sans les compter, on peut perdre une grande partie des données sans le savoir.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Afficher le nombre de lignes avant et après chaque nettoyage, et justifier chaque suppression ou remplacement.</p><p class="chs">ch. 03 · ch. 05</p></div><div class="card idea"><span class="lab">Idée 5 · Découper, appliquer, combiner</span><p><b>groupby</b> découpe les lignes par clé, applique un calcul à chaque groupe et recombine le résultat. <b>merge</b> joint deux tables sur une clé : on vérifie d'abord que cette clé est <b>unique</b> du côté attendu. Le graphique se choisit selon la question : évolution, comparaison ou distribution.</p><p class="oubli"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-x"/></svg> L'erreur typique :</b> Si la clé de jointure n'est pas unique d'un côté, chaque ligne est dupliquée autant de fois qu'elle trouve de correspondances, et les totaux sont gonflés.</p><p class="oubli bon"><b><svg class="ico" aria-hidden="true"><use href="#ti-circle-check"/></svg> La bonne pratique :</b> Vérifier l'unicité de la clé avant le merge (df['cle'].is_unique), ou passer validate='many_to_one' pour que pandas le contrôle.</p><p class="chs">ch. 04 · ch. 05</p></div></div>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · NumPy &amp; Pandas</div>
+<h2>La chaîne : du fichier brut aux chiffres fiables</h2>
+<div class="flow"><div class="step"><b>1</b><small>Quel est le dtype de chaque colonne ?</small></div><div class="step"><b>2</b><small>Est-ce une vue ou une copie ?</small></div><div class="step"><b>3</b><small>Combien de lignes chaque étape de nettoyage retire-t-elle ?</small></div><div class="step"><b>4</b><small>La clé de jointure est-elle unique de chaque côté ?</small></div></div>
+<table class="cmp md"><thead><tr><th>Situation</th><th>Bon réflexe</th><th>Piège</th></tr></thead><tbody><tr><td>Calcul sur une colonne</td><td>opération <b>vectorisée</b></td><td>boucle for, ou apply ligne par ligne</td></tr><tr><td>Nombre lu comme texte</td><td><b>pd.to_numeric</b>(errors="coerce"), compter les NaN créés</td><td>calculer sur des chaînes</td></tr><tr><td>Modifier un sous-ensemble</td><td><b>df.loc[masque, "col"]</b> = valeur</td><td>indexation en chaîne</td></tr><tr><td>Valeurs manquantes</td><td><b>décider</b> : supprimer, imputer ou garder, puis documenter</td><td>dropna() réflexe</td></tr><tr><td>Joindre deux tables</td><td>vérifier l'unicité (<b>validate</b>="one_to_one")</td><td>jointure qui duplique les lignes</td></tr><tr><td>Comparer des catégories</td><td>groupby + <b>diagramme en barres</b></td><td>camembert à vingt parts</td></tr></tbody></table>
+</section>
+<section class="slide" data-ch="00">
+<div class="kicker">Le fil du cours · NumPy &amp; Pandas</div>
+<h2>Chaque chapitre applique les mêmes idées</h2>
+<div class="grid g2"><div style="display:grid;gap:1.2vh"><table class="cmp md"><thead><tr><th>Chapitre</th><th><b>1</b></th><th><b>2</b></th><th><b>3</b></th><th><b>4</b></th><th><b>5</b></th></tr></thead><tbody><tr><td><b>01</b> NumPy</td><td>●</td><td></td><td>●</td><td></td><td></td></tr><tr><td><b>02</b> pandas</td><td>●</td><td>●</td><td>●</td><td></td><td></td></tr><tr><td><b>03</b> Nettoyer</td><td></td><td>●</td><td></td><td>●</td><td></td></tr><tr><td><b>04</b> Agréger</td><td>●</td><td></td><td></td><td></td><td>●</td></tr><tr><td><b>05</b> Régression</td><td></td><td></td><td></td><td>●</td><td>●</td></tr></tbody></table><div class="note"><i><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></i><div><p>Ce qui revient dans <b>plusieurs chapitres</b> est une idée à comprendre ; ce qui n'apparaît qu'une fois est un <b>exemple</b> d'une de ces idées.</p></div></div></div><table class="cmp md"><thead><tr><th>Erreur classique</th><th>Idée oubliée</th><th>Ce qui casse</th></tr></thead><tbody><tr><td>Modification faite sur une copie</td><td><b>3</b> · Savoir si l'on modifie l'original ou une copie</td><td>le DataFrame d'origine n'a pas changé</td></tr><tr><td>Montant lu comme texte</td><td><b>2</b> · L'index et le type font le sens</td><td>somme impossible ou fausse</td></tr><tr><td>dropna() sans compter</td><td><b>4</b> · Nettoyer, c'est décider, et le tracer</td><td>une partie des données disparaît sans trace</td></tr><tr><td>Boucle sur un million de lignes</td><td><b>1</b> · Vectoriser au lieu de boucler</td><td>traitement bien plus lent qu'une opération vectorisée</td></tr><tr><td>Clé de jointure non unique</td><td><b>5</b> · Découper, appliquer, combiner</td><td>totaux gonflés</td></tr><tr><td>Moyenne tirée par une valeur aberrante</td><td><b>4</b> · Nettoyer, c'est décider, et le tracer</td><td>indicateur trompeur</td></tr></tbody></table></div>
+</section>
+
+
+<!-- ================= 01 · NUMPY ================= -->
+<section class="slide" data-ch="01" data-sec="01 NumPy" data-title="NumPy : tableaux et vectorisation" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/numpy.svg" alt="Logo NumPy"></div>
+<div class="kicker">Chapitre 01 · NumPy</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Le ndarray : un tableau homogène, contigu, typé</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <table class="cmp md"><tr><th></th><th>Liste Python</th><th>ndarray NumPy</th></tr>
+      <tr><td>Types</td><td>mélangés (objets)</td><td><b>un seul</b> <code>dtype</code> (int64, float64, bool…)</td></tr>
+      <tr><td>Mémoire</td><td>pointeurs dispersés</td><td>bloc <b>contigu</b>, compact</td></tr>
+      <tr><td>Calcul</td><td>boucle interprétée</td><td><b>vectorisé</b>, code compilé</td></tr>
+      <tr><td><code>a * 2</code></td><td>répète la liste</td><td>multiplie chaque élément</td></tr></table>
+    <div class="card"><span class="lab">Les attributs à connaître</span><p><code>ndim</code> (nombre de dimensions) · <code>shape</code> (taille par dimension, ex. <code>(3, 4)</code>) · <code>size</code> (nombre d'éléments) · <code>dtype</code> · <code>itemsize</code> et <code>nbytes</code> (octets par élément, au total).</p></div>
+  </div>
+  <div style="display:grid;gap:1vh">
+    <div class="code"><div class="codeh"><span>python · créer des tableaux</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">import</span> numpy <span class="kw">as</span> np
+a = np.array([1, 2, 3, 4])          <span class="c"># depuis une liste</span>
+np.zeros((3, 3)); np.ones(5)        <span class="c"># remplis de 0 / de 1</span>
+np.eye(4)                           <span class="c"># matrice identité</span>
+np.arange(0, 21, 2)                 <span class="c"># 0, 2, …, 20 (pas)</span>
+np.linspace(0, 1, 5)                <span class="c"># 5 valeurs régulières</span>
+rng = np.random.default_rng(42)     <span class="c"># générateur reproductible</span>
+rng.integers(0, 10, size=(3, 4))
+a.astype(float)                     <span class="c"># conversion de type</span></code></pre></div>
+    <div class="analogy"><b>Analogie — la boîte d'œufs.</b> Une liste Python est un sac où l'on jette des objets variés ; un ndarray est une boîte à alvéoles identiques, alignées : on traite toute la rangée d'un geste.</div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · NumPy</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Indexer, filtrer, vectoriser, diffuser</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · les gestes essentiels</span><button class="cpy" type="button">Copier</button></div><pre><code>m = np.arange(12).reshape(3, 4)     <span class="c"># 3 lignes, 4 colonnes</span>
+m[1, :]        <span class="c"># 2e ligne        → [4 5 6 7]</span>
+m[:, 2]        <span class="c"># 3e colonne      → [2 6 10]</span>
+m[0:2, 0:2]    <span class="c"># sous-tableau 2×2 (une VUE)</span>
+
+t = np.array([12, 31, 8, 25, 17])
+t[t &gt; 15]                      <span class="c"># masque booléen → [31 25 17]</span>
+t[(t &gt; 10) &amp; (t &lt; 30)]         <span class="c"># &amp; et | avec parenthèses</span>
+np.where(t &gt; 20, 0, t)         <span class="c"># remplacer sous condition</span>
+
+m.sum(axis=0)                  <span class="c"># par colonne → [12 15 18 21]</span>
+m.mean(axis=1)                 <span class="c"># par ligne   → [1.5 5.5 9.5]</span>
+m - m.mean(axis=0)             <span class="c"># broadcasting : (3,4) − (4,)</span>
+(t - t.min()) / (t.max() - t.min())   <span class="c"># normalisation min-max</span></code></pre></div>
+  <div style="display:grid;gap:1vh">
+    <div class="card hl"><span class="lab">Vectorisation</span><p>Une opération s'applique à <b>tous les éléments</b> sans boucle Python : <code>a + b</code>, <code>a ** 2</code>, <code>np.sqrt(a)</code> (<i>ufuncs</i>). C'est la clé de la performance.</p></div>
+    <div class="card"><span class="lab">axis</span><p><code>axis=0</code> agrège <b>le long des lignes</b> (résultat : une valeur par colonne) ; <code>axis=1</code> agrège le long des colonnes (une valeur par ligne).</p></div>
+    <div class="card"><span class="lab">Broadcasting</span><p>Deux tableaux de formes différentes se combinent si, en comparant les dimensions <b>depuis la droite</b>, elles sont égales ou valent 1 : <code>(3, 4)</code> et <code>(4,)</code> se combinent ; <code>(3, 4)</code> et <code>(3,)</code> non.</p></div>
+    <div class="card"><span class="lab">Algèbre et statistiques</span><p><code>a @ b</code> (produit matriciel ou scalaire), <code>M.T</code> (transposée), <code>np.linalg.inv</code>, <code>det</code>, <code>solve</code> ; <code>mean</code>, <code>std</code>, <code>percentile</code>, <code>argmax</code>, <code>unique(return_counts=True)</code>.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="c">
+<div class="kicker">Chapitre 01 · NumPy</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Les pièges de NumPy</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Vue ou copie ?</b> Un slice (<code>m[0:2]</code>) est une <b>vue</b> : le modifier modifie l'original. Le masque booléen et <code>.copy()</code> créent une copie.</div>
+    <div><b><code>a * b</code> ≠ produit matriciel.</b> <code>*</code> multiplie élément par élément ; le produit matriciel est <code>@</code>.</div>
+    <div><b><code>and</code>/<code>or</code> sur des tableaux.</b> Erreur « truth value is ambiguous » : utiliser <code>&amp;</code>, <code>|</code>, <code>~</code> avec des parenthèses.</div>
+    <div><b>NaN contamine.</b> <code>np.mean([1, np.nan])</code> vaut NaN : <code>np.nanmean</code>. Et un tableau d'entiers ne peut pas contenir NaN (il devient float).</div>
+    <div><b>Débordement silencieux.</b> Un <code>int8</code> ou <code>uint8</code> dépasse sa borne sans erreur (255 + 1 → 0).</div>
+    <div><b>Boucler sur un ndarray.</b> On perd tout l'intérêt : chercher la version vectorisée.</div>
+  </div>
+  <ol class="sum-list">
+    <li><b>ndarray</b> : homogène (un <code>dtype</code>), contigu, multidimensionnel (<code>shape</code>).</li>
+    <li>Création : <code>array</code>, <code>zeros</code>, <code>ones</code>, <code>eye</code>, <code>arange</code>, <code>linspace</code>, <code>random</code>.</li>
+    <li>Sélection : indices, slices (vues), <b>masques booléens</b>, <code>np.where</code>.</li>
+    <li><b>Vectorisation</b> et <b>broadcasting</b> remplacent les boucles.</li>
+    <li><code>axis=0</code> : par colonne ; <code>axis=1</code> : par ligne.</li>
+    <li><code>@</code> pour le produit matriciel, <code>np.linalg</code> pour l'algèbre.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="01" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/numpy.svg" alt="Logo NumPy"></div>
+<div class="kicker">Chapitre 01 · NumPy</div>
+<h2>Fiche — NumPy</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">ndarray</span><p>Un seul dtype, mémoire contiguë ; <code>ndim</code>, <code>shape</code>, <code>size</code>, <code>dtype</code>, <code>nbytes</code>.</p></div>
+  <div class="card"><span class="lab">Créer</span><p><code>array</code> · <code>zeros</code> · <code>ones</code> · <code>eye</code> · <code>arange</code> · <code>linspace</code> · <code>default_rng</code>.</p></div>
+  <div class="card"><span class="lab">Sélectionner</span><p><code>m[i, j]</code> · slices (vues) · masques <code>t[t &gt; 15]</code> · <code>np.where</code>.</p></div>
+  <div class="card"><span class="lab">Calculer</span><p>Vectorisation (ufuncs) · broadcasting (dimensions égales ou 1, depuis la droite) · <code>axis</code>.</p></div>
+  <div class="card"><span class="lab">Algèbre</span><p><code>@</code> · <code>.T</code> · <code>linalg.inv</code>, <code>det</code>, <code>solve</code>, <code>eig</code>.</p></div>
+  <div class="card"><span class="lab">Pièges</span><p>Vue vs copie · <code>*</code> vs <code>@</code> · <code>&amp;</code> pas <code>and</code> · NaN · débordement.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · NumPy</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 01</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Pourquoi NumPy est-il plus rapide qu'une liste Python ?</button><div class="ab"><p>Parce que le ndarray stocke des valeurs d'un <b>même type</b> dans un bloc mémoire <b>contigu</b>, et que les opérations sont <b>vectorisées</b> : une seule instruction déclenche une boucle en code compilé (C), sans l'interprétation Python élément par élément ni la gestion d'objets individuels.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce que le broadcasting ?</button><div class="ab"><p>La règle qui permet de combiner des tableaux de formes différentes sans copier les données : en comparant les dimensions depuis la droite, chacune doit être égale ou valoir 1, et la dimension 1 est « étirée ». Exemple : soustraire la moyenne de chaque colonne, de forme <code>(4,)</code>, à une matrice <code>(3, 4)</code>.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quelle différence entre une vue et une copie ?</button><div class="ab"><p>Une vue partage la mémoire du tableau d'origine (cas des slices, de <code>reshape</code> le plus souvent) : la modifier modifie l'original. Une copie est indépendante (<code>.copy()</code>, indexation par masque ou par liste d'indices). C'est une source classique de bugs silencieux.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="01">
+<div class="kicker">Chapitre 01 · NumPy</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="01"></div>
+</section>
+
+<!-- ================= 02 · PANDAS : STRUCTURES ET SÉLECTION ================= -->
+<section class="slide" data-ch="02" data-sec="02 pandas" data-title="pandas : structures et sélection" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/pandas.svg" alt="Logo pandas"></div>
+<div class="kicker">Chapitre 02 · pandas : structures et sélection</div>
+<div class="pqrow"><span class="pq">② Quoi</span> <span class="pq how">③ Comment</span></div>
+<h2>Series, DataFrame, index</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <div class="card"><span class="lab">Series</span><p>Un tableau <b>1D étiqueté</b> : des valeurs (un ndarray) + un <b>index</b>. Se crée depuis une liste, un dictionnaire (les clés deviennent l'index) ou un ndarray.</p></div>
+    <div class="card hl"><span class="lab">DataFrame</span><p>Une table <b>2D</b> : un ensemble de Series qui partagent le même index, <b>une colonne = un type</b>. Métadonnées : <code>index</code>, <code>columns</code>, <code>dtypes</code>, <code>shape</code>.</p></div>
+    <div class="card"><span class="lab">Index</span><p>Les étiquettes des lignes (0, 1, 2… par défaut, ou une colonne via <code>set_index</code>). Les opérations entre Series <b>s'alignent sur l'index</b>, pas sur la position.</p></div>
+  </div>
+  <div class="code"><div class="codeh"><span>python · lire et inspecter</span><button class="cpy" type="button">Copier</button></div><pre><code>df = pd.read_csv(<span class="s">"commandes.csv"</span>, sep=<span class="s">";"</span>,
+                 encoding=<span class="s">"utf-8"</span>, decimal=<span class="s">","</span>)
+df.head(); df.tail(); df.sample(8)    <span class="c"># aperçu</span>
+df.shape                              <span class="c"># (lignes, colonnes)</span>
+df.info()                             <span class="c"># types + non-nuls</span>
+df.describe(include=<span class="s">"all"</span>)            <span class="c"># statistiques</span>
+df[<span class="s">"ville"</span>].value_counts()             <span class="c"># fréquences</span>
+df[<span class="s">"ville"</span>].unique()                   <span class="c"># valeurs distinctes</span>
+
+<span class="c"># écrire</span>
+df.to_csv(<span class="s">"propre.csv"</span>, index=<span class="kw">False</span>)
+df.to_parquet(<span class="s">"propre.parquet"</span>)        <span class="c"># typé, compressé</span>
+<span class="c"># aussi : read_excel, read_json, read_sql, read_parquet</span></code></pre></div>
+</div>
+<div class="analogy"><b>Analogie — le classeur.</b> Une Series est une colonne du tableur avec ses numéros de ligne ; un DataFrame est la feuille entière, où chaque colonne a son format ; l'index est la colonne grise des numéros, qui peut devenir un vrai identifiant.</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · pandas : structures et sélection</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Sélectionner : loc, iloc, masques, query</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · sélection</span><button class="cpy" type="button">Copier</button></div><pre><code>df[<span class="s">"age"</span>]                         <span class="c"># une colonne → Series</span>
+df[[<span class="s">"nom"</span>, <span class="s">"age"</span>]]                  <span class="c"># plusieurs → DataFrame</span>
+
+df.loc[0, <span class="s">"nom"</span>]                    <span class="c"># par ÉTIQUETTES</span>
+df.loc[df[<span class="s">"age"</span>] &gt; 30, [<span class="s">"nom"</span>, <span class="s">"ville"</span>]]
+df.iloc[0, 1]                       <span class="c"># par POSITIONS</span>
+df.iloc[:3]                         <span class="c"># 3 premières lignes</span>
+
+df[(df[<span class="s">"age"</span>] &gt; 20) &amp; (df[<span class="s">"ville"</span>] == <span class="s">"Paris"</span>)]
+df[df[<span class="s">"ville"</span>].isin([<span class="s">"Paris"</span>, <span class="s">"Lyon"</span>])]
+df.query(<span class="s">"age &gt; 30 and ville == 'Paris'"</span>)
+
+df.sort_values(<span class="s">"age"</span>, ascending=<span class="kw">False</span>)
+df[<span class="s">"total"</span>] = df[<span class="s">"quantite"</span>] * df[<span class="s">"prix"</span>]   <span class="c"># vectorisé</span>
+df = df.rename(columns={<span class="s">"old"</span>: <span class="s">"new"</span>}).drop(columns=[<span class="s">"tmp"</span>])</code></pre></div>
+  <div style="display:grid;gap:1vh">
+    <table class="cmp md"><tr><th></th><th><code>loc</code></th><th><code>iloc</code></th></tr>
+      <tr><td>Repère</td><td>étiquettes (index, noms)</td><td>positions entières</td></tr>
+      <tr><td>Slice <code>0:3</code></td><td><b>inclut</b> la borne 3</td><td><b>exclut</b> la borne 3</td></tr>
+      <tr><td>Masque booléen</td><td>oui</td><td>tableau booléen brut seulement, pas une Series</td></tr></table>
+    <div class="card"><span class="lab">apply : en dernier recours</span><p><code>df["col"].apply(f)</code> appelle une fonction Python par ligne : lisible mais lent. Préférer les opérations vectorisées, les méthodes <code>.str</code> et <code>.dt</code>, <code>np.where</code> ou <code>np.select</code>.</p></div>
+    <div class="card"><span class="lab">Bonne pratique</span><p>Sélection + modification en <b>une seule</b> instruction <code>loc</code> : <code>df.loc[df.age &lt; 0, "age"] = np.nan</code>. Le chaînage <code>df[df.age &lt; 0]["age"] = …</code> modifie une copie temporaire (<b>SettingWithCopyWarning</b>) ; avec pandas 3 et le <b>Copy-on-Write</b> par défaut, elle ne modifie <b>jamais</b> <code>df</code>.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="c">
+<div class="kicker">Chapitre 02 · pandas : structures et sélection</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Les pièges de la sélection</h2>
+<div class="grid g2">
+  <div class="trap-list">
+    <div><b>Un nombre lu comme texte.</b> « 245 000 € » ou « 12,5 » donnent une colonne <code>object</code> : vérifier <code>dtypes</code> dès la lecture (<code>sep</code>, <code>decimal</code>, <code>thousands</code>).</div>
+    <div><b><code>and</code> au lieu de <code>&amp;</code>.</b> Et oublier les parenthèses autour de chaque condition.</div>
+    <div><b>Confondre <code>loc</code> et <code>iloc</code>.</b> Après un filtre, l'index n'est plus 0, 1, 2… : <code>loc[0]</code> peut ne plus exister.</div>
+    <div><b>L'alignement sur l'index.</b> Additionner deux Series d'index différents produit des NaN là où les étiquettes ne correspondent pas.</div>
+    <div><b>Chained assignment.</b> Modifier via <code>df[filtre]["col"] = …</code> : la modification se perd.</div>
+  </div>
+  <ol class="sum-list">
+    <li><b>Series</b> (1D étiquetée) et <b>DataFrame</b> (colonnes typées, index partagé).</li>
+    <li>Inspecter : <code>head</code>, <code>info</code>, <code>describe</code>, <code>dtypes</code>, <code>value_counts</code>.</li>
+    <li><code>loc</code> par étiquettes (borne incluse), <code>iloc</code> par positions (borne exclue).</li>
+    <li>Filtres booléens avec <code>&amp;</code>, <code>|</code>, <code>~</code>, <code>isin</code>, <code>query</code>.</li>
+    <li>Vectoriser ; <code>apply</code> en dernier recours.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="02" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/pandas.svg" alt="Logo pandas"></div>
+<div class="kicker">Chapitre 02 · pandas : structures et sélection</div>
+<h2>Fiche — pandas : structures et sélection</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Structures</span><p>Series (1D + index) · DataFrame (2D, une colonne = un type) · index (alignement).</p></div>
+  <div class="card"><span class="lab">Lire / écrire</span><p><code>read_csv(sep, decimal, encoding)</code> · <code>read_excel</code> · <code>read_parquet</code> · <code>to_csv(index=False)</code>.</p></div>
+  <div class="card"><span class="lab">Inspecter</span><p><code>head</code> · <code>info</code> · <code>describe</code> · <code>shape</code> · <code>dtypes</code> · <code>value_counts</code> · <code>unique</code>.</p></div>
+  <div class="card"><span class="lab">Sélectionner</span><p><code>df["c"]</code> · <code>df[["a","b"]]</code> · <code>loc</code> (étiquettes) · <code>iloc</code> (positions).</p></div>
+  <div class="card"><span class="lab">Filtrer</span><p>Masques avec <code>&amp; | ~</code> et parenthèses · <code>isin</code> · <code>query</code> · <code>sort_values</code>.</p></div>
+  <div class="card"><span class="lab">Pièges</span><p>Nombres lus en texte · chained assignment · alignement d'index · <code>apply</code> lent.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · pandas : structures et sélection</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 02</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Quelle différence entre loc et iloc ?</button><div class="ab"><p><code>loc</code> sélectionne par <b>étiquettes</b> (valeurs de l'index et noms de colonnes) et accepte les masques booléens ; dans un slice, la borne de fin est incluse. <code>iloc</code> sélectionne par <b>positions</b> entières, comme une liste Python, borne de fin exclue.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Qu'est-ce qu'un DataFrame ?</button><div class="ab"><p>Une table en mémoire composée de colonnes nommées, chacune d'un type homogène (une Series), qui partagent un même index de lignes. Il offre les opérations d'une base de données — sélection, filtrage, agrégation, jointure — en Python, sur une seule machine.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi éviter apply ?</button><div class="ab"><p>Parce qu'il exécute une fonction Python ligne par ligne, sans bénéficier de la vectorisation : sur de gros volumes, c'est des dizaines de fois plus lent. Les opérations sur colonnes entières, les accesseurs <code>.str</code> et <code>.dt</code> ou <code>np.where</code> font la même chose en code compilé.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="02">
+<div class="kicker">Chapitre 02 · pandas : structures et sélection</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="02"></div>
+</section>
+
+<!-- ================= 03 · NETTOYER ================= -->
+<section class="slide" data-ch="03" data-sec="03 Nettoyer" data-title="Nettoyer un jeu de données" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/pandas.svg" alt="Logo pandas"></div>
+<div class="kicker">Chapitre 03 · Nettoyer un jeu de données</div>
+<div class="pqrow"><span class="pq why2">① Pourquoi</span> <span class="pq">② Quoi</span></div>
+<h2>Les défauts typiques d'un fichier réel</h2>
+<table class="cmp md"><tr><th>Défaut</th><th>Exemple</th><th>Détection</th><th>Traitement</th></tr>
+  <tr><td>Valeurs manquantes</td><td>prix vide, date absente</td><td><code>isna().sum()</code>, en % : <code>isna().mean()</code></td><td>supprimer de façon ciblée, imputer (médiane, valeur métier), ou garder et signaler</td></tr>
+  <tr><td>Doublons</td><td>même annonce saisie deux fois</td><td><code>duplicated().sum()</code></td><td><code>drop_duplicates</code> exact, puis sur la <b>clé métier</b></td></tr>
+  <tr><td>Texte incohérent</td><td>« paris », « Paris  », « PARIS »</td><td><code>unique()</code>, <code>value_counts()</code></td><td><code>.str.strip()</code>, <code>.str.title()</code>, table de correspondance</td></tr>
+  <tr><td>Nombres en texte</td><td>« 245 000 € », « 12,5 »</td><td><code>dtypes</code> = object</td><td><code>.str.replace</code> puis <code>pd.to_numeric(errors="coerce")</code></td></tr>
+  <tr><td>Dates mal typées</td><td>« 05/10/2024 », « 2024-10-05 »</td><td><code>dtypes</code>, échecs de conversion</td><td><code>pd.to_datetime(format=…, dayfirst=True, errors="coerce")</code></td></tr>
+  <tr><td>Unités mélangées</td><td>m² et sq ft</td><td>inspection, distribution bimodale</td><td>convertir (1 sq ft = 0,092903 m²)</td></tr>
+  <tr><td>Valeurs aberrantes</td><td>surface de 5 000 m², prix de 1 €</td><td><code>describe()</code>, boxplot, règle de l'IQR</td><td>distinguer erreur certaine et valeur rare ; inspecter avant de supprimer</td></tr></table>
+<div class="analogy"><b>Analogie — la restauration d'un tableau.</b> On travaille sur une copie, on documente chaque retouche, et l'on ne repeint pas une zone simplement parce qu'elle est inhabituelle : on vérifie d'abord si c'est une dégradation ou l'intention du peintre.</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Nettoyer un jeu de données</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Un nettoyage traçable, étape par étape</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · nettoyer les commandes</span><button class="cpy" type="button">Copier</button></div><pre><code>clean = df.copy()                               <span class="c"># le brut reste intact</span>
+log = {<span class="s">"brut"</span>: len(clean)}
+
+clean = clean.drop_duplicates()                 <span class="c"># doublons exacts</span>
+log[<span class="s">"sans_doublons"</span>] = len(clean)
+
+<span class="kw">for</span> c <span class="kw">in</span> [<span class="s">"client"</span>, <span class="s">"ville"</span>, <span class="s">"produit"</span>]:
+    clean[c] = clean[c].str.strip().str.title()
+
+<span class="kw">for</span> c <span class="kw">in</span> [<span class="s">"prix_unitaire"</span>, <span class="s">"montant_total"</span>]:
+    clean[c] = pd.to_numeric(clean[c].astype(str)
+        .str.replace(<span class="s">"€"</span>, <span class="s">""</span>).str.replace(<span class="s">","</span>, <span class="s">"."</span>).str.strip(),
+        errors=<span class="s">"coerce"</span>)                        <span class="c"># « inconnu » → NaN</span>
+clean[<span class="s">"quantite"</span>] = pd.to_numeric(clean[<span class="s">"quantite"</span>], errors=<span class="s">"coerce"</span>)
+clean[<span class="s">"date"</span>] = pd.to_datetime(clean[<span class="s">"date"</span>], dayfirst=<span class="kw">True</span>, errors=<span class="s">"coerce"</span>)
+
+clean = clean.dropna(subset=[<span class="s">"commande_id"</span>, <span class="s">"quantite"</span>, <span class="s">"prix_unitaire"</span>])
+log[<span class="s">"lignes_utilisables"</span>] = len(clean)
+
+ecart = (clean[<span class="s">"quantite"</span>] * clean[<span class="s">"prix_unitaire"</span>] - clean[<span class="s">"montant_total"</span>]).abs()
+a_verifier = clean[ecart &gt; 0.01]                  <span class="c"># cohérence à examiner</span>
+clean.to_csv(<span class="s">"commandes_propres.csv"</span>, index=<span class="kw">False</span>)</code></pre></div>
+  <div style="display:grid;gap:1vh">
+    <div class="card hl"><span class="lab">Les principes</span><ul><li><b>Copie</b> : le fichier brut n'est jamais modifié (comme la couche Bronze).</li><li><b>Pas de nettoyage silencieux</b> : compter les lignes avant/après chaque étape, garder les rejets.</li><li><b><code>errors="coerce"</code></b> : une valeur non convertible devient NaN au lieu de faire échouer le script ; on compte ensuite ces NaN.</li><li><b>Cohérence</b> : recalculer ce qui peut l'être (quantité × prix = montant).</li><li><b>Décisions justifiées</b> et validées par le métier : seuils d'aberration, choix d'imputation.</li></ul></div>
+    <div class="card"><span class="lab">Valeurs aberrantes : la règle de l'IQR</span><p>IQR = Q3 − Q1. Suspect si la valeur est sous <code>Q1 − 1,5 × IQR</code> ou au-dessus de <code>Q3 + 1,5 × IQR</code> — c'est la règle des moustaches du boxplot. Suspect ne veut pas dire faux : une villa de 400 m² existe.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · Nettoyer un jeu de données</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Imputer ou supprimer ? Les décisions qui changent les résultats</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <table class="cmp md"><tr><th>Choix</th><th>Avantage</th><th>Risque</th></tr>
+      <tr><td><code>dropna()</code> global</td><td>simple</td><td>perte massive, biais si les manques ne sont pas aléatoires</td></tr>
+      <tr><td><code>dropna(subset=…)</code></td><td>cible les colonnes indispensables</td><td>à justifier</td></tr>
+      <tr><td>Imputer la <b>médiane</b></td><td>robuste aux valeurs extrêmes</td><td>réduit la variance</td></tr>
+      <tr><td>Imputer la moyenne</td><td>simple</td><td>tirée par les extrêmes</td></tr>
+      <tr><td><code>fillna(0)</code></td><td>—</td><td>fausse toutes les statistiques si 0 n'a pas de sens</td></tr></table>
+    <div class="card"><span class="lab">Doublons : exacts puis métier</span><p>Une même annonce peut réapparaître avec un espace en plus : dédoublonner sur la <b>clé métier</b> (<code>annonce_id</code>, ou une combinaison de colonnes) après normalisation.</p></div>
+  </div>
+  <div>
+    <div class="trap-list">
+      <div><b>Remplacer tous les NaN par zéro.</b> Un prix inconnu n'est pas un prix nul.</div>
+      <div><b>Supprimer une ligne parce qu'elle est extrême.</b> L'inspecter : erreur de saisie, unité, ou vraie valeur rare ?</div>
+      <div><b>Modifier le fichier source.</b> On ne peut plus rejouer ni expliquer.</div>
+      <div><b>Oublier le format des dates.</b> « 05/10 » est le 5 octobre en France, le 10 mai aux États-Unis : préciser <code>dayfirst</code> ou <code>format</code>.</div>
+      <div><b><code>inplace=True</code> partout.</b> Préférer l'affectation explicite, plus lisible et chaînable.</div>
+    </div>
+    <ol class="sum-list">
+      <li>Explorer d'abord : manquants, doublons, catégories, formats, distributions.</li>
+      <li>Travailler sur une copie, compter avant/après, garder les rejets.</li>
+      <li>Normaliser texte, nombres (<code>to_numeric</code>), dates (<code>to_datetime</code>), unités.</li>
+      <li>Justifier chaque suppression ou imputation.</li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="03" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/pandas.svg" alt="Logo pandas"></div>
+<div class="kicker">Chapitre 03 · Nettoyer un jeu de données</div>
+<h2>Fiche — Nettoyer avec pandas</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Manquants</span><p><code>isna().sum()</code> · <code>dropna(subset=…)</code> · <code>fillna(médiane)</code> · jamais 0 à l'aveugle.</p></div>
+  <div class="card"><span class="lab">Doublons</span><p><code>duplicated()</code> · <code>drop_duplicates()</code> exact puis sur la clé métier.</p></div>
+  <div class="card"><span class="lab">Texte</span><p><code>.str.strip()</code> · <code>.str.title()</code> · <code>.str.replace()</code> · <code>unique()</code> pour vérifier.</p></div>
+  <div class="card"><span class="lab">Types</span><p><code>to_numeric(errors="coerce")</code> · <code>to_datetime(dayfirst=True, errors="coerce")</code> · <code>astype</code>.</p></div>
+  <div class="card"><span class="lab">Aberrants</span><p>IQR : Q1 − 1,5·IQR et Q3 + 1,5·IQR · inspecter avant de supprimer.</p></div>
+  <div class="card"><span class="lab">Principes</span><p>Copie du brut · compteurs avant/après · décisions justifiées · export <code>index=False</code>.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Nettoyer un jeu de données</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 03</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Comment traitez-vous les valeurs manquantes ?</button><div class="ab"><p>Je les quantifie d'abord par colonne. Si la colonne est indispensable (identifiant, quantité), je supprime les lignes concernées ; sinon j'impute avec une valeur justifiée — souvent la médiane, robuste aux extrêmes — ou je laisse la valeur manquante et je la signale. Je ne remplace jamais par zéro sans raison métier, et je documente l'impact sur le nombre de lignes.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Comment repérez-vous une valeur aberrante, et que faites-vous ?</button><div class="ab"><p>Par <code>describe()</code>, un boxplot ou la règle de l'IQR, et par des bornes métier (surface positive, année plausible). Ensuite j'inspecte : erreur certaine (surface négative, unité confondue) que je corrige ou rejette, ou valeur rare mais possible que je conserve. La décision est documentée.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">À quoi sert errors="coerce" ?</button><div class="ab"><p>Lors d'une conversion (<code>to_numeric</code>, <code>to_datetime</code>), il transforme les valeurs non convertibles en NaN ou NaT au lieu de lever une erreur. Le script va au bout, et l'on peut compter puis examiner les valeurs qui ont échoué.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Pourquoi conserver le fichier original ?</button><div class="ab"><p>Pour pouvoir rejouer le nettoyage si une règle change, comparer avant et après, et justifier chaque décision : c'est le même principe que la couche Bronze immuable d'un data lake.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="03">
+<div class="kicker">Chapitre 03 · Nettoyer un jeu de données</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="03"></div>
+</section>
+
+<!-- ================= 04 · AGRÉGER, JOINDRE, VISUALISER ================= -->
+<section class="slide" data-ch="04" data-sec="04 Agréger" data-title="Agréger, joindre, visualiser" data-v="c">
+<div class="kicker">Chapitre 04 · Agréger, joindre, visualiser</div>
+<div class="pqrow"><span class="pq">② Quoi</span> <span class="pq how">③ Comment</span></div>
+<h2>groupby : découper, appliquer, combiner</h2>
+<div class="sch free"><span class="cap">Split → apply → combine</span>
+<svg class="dg" viewBox="0 0 960 150" role="img" aria-label="Une table est découpée par ville, une agrégation est calculée par groupe, puis les résultats sont combinés">
+  <rect class="b f3" x="10" y="20" width="200" height="110" rx="8"/><text class="s" x="22" y="44">Paris   150</text><text class="s" x="22" y="64">Lyon    270</text><text class="s" x="22" y="84">Paris    65</text><text class="s" x="22" y="104">Lyon    110</text><text class="s" x="22" y="124">Paris   948</text>
+  <rect class="b f1" x="290" y="15" width="180" height="56" rx="8"/><text class="s tc" x="380" y="39">Paris : 150, 65, 948</text><text class="a" x="380" y="59" text-anchor="middle">split</text>
+  <rect class="b f2" x="290" y="85" width="180" height="50" rx="8"/><text class="s tc" x="380" y="115">Lyon : 270, 110</text>
+  <rect class="b ok" x="550" y="15" width="180" height="56" rx="8"/><text class="s tc" x="640" y="39">sum = 1163</text><text class="a" x="640" y="59" text-anchor="middle">apply</text>
+  <rect class="b ok" x="550" y="85" width="180" height="50" rx="8"/><text class="s tc" x="640" y="115">sum = 380</text>
+  <rect class="b f4" x="800" y="40" width="150" height="70" rx="8"/><text class="s tc" x="875" y="68">Paris 1163</text><text class="s tc" x="875" y="90">Lyon   380</text>
+  <path class="e" d="M210 60 L286 43"/><path class="e" d="M210 90 L286 110"/><path class="e" d="M470 43 H546"/><path class="e" d="M470 110 H546"/><path class="e" d="M730 43 L796 65"/><path class="e" d="M730 110 L796 88"/>
+
+  <use class="il" href="#il-file" x="180" y="96" width="24" height="30"/><use class="il" href="#il-funnel" x="440" y="92" width="24" height="24"/><use class="il" href="#il-gear" x="700" y="92" width="24" height="24"/><use class="il" href="#il-chart" x="906" y="80" width="30" height="26"/>
+</svg></div>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · agréger</span><button class="cpy" type="button">Copier</button></div><pre><code>df.groupby(<span class="s">"ville"</span>)[<span class="s">"montant"</span>].sum()
+df.groupby(<span class="s">"client"</span>).agg(ca=(<span class="s">"montant"</span>, <span class="s">"sum"</span>),
+                         panier=(<span class="s">"montant"</span>, <span class="s">"mean"</span>),
+                         n=(<span class="s">"commande_id"</span>, <span class="s">"nunique"</span>))
+df.groupby([<span class="s">"ville"</span>, <span class="s">"produit"</span>]).size().reset_index(name=<span class="s">"n"</span>)
+df.pivot_table(index=<span class="s">"ville"</span>, columns=<span class="s">"produit"</span>,
+               values=<span class="s">"montant"</span>, aggfunc=<span class="s">"sum"</span>, fill_value=0)
+df.set_index(<span class="s">"date"</span>).resample(<span class="s">"MS"</span>)[<span class="s">"montant"</span>].sum()  <span class="c"># par mois</span></code></pre></div>
+  <div style="display:grid;gap:1vh">
+    <div class="card"><span class="lab">Équivalences SQL</span><p><code>groupby().agg()</code> ≈ <code>GROUP BY</code> + fonctions d'agrégat · filtre après agrégation ≈ <code>HAVING</code> · <code>pivot_table</code> ≈ tableau croisé · <code>resample</code> ≈ regroupement par période sur un index de dates.</p></div>
+    <div class="card"><span class="lab">Dates</span><p>L'accesseur <code>.dt</code> extrait <code>year</code>, <code>month</code>, <code>day_name()</code> ; <code>resample("W")</code> regroupe par semaine, <code>"MS"</code> par début de mois.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Agréger, joindre, visualiser</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq ex">④ Exemple</span></div>
+<h2>Joindre et concaténer</h2>
+<div class="grid g2">
+  <div class="code"><div class="codeh"><span>python · combiner des tables</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="c"># jointure SQL-like sur une clé</span>
+cmd = pd.merge(commandes, clients, on=<span class="s">"client_id"</span>,
+               how=<span class="s">"left"</span>,                <span class="c"># inner, left, right, outer</span>
+               validate=<span class="s">"many_to_one"</span>,    <span class="c"># garde-fou</span>
+               indicator=<span class="kw">True</span>)              <span class="c"># _merge : left_only…</span>
+cmd[<span class="s">"_merge"</span>].value_counts()               <span class="c"># commandes sans client ?</span>
+
+<span class="c"># empiler des fichiers de même structure</span>
+mois = pd.concat([janv, fevr, mars], ignore_index=<span class="kw">True</span>)  <span class="c"># axis=0</span>
+<span class="c"># juxtaposer sur l'index</span>
+large = pd.concat([a, b], axis=1)</code></pre></div>
+  <div style="display:grid;gap:1vh">
+    <table class="cmp md"><tr><th><code>how</code></th><th>Garde</th></tr>
+      <tr><td><code>inner</code></td><td>les clés présentes des deux côtés</td></tr>
+      <tr><td><code>left</code></td><td>toutes les lignes de gauche (NaN si pas de correspondance)</td></tr>
+      <tr><td><code>right</code></td><td>toutes les lignes de droite</td></tr>
+      <tr><td><code>outer</code></td><td>tout, des deux côtés</td></tr></table>
+    <div class="card bad"><span class="lab">Le piège de l'explosion</span><p>Si la clé est en double à droite (un client présent deux fois), chaque commande est <b>dupliquée</b> : le nombre de lignes augmente et les sommes sont fausses. Vérifier l'unicité de la clé, utiliser <code>validate</code>, et comparer <code>len()</code> avant/après.</p></div>
+    <div class="card"><span class="lab">merge, concat, join</span><p><code>merge</code> : sur des colonnes clés. <code>concat</code> : empiler (lignes) ou juxtaposer (colonnes). <code>join</code> : raccourci de jointure sur l'index.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="c">
+<div class="kicker">Chapitre 04 · Agréger, joindre, visualiser</div>
+<div class="pqrow"><span class="pq how">③ Comment</span> <span class="pq sum">⑥ Résumé</span></div>
+<h2>Visualiser : choisir le bon graphique</h2>
+<div class="grid g2">
+  <table class="cmp md"><tr><th>Objectif</th><th>Graphique</th><th>Exemple</th></tr>
+    <tr><td>Comparer des catégories</td><td>barres (horizontales si libellés longs)</td><td>commandes par produit</td></tr>
+    <tr><td>Voir une distribution</td><td>histogramme, densité</td><td>répartition des prix</td></tr>
+    <tr><td>Suivre une évolution</td><td>courbe</td><td>CA par mois</td></tr>
+    <tr><td>Relier deux variables</td><td>nuage de points</td><td>surface et prix</td></tr>
+    <tr><td>Comparer des dispersions, repérer des atypiques</td><td>boîte à moustaches</td><td>quantités par produit</td></tr>
+    <tr><td>Montrer une composition</td><td>barres empilées (camembert si peu de parts)</td><td>ventes par catégorie</td></tr>
+    <tr><td>Explorer des corrélations</td><td>heatmap</td><td><code>df.corr()</code></td></tr></table>
+  <div style="display:grid;gap:1vh">
+    <div class="code"><div class="codeh"><span>python · Matplotlib via pandas</span><button class="cpy" type="button">Copier</button></div><pre><code><span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> plt
+df[<span class="s">"produit"</span>].value_counts().plot(kind=<span class="s">"bar"</span>)
+df[<span class="s">"prix"</span>].plot(kind=<span class="s">"hist"</span>, bins=30)
+df.plot.scatter(x=<span class="s">"surface"</span>, y=<span class="s">"prix"</span>)
+df.boxplot(column=<span class="s">"quantite"</span>, by=<span class="s">"produit"</span>)
+plt.title(<span class="s">"…"</span>); plt.xlabel(<span class="s">"…"</span>); plt.show()</code></pre></div>
+    <ol class="sum-list">
+      <li><code>groupby</code> + <code>agg</code> : split, apply, combine (≈ GROUP BY).</li>
+      <li><code>pivot_table</code>, <code>resample</code> pour croiser et regrouper dans le temps.</li>
+      <li><code>merge</code> (inner/left/right/outer) : vérifier l'unicité de la clé.</li>
+      <li>Un graphique par question : comparer, distribuer, évoluer, relier.</li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<section class="slide" data-ch="04" data-v="e">
+<div class="kicker">Chapitre 04 · Agréger, joindre, visualiser</div>
+<h2>Fiche — Agréger, joindre, visualiser</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Agréger</span><p><code>groupby(...).agg(nom=(col, fonction))</code> · <code>size</code> · <code>nunique</code> · <code>reset_index</code>.</p></div>
+  <div class="card"><span class="lab">Croiser / temps</span><p><code>pivot_table</code> · <code>.dt.year</code> · <code>resample("MS")</code>.</p></div>
+  <div class="card"><span class="lab">Joindre</span><p><code>merge(on, how, validate, indicator)</code> · inner, left, right, outer.</p></div>
+  <div class="card"><span class="lab">Empiler</span><p><code>concat(axis=0, ignore_index=True)</code> · <code>axis=1</code> pour juxtaposer.</p></div>
+  <div class="card"><span class="lab">Piège</span><p>Clé dupliquée → explosion des lignes et des sommes.</p></div>
+  <div class="card"><span class="lab">Graphiques</span><p>Barres · histogramme · courbe · nuage · boxplot · heatmap.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Agréger, joindre, visualiser</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — chapitre 04</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Expliquez le fonctionnement de groupby.</button><div class="ab"><p>Le schéma <b>split-apply-combine</b> : pandas découpe la table en groupes selon une ou plusieurs clés, applique une fonction d'agrégation à chaque groupe (somme, moyenne, comptage), puis combine les résultats dans une nouvelle table indexée par les clés. C'est l'équivalent d'un <code>GROUP BY</code> SQL.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Après une jointure, votre chiffre d'affaires a doublé. Que s'est-il passé ?</button><div class="ab"><p>Probablement une clé <b>non unique</b> dans la table de droite : chaque ligne de gauche a été associée à plusieurs lignes, ce qui les a dupliquées. Je vérifie l'unicité de la clé, j'utilise <code>validate="many_to_one"</code> et je compare le nombre de lignes avant et après.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quel graphique pour montrer la relation entre surface et prix ?</button><div class="ab"><p>Un <b>nuage de points</b>, éventuellement avec la droite de régression : il montre la tendance, la dispersion et les points atypiques. Pour comparer les prix entre villes, j'utiliserais plutôt des boîtes à moustaches.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="04">
+<div class="kicker">Chapitre 04 · Agréger, joindre, visualiser</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="04"></div>
+</section>
+
+<!-- ================= 05 · RÉGRESSION ET SYNTHÈSE ================= -->
+<section class="slide" data-ch="05" data-sec="05 Régression" data-title="Régression linéaire avec NumPy et synthèse" data-v="c">
+<div class="chlogos"><img class="chlogo" src="assets/logos/numpy.svg" alt="Logo NumPy"></div>
+<div class="kicker">Chapitre 05 · Régression linéaire et synthèse</div>
+<div class="pqrow"><span class="pq">② Quoi</span> <span class="pq how">③ Comment</span></div>
+<h2>Prédire un prix à partir de la surface</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <div class="card"><span class="lab">L'idée</span><p>Chercher la droite <b>prix = a × surface + b</b> qui passe « au plus près » des points. <b>a</b> (la pente) est le prix moyen d'un m² supplémentaire ; <b>b</b> (l'ordonnée à l'origine), la valeur prédite pour une surface nulle.</p></div>
+    <div class="card hl"><span class="lab">Les moindres carrés</span><p>La meilleure droite minimise la <b>somme des carrés des résidus</b> (écarts entre prix réel et prix prédit). Solution exacte : <code>a = cov(x, y) / var(x)</code> et <code>b = ȳ − a·x̄</code>.</p></div>
+    <div class="card"><span class="lab">Évaluer</span><p><b>R²</b> = 1 − SS<sub>rés</sub> / SS<sub>tot</sub> : part de la variance expliquée (1 = parfait, 0 = pas mieux que la moyenne). <b>RMSE</b> : erreur typique, dans l'unité du prix. <b>MAE</b> : erreur absolue moyenne, moins sensible aux grosses erreurs.</p></div>
+  </div>
+  <div class="code"><div class="codeh"><span>python · régression avec NumPy</span><button class="cpy" type="button">Copier</button></div><pre><code>x = clean[<span class="s">"surface"</span>].to_numpy(dtype=float)
+y = clean[<span class="s">"prix"</span>].to_numpy(dtype=float)
+
+a = np.cov(x, y, ddof=1)[0, 1] / np.var(x, ddof=1)   <span class="c"># pente</span>
+b = y.mean() - a * x.mean()                          <span class="c"># ordonnée</span>
+<span class="c"># équivalent : a, b = np.polyfit(x, y, 1)</span>
+
+y_pred = a * x + b
+res = y - y_pred
+r2 = 1 - (res ** 2).sum() / ((y - y.mean()) ** 2).sum()
+rmse = np.sqrt((res ** 2).mean())
+print(<span class="s">f"prix ≈ {a:,.0f} €/m² × surface + {b:,.0f} €"</span>)
+print(<span class="s">f"R² = {r2:.2f}  RMSE = {rmse:,.0f} €"</span>)
+<span class="c"># prix ≈ 3 180 €/m² × surface + 21 400 €</span>
+<span class="c"># R² = 0.71  RMSE = 48 900 €</span></code></pre></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="c">
+<div class="kicker">Chapitre 05 · Régression linéaire et synthèse</div>
+<div class="pqrow"><span class="pq trap">⑤ Pièges</span> <span class="pq sum">⑥ Synthèse</span></div>
+<h2>Limites, et quand quitter pandas</h2>
+<div class="grid g2">
+  <div style="display:grid;gap:1vh">
+    <div class="trap-list">
+      <div><b>Le nettoyage change le modèle.</b> Retirer des aberrants ou mal convertir les sq ft modifie la pente : chaque décision doit être justifiée.</div>
+      <div><b>Corrélation ≠ causalité.</b> Une pente ne prouve pas que la surface « cause » le prix seule (la ville compte).</div>
+      <div><b>Évaluer sur les données d'apprentissage.</b> Le score est optimiste : séparer entraînement et test (voir <a href="ml.html">Machine Learning</a>).</div>
+      <div><b>Extrapoler.</b> Prédire pour 2 000 m² hors des données observées n'a pas de sens.</div>
+    </div>
+    <table class="cmp md"><tr><th>Volume</th><th>Outil adapté</th></tr>
+      <tr><td>tient largement en RAM</td><td>pandas, NumPy</td></tr>
+      <tr><td>quelques Go à dizaines de Go, une machine</td><td>Polars, DuckDB, pandas + Arrow</td></tr>
+      <tr><td>au-delà, ou cluster</td><td>Spark (API DataFrame, pandas on Spark)</td></tr></table>
+  </div>
+  <ol class="sum-list">
+    <li><b>NumPy</b> : ndarray homogène, vectorisation, broadcasting, masques, algèbre.</li>
+    <li><b>pandas</b> : Series, DataFrame, index ; <code>loc</code> / <code>iloc</code> ; filtres.</li>
+    <li><b>Nettoyer</b> : copie, manquants, doublons, types, unités, aberrants — documenté.</li>
+    <li><b>Analyser</b> : <code>groupby</code>, <code>merge</code> (attention aux clés), <code>pivot_table</code>, <code>resample</code>.</li>
+    <li><b>Visualiser</b> : un graphique adapté à chaque question.</li>
+    <li><b>Modéliser</b> : régression par moindres carrés, R², RMSE, sans extrapoler.</li>
+    <li><b>Passer à l'échelle</b> : Polars ou DuckDB sur une machine, Spark au-delà.</li>
+  </ol>
+</div>
+</section>
+
+<section class="slide" data-ch="05" data-v="e">
+<div class="chlogos"><img class="chlogo" src="assets/logos/numpy.svg" alt="Logo NumPy"></div>
+<div class="kicker">Chapitre 05 · Régression linéaire et synthèse</div>
+<h2>Fiche — Régression et synthèse</h2>
+<div class="fiche">
+  <div class="card"><span class="lab">Modèle</span><p>y = a·x + b ; a = pente, b = ordonnée à l'origine.</p></div>
+  <div class="card"><span class="lab">Moindres carrés</span><p>Minimiser Σ résidus² ; a = cov(x, y) / var(x), b = ȳ − a·x̄ ; <code>np.polyfit(x, y, 1)</code>.</p></div>
+  <div class="card"><span class="lab">Métriques</span><p>R² (variance expliquée) · RMSE (erreur typique) · MAE (erreur absolue moyenne).</p></div>
+  <div class="card"><span class="lab">Pièges</span><p>Corrélation ≠ causalité · pas d'extrapolation · évaluer sur un jeu de test.</p></div>
+  <div class="card"><span class="lab">Échelle</span><p>pandas en mémoire → Polars, DuckDB → Spark.</p></div>
+  <div class="card"><span class="lab">Fil rouge</span><p>Explorer → nettoyer → contrôler → analyser → visualiser → modéliser.</p></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · Régression linéaire et synthèse</div>
+<div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
+<h2>Questions d'oral — synthèse</h2>
+<div class="accg">
+  <div class="acc jq"><button class="ah" type="button">Comment fonctionne une régression linéaire ?</button><div class="ab"><p>Elle cherche la droite y = a·x + b qui minimise la somme des carrés des écarts entre valeurs réelles et prédites (moindres carrés). La pente vaut la covariance de x et y divisée par la variance de x. On l'évalue avec le R², part de la variance expliquée, et la RMSE, erreur typique dans l'unité de la cible.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Quand pandas ne suffit-il plus ?</button><div class="ab"><p>Quand les données ne tiennent plus confortablement en mémoire vive sur une machine — pandas a besoin de plusieurs fois la taille des données — ou que les traitements deviennent trop longs. Sur une machine, Polars ou DuckDB vont plus loin ; au-delà, Spark distribue le calcul avec une API DataFrame proche.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Décrivez votre démarche de préparation de données.</button><div class="ab"><p>J'explore (structure, types, manquants, doublons, distributions), je nettoie sur une copie en normalisant textes, nombres, dates et unités, je traite manquants et aberrants avec des règles justifiées et validées par le métier, je contrôle les bornes et la cohérence, je compte les lignes à chaque étape, puis j'exporte un jeu propre et documenté.</p></div></div>
+  <div class="acc jq"><button class="ah" type="button">Un R² de 0,71 est-il bon ?</button><div class="ab"><p>Cela dépend du contexte : la surface explique 71 % de la variance du prix, le reste vient d'autres facteurs (ville, état, étage). Il faut le compléter par la RMSE pour juger l'erreur en euros, le vérifier sur un jeu de test, et regarder les résidus pour détecter une relation non linéaire.</p></div></div>
+</div>
+</section>
+
+<section class="slide" data-ch="05">
+<div class="kicker">Chapitre 05 · Régression linéaire et synthèse</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-checklist"/></svg> Vérifie tes acquis</h2>
+<div data-quiz="05"></div>
+</section>
+
+<!-- ================= QUIZ FINAL ================= -->
+<section class="slide" data-ch="quiz" data-sec="Quiz final" data-title="Quiz final — 45 questions">
+<div class="kicker">Quiz final · NumPy &amp; pandas</div>
+<h2><svg class="ico" aria-hidden="true"><use href="#ti-target"/></svg> 45 questions pour affronter le jury</h2>
+<p class="lead">Tous chapitres mélangés ; l'ordre des questions et des réponses change à chaque tentative. Certaines questions ont <b>plusieurs bonnes réponses</b>.</p>
+<div data-quiz="final"></div>
+</section>
+
+</main>
+<button class="arrow" id="prev" type="button" aria-label="Diapositive précédente">‹</button>
+<button class="arrow" id="next" type="button" aria-label="Diapositive suivante">›</button>
+<nav id="tl" aria-label="Chapitres"></nav>
+<div id="hint">← → naviguer · ↑ ↓ défiler · H ampoule <svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg> · E Complète/Essentiel · M maîtrisé · S sommaire · T thème</div>
+<button id="bulbhint" type="button"><svg class="ico" aria-hidden="true"><use href="#ti-bulb"/></svg></button>
+<div id="ctip" role="tooltip"></div>
+<div id="toc" role="dialog" aria-label="Sommaire">
+  <button class="btn xx" id="tocx" type="button">Fermer ✕</button>
+  <div class="kicker">Sommaire · NumPy &amp; Pandas</div>
+  <h2>NumPy &amp; Pandas</h2>
+  <div class="tg"></div>
+</div>
+
+<div id="fab">
+  <button id="helpbtn" type="button" aria-label="Ampoule : concepts expliqués au survol" aria-pressed="false" title="Ampoule : soulignez les concepts, survolez-les pour une explication (H)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></button>
+<button id="tocbtn" type="button" aria-label="Sommaire" title="Sommaire (S)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+  <div id="themebtn">
+    <div id="menu" role="menu"><h4>Thème</h4></div>
+    <button id="tbtn" type="button" aria-label="Changer de thème" aria-haspopup="true" title="Changer de thème (T)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.4-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16a5 5 0 0 0 5-5c0-4-4-7-9-7z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7" r="1"/><circle cx="15.5" cy="7.5" r="1"/></svg>
+    </button>
+  </div>
+</div>
+
+</div>
+<script src="assets/icons.js?v=1795252877"></script>
+<script src="data/numpy-pandas-quiz.js?v=1795252878"></script>
+<script src="data/numpy-pandas-glossary.js?v=1795252878"></script>
+<script src="assets/engine.js?v=1795252877"></script>
+</body>
+</html>
