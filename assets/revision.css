@@ -210,7 +210,7 @@ h1 .ico, h2 .ico { width: .82em; height: .82em; vertical-align: -.06em; stroke-w
 /* Tableaux : jamais plus larges que leur colonne (défilement horizontal sur petit écran) */
 .cmp th, .cmp td { overflow-wrap: anywhere; }
 /* la 1re colonne (noms, libellés) ne coupe jamais un mot en deux */
-.cmp th:first-child, .cmp td:first-child { overflow-wrap: normal; }
+.cmp th, .cmp td:first-child { overflow-wrap: normal; } /* en-têtes : mots courts, jamais coupés */
 @media (max-width: 760px) { .cmp { display: block; max-width: 100%; overflow-x: auto; } }
 
 /* questions de quiz : couper le code long sur mobile */
@@ -345,3 +345,19 @@ h1 .ico, h2 .ico { width: .82em; height: .82em; vertical-align: -.06em; stroke-w
 .grid > * { min-width: 0; }
 /* Titres d'étape trop longs pour leur case : coupure avec tiret (français), plutôt que texte rogné */
 .flow .step b { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+
+/* ---------- Téléphone ---------- */
+/* Options de quiz : un long chemin (clé S3, URL) passe à la ligne */
+.opts li { overflow-wrap: anywhere; }
+@media (max-width: 760px), (hover: none) and (pointer: coarse) {
+  #hint { display: none; }                                   /* raccourcis clavier : inutiles au doigt */
+}
+@media (max-width: 760px) {
+  #fab { flex-direction: row; align-items: center; gap: 8px; right: 3vw; bottom: 62px; }
+  #fab > button, #themebtn > button { width: 40px; height: 40px; }
+  #fab > button svg, #themebtn > button svg { width: 20px; height: 20px; }
+  .slide { padding-bottom: 130px; }                          /* la dernière ligne remonte au-dessus des boutons */
+  .slide code, .slide .cx { overflow-wrap: anywhere; }       /* chemins et commandes longs : coupés plutôt que hors écran */
+  #bulbhint { bottom: 112px; max-width: 94vw; }              /* au-dessus de la rangée de boutons */
+  .resume { padding-right: 52px; }                           /* place pour la flèche → */
+}
