@@ -909,7 +909,7 @@ ul.plain { margin: 0; padding-left: 1.2em; display: grid; gap: .5vh; } ul.plain 
 .slide { scrollbar-gutter: stable; }
 
 /* liens longs (annexe) : pas de débordement horizontal sur téléphone */
-.slide a, .slide li, .slide p { overflow-wrap: anywhere; }
+.slide a, .slide li, .slide p { overflow-wrap: break-word; }
 
 /* thème néon : les cartes teintées étaient trop claires pour le texte gris ; on atténue la teinte et on force le texte lisible */
 [data-theme="neon"] .card.tint, [data-theme="neon"] .step.tint, [data-theme="neon"] .casebtn.tint:not([aria-pressed="true"]) { background: color-mix(in srgb, var(--tc) 13%, var(--card-bg)); }

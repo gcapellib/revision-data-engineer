@@ -209,6 +209,8 @@ h1 .ico, h2 .ico { width: .82em; height: .82em; vertical-align: -.06em; stroke-w
 
 /* Tableaux : jamais plus larges que leur colonne (défilement horizontal sur petit écran) */
 .cmp th, .cmp td { overflow-wrap: anywhere; }
+/* la 1re colonne (noms, libellés) ne coupe jamais un mot en deux */
+.cmp th:first-child, .cmp td:first-child { overflow-wrap: normal; }
 @media (max-width: 760px) { .cmp { display: block; max-width: 100%; overflow-x: auto; } }
 
 /* questions de quiz : couper le code long sur mobile */
@@ -337,3 +339,9 @@ h1 .ico, h2 .ico { width: .82em; height: .82em; vertical-align: -.06em; stroke-w
 .dg .bn rect { fill: #1a66e0; } .dg .bn.red rect { fill: #e0242f; } .dg .bn.green rect { fill: #2e9e44; } .dg .bn.orange rect { fill: #f39200; }
 .dg .bn text { fill: #fff; font: 800 14px "Plus Jakarta Sans", system-ui, sans-serif; text-anchor: middle; dominant-baseline: central; }
 #defs #arrk path { fill: #3a4458; }
+/* Colonnes internes (div style="display:grid") : une seule piste qui peut rétrécir,
+   sinon un tableau ou une frise large pousse la colonne hors de l'écran. */
+.slide [style*="display:grid"] { grid-template-columns: minmax(0, 1fr); }
+.grid > * { min-width: 0; }
+/* Titres d'étape trop longs pour leur case : coupure avec tiret (français), plutôt que texte rogné */
+.flow .step b { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
