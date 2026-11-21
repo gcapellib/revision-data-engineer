@@ -7,9 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
-<link rel="stylesheet" href="assets/base.css?v=1795255576">
-<link rel="stylesheet" href="assets/photos.css?v=1795255576">
-<link rel="stylesheet" href="assets/revision.css?v=1795255576">
+<link rel="stylesheet" href="assets/base.css?v=1795255840">
+<link rel="stylesheet" href="assets/photos.css?v=1795255840">
+<link rel="stylesheet" href="assets/revision.css?v=1795255840">
 </head>
 <body data-page="course" data-course="fil-rouge" data-title="Fil rouge GaSeBeLa">
 <div id="app" data-theme="papier">
@@ -624,10 +624,10 @@
 <div class="grid g2">
   <div style="display:grid;gap:1.2vh">
     <div class="flow">
-      <div class="step"><b>1 h · db_backup</b><small>base et rôles copiés dans MinIO, 7 jours gardés</small></div>
-      <div class="step"><b>2 h · annonces_import</b><small>brut → nettoyé → rejets → PostgreSQL</small></div>
-      <div class="step"><b>3 h · olap_refresh</b><small>l'étoile vidée puis recalculée, en une transaction</small></div>
-      <div class="step"><b>4 h · estates_index</b><small>copie des biens dans Elasticsearch</small></div>
+      <div class="step"><b>1 h · Sauvegarde</b><small><code>db_<wbr>backup</code> : base et rôles copiés dans MinIO, 7 jours gardés</small></div>
+      <div class="step"><b>2 h · Annonces</b><small><code>annonces_<wbr>import</code> : brut → nettoyé → rejets → PostgreSQL</small></div>
+      <div class="step"><b>3 h · Analyse</b><small><code>olap_<wbr>refresh</code> : l'étoile (OLAP) vidée puis recalculée, en une transaction</small></div>
+      <div class="step"><b>4 h · Recherche</b><small><code>estates_<wbr>index</code> : copie des biens dans Elasticsearch</small></div>
     </div>
     <div class="card"><span class="lab">MinIO : un bucket par zone (ADR-060)</span><p><code>bronze</code> le CSV brut · <code>silver</code> les annonces valides · <code>quarantine</code> les rejets <b>avec leur raison</b> · <code>gold</code> le bilan de chargement. Rejouer une date relit le même brut et réécrit les mêmes fichiers : le traitement est <b>idempotent</b>.</p></div>
   </div>
@@ -1149,9 +1149,9 @@
 </div>
 
 </div>
-<script src="assets/icons.js?v=1795255576"></script>
-<script src="data/fil-rouge-quiz.js?v=1795255576"></script>
-<script src="data/fil-rouge-glossary.js?v=1795255576"></script>
-<script src="assets/engine.js?v=1795255576"></script>
+<script src="assets/icons.js?v=1795255840"></script>
+<script src="data/fil-rouge-quiz.js?v=1795255840"></script>
+<script src="data/fil-rouge-glossary.js?v=1795255840"></script>
+<script src="assets/engine.js?v=1795255840"></script>
 </body>
 </html>
