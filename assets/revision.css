@@ -361,3 +361,7 @@ h1 .ico, h2 .ico { width: .82em; height: .82em; vertical-align: -.06em; stroke-w
   #bulbhint { bottom: 112px; max-width: 94vw; }              /* au-dessus de la rangée de boutons */
   .resume { padding-right: 52px; }                           /* place pour la flèche → */
 }
+
+/* Codes à infobulle (risques R01 à R16 du Fil rouge) : soulignés en pointillé, toujours actifs */
+.rk { border-bottom: 1.5px dotted currentColor; cursor: help; font-weight: 600; white-space: nowrap; }
+.rk:hover, .rk:focus-visible { color: var(--accent); outline: none; }

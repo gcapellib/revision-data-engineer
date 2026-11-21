@@ -7,9 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
-<link rel="stylesheet" href="assets/base.css?v=1795254820">
-<link rel="stylesheet" href="assets/photos.css?v=1795254820">
-<link rel="stylesheet" href="assets/revision.css?v=1795254820">
+<link rel="stylesheet" href="assets/base.css?v=1795255282">
+<link rel="stylesheet" href="assets/photos.css?v=1795255282">
+<link rel="stylesheet" href="assets/revision.css?v=1795255282">
 </head>
 <body data-page="course" data-course="fil-rouge" data-title="Fil rouge GaSeBeLa">
 <div id="app" data-theme="papier">
@@ -305,16 +305,16 @@
 <div class="grid g2">
   <table class="cmp md"><thead><tr><th>Composant</th><th>État</th></tr></thead><tbody>
     <tr><td>Site web des prospects, logiciel des chasseurs</td><td>hors périmètre de développement</td></tr>
-    <tr><td>Backend + API</td><td><b>code perdu</b>, développeur absent (R09)</td></tr>
+    <tr><td>Backend + API</td><td><b>code perdu</b>, développeur absent (<span class="rk" data-rk="R09" tabindex="0">R09</span>)</td></tr>
     <tr><td><code>utilisateurs</code> · 24 lignes</td><td>6 chasseurs et 18 clients <b>dans la même table</b>, données en clair</td></tr>
     <tr><td><code>mandats</code> · 18 lignes</td><td>critères en texte libre, ni date de signature ni date de fin, statut jamais mis à jour</td></tr>
     <tr><td><code>secteurs</code> · 10 lignes</td><td>sain (risques mineurs)</td></tr>
-    <tr><td>Armoire à dossiers papier</td><td>mandats signés <b>sans lien</b> avec la base (R10)</td></tr>
-    <tr><td>Notaire</td><td>encaisse les honoraires : <b>aucune trace</b> dans le SI (R03)</td></tr>
+    <tr><td>Armoire à dossiers papier</td><td>mandats signés <b>sans lien</b> avec la base (<span class="rk" data-rk="R10" tabindex="0">R10</span>)</td></tr>
+    <tr><td>Notaire</td><td>encaisse les honoraires : <b>aucune trace</b> dans le SI (<span class="rk" data-rk="R03" tabindex="0">R03</span>)</td></tr>
   </tbody></table>
   <div style="display:grid;gap:1.2vh">
     <div class="card bad"><span class="lab">Ce qui n'existe pas</span><p>Biens, visites, offres, ventes, honoraires, barème, paiements. Le SI connaît <b>qui</b> sont les clients et les chasseurs, mais <b>ignore ce qui est vendu et ce qui est encaissé</b>.</p></div>
-    <div class="card"><span class="lab">La cause structurelle</span><p>Le mandat pointe deux fois vers la même table (<code>client_id</code> et <code>chasseur_id</code> → <code>utilisateurs</code>) : rien n'empêche de mettre un chasseur à la place du client. Le défaut R06 laisse passer R02.</p></div>
+    <div class="card"><span class="lab">La cause structurelle</span><p>Le mandat pointe deux fois vers la même table (<code>client_id</code> et <code>chasseur_id</code> → <code>utilisateurs</code>) : rien n'empêche de mettre un chasseur à la place du client. Le défaut <span class="rk" data-rk="R06" tabindex="0">R06</span> laisse passer <span class="rk" data-rk="R02" tabindex="0">R02</span>.</p></div>
     <div class="analogy"><b>Analogie — un registre d'état civil sans colonne « rôle ».</b> On y note des personnes, mais rien ne dit qui est le marié et qui est le témoin : une erreur n'est pas un accident, c'est une possibilité permanente.</div>
   </div>
 </div>
@@ -326,9 +326,9 @@
 <h2>Les risques : probabilité × impact, 16 risques cotés de 1 à 9</h2>
 <div class="grid g2">
   <table class="cmp md"><thead><tr><th>Probabilité ↓ / Impact →</th><th>1 · gêne</th><th>2 · fonction dégradée</th><th>3 · juridique, financier, bloquant</th></tr></thead><tbody>
-    <tr><td><b>3 · constaté dans les données</b></td><td>—</td><td>R05 R07 R08 R09 <i>(6)</i></td><td><b>R01 R02 R03</b> <i>(9)</i></td></tr>
-    <tr><td><b>2 · possible, rien ne l'empêche</b></td><td>R13 <i>(2)</i></td><td>R12 <i>(4)</i></td><td>R04 R06 R10 R16 <i>(6)</i></td></tr>
-    <tr><td><b>1 · peu probable</b></td><td>—</td><td>R11 R14 R15 <i>(2)</i></td><td>—</td></tr>
+    <tr><td><b>3 · constaté dans les données</b></td><td>—</td><td><span class="rk" data-rk="R05" tabindex="0">R05</span> <span class="rk" data-rk="R07" tabindex="0">R07</span> <span class="rk" data-rk="R08" tabindex="0">R08</span> <span class="rk" data-rk="R09" tabindex="0">R09</span> <i>(6)</i></td><td><b><span class="rk" data-rk="R01" tabindex="0">R01</span> <span class="rk" data-rk="R02" tabindex="0">R02</span> <span class="rk" data-rk="R03" tabindex="0">R03</span></b> <i>(9)</i></td></tr>
+    <tr><td><b>2 · possible, rien ne l'empêche</b></td><td><span class="rk" data-rk="R13" tabindex="0">R13</span> <i>(2)</i></td><td><span class="rk" data-rk="R12" tabindex="0">R12</span> <i>(4)</i></td><td><span class="rk" data-rk="R04" tabindex="0">R04</span> <span class="rk" data-rk="R06" tabindex="0">R06</span> <span class="rk" data-rk="R10" tabindex="0">R10</span> <span class="rk" data-rk="R16" tabindex="0">R16</span> <i>(6)</i></td></tr>
+    <tr><td><b>1 · peu probable</b></td><td>—</td><td><span class="rk" data-rk="R11" tabindex="0">R11</span> <span class="rk" data-rk="R14" tabindex="0">R14</span> <span class="rk" data-rk="R15" tabindex="0">R15</span> <i>(2)</i></td><td>—</td></tr>
   </tbody></table>
   <div style="display:grid;gap:1.2vh">
     <div class="card"><span class="lab">La méthode, en 4 temps</span><ol><li><b>Inventorier</b> les composants (sujet + armoire + notaire).</li><li><b>Relever</b> les risques : les 13 remarques du consultant (10 retenues, 1 nuancée, 2 fusionnées), puis notre relecture.</li><li><b>Coter</b> : probabilité 1 à 3 (3 = déjà arrivé) × impact 1 à 3.</li><li><b>Poser</b> chaque risque sur le composant qu'il touche.</li></ol></div>
@@ -358,7 +358,7 @@
 <div class="pqrow"><span class="pq how">③ Comment</span></div>
 <h2>La conformité : RGPD d'abord, IA et accessibilité ensuite</h2>
 <div class="grid g3">
-  <div class="card"><span class="lab">RGPD</span><ul><li>Constat : données personnelles <b>en clair, sans droits</b> (R16).</li><li>Réponse : un <b>registre de 11 traitements</b> (finalité, base légale, durée, accès).</li><li>Durées : <b>10 ans</b> pour le mandat et la rémunération (obligations légales), <b>3 ans</b> pour le contact du vendeur, <b>6 mois</b> pour les journaux (CNIL).</li><li>Effacer = <b>désactiver puis anonymiser</b>, jamais supprimer (ADR-049).</li></ul></div>
+  <div class="card"><span class="lab">RGPD</span><ul><li>Constat : données personnelles <b>en clair, sans droits</b> (<span class="rk" data-rk="R16" tabindex="0">R16</span>).</li><li>Réponse : un <b>registre de 11 traitements</b> (finalité, base légale, durée, accès).</li><li>Durées : <b>10 ans</b> pour le mandat et la rémunération (obligations légales), <b>3 ans</b> pour le contact du vendeur, <b>6 mois</b> pour les journaux (CNIL).</li><li>Effacer = <b>désactiver puis anonymiser</b>, jamais supprimer (ADR-049).</li></ul></div>
   <div class="card"><span class="lab">IA et souveraineté</span><ul><li><b>Aucun LLM</b> en v1, tout tourne en local : aucune donnée ne sort.</li><li>Le moteur juge un couple (demande, bien), <b>jamais une personne</b> : aucune donnée personnelle dans les features.</li><li>L'IA <b>suggère</b>, un humain trie et engage.</li><li>L'analyse (OLAP) est <b>pseudonymisée</b>.</li></ul></div>
   <div class="card"><span class="lab">Accessibilité et sécurité</span><ul><li><b>WCAG 2.2 AA</b> (et le RGAA) pour le futur espace acquéreur : contraste 4,5:1, clavier, cibles de 24 px, textes alternatifs.</li><li>L'API fournit déjà <code>picture.alt_text</code> et des erreurs nommant le champ fautif.</li><li>Sécurité confrontée au <b>Top 10 OWASP</b> (chapitre 05).</li></ul></div>
 </div>
@@ -373,7 +373,7 @@
   <div class="trap-list">
     <div><b>Dire « anonymisé » pour l'OLAP</b> : il est <b>pseudonymisé</b> (les numéros restent).</div>
     <div><b>Citer EBIOS RM ou ISO 27005 comme méthode suivie</b> : l'audit a utilisé une matrice probabilité × impact. Dis-le, et explique pourquoi c'était proportionné (3 tables, 16 risques).</div>
-    <div><b>Oublier les deux éléments hors base</b> (armoire et notaire) : ils expliquent R03 et R10.</div>
+    <div><b>Oublier les deux éléments hors base</b> (armoire et notaire) : ils expliquent <span class="rk" data-rk="R03" tabindex="0">R03</span> et <span class="rk" data-rk="R10" tabindex="0">R10</span>.</div>
     <div><b>Confondre risque et anomalie</b> : l'anomalie est constatée (probabilité 3), le risque peut seulement arriver (probabilité 1 ou 2).</div>
   </div>
   <ol class="sum-list">
@@ -392,7 +392,7 @@
 <div class="fiche">
   <div class="card"><span class="lab">Existant</span><p>3 tables, backend perdu, armoire papier, notaire hors SI.</p></div>
   <div class="card"><span class="lab">Risques</span><p>16 cotés P × I (1 à 9) : 3 à 9, 9 entre 4 et 6, 4 mineurs.</p></div>
-  <div class="card"><span class="lab">Les 3 rouges</span><p>R01 statuts faux · R02 chasseur-client · R03 honoraires absents.</p></div>
+  <div class="card"><span class="lab">Les 3 rouges</span><p><span class="rk" data-rk="R01" tabindex="0">R01</span> statuts faux · <span class="rk" data-rk="R02" tabindex="0">R02</span> chasseur-client · <span class="rk" data-rk="R03" tabindex="0">R03</span> honoraires absents.</p></div>
   <div class="card"><span class="lab">Qualité</span><p>2 556 annonces : 55,4 % → 70,2 % ; 6 formats de date ; 168 <code>CHECK</code>.</p></div>
   <div class="card"><span class="lab">RGPD</span><p>11 traitements · 10 ans / 3 ans / 6 mois · anonymiser, jamais supprimer.</p></div>
   <div class="card"><span class="lab">IA</span><p>Aucun LLM, local, pas de donnée personnelle dans les features, l'humain engage.</p></div>
@@ -553,8 +553,8 @@
   <div style="display:grid;gap:1.2vh">
     <div class="card"><span class="lab">Ce que le modèle ajoute</span><p>Comptes et rôles, fiches <b>client</b>, <b>chasseur</b> et manager séparées, demandes et <b>critères versionnés</b>, mandats datés, biens et photos, sélections, propositions, visites, offres, <b>ventes</b>, <b>paiements</b>, barème et paramètres datés, historique des prix, contact du vendeur à part.</p></div>
     <table class="cmp md small"><thead><tr><th>Décision</th><th>Ce qu'elle garantit</th></tr></thead><tbody>
-      <tr><td>Fiches séparées, une fiche par compte (ADR-005, 017)</td><td>un chasseur ne peut pas être client (R02)</td></tr>
-      <tr><td><code>CHECK</code> fin = signature + 6 mois (ADR-039)</td><td>plus de mandat « actif » échu (R01)</td></tr>
+      <tr><td>Fiches séparées, une fiche par compte (ADR-005, 017)</td><td>un chasseur ne peut pas être client (<span class="rk" data-rk="R02" tabindex="0">R02</span>)</td></tr>
+      <tr><td><code>CHECK</code> fin = signature + 6 mois (ADR-039)</td><td>plus de mandat « actif » échu (<span class="rk" data-rk="R01" tabindex="0">R01</span>)</td></tr>
       <tr><td>Déclencheur d'exclusivité (ADR-039)</td><td>un seul mandat exclusif à la fois</td></tr>
       <tr><td>Relation réflexive (ADR-013)</td><td>chaque version pointe la précédente : historique complet</td></tr>
       <tr><td>Euros : entiers et <code>NUMERIC(12,2)</code> (ADR-032)</td><td>pas d'erreur d'arrondi des flottants</td></tr>
@@ -1139,9 +1139,9 @@
 </div>
 
 </div>
-<script src="assets/icons.js?v=1795254820"></script>
-<script src="data/fil-rouge-quiz.js?v=1795254820"></script>
-<script src="data/fil-rouge-glossary.js?v=1795254820"></script>
-<script src="assets/engine.js?v=1795254820"></script>
+<script src="assets/icons.js?v=1795255282"></script>
+<script src="data/fil-rouge-quiz.js?v=1795255282"></script>
+<script src="data/fil-rouge-glossary.js?v=1795255282"></script>
+<script src="assets/engine.js?v=1795255282"></script>
 </body>
 </html>

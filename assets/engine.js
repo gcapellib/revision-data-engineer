@@ -208,7 +208,8 @@
   }
   var ctip = $("#ctip");
   function showTip(t) {
-    var g = GL[t.getAttribute("data-k")]; if (!g || !ctip) return;
+    var rk = t.getAttribute("data-rk");
+    var g = rk ? (window.CODES || {})[rk] : GL[t.getAttribute("data-k")]; if (!g || !ctip) return;
     ctip.innerHTML = "<b></b><p></p><em></em>";
     ctip.querySelector("b").textContent = g[0]; ctip.querySelector("p").textContent = g[1];
     var em = ctip.querySelector("em"); em.innerHTML = g[2] ? ICO("bulb") + " " + esc(g[2]) : ""; em.style.display = g[2] ? "" : "none";
@@ -347,6 +348,14 @@
       var c = e.target.closest(".cx"); if (c) { e.stopPropagation(); showTip(c); } else hideTip();
     }, true);
     deck.addEventListener("scroll", hideTip, true);
+    /* codes à infobulle (ex. risques R01 à R16) : toujours actifs, même ampoule éteinte */
+    deck.addEventListener("pointerover", function (e) { var c = e.target.closest(".rk"); if (c) showTip(c); });
+    deck.addEventListener("pointerout", function (e) { if (e.target.closest(".rk") && e.pointerType !== "touch") hideTip(); });
+    deck.addEventListener("focusin", function (e) { var c = e.target.closest && e.target.closest(".rk"); if (c) showTip(c); });
+    deck.addEventListener("click", function (e) {
+      var c = e.target.closest(".rk"); if (c) { e.stopPropagation(); showTip(c); }
+      else if (!app.classList.contains("help")) hideTip();
+    }, true);
 
     /* chapitres (dans l'ordre d'apparition) */
     var chapters = [], chMap = {};
