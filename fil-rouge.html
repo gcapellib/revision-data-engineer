@@ -7,9 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
-<link rel="stylesheet" href="assets/base.css?v=1795255282">
-<link rel="stylesheet" href="assets/photos.css?v=1795255282">
-<link rel="stylesheet" href="assets/revision.css?v=1795255282">
+<link rel="stylesheet" href="assets/base.css?v=1795255576">
+<link rel="stylesheet" href="assets/photos.css?v=1795255576">
+<link rel="stylesheet" href="assets/revision.css?v=1795255576">
 </head>
 <body data-page="course" data-course="fil-rouge" data-title="Fil rouge GaSeBeLa">
 <div id="app" data-theme="papier">
@@ -323,18 +323,28 @@
 <section class="slide" data-ch="03" data-v="c">
 <div class="kicker">Chapitre 03 · L'analyse du système d'information</div>
 <div class="pqrow"><span class="pq how">③ Comment</span></div>
-<h2>Les risques : probabilité × impact, 16 risques cotés de 1 à 9</h2>
+<h2>Les 16 risques en un coup d'œil</h2>
 <div class="grid g2">
-  <table class="cmp md"><thead><tr><th>Probabilité ↓ / Impact →</th><th>1 · gêne</th><th>2 · fonction dégradée</th><th>3 · juridique, financier, bloquant</th></tr></thead><tbody>
-    <tr><td><b>3 · constaté dans les données</b></td><td>—</td><td><span class="rk" data-rk="R05" tabindex="0">R05</span> <span class="rk" data-rk="R07" tabindex="0">R07</span> <span class="rk" data-rk="R08" tabindex="0">R08</span> <span class="rk" data-rk="R09" tabindex="0">R09</span> <i>(6)</i></td><td><b><span class="rk" data-rk="R01" tabindex="0">R01</span> <span class="rk" data-rk="R02" tabindex="0">R02</span> <span class="rk" data-rk="R03" tabindex="0">R03</span></b> <i>(9)</i></td></tr>
-    <tr><td><b>2 · possible, rien ne l'empêche</b></td><td><span class="rk" data-rk="R13" tabindex="0">R13</span> <i>(2)</i></td><td><span class="rk" data-rk="R12" tabindex="0">R12</span> <i>(4)</i></td><td><span class="rk" data-rk="R04" tabindex="0">R04</span> <span class="rk" data-rk="R06" tabindex="0">R06</span> <span class="rk" data-rk="R10" tabindex="0">R10</span> <span class="rk" data-rk="R16" tabindex="0">R16</span> <i>(6)</i></td></tr>
-    <tr><td><b>1 · peu probable</b></td><td>—</td><td><span class="rk" data-rk="R11" tabindex="0">R11</span> <span class="rk" data-rk="R14" tabindex="0">R14</span> <span class="rk" data-rk="R15" tabindex="0">R15</span> <i>(2)</i></td><td>—</td></tr>
-  </tbody></table>
   <div style="display:grid;gap:1.2vh">
-    <div class="card"><span class="lab">La méthode, en 4 temps</span><ol><li><b>Inventorier</b> les composants (sujet + armoire + notaire).</li><li><b>Relever</b> les risques : les 13 remarques du consultant (10 retenues, 1 nuancée, 2 fusionnées), puis notre relecture.</li><li><b>Coter</b> : probabilité 1 à 3 (3 = déjà arrivé) × impact 1 à 3.</li><li><b>Poser</b> chaque risque sur le composant qu'il touche.</li></ol></div>
-    <div class="card"><span class="lab">Le bilan</span><p><b>3</b> risques à 9 (priorité absolue), <b>9</b> entre 4 et 6 (impératifs), <b>4</b> mineurs. Le poids est en haut de l'échelle : ce n'est pas un système sain avec des défauts, c'est une structure à refaire.</p></div>
+    <div class="rmx" role="img" aria-label="Matrice des risques : probabilité en lignes, impact en colonnes"><div class="rmx-ax rmx-py">Probabilité ↑</div><div class="rmx-lab rmx-l">3 · constaté<small>déjà arrivé dans les données</small></div><div class="rmx-cell lo"><b class="rmx-n">3</b><div class="rmx-cs"><span class="rmx-0">aucun</span></div></div><div class="rmx-cell mid"><b class="rmx-n">6</b><div class="rmx-cs"><span class="rmx-c"><span class="rk" data-rk="R05" tabindex="0">R05</span></span><span class="rmx-c"><span class="rk" data-rk="R07" tabindex="0">R07</span></span><span class="rmx-c"><span class="rk" data-rk="R08" tabindex="0">R08</span></span><span class="rmx-c"><span class="rk" data-rk="R09" tabindex="0">R09</span></span></div></div><div class="rmx-cell hi"><b class="rmx-n">9</b><div class="rmx-cs"><span class="rmx-c"><span class="rk" data-rk="R01" tabindex="0">R01</span></span><span class="rmx-c"><span class="rk" data-rk="R02" tabindex="0">R02</span></span><span class="rmx-c"><span class="rk" data-rk="R03" tabindex="0">R03</span></span></div></div><div class="rmx-lab rmx-l">2 · possible<small>rien ne l'empêche</small></div><div class="rmx-cell lo"><b class="rmx-n">2</b><div class="rmx-cs"><span class="rmx-c"><span class="rk" data-rk="R13" tabindex="0">R13</span></span></div></div><div class="rmx-cell mid"><b class="rmx-n">4</b><div class="rmx-cs"><span class="rmx-c"><span class="rk" data-rk="R12" tabindex="0">R12</span></span></div></div><div class="rmx-cell mid"><b class="rmx-n">6</b><div class="rmx-cs"><span class="rmx-c"><span class="rk" data-rk="R04" tabindex="0">R04</span></span><span class="rmx-c"><span class="rk" data-rk="R06" tabindex="0">R06</span></span><span class="rmx-c"><span class="rk" data-rk="R10" tabindex="0">R10</span></span><span class="rmx-c"><span class="rk" data-rk="R16" tabindex="0">R16</span></span></div></div><div class="rmx-lab rmx-l">1 · peu probable</div><div class="rmx-cell lo"><b class="rmx-n">1</b><div class="rmx-cs"><span class="rmx-0">aucun</span></div></div><div class="rmx-cell lo"><b class="rmx-n">2</b><div class="rmx-cs"><span class="rmx-c"><span class="rk" data-rk="R11" tabindex="0">R11</span></span><span class="rmx-c"><span class="rk" data-rk="R14" tabindex="0">R14</span></span><span class="rmx-c"><span class="rk" data-rk="R15" tabindex="0">R15</span></span></div></div><div class="rmx-cell lo"><b class="rmx-n">3</b><div class="rmx-cs"><span class="rmx-0">aucun</span></div></div><div></div><div class="rmx-lab rmx-b">1 · gêne</div><div class="rmx-lab rmx-b">2 · fonction dégradée</div><div class="rmx-lab rmx-b">3 · juridique, financier, bloquant</div><div></div><div class="rmx-ax rmx-px">Impact →</div></div>
+    <p class="rmx-leg"><span class="rmx-k hi"></span> cote 7 à 9 : priorité absolue <span class="rmx-k mid"></span> 4 à 6 : à corriger <span class="rmx-k lo"></span> 1 à 3 : mineur</p>
+  </div>
+  <div style="display:grid;gap:1.2vh">
+    <div class="card hl"><span class="lab">Comment lire la matrice</span><p>Chaque risque reçoit deux notes de 1 à 3 : sa <b>probabilité</b> (3 = déjà constaté dans les données) et son <b>impact</b> (3 = juridique, financier ou bloquant). La <b>cote</b> est leur produit, de 1 à 9. Plus une case est en <b>haut à droite</b>, plus le risque est urgent.</p></div>
+    <div class="card"><span class="lab">Le bilan</span><p><b>3</b> risques à 9, <b>9</b> entre 4 et 6, <b>4</b> mineurs. Le poids est en haut de l'échelle : ce n'est pas un système sain avec quelques défauts, c'est une structure à refaire.</p></div>
+    <div class="card"><span class="lab">La méthode, en 4 temps</span><ol><li><b>Inventorier</b> les composants (sujet + armoire + notaire).</li><li><b>Relever</b> les risques : les 13 remarques du consultant (10 retenues, 1 nuancée, 2 fusionnées), puis notre relecture.</li><li><b>Coter</b> : probabilité × impact.</li><li><b>Poser</b> chaque risque sur le composant qu'il touche.</li></ol></div>
   </div>
 </div>
+</section>
+
+<section class="slide" data-ch="03" data-v="c">
+<div class="kicker">Chapitre 03 · L'analyse du système d'information</div>
+<div class="pqrow"><span class="pq how">③ Comment</span></div>
+<h2>Les 16 risques, du plus grave au moins grave</h2>
+<div class="grid g3">
+<div class="card rgrp hi"><span class="lab">Priorité absolue · cote 9</span><ul><li><b><span class="rk" data-rk="R01" tabindex="0">R01</span></b> statut « actif » faux sur 6 mandats échus</li><li><b><span class="rk" data-rk="R02" tabindex="0">R02</span></b> un chasseur enregistré comme client</li><li><b><span class="rk" data-rk="R03" tabindex="0">R03</span></b> les honoraires n'existent nulle part</li></ul></div><div class="card rgrp mid"><span class="lab">À corriger · cote 4 à 6</span><ul><li><b><span class="rk" data-rk="R04" tabindex="0">R04</span></b> ni date de signature, ni date de fin</li><li><b><span class="rk" data-rk="R05" tabindex="0">R05</span></b> clients et chasseurs dans la même table</li><li><b><span class="rk" data-rk="R06" tabindex="0">R06</span></b> le rôle n'est pas contrôlé</li><li><b><span class="rk" data-rk="R07" tabindex="0">R07</span></b> critères de recherche en texte libre</li><li><b><span class="rk" data-rk="R08" tabindex="0">R08</span></b> taux fixe au lieu d'un barème</li><li><b><span class="rk" data-rk="R09" tabindex="0">R09</span></b> code du backend perdu</li><li><b><span class="rk" data-rk="R10" tabindex="0">R10</span></b> mandats papier sans lien avec la base</li><li><b><span class="rk" data-rk="R12" tabindex="0">R12</span></b> téléphone sans format ni indicatif</li><li><b><span class="rk" data-rk="R16" tabindex="0">R16</span></b> données personnelles en clair</li></ul></div><div class="card rgrp lo"><span class="lab">Mineurs · cote 1 à 3</span><ul><li><b><span class="rk" data-rk="R11" tabindex="0">R11</span></b> email sans contrôle de format</li><li><b><span class="rk" data-rk="R13" tabindex="0">R13</span></b> code postal sans contrôle</li><li><b><span class="rk" data-rk="R14" tabindex="0">R14</span></b> pas d'unicité ville + quartier</li><li><b><span class="rk" data-rk="R15" tabindex="0">R15</span></b> un seul secteur par mandat</li></ul></div>
+</div>
+<p class="rmx-tip">Survole un code (ou touche-le sur téléphone) pour voir le détail et la parade.</p>
 </section>
 
 <section class="slide" data-ch="03" data-v="c">
@@ -1139,9 +1149,9 @@
 </div>
 
 </div>
-<script src="assets/icons.js?v=1795255282"></script>
-<script src="data/fil-rouge-quiz.js?v=1795255282"></script>
-<script src="data/fil-rouge-glossary.js?v=1795255282"></script>
-<script src="assets/engine.js?v=1795255282"></script>
+<script src="assets/icons.js?v=1795255576"></script>
+<script src="data/fil-rouge-quiz.js?v=1795255576"></script>
+<script src="data/fil-rouge-glossary.js?v=1795255576"></script>
+<script src="assets/engine.js?v=1795255576"></script>
 </body>
 </html>
