@@ -7,9 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Jost:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Outfit:wght@400;500;600;800&family=Sora:wght@400;600;700&display=swap">
-<link rel="stylesheet" href="assets/base.css?v=1795253893">
-<link rel="stylesheet" href="assets/photos.css?v=1795253893">
-<link rel="stylesheet" href="assets/revision.css?v=1795253893">
+<link rel="stylesheet" href="assets/base.css?v=1795254058">
+<link rel="stylesheet" href="assets/photos.css?v=1795254058">
+<link rel="stylesheet" href="assets/revision.css?v=1795254058">
 </head>
 <body data-page="course" data-course="fil-rouge" data-title="Fil rouge GaSeBeLa">
 <div id="app" data-theme="papier">
@@ -150,7 +150,7 @@
   </tbody></table>
   <div style="display:grid;gap:1.2vh">
     <div class="card"><span class="lab">Comment l'équipe décidait</span><ul><li>Une question ouverte → une position argumentée → un <b>vote sur Discord</b>.</li><li>La décision est écrite dans un <b>ADR</b> : contexte, options, choix, conséquences. 65 au total.</li><li>Les questions que l'équipe ne pouvait pas trancher allaient au <b>Product Owner</b> (le formateur) : 28 questions à l'entretien du 07/10.</li></ul></div>
-    <div class="card"><span class="lab">Les outils</span><p>GitHub (code, documentation, ADR, kanban), Discord, Confluence jusqu'au 20/11 (le dépôt fait foi depuis), et un <b>assistant IA</b> (Claude) pour coder et relire, chaque sortie étant relue.</p></div>
+    <div class="card"><span class="lab">Les outils</span><p>GitHub (code, documentation, ADR, kanban), Discord, Confluence jusqu'au 20/11 (le dépôt fait foi depuis), et un agent <b>Claude Code</b> relié au serveur <b>Discord</b> de l'équipe : chacun lui donnait ses consignes par message, et l'agent écrivait le code puis faisait les commits. Chaque sortie était relue.</p></div>
   </div>
 </div>
 </section>
@@ -162,8 +162,8 @@
 <div class="grid g2">
   <div class="trap-list">
     <div><b>« Ce n'est pas moi qui l'ai fait »</b> : réponse refusée par la trame de soutenance. Dis plutôt « Sébastien l'a codé ; voici comment ça marche et pourquoi ».</div>
-    <div><b>Cacher le déséquilibre</b> : 88 % des commits viennent d'une personne (645 sur 729 au 19/11). L'équipe l'a coté comme risque n° 1 du projet ; dis-le et dis la parade.</div>
-    <div><b>Survendre l'assistant IA</b> ou le cacher : il a aidé à coder et relire, ses erreurs ont été corrigées à la relecture. C'est un outil, la décision reste humaine.</div>
+    <div><b>Laisser croire qu'une personne a tout codé</b> : 88 % des commits (645 sur 729) portent le nom de Sébastien parce que l'agent Claude Code tournait sur <b>sa machine</b>. Les consignes venaient des quatre membres, via Discord. La note de cadrage l'écrit encore « 88 % des commits sont de Sébastien » : sache le rectifier.</div>
+    <div><b>Survendre l'agent IA</b> ou le cacher : il a écrit l'essentiel du code, sur nos consignes, et ses erreurs ont été corrigées à la relecture. Il exécute ; l'équipe décide.</div>
     <div><b>Une présentation personnelle de 5 minutes</b> : c'est du temps pris au projet.</div>
   </div>
   <ol class="sum-list">
@@ -195,8 +195,8 @@
 <div class="accg">
 <div class="acc jq"><button class="ah" type="button">Qui a fait quoi dans le groupe ?</button><div class="ab"><p>Chaque livrable avait un responsable et un valideur, écrits dans le RACI. J'ai porté l'audit (cartographie, analyse, étude d'opportunité), le registre RGPD, la note 3V, l'éco-conception, le PCA/PRA, la note d'indexation et les tests d'attaque. Sébastien a codé l'essentiel de l'API et de la migration, Laurence a tenu le journal de décisions et la conception applicative, Békanty le cadrage, le cahier des charges et le MoSCoW. J'ai relu toutes les parties pour pouvoir les défendre.</p></div></div>
 <div class="acc jq"><button class="ah" type="button">Comment preniez-vous les décisions ?</button><div class="ab"><p>Une question ouverte recevait une position argumentée, puis l'équipe votait sur Discord. La décision était écrite dans un ADR : le contexte, les options, le choix et ses conséquences. Nous en avons 65. Ce qui dépassait l'équipe, comme les paramètres de rémunération ou le périmètre, allait au Product Owner : 28 questions tranchées à l'entretien du 7 octobre.</p></div></div>
-<div class="acc jq"><button class="ah" type="button">Une seule personne a fait 88 % des commits. Comment l'expliquez-vous ?</button><div class="ab"><p>C'est vrai, et nous l'avons coté comme le premier risque du projet, à 9 sur 9 : le travail reposait sur une personne. Les commits mesurent surtout le code ; la documentation, l'audit et les notes ont été répartis. La parade a été de répartir les livrables manquants par le RACI et que chacun relise les parties des autres. C'est aussi une leçon : j'organiserais plus tôt le binômage sur le code.</p></div></div>
-<div class="acc jq"><button class="ah" type="button">Quelle place a eu l'IA générative dans votre travail ?</button><div class="ab"><p>Nous avons utilisé un assistant (Claude) pour aider à coder et à relire. Nous l'avons inscrit dans les risques du projet, parce qu'il se trompe : des erreurs ont été trouvées à la relecture. La règle était de relire chaque sortie et de la vérifier contre le sujet et le code. Les décisions, elles, sont dans les ADR et ont été votées par l'équipe.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Une seule personne a fait 88 % des commits. Comment l'expliquez-vous ?</button><div class="ab"><p>Le chiffre est vrai, mais il mesure la machine, pas la personne. Nous avions installé un agent Claude Code sur le poste de Sébastien et nous l'avions relié au serveur Discord de l'équipe : chacun des quatre lui donnait ses consignes par message, et l'agent écrivait le code puis faisait les commits, sous l'identité Git de ce poste. Le vrai risque était ailleurs : tout passait par une seule machine, et le code écrit par l'agent devait être compris par toute l'équipe. D'où la relecture croisée et le RACI. Si c'était à refaire, j'hébergerais l'agent sur une machine partagée et j'indiquerais dans chaque commit qui a donné la consigne.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Quelle place a eu l'IA générative dans votre travail ?</button><div class="ab"><p>Une place centrale, et encadrée. Un agent Claude Code, installé sur le poste de Sébastien et relié à notre serveur Discord, recevait les consignes de chacun, écrivait le code et faisait les commits ; il prenait aussi des notes de séance à partir de nos échanges. Nous l'avons inscrit dans les risques du projet, parce qu'il se trompe : chaque sortie était relue et vérifiée contre le sujet et le code. Les décisions, elles, restent humaines : votées par l'équipe et écrites dans les ADR.</p></div></div>
 <div class="acc jq"><button class="ah" type="button">Comment pouvez-vous défendre une partie que vous n'avez pas écrite ?</button><div class="ab"><p>Parce que chaque choix est tracé : l'ADR dit le problème, les options écartées et la raison. J'ai relu les livrables des autres, et les mesures sont rejouables par script. Si on me demande pourquoi l'API relit le compte en base à chaque appel, la réponse est dans l'ADR-052 : un compte désactivé ne doit pas garder ses droits jusqu'à la fin de son jeton.</p></div></div>
 </div>
 </section>
@@ -856,8 +856,8 @@
 <h2>Les risques du projet, cotés comme ceux du SI</h2>
 <div class="grid g2">
   <table class="cmp md"><thead><tr><th>Cote</th><th>Risque</th><th>Parade</th></tr></thead><tbody>
-    <tr><td><b>9</b></td><td>Le travail repose sur une personne : <b>88 %</b> des commits (645 sur 729)</td><td>répartir les livrables manquants (RACI) ; chacun relit les autres</td></tr>
-    <tr><td>6</td><td>L'assistant IA se trompe</td><td>relire chaque sortie, vérifier contre le sujet et le code</td></tr>
+    <tr><td><b>9</b></td><td>Tout passe par une seule machine : <b>88 %</b> des commits (645 sur 729) partent du poste de Sébastien, où tourne l'agent Claude Code piloté par toute l'équipe via Discord</td><td>répartir les livrables manquants (RACI) ; chacun relit les autres</td></tr>
+    <tr><td>6</td><td>L'agent IA se trompe</td><td>relire chaque sortie, vérifier contre le sujet et le code</td></tr>
     <tr><td>6</td><td>Le périmètre déborde (un chantier clos sans rien livrer, 03/11)</td><td>hors-périmètre validé avec le PO</td></tr>
     <tr><td>6</td><td>Le PO est injoignable (19/11)</td><td>l'équipe tranche et l'écrit (MoSCoW, ADR)</td></tr>
     <tr><td>4</td><td>Un membre absent ou surchargé</td><td>RACI : chacun a un valideur</td></tr>
@@ -886,7 +886,7 @@
     <li>Jalon critique : schéma v3 + migration le 07/10.</li>
     <li>RACI : un R et un seul A par livrable.</li>
     <li>Chantiers → tâches → kanban ; relecture ; ADR.</li>
-    <li>Risque n° 1 : dépendance à une personne (88 % des commits).</li>
+    <li>Risque n° 1 : tout passe par une machine (88 % des commits, faits par l'agent).</li>
   </ol>
 </div>
 </section>
@@ -899,7 +899,7 @@
   <div class="card"><span class="lab">Jalons clés</span><p>Schéma v3 07/10 · présentation 16/10 · soutenance 11/03/2027.</p></div>
   <div class="card"><span class="lab">Rôles</span><p>PO = formateur · sponsor = jury · RACI : un R, un A par livrable.</p></div>
   <div class="card"><span class="lab">Méthode</span><p>Chantiers → tâches → kanban GitHub · relecture · ADR · Discord.</p></div>
-  <div class="card"><span class="lab">Risques projet</span><p>Dépendance à une personne (9) · IA qui se trompe · périmètre · PO injoignable (6).</p></div>
+  <div class="card"><span class="lab">Risques projet</span><p>Une seule machine pour l'agent (9) · IA qui se trompe · périmètre · PO injoignable (6).</p></div>
   <div class="card"><span class="lab">KPI de suivi</span><p>Tests 121 → 1 132 · 33/33 Must · anomalies de l'audit traitées.</p></div>
 </div>
 </section>
@@ -911,9 +911,9 @@
 <div class="accg">
 <div class="acc jq"><button class="ah" type="button">Quelle méthode de gestion de projet avez-vous suivie ?</button><div class="ab"><p>Un cadre en quatre phases fixé par le sujet, et à l'intérieur une démarche itérative : le projet découpé en chantiers, chaque chantier en petites tâches suivies sur un kanban GitHub, chaque tâche de code relue avant commit. Les décisions passaient par un vote puis un ADR. Ce n'était pas du Scrum formel, sans sprints ni cérémonies, mais un flux continu proche du Kanban.</p></div></div>
 <div class="acc jq"><button class="ah" type="button">Comment avez-vous suivi l'avancement ?</button><div class="ab"><p>Par des indicateurs concrets : le nombre de tests verts, passé de 121 début octobre à 1 132 fin novembre ; les Must du backlog livrés, 33 sur 33 ; et les livrables de la grille d'évaluation, cochés avec un lien vers leur preuve dans la grille d'auto-évaluation. Le kanban montrait les tâches en cours.</p></div></div>
-<div class="acc jq"><button class="ah" type="button">À quoi sert votre RACI ?</button><div class="ab"><p>À savoir pour chaque livrable qui le réalise et qui le valide, avec un seul valideur. C'est aussi la parade à deux risques : un membre absent, puisque le valideur reprend le relais, et la dépendance à une personne, puisqu'on a réparti les livrables restants pour équilibrer la charge.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">À quoi sert votre RACI ?</button><div class="ab"><p>À savoir pour chaque livrable qui le réalise et qui le valide, avec un seul valideur. C'est aussi la parade à deux risques : un membre absent, puisque le valideur reprend le relais, et la concentration du travail sur la machine de l'agent, puisqu'on a réparti les livrables restants pour que chacun en porte une partie.</p></div></div>
 <div class="acc jq"><button class="ah" type="button">Comment avez-vous impliqué les parties prenantes ?</button><div class="ab"><p>Le Product Owner, joué par le formateur, a tranché 28 questions lors d'un entretien le 7 octobre, où nous arrivions avec une position sur chacune. La présentation intermédiaire du 16 octobre a servi de point de contrôle devant les autres groupes. Et chaque décision est écrite, donc vérifiable par n'importe qui.</p></div></div>
-<div class="acc jq"><button class="ah" type="button">Quel a été le risque principal du projet, et l'avez-vous maîtrisé ?</button><div class="ab"><p>La dépendance à une personne : une seule personne a fait la grande majorité des commits. Nous l'avons cotée 9 sur 9. Maîtrisé en partie : les livrables restants ont été répartis, et chacun a relu le travail des autres pour pouvoir le défendre. Si c'était à refaire, je mettrais en place le travail en binôme sur le code dès le début.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Quel a été le risque principal du projet, et l'avez-vous maîtrisé ?</button><div class="ab"><p>La concentration sur une seule machine. L'agent Claude Code qui écrivait le code tournait sur le poste de Sébastien : 88 % des commits portent donc son nom, alors que les consignes venaient des quatre membres via Discord. Nous l'avons coté 9 sur 9, parce que si ce poste s'arrêtait, l'agent s'arrêtait, et parce que le code devait rester compris par tous. Maîtrisé en partie : relecture croisée, livrables répartis par le RACI. Si c'était à refaire, j'hébergerais l'agent sur une machine partagée et je noterais dans chaque commit qui a donné la consigne.</p></div></div>
 </div>
 </section>
 
@@ -972,8 +972,8 @@
       <li><b>Mesurer avant de corriger</b> : l'index qui ne sert à rien aujourd'hui, la faille d'authentification, le goulot de la liste, tous trouvés par une mesure.</li>
       <li><b>Écrire les décisions</b> : 65 ADR, et chaque question du jury a déjà sa réponse écrite.</li>
       <li><b>Faire juger la base</b> : une règle dans PostgreSQL ne peut pas être contournée.</li>
-      <li><b>Répartir le code tôt</b> : la dépendance à une personne s'est installée sans qu'on la voie.</li>
-      <li><b>Relire l'assistant IA</b> : il accélère, il se trompe aussi.</li></ol></div>
+      <li><b>Tracer qui demande quoi</b> : l'agent faisait tous ses commits depuis une seule machine, donc l'historique Git ne montre pas qui a donné chaque consigne.</li>
+      <li><b>Relire l'agent IA</b> : il accélère, il se trompe aussi.</li></ol></div>
   </div>
   <div style="display:grid;gap:1.2vh">
     <div class="card hl"><span class="lab">Les recommandations, dans l'ordre</span><ol>
@@ -1016,7 +1016,7 @@
   <div class="card"><span class="lab">Atteint</span><p>0 mandat expiré actif · 0 chasseur-client · honoraires tracés · 0 critère libre · 33/33 Must.</p></div>
   <div class="card"><span class="lab">Mesuré</span><p>Index × 15–100 · 70 ms/bien · restauration 2,82 s · 6/6 attaques · 93 %.</p></div>
   <div class="card"><span class="lab">Limites</span><p>Pas de pagination · RPO 24 h · une instance · chasseur-IA non bridé · Airflow 2 fin de vie.</p></div>
-  <div class="card"><span class="lab">Leçons</span><p>Mesurer avant de corriger · écrire les décisions · faire juger la base · répartir le code tôt.</p></div>
+  <div class="card"><span class="lab">Leçons</span><p>Mesurer avant de corriger · écrire les décisions · faire juger la base · tracer qui demande quoi.</p></div>
   <div class="card wide"><span class="lab">Recommandations</span><p>Paginer → WAL hors site → droits IA → Airflow 3 → HTTPS, MFA, réplique → v2 du matching → partitionnement.</p></div>
 </div>
 </section>
@@ -1026,7 +1026,7 @@
 <div class="pqrow"><span class="pq jury"><svg class="ico" aria-hidden="true"><use href="#ti-microphone"/></svg> Ce que le jury peut demander</span></div>
 <h2>Questions d'oral — chapitre 07</h2>
 <div class="accg">
-<div class="acc jq"><button class="ah" type="button">Si c'était à refaire, que changeriez-vous ?</button><div class="ab"><p>Trois choses. Répartir le code dès le début, en binôme, pour éviter la dépendance à une personne. Poser la pagination dès la première route de liste : c'est le goulot que la mesure de charge a trouvé. Et formuler la problématique sous forme de question plus tôt, pour que chaque livrable y réponde explicitement.</p></div></div>
+<div class="acc jq"><button class="ah" type="button">Si c'était à refaire, que changeriez-vous ?</button><div class="ab"><p>Trois choses. Héberger l'agent IA sur une machine partagée et noter dans chaque commit qui a donné la consigne, pour que l'historique reflète le travail de chacun. Poser la pagination dès la première route de liste : c'est le goulot que la mesure de charge a trouvé. Et formuler la problématique sous forme de question plus tôt, pour que chaque livrable y réponde explicitement.</p></div></div>
 <div class="acc jq"><button class="ah" type="button">Quelles sont les principales limites de votre solution ?</button><div class="ab"><p>Une seule instance de chaque service, et une sauvegarde quotidienne sans journaux WAL : nous visons une perte d'une heure au plus, nous sommes à 24 heures. Les droits réduits du chasseur-IA sont proposés mais pas codés. Et les listes ne sont pas paginées. Chacune a sa recommandation, dans un ordre fixé par l'urgence.</p></div></div>
 <div class="acc jq"><button class="ah" type="button">Votre solution tiendra-t-elle la croissance annoncée ?</button><div class="ab"><p>Le volume, oui : 22 à 133 Go tiennent sur une instance, selon la note 3V. Les leviers sont prévus avec leur déclencheur : index maintenant, réplique avant la production, partitionnement des deux tables de liens au-delà de quelques dizaines de gigaoctets, répartition par pays seulement si une machine ne suffit plus. Ils sont conçus et chiffrés, pas encore éprouvés en charge réelle : c'est la prochaine étape.</p></div></div>
 <div class="acc jq"><button class="ah" type="button">Quels indicateurs suivriez-vous en production ?</button><div class="ab"><p>Côté technique : la latence au 95e centile par route, le taux d'erreurs 5xx, la durée des traitements de nuit et la taille des deux tables de liens, qui déclenche le partitionnement. Côté métier : la part des suggestions gardées par les chasseurs et la part des biens qui intéressent les clients, qui jugent le matching. Et le nombre de mandats arrivant à échéance sans renouvellement.</p></div></div>
@@ -1139,9 +1139,9 @@
 </div>
 
 </div>
-<script src="assets/icons.js?v=1795253893"></script>
-<script src="data/fil-rouge-quiz.js?v=1795253893"></script>
-<script src="data/fil-rouge-glossary.js?v=1795253893"></script>
-<script src="assets/engine.js?v=1795253893"></script>
+<script src="assets/icons.js?v=1795254058"></script>
+<script src="data/fil-rouge-quiz.js?v=1795254058"></script>
+<script src="data/fil-rouge-glossary.js?v=1795254058"></script>
+<script src="assets/engine.js?v=1795254058"></script>
 </body>
 </html>
